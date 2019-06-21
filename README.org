@@ -14,7 +14,7 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
 * Howto
 ** Installaton
 - git clone the repo to ~/mydot
-  =git clone https://github.com/gnugnat/mydot.git ~/mydot=
+  =git clone https://gitlab.com/xgqt/mydot ~/mydot=
 - cd to mydot
 - run =./stowdot=
 ** Uninstallation
