@@ -1,0 +1,63 @@
+general {
+	colors = true
+	interval = 1
+	#color_good = "#00e6ac" #"#33cc3" #"#F08D0C"
+	markup = "pango"
+}
+
+order += "volume master"
+order += "wireless wlp3s0"
+order += "ethernet enp0s25"
+order += "cpu_usage"
+order += "load"
+order += "battery 0"
+order += "time"
+
+
+volume master {
+        format = "<span color='#CEA8FF'>%volume </span>"
+        format_muted = "<span color='#cfafc8'>muted (%volume) </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+	separator_block_width = 20
+}
+
+wireless wlp3s0 {
+        format_up = "%essid "
+        format_down = ""
+	separator_block_width = 20
+}
+
+ethernet enp0s25 {
+        format_up = "eth "
+        format_down = ""
+	separator_block_width = 20
+}
+
+cpu_usage{
+	format = "%usage "
+	separator_block_width = 20
+}
+
+load {
+        format = "%5min "
+	separator_block_width = 20
+}
+
+battery 0 {
+        format = "%percentage %status"
+        format_down = "No battery"
+        status_chr = ""
+        status_bat = ""
+        status_unk = "?"
+        status_full = ""
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+	separator_block_width = 20
+}
+
+time {
+        format = "%H:%M "
+	separator_block_width = 20
+}

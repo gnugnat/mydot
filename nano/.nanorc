@@ -1,0 +1,6 @@
+set autoindent
+set morespace
+set softwrap
+set smooth
+set constantshow
+set linenumbers

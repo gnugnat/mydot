@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<JWM>
+  
+  <!-- Start a program. -->
+  <StartupCommand>xset b off &amp;</StartupCommand>
+  <StartupCommand>compton -b &amp;</StartupCommand>
+  <StartupCommand>conky -p 3 -c  $HOME/.conkyrc &amp;</StartupCommand>
+  <StartupCommand>nm-applet &amp;</StartupCommand>
+  
+</JWM>

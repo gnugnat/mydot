@@ -1,0 +1,122 @@
+#!/bin/sh
+
+#		 		       	     .
+#     .vir.                                 d$b
+#  .d$$$$$$b.     .cd$$b.     .d$$b.   d$$$$$$$$$$$b  .d$$b.      .d$$b.
+#  $$$$( )$$$b  d$$$()$$$.   d$$$$$$$b Q$$$$$$$P$$$P.$$$$$$$b.  .$$$$$$$b.
+#  Q$$$$$$$$$$ d$$$$$$$$P"  d$$$PQ$$$$b.   $$$$.   .$$$P' `$$$ .$$$P' `$$$
+#    "$$$$$$$P  Q$$$$$$$b  d$$$P   Q$$$$b  $$$$b   $$$$b..d$$$ $$$$b..d$$$
+#   d$$$$$$P"    "$$$$$$$$ Q$$$     Q$$$$  $$$$$   `Q$$$$$$$P  `Q$$$$$$$P
+#  $$$$$$$P        `"""""   ""        ""   Q$$$P     "Q$$$P"     "Q$$$P"
+#  `Q$$P"                                   """
+
+# My Aliases
+
+### System Tools ###
+# directories
+alias tree='tree -C'
+alias t='tree -a -L 2'
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=always'
+mkcd ()
+{
+    mkdir $1 && cd $1
+}
+# files
+alias rm="rm -Iv"
+alias c='cat'
+alias n='nano'
+alias v='vim'
+alias e='emacs -nw'
+alias open='xdg-open'
+# Authorization
+alias rp='sudo '
+# searching
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+# system resources
+alias ip='ip -c'
+alias mtr='mtr --show-ips --curses'
+alias seeo='sudo netstat -tulpn'
+alias seen='sudo arp-scan --localnet'
+### Portage ###
+# logs
+alias F='tail -f /var/log/emerge-fetch.log'
+alias E='tail -f /var/log/emerge.log'
+# config files
+alias P='cd /etc/portage && tree -a -L 2'
+alias Read='sudo eselect news read'
+# emerge
+alias pep='sudo emerge -av'
+alias chu='sudo emerge -avNUD @world'
+epull ()
+{
+    sudo eix-sync
+    sudo eix-remote update
+}
+epurge ()
+{
+    sudo emerge -avc $1
+    sudo eclean-dist --deep
+}
+ewup ()
+{
+    epull
+    sudo emerge -avuD --with-bdeps=y @world
+    epurge
+}
+
+### Other Package Managers ###
+# Flatpak
+alias fpk='flatpak'
+
+### Git ###
+alias Gs='git status'
+alias Gd='git diff'
+alias Ga='git add .'
+alias Gc='git commit'
+alias Gp='git push'
+alias Gg='git pull'
+alias Gr='git reset --hard'
+alias Gl='git log --oneline --graph'
+
+### System Files ###
+# zsh
+alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
+alias so-zrc='source ~/.zshrc'
+# grub
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+### youtube-dl ###
+alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
+alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
+alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
+
+### Useful Stuff ###
+# weather
+alias wttr='curl "http://wttr.in/?0?q"'
+# check the characte's unicode encoding
+codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
+# archive extractor
+extractor ()
+{
+    if [ -f $1 ] ; then
+	case $1 in
+	    *.tar.bz2)   tar xjf $1   ;;
+	    *.tar.gz)    tar xzf $1   ;;
+	    *.bz2)       bunzip2 $1   ;;
+	    *.rar)       unrar x $1   ;;
+	    *.gz)        gunzip $1    ;;
+	    *.tar)       tar xf $1    ;;
+	    *.tbz2)      tar xjf $1   ;;
+	    *.tgz)       tar xzf $1   ;;
+	    *.zip)       unzip $1     ;;
+	    *.Z)         uncompress $1;;
+	    *.7z)        7z x $1      ;;
+	    *)           echo "'$1' cannot be extracted via extractor()" ;;
+	esac
+    else
+	echo "'$1' is not a valid file"
+    fi
+}

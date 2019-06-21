@@ -1,0 +1,37 @@
+#+STARTUP: showall inlineimages
+#+TITLE: My dotfiles
+#+CREATOR: xgqt
+#+LANGUAGE: en
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+[[./Larry_Cow.png]]
+
+* Background
+Worked on this since my Gentoo's first installation, 
+because of this this repo contains a lot of gentoo specyfic aliases and tools.
+* Legal Disclaimer
+** what I did not write:
+- zsh plugins ([[https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh][git-prompt.sh]], [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]] & [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]])
+* Howto
+** Installaton
+- git clone the repo to ~/mydot
+  =git clone https://github.com/gnugnat/mydot.git ~/mydot=
+- cd to mydot
+- run =./stowdot=
+** Uninstallation
+- run =./stowdot remove=
+** Selectivity
+   You can install/delete configs selectivitely.
+   First change directrory to mydot, ex: =cd ~/mydot=.
+   Remember to create needed directories to avoid conflicts:
+   - =$HOME/.config= 	- for your users config files
+   - =$HOME/.emacs.d= 	- for Emacs
+   - =$HOME/.newsboat= 	- for newsboat config file
+*** install one
+    example: zsh
+    - =stow -v zsh=
+*** uninstall one
+    example: zsh
+    - =stow -vD zsh=
+** JWM
+- For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
+- If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc

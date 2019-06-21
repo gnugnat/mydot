@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+# -- Checks --
+# --- check for stow ---
+stow --version
+if [ $? != '0' ]; then
+    echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
+    exit 1
+fi 
+
+mydir=$HOME/mydot
+
+# --- check for mydir ( ~/mydot ) ---
+if [ ! -d $mydir ]; then
+    echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
+    exit 1
+fi
+
+# --- check needed directories ---
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
+    if [ ! -e $chkdir ]; then
+	mkdir $chkdir
+	echo "$chkdir created"
+    else
+	echo "$chkdir exists, good"
+    fi
+done
+
+# -- Stow or Unstow --
+for target in $(ls $mydir); do
+    if [ -d $mydir/$target ]; then
+	echo "$(tput bold)$target$(tput sgr0)"
+	if [ "$1" = "remove" ]; then stow -v -d $mydir -t $HOME -D $target
+	else stow -v -d $mydir -t $HOME -S $target; fi
+    fi
+done

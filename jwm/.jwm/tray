@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<JWM>
+
+  <Tray x="0" y="-1" height="24" valign="top" autohide="off">
+
+    <TrayButton label="Applications">root:3</TrayButton>
+    <TrayButton label="Desktop" icon="user-desktop.png">showdesktop</TrayButton>
+
+    <Spacer width="5"/>
+    
+    <Pager labeled="true"/>
+
+    <Spacer width="5"/>
+    
+    <TrayButton icon="utilities-terminal.png">exec:gnome-terminal</TrayButton>
+    <TrayButton icon="system-file-manager.png">exec:nautilus</TrayButton>
+
+    <Spacer width="5"/>
+    
+    <TaskList maxwidth="300" border="false"/>
+
+    <Spacer width="5"/>
+
+    <Dock/>
+
+    <Spacer width="5"/>
+    
+    <Clock format="%b %d %H:%M"></Clock>
+
+    <Spacer width="3"/>
+
+    <TrayButton icon="application-exit.png" popup="Exit">exec:jwm -exit</TrayButton>
+    
+  </Tray>
+
+</JWM>

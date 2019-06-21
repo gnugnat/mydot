@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# bold font
+bold=$(tput bold)
+# normal font
+normal=$(tput sgr0)
+
+# show user the avalible kernel list
+eselect kernel list
+echo -e "${bold}Which kernel will be used?${normal}"
+
+# read input
+read kvar
+# set the kernel
+sudo eselect kernel set $kvar
+# show the list again
+eselect kernel list
+sleep 2
+
+# go to the kernel sources
+cd /usr/src/linux
+echo -e "\n${bold}$(pwd)${normal}"
+echo -e "\n${bold}Remember to save the configuration as '.config'!${normal}\n"
+sleep 3
+
+# generate the kernel
+sudo genkernel --menuconfig --no-mrproper --makeopts=-j4 --install all
+if [ $? = '0' ]
+then
+    echo -e "\n${bold}Kernel compiled!${normal}\n"
+    sleep 2
+
+    # rebuild the modules
+    sudo emerge -av1 @module-rebuild
+    if [ $? = '0' ]
+    then
+	echo -e "\n${bold}Modules rebuilt!${normal}\n"
+	sleep 2
+    fi
+
+    # generate grub config file
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    if [ $? = '0' ]
+    then
+	echo -e "\n${bold}Grub Bootloader updated!${normal}"
+    fi
+fi
+
+# Finish
+echo -e "\n${bold}OK\nGenkerneler has done its job!\n${normal}"
