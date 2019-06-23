@@ -1,13 +1,10 @@
+#!/bin/sh
+
 # Usage:
 # $ startx ~/.xinitrc [session]
 
-# Keyboard:
-#
-# Polish + hold caps=control
-setxkbmap pl -option "caps:ctrl_modifier"
-#
-# caps=escape
-xcape -e "Caps_Lock=Escape"
+# Source xprofile:
+[ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
 # Start the session:
 #
