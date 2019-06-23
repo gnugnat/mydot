@@ -6,6 +6,16 @@
 # --- Browser ---
 browser firefox %u
 
+# --- Movement ---
+bind-key h quit
+bind-key l open
+bind-key j down
+bind-key k up
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+
 # --- Colors ---
 color listnormal cyan default
 color listfocus black yellow standout bold
