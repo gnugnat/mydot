@@ -20,4 +20,3 @@ fi
 
 ### larrysay ###
 (fortune 2>/dev/null || zsh --version) | cowsay -f $MYZSHDIR/extra/larry.cow 2>/dev/null
-fortune -v 2>/dev/null 1>/dev/null && zsh --version
