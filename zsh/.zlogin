@@ -19,4 +19,5 @@ if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
 fi
 
 ### larrysay ###
-fortune 2>/dev/null | cowsay 2>/dev/null; zsh --version
+(fortune 2>/dev/null || zsh --version) | cowsay -f $MYZSHDIR/extra/larry.cow 2>/dev/null
+fortune -v 1>/dev/null && zsh --version
