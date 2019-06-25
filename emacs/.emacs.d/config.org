@@ -17,12 +17,12 @@
   ;; Edit ini2.org
   (defun config-visit ()
     (interactive)
-    (find-file "~/.emacs.d/ini2.org" ))
+    (find-file "~/.emacs.d/config.org" ))
   (global-set-key (kbd "C-c e") 'config-visit)
   ;; Reload ~/.emacs.d/ini2.org at runtime
   (defun config-reload ()
     (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/ini2.org" )))
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" )))
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 ** Terminal
@@ -40,7 +40,8 @@
   ;; no toolbar:
   (tool-bar-mode -1)
   ;; no menubar:
-  ;;(menu-bar-mode -1)
+  ;;;; can still be accessed with F10
+  (menu-bar-mode -1)
   ;; no scrollbar:
   (scroll-bar-mode -1)
   ;; line numbers:
