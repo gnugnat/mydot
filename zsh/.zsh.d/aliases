@@ -18,10 +18,7 @@ alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
 alias ll='ls -lah --color=always'
-mkcd ()
-{
-    mkdir $1 && cd $1
-}
+mkcd () { mkdir $1 && cd $1 ; }
 # files
 alias rm="rm -Iv"
 alias c='cat'
