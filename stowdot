@@ -8,9 +8,14 @@ if [ $? != '0' ]; then
     exit 1
 fi 
 
+# --- mydir location ---
+# Change this if you want a different name instead of mydot.
+# For exaple if you are in the same directory as a renamed mydot,
+# ex.: mydot2 you can instead use:
+# mydir=.
 mydir=$HOME/mydot
 
-# --- check for mydir ( ~/mydot ) ---
+# --- check for mydir ---
 if [ ! -d $mydir ]; then
     echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
     exit 1
