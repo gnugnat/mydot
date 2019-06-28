@@ -4,7 +4,9 @@
 #auto-reload yes
 
 # --- Browser ---
-browser firefox %u
+browser "firefox %u"
+# macro is the comma ","
+macro m set browser "mpv --force-window %u >/dev/null &" ; open-in-browser ; set browser "firefox %u"
 
 # --- Movement ---
 bind-key h quit
