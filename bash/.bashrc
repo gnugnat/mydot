@@ -18,7 +18,7 @@ fi
 export PATH=$PATH:$HOME/scripts
 
 ### User Settings ###
-# -- text editor --
+# text editor
 export EDITOR=nano
 
 ### Prompt ###
@@ -27,9 +27,9 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 3)\] \w\[$(tput setaf 4)\] \u00BB \[$(tput 
 ### History ###
 HISTSIZE=3000
 HISTFILESIZE=3000
-# -- no double entries in the shell history --
+# no double entries in the shell history
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
-# -- append histroy --
+# append histroy
 shopt -s histappend
 
 ### Aliases ###
@@ -37,5 +37,6 @@ if [[ -e $HOME/.zsh.d/aliases ]]; then
     . $HOME/.zsh.d/aliases
 fi
 
-### auto-change directory ###
+### Misc ###
+# auto-change directory
 shopt -s autocd
