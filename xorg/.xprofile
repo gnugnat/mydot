@@ -1,6 +1,6 @@
 #!/bin/sh
 
-Keyboard:
+### Keyboard:
 #
 # Polish + hold caps=control
 setxkbmap pl -option "caps:ctrl_modifier" &
