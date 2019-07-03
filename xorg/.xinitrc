@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Usage:
+### Usage:
 # $ startx ~/.xinitrc [session]
 
-# Source xprofile:
+### Source xprofile:
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
-# Start the session:
+### Start the session:
 #
 # Here JWM is kept as default
 session=${1:-jwm}

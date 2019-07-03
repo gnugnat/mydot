@@ -1,27 +1,27 @@
 #!/usr/bin/env sh
 
-# -- Checks --
-# --- check for stow ---
+### Checks
+# check for stow
 stow --version
 if [ $? != '0' ]; then
     echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"
     exit 1
-fi 
+fi
 
-# --- mydir location ---
+### mydir location
 # Change this if you want a different name instead of mydot.
 # For exaple if you are in the same directory as a renamed mydot,
 # ex.: mydot2 you can instead use:
 # mydir=.
 mydir=$HOME/mydot
 
-# --- check for mydir ---
+### check for mydir
 if [ ! -d $mydir ]; then
     echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"
     exit 1
 fi
 
-# --- check needed directories ---
+### check needed directories
 for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
     if [ ! -e $chkdir ]; then
 	mkdir $chkdir
@@ -31,7 +31,7 @@ for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
     fi
 done
 
-# -- Stow or Unstow --
+### Stow or Unstow
 for target in $(ls $mydir); do
     if [ -d $mydir/$target ]; then
 	echo "$(tput bold)$target$(tput sgr0)"
