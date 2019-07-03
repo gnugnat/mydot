@@ -15,7 +15,7 @@ if [[ $- != *i* ]] ; then
 fi
 
 ### Scripts ###
-export PATH=$PATH:$HOME/scripts
+export PATH=$PATH:$HOME/.local/share/bin
 
 ### User Settings ###
 # text editor
