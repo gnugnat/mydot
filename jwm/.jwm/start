@@ -5,6 +5,7 @@
   <StartupCommand>xset b off &amp;</StartupCommand>
   <StartupCommand>compton -b &amp;</StartupCommand>
   <StartupCommand>conky -p 3 -c  $HOME/.conkyrc &amp;</StartupCommand>
+  <StartupCommand>volumeicon &amp;</StartupCommand>
   <StartupCommand>nm-applet &amp;</StartupCommand>
   
 </JWM>
