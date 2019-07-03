@@ -12,13 +12,15 @@
 
 # My Aliases
 
-### System Tools ###
+### System Tools
+#
 # directories
 alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
-alias ll='ls -lah --color=always'
+alias ll='ls -lahF --color=always'
 mkcd () { mkdir $1 && cd $1 ; }
+#
 # files
 alias rm="rm -Iv"
 alias c='cat'
@@ -26,24 +28,31 @@ alias n='nano'
 alias v='vim'
 alias e='emacs -nw'
 alias open='xdg-open'
+#
 # Authorization
 alias rp='sudo '
+#
 # searching
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+#
 # system resources
 alias ip='ip -c'
 alias mtr='mtr --show-ips --curses'
 alias seeo='sudo netstat -tulpn'
 alias seen='sudo arp-scan --localnet'
-### Portage ###
+
+### Portage
+#
 # logs
 alias F='tail -f /var/log/emerge-fetch.log'
 alias E='tail -f /var/log/emerge.log'
+#
 # config files
 alias P='cd /etc/portage && tree -a -L 2'
 alias Read='sudo eselect news read'
+#
 # emerge
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
@@ -64,11 +73,12 @@ ewup ()
     epurge
 }
 
-### Other Package Managers ###
+### Other Package Managers
+#
 # Flatpak
 alias fpk='flatpak'
 
-### Git ###
+### Git
 alias Gs='git status'
 alias Gd='git diff'
 alias Ga='git add .'
@@ -78,23 +88,28 @@ alias Gg='git pull'
 alias Gr='git reset --hard'
 alias Gl='git log --oneline --graph'
 
-### System Files ###
+### System Files
+#
 # zsh
 alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
 alias so-zrc='source ~/.zshrc'
+#
 # grub
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
-### youtube-dl ###
+### youtube-dl
 alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
 alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
 
-### Useful Stuff ###
+### Useful Stuff
+#
 # weather
 alias wttr='curl "http://wttr.in/?0?q"'
+#
 # check the characte's unicode encoding
 codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
+#
 # archive extractor
 extractor ()
 {
