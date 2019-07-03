@@ -22,9 +22,9 @@ if [ ! -d $mydir ]; then
 fi
 
 ### check needed directories
-for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat"; do
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.local/share"; do
     if [ ! -e $chkdir ]; then
-	mkdir $chkdir
+	mkdir -p $chkdir
 	echo "$chkdir created"
     else
 	echo "$chkdir exists, good"
