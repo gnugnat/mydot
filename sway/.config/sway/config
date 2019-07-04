@@ -17,10 +17,10 @@ set $mod Mod4
 bindsym $mod+d exec j4-dmenu-desktop --dmenu='dmenu -i -nb "#3F3F3F" -nf "#15B3E8" -sf "#000000" -sb "#F2FA00"'
 
 # --- App Bindings: ---
-bindsym $mod+t exec gnome-terminal
+bindsym $mod+t exec gnome-terminal -e tmux
 bindsym $mod+e exec emacs
 bindsym $mod+n exec nautilus
-bindsym $mod+f exec firefox-bin
+bindsym $mod+f exec firefox
 
 # --- Movement: ---
 set $left h
@@ -45,11 +45,12 @@ input * {
 
 # --- Sway: ---
 # Restart Sway
-bindsym $mod+Shift+r reload
+bindsym $mod+return reload
 # Exit Sway
-bindsym $mod+Shift+backspace exec swaynag -t warning -m 'Exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+backspace exec swaynag -t warning -m 'Exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
-# --- Focus: ---
+### Focus
+#
 # Move your focus around
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -61,7 +62,8 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# --- Workspaces: ---
+### Workspaces
+#
 # Workspaces Icons
 set $ws1 "1: "
 set $ws2 "2: "
@@ -69,9 +71,10 @@ set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
 set $ws6 "6: "
-set $ws7 "7: "
+set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
+#
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -82,6 +85,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
+#
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -93,18 +97,22 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
-# --- Window Control: ---
-# Scratchpad:
+### Window Control
+#
+# Scratchpad
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # show the next scratchpad window or hide the focused scratchpad window
 bindsym $mod+minus scratchpad show
+#
 # kill focused window
 bindsym $mod+q kill
-# Splits:
+#
+# Splits
 bindsym $mod+b splith
 bindsym $mod+v splitv
-# Resize:
+#
+# Resizing
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -124,25 +132,31 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+#
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+#
 # Move focused window
 bindsym $mod+Shift+$left  move left  20px
 bindsym $mod+Shift+$down  move down  20px
 bindsym $mod+Shift+$up    move up    20px
 bindsym $mod+Shift+$right move right 20px
-# mod + Mouse
+#
+# mod + Mouse for floating
 floating_modifier $mod
+#
 # pop-ups for fullscreen
 popup_during_fullscreen smart
 
-# --- Theme: ---
-# Wallpaper:
+### Theme
+#
+# Wallpaper
 output * bg /usr/share/backgrounds/gnome/adwaita-night.jpg fill
-# Sway Bar:
+#
+# Sway Bar
 bar {
     status_command i3status
-    position bottom
+    position top
     mode dock
     tray_output primary
     
@@ -152,25 +166,29 @@ bar {
         inactive_workspace #000000 #000000 #5c5c5c
 	}
 }
-# Borders:
+#
+# Borders
 for_window [class="^.*"] border pixel 0
-new_window pixel 0
-new_float  pixel 0
-# Gaps:
+default_border pixel 0
+default_floating_border pixel 0
+#
+# Gaps
 gaps inner 10
 gaps outer 5
 smart_gaps on
 smart_borders on
 
-# --- Audio: ---
+### Audio
+#
 # auto-set PA sink
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
+#
 # bink fn keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
-# --- Window Properties: ---
+### Window Properties
 for_window [class="Tor Browser"] floating enable
 for_window [title="video0 - mpv"] floating enable
 for_window [title="video0 - mpv"] sticky enable
