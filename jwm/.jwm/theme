@@ -6,6 +6,9 @@
     /usr/share/icons/Adwaita/16x16/apps
   </IconPath>
   <IconPath>
+    /usr/share/icons/Adwaita/24x24/legacy
+  </IconPath>
+  <IconPath>
     /usr/share/icons/Adwaita/24x24/actions
   </IconPath>
   <IconPath>
