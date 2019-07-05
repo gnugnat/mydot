@@ -1,0 +1,76 @@
+configuration {
+	      modi: "drun,ssh";
+	      columns: 1;
+	      show-icons: true;
+	      terminal: "gnome-terminal";
+
+	      hide-scrollbar: true;
+	      fullscreen: true;
+
+	      kb-remove-char-back: "BackSpace,Shift+BackSpace";
+	      kb-remove-to-eol: "";
+
+	      kb-accept-entry: "Control+m,Return,KP_Enter";
+	      kb-row-left: "Control+h";
+	      kb-row-right: "Control+l";
+	      kb-row-up: "Up,Control+k,ISO_Left_Tab";
+	      kb-row-down: "Down,Control+j,Tab";
+	      kb-row-tab: "";
+	      }
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+* {
+  font: "Hack 15";
+  trans-background-color: rgba(0, 0, 0, 0.8);
+  }
+
+#window {
+   padding: 40%;
+   background-color: @trans-background-color;
+}
+
+#mainbox {
+   spacing:0px;
+}
+
+#message {
+   padding: 6px 10px;
+}
+
+#listview {
+   fixed-height: false;
+   dynamic: true;
+   scrollbar: true;
+   spacing: 0px;
+   padding: 1px 0px 0px 0px;
+   margin: 0px 0px 1px 0px;
+}
+
+#element {
+   padding: 2px 15px;
+}
+
+#element.normal.normal {
+   padding: 0px 15px;
+}
+
+#scrollbar {
+   handle-width: 15px;
+}
+
+#inputbar {
+   spacing: 0px;
+}
+
+#prompt {
+   padding:6px 9px;
+}
+
+#entry {
+   padding:6px 10px;
+}
+
+#case-indicator {
+   padding:6px 10px;
+}
