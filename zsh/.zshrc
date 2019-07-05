@@ -8,7 +8,7 @@
 
 ### Scripts ###
 # add additional programs to PATH
-export PATH=$PATH:$HOME/.local/share/bin:$HOME/go/bin
+export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin:$HOME/go/bin
 
 ### Completion ###
 autoload -U compinit
