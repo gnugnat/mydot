@@ -1,76 +1,51 @@
+/*             __ _ 
+    _ __ ___  / _(_)
+   | `__/ _ \| |_| |
+   | | | (_) |  _| |
+   |_|  \___/|_| |_|
+
+   Uses pywal:
+   https://github.com/dylanaraps/pywal
+   Preferably run with:
+   rofi -show combi -combi-modi "window,drun,ssh,keys"
+*/
+
 configuration {
-	      modi: "drun,ssh";
-	      columns: 1;
-	      show-icons: true;
-	      terminal: "gnome-terminal";
 
-	      hide-scrollbar: true;
-	      fullscreen: true;
+/* basic */
+   modi: "window,drun,ssh,keys,combi";
+   terminal: "gnome-terminal";
 
-	      kb-remove-char-back: "BackSpace,Shift+BackSpace";
-	      kb-remove-to-eol: "";
+/* look */
+   columns: 2;
+   show-icons: true;
+   hide-scrollbar: true;
+   fullscreen: true;
 
-	      kb-accept-entry: "Control+m,Return,KP_Enter";
-	      kb-row-left: "Control+h";
-	      kb-row-right: "Control+l";
-	      kb-row-up: "Up,Control+k,ISO_Left_Tab";
-	      kb-row-down: "Down,Control+j,Tab";
-	      kb-row-tab: "";
-	      }
+/* vi-like movement */
+   kb-row-left: "Control+h";
+   kb-row-right: "Control+l";
+   kb-row-up: "Up,Control+k";
+   kb-row-down: "Down,Control+j";
+   kb-remove-char-back: "BackSpace";
+   kb-remove-to-eol: "";
+   kb-accept-entry: "Control+m,Return";
 
+}
+
+/* import pyWal colors */
 @import "~/.cache/wal/colors-rofi-dark.rasi"
 
+/* Other stuff for looks */
 * {
-  font: "Hack 15";
-  trans-background-color: rgba(0, 0, 0, 0.8);
-  }
-
+   font: "Hack 12";
+   trans-background-color: rgba(0, 0, 0, 0.5);
+   scrollbar: false;
+}
 #window {
-   padding: 40%;
+   padding: 10%;
    background-color: @trans-background-color;
 }
-
-#mainbox {
-   spacing:0px;
-}
-
-#message {
-   padding: 6px 10px;
-}
-
-#listview {
-   fixed-height: false;
-   dynamic: true;
-   scrollbar: true;
-   spacing: 0px;
-   padding: 1px 0px 0px 0px;
-   margin: 0px 0px 1px 0px;
-}
-
-#element {
-   padding: 2px 15px;
-}
-
-#element.normal.normal {
-   padding: 0px 15px;
-}
-
 #scrollbar {
-   handle-width: 15px;
-}
-
-#inputbar {
-   spacing: 0px;
-}
-
-#prompt {
-   padding:6px 9px;
-}
-
-#entry {
-   padding:6px 10px;
-}
-
-#case-indicator {
-   padding:6px 10px;
+   handle-width: 0;
 }
