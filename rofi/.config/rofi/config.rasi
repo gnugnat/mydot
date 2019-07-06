@@ -17,6 +17,7 @@ configuration {
    terminal: "gnome-terminal";
 
 /* look */
+   display-combi: "Select";
    columns: 2;
    show-icons: true;
    hide-scrollbar: true;
