@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # change colors of gnome-terminal
-# using colors from pyWal with dconf 
+# using colors from pyWal with dconf
 
-cat $HOME/.cache/wal/colors
+# for this to work you must
+# have at least 2 profiles
 
 # source pyWal's script
 . ~/.cache/wal/colors.sh
