@@ -85,5 +85,3 @@ case $TERM in
 esac
 # ls after changing directory
 chpwd() ls
-# source wal colorscheme
-cat ~/.cache/wal/sequences 2>/dev/null
