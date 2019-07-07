@@ -9,10 +9,10 @@ URxvt*loginShell:	true
 URxvt*internalBorder:	0
 URxvt*scrollBar:        false
 URxvt.letterSpace:	0
-URxvt*font:             xft:Hack:size=9:style=regular
-URxvt*boldFont:         xft:Hack:size=9:style=regular
+URxvt*font:             xft:xos4 Terminus:size=12:style=regular
+URxvt*boldFont:         xft:xos4 Terminus:size=12:style=regular
 
 ! XTerm
 xterm*termName:		xterm-256color
-XTerm.font:             xft:Hack:size=9:style=regular
-XTerm.boldFont:         xft:Hack:size=9:style=regular
+XTerm.font:             xft:xos4 Terminus:size=12:style=regular
+XTerm.boldFont:         xft:xos4 Terminus:size=12:style=regular
