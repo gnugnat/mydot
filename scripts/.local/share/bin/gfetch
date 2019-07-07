@@ -13,9 +13,9 @@ os='Gentoo Linux'
 cpu="$(uname -p)"
 kernel="$(uname -sr)"
 uptime="$(uptime -p | sed 's/up //')"
-world="$(cat /var/lib/portage/world | wc -l)"
+world="$(wc -l < /var/lib/portage/world)"
 packages="$(ls -d /var/db/pkg/*/* | wc -l)"
-shell="$(basename ${SHELL})"
+shell="${SHELL}"
 
 if [ -z "${WM}" ]; then
 	if [ "${XDG_CURRENT_DESKTOP}" ]; then

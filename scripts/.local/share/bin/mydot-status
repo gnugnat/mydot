@@ -10,7 +10,7 @@ color_yellow=$(tput setaf 3)
 location=$HOME/mydot
 scripts=$HOME/.local/share/bin
 
-cd $location
+cd $location || exit 1
 echo $color_bold$color_blue\Remote:$color_reset$color_yellow $(git config --get remote.origin.url)
 echo $color_bold$color_blue\Changes:$color_reset$color_yellow $(git status --porcelain)
 echo $color_bold$color_blue\Scripts:$color_reset$color_yellow $(ls $scripts) $color_reset
