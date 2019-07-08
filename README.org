@@ -9,8 +9,11 @@
 Worked on this since my Gentoo's first installation, 
 because of this this repo contains a lot of gentoo specyfic aliases and tools.
 * Legal Disclaimer
-** what I did not write:
-- zsh plugins ([[https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh][git-prompt.sh]], [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]] & [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]])
+** There are scripts to install some programs made by other people
+*** zsh plugins
+- [[https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh][git-prompt.sh]] 
+- [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
+- [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
 * Howto
 ** Installaton
 - git clone the repo to ~/mydot
@@ -32,6 +35,8 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
 *** uninstall one
     example: zsh
     - =stow -vD zsh=
+** ZSH
+- you may have to install plugins manually or by using a installer script inside .zsd.d (zsh-get-plugins.sh)
 ** JWM
 - For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
 - If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc

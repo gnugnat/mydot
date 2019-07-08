@@ -14,7 +14,7 @@ if [ ! -d $MYZSHDIR ]; then echo "!!!Warning!!! No $MYZSHDIR found!!!"; fi
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
     echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme"
 # run script to choose a theme
-    $MYZSHDIR/choose-theme.sh
+    $MYZSHDIR/zsh-choose-theme.sh
     source ~/.zshrc
 fi
 
