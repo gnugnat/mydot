@@ -202,10 +202,10 @@
 #+BEGIN_SRC emacs-lisp
   ;; Font settings
   (set-face-attribute 'default nil
-		      :font "Monospace"
+		      :font "xos4 Terminus"
 		      :weight 'normal
 		      :width 'normal
-		      :height 105
+		      :height 110
 		      )
 #+END_SRC
 ** Theme
