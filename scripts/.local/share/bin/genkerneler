@@ -1,50 +1,50 @@
-#!/bin/bash
+#!/bin/sh
 
+# A simple Gentoo script to
+# generate the kernel and
+# reconfigure the system
+# using sys-kernel/genkernel
+# or sys-kernel/genkernel-next
+
+### Define some variables
+#
 # bold font
 bold=$(tput bold)
+#
 # normal font
 normal=$(tput sgr0)
 
-# show user the avalible kernel list
+### Select the kernel
+#
+# Show user the avalible kernel list
 eselect kernel list
-echo -e "${bold}Which kernel will be used?${normal}"
-
-# read input
+echo "${bold}Which kernel will be used?${normal}"
+#
+# Set the kernel
 read kvar
-# set the kernel
-sudo eselect kernel set $kvar
-# show the list again
-eselect kernel list
-sleep 2
-
+sudo eselect kernel set $kvar || (echo "${bold}Couldn't select the kernel!${normal}" && exit 1)
+#
 # go to the kernel sources
-cd /usr/src/linux
-echo -e "\n${bold}$(pwd)${normal}"
-echo -e "\n${bold}Remember to save the configuration as '.config'!${normal}\n"
+cd /usr/src/linux || (echo "${bold}Couldn't cd to linux sources directory!${normal}" && exit 1)
+echo "${bold}$(pwd)${normal}"
+echo "${bold}Remember to save the configuration as '.config'!${normal}"
 sleep 3
 
-# generate the kernel
-sudo genkernel --menuconfig --no-mrproper --makeopts=-j4 --install all
-if [ $? = '0' ]
-then
-    echo -e "\n${bold}Kernel compiled!${normal}\n"
-    sleep 2
+# Compile the kernel
+#
+# Call the genkerneler
+sudo genkernel --menuconfig --no-mrproper --makeopts=-j2 --install all || (echo "${bold}There was an genkernel error!${normal}" && exit 1)
+echo "${bold}Kernel compiled...${normal}"
+sleep 2
+#
+# Rebuild the modules
+sudo emerge -av1 @module-rebuild || (echo "${bold}Couldn't rebuild some packages!${normal}" && exit 1)
+echo "${bold}Modules rebuilt...${normal}"
+sleep 2
+# Generate grub config file
+sudo grub-mkconfig -o /boot/grub/grub.cfg || (echo "${bold}Couldn't generate grub.cfg!${normal}" && exit 1)
+echo "${bold}Grub Bootloader updated...${normal}"
 
-    # rebuild the modules
-    sudo emerge -av1 @module-rebuild
-    if [ $? = '0' ]
-    then
-	echo -e "\n${bold}Modules rebuilt!${normal}\n"
-	sleep 2
-    fi
-
-    # generate grub config file
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-    if [ $? = '0' ]
-    then
-	echo -e "\n${bold}Grub Bootloader updated!${normal}"
-    fi
-fi
-
-# Finish
-echo -e "\n${bold}OK\nGenkerneler has done its job!\n${normal}"
+### Finish
+echo "${bold}OK
+Genkerneler has done its job!${normal}"
