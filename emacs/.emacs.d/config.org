@@ -226,21 +226,6 @@
     (setq powerline-default-separator (quote arrow))
     (spaceline-spacemacs-theme))
 #+END_SRC
-** Diminish
-#+BEGIN_SRC emacs-lisp
-  ;; Get rid of unused modes
-  (use-package diminish
-    :ensure t
-    :init
-    (diminish 'beacon-mode)
-    (diminish 'which-key-mode)
-    (diminish 'rainbow-mode)
-    (diminish 'eldoc-mode)
-    (diminish 'auto-complete-mode)
-    (diminish 'flycheck-mode)
-    (diminish 'abbrev-mode)
-    )
-#+END_SRC
 * File Editing
 ** Insert Date
 #+BEGIN_SRC emacs-lisp
