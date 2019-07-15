@@ -22,7 +22,6 @@ alias ll='ls -lahF --color=always'
 mkcd () { mkdir $1 && cd $1 ; }
 #
 # files
-alias rm="rm -Iv"
 alias c='cat'
 alias n='nano'
 alias v='vim'
@@ -32,13 +31,7 @@ alias open='xdg-open'
 # Authorization
 alias rp='sudo '
 #
-# searching
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-#
 # system resources
-alias ip='ip -c'
 alias mtr='mtr --show-ips --curses'
 alias seeo='sudo netstat -tulpn'
 alias seen='sudo arp-scan --localnet'
@@ -63,7 +56,7 @@ epull ()
 }
 epurge ()
 {
-    sudo emerge -avc $1
+    sudo emerge -avc "$@"
     sudo eclean-dist --deep
 }
 ewup ()
