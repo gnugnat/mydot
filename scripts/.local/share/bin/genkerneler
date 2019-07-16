@@ -6,45 +6,42 @@
 # using sys-kernel/genkernel
 # or sys-kernel/genkernel-next
 
-### Define some variables
-#
 # bold font
 bold=$(tput bold)
-#
 # normal font
 normal=$(tput sgr0)
 
-### Select the kernel
-#
-# Show user the avalible kernel list
-eselect kernel list
-echo "${bold}Which kernel will be used?${normal}"
-#
-# Set the kernel
-read kvar
-sudo eselect kernel set $kvar || (echo "${bold}Couldn't select the kernel!${normal}" && exit 1)
-#
-# go to the kernel sources
-cd /usr/src/linux || (echo "${bold}Couldn't cd to linux sources directory!${normal}" && exit 1)
-echo "${bold}$(pwd)${normal}"
-echo "${bold}Remember to save the configuration as '.config'!${normal}"
-sleep 3
+# Become Root
+if [ "$(whoami)" != root ]; then
+    sudo "$(command -v genkerneler)"
+else
 
-# Compile the kernel
-#
-# Call the genkerneler
-sudo genkernel --menuconfig --no-mrproper --makeopts=-j2 --install all || (echo "${bold}There was an genkernel error!${normal}" && exit 1)
-echo "${bold}Kernel compiled...${normal}"
-sleep 2
-#
-# Rebuild the modules
-sudo emerge -av1 @module-rebuild || (echo "${bold}Couldn't rebuild some packages!${normal}" && exit 1)
-echo "${bold}Modules rebuilt...${normal}"
-sleep 2
-# Generate grub config file
-sudo grub-mkconfig -o /boot/grub/grub.cfg || (echo "${bold}Couldn't generate grub.cfg!${normal}" && exit 1)
-echo "${bold}Grub Bootloader updated...${normal}"
+    # Select the kernel
+    eselect kernel list
+    echo "${bold}Which kernel will be used?${normal}"
+    # Set the kernel
+    read kvar
+    eselect kernel set $kvar || { echo "${bold}Couldn't select the kernel!${normal}"; exit 1; }
+    # go to the kernel sources
+    cd /usr/src/linux || { echo "${bold}Couldn't cd to linux sources directory!${normal}"; exit 1; }
+    echo "${bold}$(pwd)${normal}"
+    echo "${bold}Remember to save the configuration as '.config'!${normal}"
+    sleep 3
 
-### Finish
-echo "${bold}OK
+    # Compile the kernel
+    genkernel --menuconfig --no-mrproper --makeopts=-j2 --install all || { echo "${bold}There was an genkernel error!${normal}"; exit 1; }
+    echo "${bold}Kernel compiled...${normal}"
+    sleep 2
+    # Rebuild the modules
+    emerge @module-rebuild || { echo "${bold}Couldn't rebuild some packages!${normal}"; exit 1; }
+    echo "${bold}Modules rebuilt...${normal}"
+    sleep 2
+    # Generate grub config file
+    grub-mkconfig -o /boot/grub/grub.cfg || { echo "${bold}Couldn't generate grub.cfg!${normal}"; exit 1; }
+    echo "${bold}Grub Bootloader updated...${normal}"
+
+    # Finish
+    echo "${bold}OK
 Genkerneler has done its job!${normal}"
+
+fi
