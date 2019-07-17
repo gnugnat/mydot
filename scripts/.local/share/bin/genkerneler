@@ -11,9 +11,15 @@ bold=$(tput bold)
 # normal font
 normal=$(tput sgr0)
 
+err_msg () { echo "${bold}$1${normal}"; exit 1; }
+
 # Become Root
 if [ "$(whoami)" != root ]; then
-    sudo "$(command -v genkerneler)"
+    if [ -f ./genkerneler ]; then
+	sudo ./genkerneler
+    else
+	sudo "$(command -v genkerneler)"
+    fi
 else
 
     # Select the kernel
@@ -21,27 +27,27 @@ else
     echo "${bold}Which kernel will be used?${normal}"
     # Set the kernel
     read kvar
-    eselect kernel set $kvar || { echo "${bold}Couldn't select the kernel!${normal}"; exit 1; }
+    eselect kernel set $kvar || err_msg "Couldn't select the kernel!"
     # go to the kernel sources
-    cd /usr/src/linux || { echo "${bold}Couldn't cd to linux sources directory!${normal}"; exit 1; }
+    cd /usr/src/linux || err_msg "Couldn't cd to linux sources directory!"
     echo "${bold}$(pwd)${normal}"
     echo "${bold}Remember to save the configuration as '.config'!${normal}"
     sleep 3
 
     # Compile the kernel
-    genkernel --menuconfig --no-mrproper --makeopts=-j2 --install all || { echo "${bold}There was an genkernel error!${normal}"; exit 1; }
+    genkernel --menuconfig --no-mrproper --makeopts=-j2 --install all || err_msg "There was an genkernel error!"
     echo "${bold}Kernel compiled...${normal}"
     sleep 2
     # Rebuild the modules
-    emerge @module-rebuild || { echo "${bold}Couldn't rebuild some packages!${normal}"; exit 1; }
+    emerge @module-rebuild || err_msg "Couldn't rebuild some packages!"
     echo "${bold}Modules rebuilt...${normal}"
     sleep 2
     # Generate grub config file
-    grub-mkconfig -o /boot/grub/grub.cfg || { echo "${bold}Couldn't generate grub.cfg!${normal}"; exit 1; }
+    grub-mkconfig -o /boot/grub/grub.cfg || err_msg "Couldn't generate grub.cfg!"
     echo "${bold}Grub Bootloader updated...${normal}"
 
     # Finish
     echo "${bold}OK
 Genkerneler has done its job!${normal}"
-
+    
 fi
