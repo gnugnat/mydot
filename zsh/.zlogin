@@ -24,5 +24,10 @@ if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
     source ~/.zshrc
 fi
 
-### larrysay
-(fortune 2>/dev/null || zsh --version) | cowsay -f $MYZSHDIR/extra/larry.cow 2>/dev/null
+### Greeter on login
+#
+# You may want to link one of
+# greeters in .zsh.d/greeters
+# to zsh-greeter in .zsh.d
+# Use zsh-choose-greeter.sh for this
+source $MYZSHDIR/zsh-greeter 2>/dev/null

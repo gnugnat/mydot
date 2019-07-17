@@ -1,4 +1,5 @@
 zsh/.zsh.d/tty.zsh-theme
 zsh/.zsh.d/emu.zsh-theme
+zsh/.zsh.d/zsh-greeter
 zsh/.zsh.d/plugins
 *.swp

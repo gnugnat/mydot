@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# This is meant to be "for fun"
+# I do not claim any rights
+# to Microsoft's products
+
+echo "
+Microsoft(R) Windows 95
+   (C)Copyright Microsoft Corp 1981-1996.
+"
