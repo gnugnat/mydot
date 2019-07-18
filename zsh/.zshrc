@@ -88,10 +88,17 @@ fi
 # Syntax coloring
 . $MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+#
+# Check Git branch
+git_check () {
+    branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
+    [ ! -z $branch ] && echo "$pre_git_check$branch$post_git_check"
+}
 
 ### Miscellaneous settings
 #
 # Prompt Substring
+# used by git_check
 setopt PROMPT_SUBST
 #
 # Extendedglob

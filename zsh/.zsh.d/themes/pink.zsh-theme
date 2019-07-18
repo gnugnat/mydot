@@ -1,9 +1,6 @@
 #!/bin/zsh
 
-git_check () {
-    branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
-    [ ! -z $branch ] && echo "\ue0a0 $branch"
-}
+pre_git_check="\ue0a0 "
 
 PROMPT=$'%F{magenta}%M %F{blue}%5~ %(?.%F{blue}.%F{red})%#%f '
 
