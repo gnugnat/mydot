@@ -2,16 +2,15 @@
 #+TITLE: My dotfiles
 #+CREATOR: xgqt
 #+LANGUAGE: en
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+#+ATTR_HTML: style margin-left: auto; margin-right: auto;
 [[./Larry_Cow.png]]
 
 * Background
-Worked on this since my Gentoo's first installation, 
-because of this this repo contains a lot of gentoo specyfic aliases and tools.
+Worked on this since my first installation of Gentoo, 
+because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 * Legal Disclaimer
 ** There are scripts to install some programs made by other people
 *** zsh plugins
-- [[https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh][git-prompt.sh]] 
 - [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
 - [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
 * Howto
@@ -36,7 +35,8 @@ because of this this repo contains a lot of gentoo specyfic aliases and tools.
     example: zsh
     - =stow -vD zsh=
 ** ZSH
-- you may have to install plugins manually or by using a installer script inside .zsd.d (zsh-get-plugins.sh)
+- Run zsh as login shell =zsh -l=
+- You will be asked which features to enable
 ** JWM
 - For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
 - If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc
