@@ -1,11 +1,11 @@
 #!/bin/zsh
 
 #      _             _       
-#  ___| | ___   __ _(_)_ __  
+#  ___| | ___   __ _(_)_ __
 # |_  / |/ _ \ / _` | | '_ \ 
 #  / /| | (_) | (_| | | | | |
 # /___|_|\___/ \__, |_|_| |_|
-#              |___/        
+#              |___/
 
 ### MYZSHDIR Warning
 #
@@ -15,9 +15,19 @@ if [ ! -d $MYZSHDIR ]; then echo "!!!Warning!!! No $MYZSHDIR found!!!"; fi
 #
 # Get the plugins if there is no plugins directory
 if [ ! -e $MYZSHDIR/plugins ]; then
-    echo "Downloading plugins..."
-    $MYZSHDIR/zsh-get-plugins.sh
-    source ~/.zshrc
+    echo "Download plugins? [Y/n]"
+    read -r dow_ans
+    case $dow_ans in
+	[nN][oO]|[nN])
+	    echo "Not downloading plugins"
+	    mkdir $MYZSHDIR/plugins
+	    ;;
+	*)
+	    echo "Downloading plugins..."
+	    $MYZSHDIR/zsh-get-plugins.sh
+	    source ~/.zshrc
+	    ;;
+    esac
 fi
 
 ### Theme

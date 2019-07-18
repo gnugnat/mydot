@@ -83,10 +83,12 @@ fi
 ### Plugins
 #
 # Autosuggestions
-. $MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+plugin_as=$MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -e $plugin_as ] && source $plugin_as
 #
 # Syntax coloring
-. $MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+plugin_sh=$MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -e $plugin_sh ] && source $plugin_sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 #
 # Check Git branch
