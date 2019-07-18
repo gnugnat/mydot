@@ -88,12 +88,11 @@ fi
 # Syntax coloring
 . $MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
-#
-# Git prompt
-setopt PROMPT_SUBST
-. $MYZSHDIR/plugins/git-prompt.sh
 
 ### Miscellaneous settings
+#
+# Prompt Substring
+setopt PROMPT_SUBST
 #
 # Extendedglob
 setopt extendedglob
