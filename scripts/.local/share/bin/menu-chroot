@@ -1,0 +1,63 @@
+#!/bin/sh
+
+cleanup () {
+    echo "Unmounting dev from $device_dir/dev..."; sleep 1
+    umount -l $device_dir/dev
+    echo "Unmounting proc from $device_dir/proc..."; sleep 1
+    umount -l $device_dir/proc
+    echo "Unmounting sys from $device_dir/sys..."; sleep 1
+    umount -l $device_dir/sys
+    echo "Unmounting tmp from $device_dir/tmp..."; sleep 1
+    umount -l $device_dir/tmp
+    echo "Unmounting $device from $device_dir..."; sleep 1
+    umount $device_dir || { echo "Unmount of $device_dir failed"; exit 1; }
+    echo "Removing $device_dir..."; sleep 1
+    rm -d $device_dir
+}
+
+# Become root
+if [ "$(whoami)" != root ]; then
+    if [ -f ./menu-chroot ]; then
+	sudo ./menu-chroot
+    else
+	sudo "$(command -v menu-chroot)"
+    fi
+else
+    # Show devices and ther mountpoints
+    lsblk
+
+    printf "\nSelect Disk (type device path)\n"
+    read -r device
+    device_dir=/mnt/mychroot-$(basename $device)
+    
+    mkdir $device_dir
+    echo "Mounting device $device on $device_dir..."; sleep 1
+    mount $device $device_dir || { echo "Mount failed"; cleanup; exit 1; }
+
+    ### sys mounts
+    #
+    # dev
+    echo "Mounting dev on $device_dir/dev..."; sleep 1
+    mount --rbind /dev $device_dir/dev
+    mount --make-rslave $device_dir/dev
+    #
+    # proc
+    echo "Mounting proc on $device_dir/proc..."; sleep 1
+    mount -t proc /proc $device_dir/proc
+    #
+    # sys
+    echo "Mounting sys $device_dir/sys..."; sleep 1
+    mount --rbind /sys $device_dir/sys
+    mount --make-rslave $device_dir/sys
+    #
+    # tmp
+    echo "Mounting tmp $device_dir/tmp..."; sleep 1
+    mount --rbind /tmp $device_dir/tmp
+
+    # chroot
+    echo "Chrooting to $device_dir..."; sleep 1
+    chroot $device_dir /bin/bash
+
+    echo "You exited the chroot"; sleep 1
+    cleanup
+fi
