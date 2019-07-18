@@ -8,26 +8,34 @@
 #              |___/        
 
 ### MYZSHDIR Warning
+#
 if [ ! -d $MYZSHDIR ]; then echo "!!!Warning!!! No $MYZSHDIR found!!!"; fi
 
-### Get the plugins if there is no plugins directory
+### Plugins
+#
+# Get the plugins if there is no plugins directory
 if [ ! -e $MYZSHDIR/plugins ]; then
     echo "Downloading plugins..."
     $MYZSHDIR/zsh-get-plugins.sh
     source ~/.zshrc
 fi
 
-### Choose a theme if it's not set
+### Theme
+#
+# Choose a theme if it's not set
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
     echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme"
     $MYZSHDIR/zsh-choose-theme.sh
     source ~/.zshrc
 fi
 
-### Greeter on login
+### Greeter
 #
-# You may want to link one of
-# greeters in .zsh.d/greeters
-# to zsh-greeter in .zsh.d
-# Use zsh-choose-greeter.sh for this
-source $MYZSHDIR/zsh-greeter 2>/dev/null
+# Link one of greeters from
+# greeters to zsh-greeter
+if [ ! -e $MYZSHDIR/zsh-greeter ]; then
+    echo "Choose which ZSH greeter to use"
+    $MYZSHDIR/zsh-choose-greeter.sh
+else
+    source $MYZSHDIR/zsh-greeter
+fi
