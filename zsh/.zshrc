@@ -75,20 +75,22 @@ promptinit
 #
 # Set themes
 if [[ -z $DISPLAY ]]; then
-    . "$MYZSHDIR/tty.zsh-theme"       	# theme in tty
+    # theme in tty
+    source "$MYZSHDIR/tty.zsh-theme"
 else
-    . "$MYZSHDIR/emu.zsh-theme"      	# theme in emulators
+    # theme in emulators
+    source "$MYZSHDIR/emu.zsh-theme"
 fi
 
 ### Plugins
 #
 # Autosuggestions
 plugin_as=$MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -e $plugin_as ] && source $plugin_as
+[ -f $plugin_as ] && source $plugin_as
 #
 # Syntax coloring
 plugin_sh=$MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -e $plugin_sh ] && source $plugin_sh
+[ -f $plugin_sh ] && source $plugin_sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 #
 # Check Git branch
