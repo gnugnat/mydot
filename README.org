@@ -13,8 +13,10 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 *** zsh plugins
 - [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
 - [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
+** References to other git repositorues
+- [[https://github.com/chiku/mjwm][mjwm]]
 * Howto
-** Installaton
+** Installation
 - git clone the repo to ~/mydot
   =git clone https://gitlab.com/xgqt/mydot ~/mydot=
 - cd to mydot

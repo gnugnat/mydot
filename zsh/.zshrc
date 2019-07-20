@@ -65,7 +65,7 @@ bindkey -r '^D'
 ### Aliases
 #
 # Source shell-agnostic aliases
-. $MYZSHDIR/aliases
+source $MYZSHDIR/aliases
 
 ### Theme
 #
