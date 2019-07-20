@@ -62,7 +62,7 @@ epurge ()
 ewup ()
 {
     epull
-    sudo emerge -avuD --with-bdeps=y @world
+    sudo emerge -avuDNU --with-bdeps=y @world
     epurge
 }
 
