@@ -41,7 +41,7 @@ setopt hist_ignore_space
 # Save immediatelly, share history between terminals
 setopt share_history
 
-### Keys
+### Key bindings
 #
 # Kill & Yank
 # for this set Emacs key bindings
@@ -57,10 +57,10 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 #
 # Reverse search
-bindkey '^R' history-incremental-search-backward
+bindkey "^R" history-incremental-search-backward
 #
 # Remove C-d binding (list-choices/delete-char-or-list)
-bindkey -r '^D'
+bindkey -r "^D"
 
 ### Aliases
 #
@@ -74,24 +74,30 @@ autoload -U promptinit
 promptinit
 #
 # Set themes
-if [[ -z $DISPLAY ]]; then
+ztheme_tty="$MYZSHDIR/tty.zsh-theme"
+ztheme_emu="$MYZSHDIR/emu.zsh-theme"
+#
+# Source appropriate theme
+if [ -z $DISPLAY ]; then
     # theme in tty
-    source "$MYZSHDIR/tty.zsh-theme"
+    [ -f $ztheme_tty ] && source $ztheme_tty
 else
     # theme in emulators
-    source "$MYZSHDIR/emu.zsh-theme"
+    [ -f $ztheme_emu ] && source $ztheme_emu
 fi
 
 ### Plugins
 #
-# Autosuggestions
-plugin_as=$MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f $plugin_as ] && source $plugin_as
-#
 # Syntax coloring
-plugin_sh=$MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $plugin_sh ] && source $plugin_sh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+zplug_sh="$MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f $zplug_sh ] && source $zplug_sh
+#
+# Autosuggestions
+zplug_as="$MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f $zplug_as ] && source $zplug_as
+#
+# Autosuggestions highlight style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 #
 # Check Git branch
 git_check () {
@@ -125,7 +131,7 @@ bindkey "^X^E" edit-command-line
 # Change the window title of X terminals
 case $TERM in
     xterm*)
-        precmd () {print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"};;
+        precmd () { print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"; } ;;
 esac
 #
 # ls after changing directory
