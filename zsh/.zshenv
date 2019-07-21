@@ -17,6 +17,9 @@ export MYZSHDIR="$HOME/.zsh.d"
 
 ### User settings
 #
+# Additional programs
+export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin:$HOME/go/bin
+#
 # File Editor
 export EDITOR=vim
 #

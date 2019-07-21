@@ -34,7 +34,7 @@ fi
 #
 # Choose a theme if it's not set
 if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
-    echo "Link one of themes in $MYZSHDIR/themes to $MYZSHDIR/tty.zsh-theme and one to $MYZSHDIR/emu.zsh-theme"
+    echo "Choose which ZSH themes to use"
     $MYZSHDIR/zsh-choose-theme.sh
     source ~/.zshrc
 fi
