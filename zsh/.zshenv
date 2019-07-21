@@ -18,9 +18,6 @@ export ZCACHEDIR="$HOME/.cache/zsh"
 
 ### User settings
 #
-# Additional programs
-export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin:$HOME/go/bin
-#
 # File Editor
 export EDITOR=vim
 #

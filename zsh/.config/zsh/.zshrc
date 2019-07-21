@@ -6,6 +6,11 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
+### ZSH path
+#
+# Additional programs
+export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin:$HOME/go/bin
+
 ### Completion
 #
 # Load compinit
