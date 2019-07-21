@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <JWM>
-    <Include>$HOME/.jwm.d/keys</Include>
-    <Include>$HOME/.jwm.d/menu</Include>
-    <Include>$HOME/.jwm.d/preferences</Include>
-    <Include>$HOME/.jwm.d/start</Include>
-    <Include>$HOME/.jwm.d/theme</Include>
-    <Include>$HOME/.jwm.d/tray</Include>
-    <Include>$HOME/.jwm.d/groups</Include>
+    <Include>$HOME/.config/jwm/keys</Include>
+    <Include>$HOME/.config/jwm/menu</Include>
+    <Include>$HOME/.config/jwm/preferences</Include>
+    <Include>$HOME/.config/jwm/start</Include>
+    <Include>$HOME/.config/jwm/theme</Include>
+    <Include>$HOME/.config/jwm/tray</Include>
+    <Include>$HOME/.config/jwm/groups</Include>
 </JWM>
