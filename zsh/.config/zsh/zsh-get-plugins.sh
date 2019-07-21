@@ -3,7 +3,7 @@
 # Get the required zsh plugins
 
 # set ZDOTDIR if it is not set
-ZDOTDIR=${ZDOTDIR:-$HOME/.zsh.d}
+ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
 
 # make plugins directory
 mkdir "$ZDOTDIR/plugins"
