@@ -21,7 +21,7 @@ mydir=$HOME/mydot
 ### Checks
 #
 # check for stow
-stow --version || { echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"; exit 1; }
+{ stow -V && st_im=stow;} || { xstow -V && st_im=xstow;} || { echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"; exit 1; }
 #
 # check for mydir
 [ ! -d "$mydir" ] && { echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"; exit 1; }
@@ -42,7 +42,7 @@ done
 for target in $(ls $mydir); do
     if [ -d $mydir/$target ]; then
 	echo "$(tput bold)$target$(tput sgr0)"
-	if [ "$1" = "remove" ]; then stow -v -d $mydir -t $HOME -D $target
-	else stow -v -d $mydir -t $HOME -S $target; fi
+	if [ "$1" = "remove" ]; then $st_im -v -D $target
+	else $st_im -v $target; fi
     fi
 done
