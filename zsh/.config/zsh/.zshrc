@@ -10,7 +10,7 @@
 #
 # Load compinit
 autoload -U compinit
-compinit
+compinit -d $ZCACHEDIR/zcompdump
 #
 # Advanced tab-completion
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -23,7 +23,7 @@ setopt correctall
 ### History
 #
 # Necessary to save history
-HISTFILE=$HOME/.zsh_history
+HISTFILE=$ZCACHEDIR/zhistory
 HISTSIZE=3000
 SAVEHIST=$HISTSIZE
 #
@@ -60,7 +60,7 @@ bindkey -r "^D"
 ### Aliases
 #
 # Source shell-agnostic aliases
-source $MYZSHDIR/aliases
+source $ZDOTDIR/aliases
 
 ### Theme
 #
@@ -69,8 +69,8 @@ autoload -U promptinit
 promptinit
 #
 # Set themes
-ztheme_tty="$MYZSHDIR/tty.zsh-theme"
-ztheme_emu="$MYZSHDIR/emu.zsh-theme"
+ztheme_tty="$ZDOTDIR/tty.zsh-theme"
+ztheme_emu="$ZDOTDIR/emu.zsh-theme"
 #
 # Source appropriate theme
 if [ -z $DISPLAY ]; then
@@ -84,11 +84,11 @@ fi
 ### Plugins
 #
 # Syntax coloring
-zplug_sh="$MYZSHDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+zplug_sh="$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [ -f $zplug_sh ] && source $zplug_sh
 #
 # Autosuggestions
-zplug_as="$MYZSHDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+zplug_as="$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ -f $zplug_as ] && source $zplug_as
 #
 # Autosuggestions highlight style

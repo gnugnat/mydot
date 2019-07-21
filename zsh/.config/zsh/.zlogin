@@ -7,25 +7,29 @@
 # /___|_|\___/ \__, |_|_| |_|
 #              |___/
 
-### MYZSHDIR Warning
+### ZDOTDIR Warning
 #
-if [ ! -d $MYZSHDIR ]; then echo "!!!Warning!!! No $MYZSHDIR found!!!"; fi
+[ ! -d $ZDOTDIR ] && echo "!!!Warning!!! No $ZDOTDIR found!!!"
+
+### Create ZSH cache directory
+#
+[ ! -d $ZCACHEDIR ] && mkdir -p $ZCACHEDIR
 
 ### Plugins
 #
 # Get the plugins if there is no plugins directory
-if [ ! -e $MYZSHDIR/plugins ]; then
+if [ ! -e $ZDOTDIR/plugins ]; then
     echo "Download plugins? [Y/n]"
     read -r dow_ans
     case $dow_ans in
 	[nN][oO]|[nN])
 	    echo "Not downloading plugins"
-	    mkdir $MYZSHDIR/plugins
+	    mkdir $ZDOTDIR/plugins
 	    ;;
 	*)
 	    echo "Downloading plugins..."
-	    $MYZSHDIR/zsh-get-plugins.sh
-	    source ~/.zshrc
+	    $ZDOTDIR/zsh-get-plugins.sh
+	    source $ZDOTDIR/.zshrc
 	    ;;
     esac
 fi
@@ -33,19 +37,19 @@ fi
 ### Theme
 #
 # Choose a theme if it's not set
-if [[ ! -e $MYZSHDIR/tty.zsh-theme || ! -e $MYZSHDIR/emu.zsh-theme ]]; then
+if [[ ! -e $ZDOTDIR/tty.zsh-theme || ! -e $ZDOTDIR/emu.zsh-theme ]]; then
     echo "Choose which ZSH themes to use"
-    $MYZSHDIR/zsh-choose-theme.sh
-    source ~/.zshrc
+    $ZDOTDIR/zsh-choose-theme.sh
+    source $ZDOTDIR/.zshrc
 fi
 
 ### Greeter
 #
 # Link one of greeters from
 # greeters to zsh-greeter
-if [ ! -e $MYZSHDIR/zsh-greeter ]; then
+if [ ! -e $ZDOTDIR/zsh-greeter ]; then
     echo "Choose which ZSH greeter to use"
-    $MYZSHDIR/zsh-choose-greeter.sh
+    $ZDOTDIR/zsh-choose-greeter.sh
 else
-    source $MYZSHDIR/zsh-greeter
+    source $ZDOTDIR/zsh-greeter
 fi

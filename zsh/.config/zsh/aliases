@@ -85,7 +85,7 @@ alias Gl='git log --oneline --graph'
 #
 # zsh
 alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
-alias so-zrc='source ~/.zshrc'
+alias so-zrc='source $ZDOTDIR/.zshrc'
 #
 # grub
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'

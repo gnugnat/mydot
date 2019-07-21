@@ -6,14 +6,15 @@
 #  / /\__ \ | | |  __/ | | \ V / 
 # /___|___/_| |_|\___|_| |_|\_/  
 
-##########################################
-# Path to .zsh.d                         #
-# !!!!! WARNING !!!!!			 #
-# Following is important for		 #
-# themes, highlighting and suggestions   #
-##########################################
+### ZSH dirs
 #
-export MYZSHDIR="$HOME/.zsh.d"
+# Set where the rest of
+# ZSH files are located
+export ZDOTDIR="$HOME/.config/zsh"
+#
+# Set where ZSH
+# cache files are stored
+export ZCACHEDIR="$HOME/.cache/zsh"
 
 ### User settings
 #
