@@ -1,4 +1,4 @@
-# /etc/skel/.bash_logout
+#!/bin/bash
 
 # This file is sourced when a login shell terminates.
 
