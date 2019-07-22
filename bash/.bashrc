@@ -15,28 +15,38 @@ if [[ $- != *i* ]] ; then
 fi
 
 ### Scripts ###
+#
 export PATH=$PATH:$HOME/.local/share/bin
 
 ### User Settings ###
+#
 # text editor
 export EDITOR=nano
 
 ### Prompt ###
+#
 PS1=$'\[$(tput bold)\]\[$(tput setaf 3)\] \w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 
 ### History ###
+#
+# Size
 HISTSIZE=3000
 HISTFILESIZE=3000
+#
 # no double entries in the shell history
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
+#
 # append histroy
 shopt -s histappend
 
 ### Aliases ###
-if [[ -e $HOME/.zsh.d/aliases ]]; then
-    . $HOME/.zsh.d/aliases
+#
+# source aliases from ZSH
+if [ -e $HOME/.config/zsh/aliases ]; then
+    source $HOME/.config/zsh/aliases
 fi
 
 ### Misc ###
+#
 # auto-change directory
 shopt -s autocd
