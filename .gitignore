@@ -2,4 +2,5 @@ zsh/.config/zsh/tty.zsh-theme
 zsh/.config/zsh/emu.zsh-theme
 zsh/.config/zsh/zsh-greeter
 zsh/.config/zsh/plugins
+.zcompdump
 *.swp
