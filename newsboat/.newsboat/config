@@ -1,14 +1,21 @@
-# --- Automatic feed reloads ---
+### Automatic feed reloads
+#
 # better use cronjob
 # ( */50 * * * * /usr/bin/newsboat -x reload )
 #auto-reload yes
 
-# --- Browser ---
+### Browser
+#
+# Firefox
 browser "firefox %u"
+#
+# MPV
 # macro is the comma ","
 macro m set browser "mpv --force-window %u >/dev/null &" ; open-in-browser ; set browser "firefox %u"
 
-# --- Movement ---
+### Movement
+#
+# vi-like bindings
 bind-key h quit
 bind-key l open
 bind-key j down
@@ -18,7 +25,8 @@ bind-key g home
 bind-key d pagedown
 bind-key u pageup
 
-# --- Colors ---
+### Colors
+#
 color listnormal cyan default
 color listfocus black yellow standout bold
 color listnormal_unread blue default
