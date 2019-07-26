@@ -27,7 +27,7 @@ mydir=$HOME/mydot
 [ ! -d "$mydir" ] && { echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"; exit 1; }
 #
 # check needed directories
-for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.local/share"
+for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.local/share" "$HOME/.config/mpd/playlists"
 do
     if [ ! -e "$chkdir" ]; then
 	mkdir -p "$chkdir"
