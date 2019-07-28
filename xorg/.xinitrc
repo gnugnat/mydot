@@ -19,6 +19,7 @@ session=${1:-jwm}
 #
 case $session in
     i3		) exec i3;;
+    bsp|bspwm   ) exec bspwm;;
     jwm		) exec jwm;;
     mate	) exec mate-session;;
     xfce|xfce4	) exec startxfce4;;
