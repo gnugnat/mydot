@@ -42,3 +42,18 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 ** JWM
 - For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
 - If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc
+** bspwm
+*** important programs
+- [[https://github.com/baskerville/sxhkd][sxhkd]]
+- [[https://github.com/chjj/compton][compton]]
+- [[https://gitlab.com/o9000/tint2][tint2]]
+- [[https://feh.finalrewind.org/][feh]]
+- [[https://github.com/dunst-project/dunst][dunst]]
+- [[https://wiki.gnome.org/Projects/NetworkManager][nm-applet]]
+- [[https://www.freedesktop.org/wiki/Software/PulseAudio/][pulseaudio]]
+- [[https://github.com/davatorium/rofi][rofi]]
+- [[https://github.com/MusicPlayerDaemon/MPD][mpd]]
+- [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
+- [[https://wiki.gnome.org/Apps/Terminal/][gnome-terminal]]
+- [[https://github.com/tmux/tmux][tmux]]
+- lxapperance
