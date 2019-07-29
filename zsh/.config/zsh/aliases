@@ -62,8 +62,7 @@ epurge ()
 ewup ()
 {
     epull
-    sudo emerge -avuDNU --with-bdeps=y @world
-    epurge
+    sudo emerge -avuDNU --with-bdeps=y @world && epurge
 }
 
 ### Other Package Managers
