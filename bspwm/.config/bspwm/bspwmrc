@@ -49,6 +49,7 @@ tint2 &
 ~/.fehbg &
 dunst &
 nm-applet &
+pasystray &
 #
 # GNOME Terminal + tmux
 bspc desktop -f 1

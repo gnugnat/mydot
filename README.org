@@ -51,6 +51,7 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - [[https://github.com/dunst-project/dunst][dunst]]
 - [[https://wiki.gnome.org/Projects/NetworkManager][nm-applet]]
 - [[https://www.freedesktop.org/wiki/Software/PulseAudio/][pulseaudio]]
+- [[https://github.com/christophgysin/pasystray][pasystray]]
 - [[https://github.com/davatorium/rofi][rofi]]
 - [[https://github.com/MusicPlayerDaemon/MPD][mpd]]
 - [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
