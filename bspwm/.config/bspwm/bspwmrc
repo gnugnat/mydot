@@ -9,7 +9,10 @@
 
 ### Workspaces
 #
-bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+# Spawn 10 desktops on each monitor
+bspc query -M | while read -r monitor
+	do bspc monitor "$monitor" -d 1 2 3 4 5 6 7 8 9 0
+done
 
 ### Main Config
 #
