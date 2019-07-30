@@ -52,6 +52,8 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - [[https://wiki.gnome.org/Projects/NetworkManager][nm-applet]]
 - [[https://www.freedesktop.org/wiki/Software/PulseAudio/][pulseaudio]]
 - [[https://github.com/christophgysin/pasystray][pasystray]]
+- xautolock
+- [[https://github.com/i3/i3lock][i3lock]]
 - [[https://github.com/davatorium/rofi][rofi]]
 - [[https://github.com/MusicPlayerDaemon/MPD][mpd]]
 - [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
