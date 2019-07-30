@@ -54,7 +54,9 @@ tint2 &
 dunst &
 nm-applet &
 pasystray &
-xautolock -time 20 -locker "i3lock -c 000000" &
+xset b off
+xset s 1200 0
+xss-lock -- i3lock -c 000000 &
 #
 # GNOME Terminal + tmux
 bspc desktop -f 1
