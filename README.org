@@ -52,6 +52,7 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - [[https://wiki.gnome.org/Projects/NetworkManager][nm-applet]]
 - [[https://www.freedesktop.org/wiki/Software/PulseAudio/][pulseaudio]]
 - [[https://github.com/christophgysin/pasystray][pasystray]]
+- [[https://goodies.xfce.org/projects/applications/xfce4-power-manager][xfce4-power-manager]] (for laptops)
 - [[https://bitbucket.org/raymonad/xss-lock/src/master/][xss-lock]]
 - [[https://github.com/i3/i3lock][i3lock]]
 - [[https://github.com/davatorium/rofi][rofi]]
@@ -59,4 +60,4 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
 - [[https://wiki.gnome.org/Apps/Terminal/][gnome-terminal]]
 - [[https://github.com/tmux/tmux][tmux]]
-- lxappearance
+- lxappearance (setting gtk themes)
