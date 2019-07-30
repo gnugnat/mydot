@@ -61,7 +61,8 @@ xss-lock -- i3lock -c 000000 &
 #
 # GNOME Terminal + tmux
 bspc desktop -f 1
-bspc desktop -l monocle; gnome-terminal -- tmux new-session -s main &
+bspc desktop -l monocle
+gnome-terminal -- tmux new-session -s main
 sleep 1
 #
 # Welcome
