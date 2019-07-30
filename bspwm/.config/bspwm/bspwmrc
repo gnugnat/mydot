@@ -54,6 +54,7 @@ tint2 &
 dunst &
 nm-applet &
 pasystray &
+xfce4-power-manager
 xset b off
 xset s 1200 0
 xss-lock -- i3lock -c 000000 &
