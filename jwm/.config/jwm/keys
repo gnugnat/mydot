@@ -9,15 +9,7 @@
   <Key key="Return">select</Key>
   <Key key="Escape">escape</Key>
 
-  <!-- Media keys. -->
-  <Key mask="" key="XF86AudioRaiseVolume">exec:pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) +2%</Key>
-  <Key mask="" key="XF86AudioLowerVolume">exec:pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) -2%</Key>
-  <Key mask="" key="XF86AudioMute">exec:pactl set-sink-mute $(pactl list short sinks | grep RUNNING | cut -f1) toggle</Key>
-  <Key mask="" key="XF86AudioPlay">exec:mpc toggle</Key>
-  <Key mask="" key="XF86AudioNext">exec:mpc next</Key>
-  <Key mask="" key="XF86AudioPrev">exec:mpc prev</Key>
-
-  <!-- Some more bindings. -->
+  <!-- More bindings. -->
   <Key mask="A" key="Tab">nextstacked</Key>
   <Key mask="A" key="F4">close</Key>
   <Key mask="A" key="#">desktop#</Key>
@@ -26,5 +18,8 @@
   <Key mask="A" key="F10">maximize</Key>
   <Key mask="A" key="F11">fullscreen</Key>
   <Key mask="" key="Print">exec:gnome-screenshot</Key>
-  
+
+  <!-- A part of keybindings
+       is handled sy sxhkd. -->
+
 </JWM>

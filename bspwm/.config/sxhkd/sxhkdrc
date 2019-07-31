@@ -30,6 +30,10 @@ super + t
 super + n
 	nemo
 #
+# Screenshooter
+ctrl + Print
+	gnome-screenshot
+#
 # Rofi
 super + Return
 	rofi -show combi -combi-modi "window,drun,ssh,keys"

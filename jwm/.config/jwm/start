@@ -2,6 +2,7 @@
 <JWM>
   
   <!-- Start some programs. -->
+  <StartupCommand>sxhkd &amp;</StartupCommand>
   <StartupCommand>mpd &amp;</StartupCommand>
   <StartupCommand>compton -b &amp;</StartupCommand>
   <StartupCommand>~/.fehbg &amp;</StartupCommand>
