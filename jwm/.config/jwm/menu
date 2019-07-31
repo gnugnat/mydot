@@ -2,8 +2,8 @@
 <JWM>
   <RootMenu onroot="3">
 
-      <Program icon="utilities-terminal.png" label="Terminal">gnome-terminal</Program>
-      <Program icon="system-file-manager.png" label="Files">nautilus</Program>
+      <Program label="Terminal" icon="utilities-terminal.png">gnome-terminal</Program>
+      <Program label="Files" icon="system-file-manager.png">nemo</Program>
 
       <Separator/>
       
@@ -12,8 +12,8 @@
 
       <Separator/>
 
-      <Program icon="system-lock-screen.png" label="Lock">
-	xscreensaver-command -lock
+      <Program label="Lock" icon="system-lock-screen.png">
+	xset s activate
       </Program>
       <Restart label="Restart" icon="system-reboot.png"/>
       <Exit label="Exit" confirm="true" icon="application-exit.png"/>
