@@ -3,17 +3,13 @@
 
   <Tray x="0" y="-1" height="24" valign="bottom" autohide="off">
 
-    <TrayButton label="Applications">root:3</TrayButton>
-    <TrayButton label="Desktop" icon="user-desktop.png">showdesktop</TrayButton>
+    <TrayButton label="Apps">root:3</TrayButton>
+    <TrayButton label="Places">root:2</TrayButton>
+    <TrayButton label="Desk">showdesktop</TrayButton>
 
     <Spacer width="5"/>
     
     <Pager labeled="true"/>
-
-    <Spacer width="5"/>
-    
-    <TrayButton icon="utilities-terminal.png">exec:gnome-terminal</TrayButton>
-    <TrayButton icon="system-file-manager.png">exec:nemo</TrayButton>
 
     <Spacer width="5"/>
     

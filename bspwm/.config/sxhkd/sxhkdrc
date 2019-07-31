@@ -26,6 +26,10 @@ alt + Escape
 super + t
 	gnome-terminal
 #
+# File Manager
+super + n
+	nemo
+#
 # Rofi
 super + Return
 	rofi -show combi -combi-modi "window,drun,ssh,keys"
@@ -35,11 +39,11 @@ super + Return
 #
 # Pulse
 XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +2%
+	pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) +2%
 XF86AudioLowerVolume
-	pactl set-sink-volume 0 -2%
+	pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) -2%
 XF86AudioMute
-	pactl set-sink-mute 0 toggle
+	pactl set-sink-mute $(pactl list short sinks | grep RUNNING | cut -f1) toggle
 #
 # MPC
 XF86AudioPlay

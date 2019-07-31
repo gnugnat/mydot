@@ -1,5 +1,18 @@
 <?xml version="1.0"?>
 <JWM>
+  <RootMenu onroot="2">
+
+    <Program label="Home" icon="user-home.png">nemo ~</Program>
+    <Program label="Desktop" icon="user-desktop.png">nemo ~/Desktop</Program>
+    <Program label="Documents" icon="folder-documents.png">nemo ~/Documents</Program>
+    <Program label="Music" icon="folder-music.png">nemo ~/Music</Program>
+    <Program label="Pictures" icon="folder-pictures.png">nemo ~/Pictures</Program>
+    <Program label="Videos" icon="folder-videos.png">nemo ~/Videos</Program>
+    <Program label="Downloads" icon="folder-download.png">nemo ~/Downloads</Program>
+    <Program label="Filesystem" icon="drive-harddisk.png">nemo /</Program>
+    <Program label="Trash" icon="user-trash.png">nemo trash:///</Program>
+
+  </RootMenu>
   <RootMenu onroot="3">
 
       <Program label="Terminal" icon="utilities-terminal.png">gnome-terminal</Program>

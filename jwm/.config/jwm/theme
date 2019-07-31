@@ -6,10 +6,34 @@
     /usr/share/icons/Adwaita/16x16/apps
   </IconPath>
   <IconPath>
+    /usr/share/icons/Adwaita/24x24/actions
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/apps
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/categories
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/devices
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/emblems
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/emotes
+  </IconPath>
+  <IconPath>
     /usr/share/icons/Adwaita/24x24/legacy
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/actions
+    /usr/share/icons/Adwaita/24x24/mimetypes
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/places
+  </IconPath>
+  <IconPath>
+    /usr/share/icons/Adwaita/24x24/status
   </IconPath>
   <IconPath>
     /usr/share/icons/hicolor/16x16/apps
