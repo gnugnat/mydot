@@ -17,7 +17,6 @@
   <Key mask="A" key="F2">window</Key>
   <Key mask="A" key="F10">maximize</Key>
   <Key mask="A" key="F11">fullscreen</Key>
-  <Key mask="" key="Print">exec:gnome-screenshot</Key>
 
   <!-- A part of keybindings
        is handled sy sxhkd. -->
