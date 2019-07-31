@@ -58,6 +58,7 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - [[https://github.com/davatorium/rofi][rofi]]
 - [[https://github.com/MusicPlayerDaemon/MPD][mpd]]
 - [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
+- [[https://github.com/coldfix/udiskie][udiskie]]
 - [[https://wiki.gnome.org/Apps/Terminal/][gnome-terminal]]
 - [[https://github.com/tmux/tmux][tmux]]
 - lxappearance (setting gtk themes)
