@@ -6,6 +6,7 @@
   <StartupCommand>compton -b &amp;</StartupCommand>
   <StartupCommand>~/.fehbg &amp;</StartupCommand>
   <StartupCommand>dunst &amp;</StartupCommand>
+  <StartupCommand>udiskie -at &amp;</StartupCommand>
   <StartupCommand>nm-applet &amp;</StartupCommand>
   <StartupCommand>xfce4-power-manager &amp;</StartupCommand>
   <StartupCommand>xset b off &amp;</StartupCommand>

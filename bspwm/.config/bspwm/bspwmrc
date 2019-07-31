@@ -52,6 +52,7 @@ tint2 &
 #      feh --bg-scale /path/to/image.file
 ~/.fehbg &
 dunst &
+udiskie -at &
 nm-applet &
 pasystray &
 xfce4-power-manager
