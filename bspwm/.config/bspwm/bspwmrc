@@ -37,7 +37,6 @@ bspc config presel_feedback_color	"#8e4b73"
 
 ### Rules
 #
-bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Emacs state=tiled
 bspc rule -a "Tor Browser" state=floating
 
@@ -55,7 +54,7 @@ dunst &
 udiskie -at &
 nm-applet &
 pasystray &
-xfce4-power-manager
+xfce4-power-manager &
 xset b off
 xset s 1200 0
 xss-lock -- i3lock -c 000000 &
