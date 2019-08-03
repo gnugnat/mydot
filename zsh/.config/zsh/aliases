@@ -58,6 +58,7 @@ epurge ()
 {
     sudo emerge -avc "$@"
     sudo eclean-dist --deep
+    sudo eclean-pkg --deep
 }
 ewup ()
 {
