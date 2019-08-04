@@ -39,7 +39,7 @@ configuration {
    scrollbar: false;
    spacing: 2;
 
-   background: #00000080;
+   background: #000000;
    foreground: #c4b9c9;
    background-color: @background;
    border-color: @background;
@@ -68,7 +68,7 @@ configuration {
 
 #window {
    padding: 10%;
-   background-color: @background-color;
+   background-color: #00000080;
    border: 0;
 }
 
