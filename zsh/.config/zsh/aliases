@@ -91,6 +91,7 @@ alias so-zrc='source $ZDOTDIR/.zshrc'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 ### youtube-dl
+alias ytd='youtube-dl'
 alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
 alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
