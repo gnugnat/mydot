@@ -37,7 +37,7 @@ fi
 ### Theme
 #
 # Choose a theme if it's not set
-if [[ ! -e $ZDOTDIR/tty.zsh-theme || ! -e $ZDOTDIR/emu.zsh-theme ]]; then
+if [ ! -e $ZDOTDIR/tty.zsh-theme ] || [ ! -e $ZDOTDIR/emu.zsh-theme ]; then
     echo "Choose which ZSH themes to use"
     $ZDOTDIR/zsh-choose-theme.sh
     source $ZDOTDIR/.zshrc

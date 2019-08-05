@@ -29,7 +29,7 @@ setopt correctall
 #
 # Necessary to save history
 HISTFILE=$ZCACHEDIR/zhistory
-HISTSIZE=3000
+HISTSIZE=5000
 SAVEHIST=$HISTSIZE
 #
 # Ignore duplicates
