@@ -47,22 +47,23 @@ alias E='tail -f /var/log/emerge.log'
 alias P='cd /etc/portage && tree -a -L 2'
 alias Read='sudo eselect news read'
 #
+# developmet
+eball() {
+    sudo ebuild $1 clean manifest merge
+}
 # emerge
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
-epull ()
-{
+epull() {
     sudo eix-sync
     sudo eix-remote update
 }
-epurge ()
-{
+epurge() {
     sudo emerge -avc "$@"
     sudo eclean-dist --deep
     sudo eclean-pkg --deep
 }
-ewup ()
-{
+ewup() {
     epull
     sudo emerge -avuDNU --with-bdeps=y @world && epurge
 }
