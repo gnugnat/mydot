@@ -52,8 +52,10 @@ eball () {
     sudo ebuild $1 clean manifest merge
 }
 # emerge
+alias echk='eix -I | grep "\[U\]"'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
+alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
 epull () {
     sudo eix-sync
     sudo eix-remote update
@@ -63,9 +65,9 @@ epurge () {
     sudo eclean-dist --deep
     sudo eclean-pkg --deep
 }
-ewup () {
+efull () {
     epull
-    sudo emerge -avuDNU --with-bdeps=y @world && epurge
+    ewup && epurge
 }
 
 ### Other Package Managers
