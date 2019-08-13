@@ -9,7 +9,6 @@ else
     sudo mkdir -p /usr/local/portage/$1/$2
     sudo cp $3 /usr/local/portage/$1/$2/
     sudo chown -R portage:portage /usr/local/portage
-    pushd /usr/local/portage/$1/$2
+    cd /usr/local/portage/$1/$2 || exit
     sudo repoman manifest
-    popd
 fi
