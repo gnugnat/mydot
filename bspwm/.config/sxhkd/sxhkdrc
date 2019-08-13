@@ -9,7 +9,7 @@
 
 
 #########################
-#	utilities	#
+#   utilities           #
 #########################
 
 
@@ -30,8 +30,16 @@ super + t
 super + n
 	nemo
 #
+# Text Editor
+super + e
+	emacs
+#
+# Web browser
+super + f
+	firefox
+#
 # Screenshooter
-ctrl + Print
+super + Print
 	gnome-screenshot
 #
 # Rofi
@@ -59,7 +67,7 @@ XF86AudioPrev
 
 
 #########################
-#	 bspwm		# 
+#     bspwm             # 
 #########################
 
 # alt for windows
@@ -80,7 +88,7 @@ super + m
 #
 # Increase/decrease window gap on focused desktop
 super + {less,greater}
-    bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
 
 ### Window switching
@@ -102,15 +110,15 @@ alt + g
 #
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 #
 # contract a window by moving one of its side inward
 super + alt + ctrl + {h,j,k,l}
-    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 #
 # move a floating window
 super + alt + {Left,Down,Up,Right}
-    bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 ### Hide / Show windows
@@ -128,7 +136,7 @@ alt + Up
 #
 # preselect the direction
 ctrl + alt + {h,j,k,l}
-    bspc node -p {west,south,north,east}
+	bspc node -p {west,south,north,east}
 #
 # preselect the ratio
 ctrl + alt + {1-9}
