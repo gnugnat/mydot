@@ -13,7 +13,7 @@
 configuration {
 
 /* basic */
-   modi: "window,drun,ssh,keys,combi";
+   modi: "combi,keys,ssh,window";
    terminal: "gnome-terminal";
 
 /* look */
