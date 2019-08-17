@@ -9,6 +9,7 @@
   <StartupCommand>dunst &amp;</StartupCommand>
   <StartupCommand>udiskie -at &amp;</StartupCommand>
   <StartupCommand>nm-applet &amp;</StartupCommand>
+  <StartupCommand>pasystray &amp;</StartupCommand>
   <StartupCommand>xfce4-power-manager &amp;</StartupCommand>
   <StartupCommand>xset b off &amp;</StartupCommand>
   <StartupCommand>xset s 1200 0 &amp;</StartupCommand>

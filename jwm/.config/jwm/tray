@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <JWM>
 
-  <Tray x="0" y="-1" height="24" valign="bottom" autohide="off">
+  <Tray x="0" y="-1" height="20" valign="bottom" autohide="off">
 
     <TrayButton label="Apps">root:3</TrayButton>
     <TrayButton label="Places">root:2</TrayButton>
