@@ -71,7 +71,7 @@
     <Opacity>0.8</Opacity>
     <Active>
       <Foreground>#ffffff</Foreground>
-      <Background>#524226</Background>
+      <Background>#484c5a</Background>
     </Active>
   </MenuStyle>
 
@@ -84,7 +84,7 @@
     <Opacity>0.8</Opacity>
     <Active>
       <Foreground>#ffffff</Foreground>
-      <Background>#524226</Background>
+      <Background>#484c5a</Background>
     </Active>
   </TrayStyle>
 
