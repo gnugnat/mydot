@@ -1,4 +1,4 @@
-#           _     _       _ 
+#           _     _       _
 #  _____  _| |__ | | ____| |
 # / __\ \/ / '_ \| |/ / _` |
 # \__ \>  <| | | |   < (_| |
@@ -58,16 +58,34 @@ XF86AudioMute
 	pactl set-sink-mute $(pactl list short sinks | grep RUNNING | cut -f1) toggle
 #
 # MPC
-XF86AudioPlay
-	mpc toggle
-XF86AudioNext
-	mpc next
 XF86AudioPrev
 	mpc prev
+XF86AudioNext
+	mpc next
+XF86AudioPlay
+	mpc toggle
+XF86AudioStop
+	mpc stop
+#
+# Video
+XF86Display
+	mpv /dev/video0
+#
+# File Manager
+XF86Explorer
+	nemo
+#
+# Calculator
+XF86Calculator
+	gnome-calculator
+#
+# Tools
+XF86Tools
+	rofi -show combi -combi-modi "window,drun,ssh"
 
 
 #########################
-#     bspwm             # 
+#     bspwm             #
 #########################
 
 # alt for windows
@@ -164,6 +182,6 @@ super + {_,shift + }{Left,Right}
 ctrl + alt + {q,w,e,r}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 #
-# set the node flags
+# toggle the node flags
 ctrl + alt + {i,o,p}
 	bspc node -g {locked,sticky,private}
