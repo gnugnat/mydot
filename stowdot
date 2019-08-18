@@ -11,6 +11,11 @@
 #  _|  _| | |  __/\__ \
 # (_)_| |_|_|\___||___/
 
+err_msg() {
+	echo "$(tput bold)$1$(tput sgr0)"
+	exit 1
+}
+
 ### mydir location
 # Change this if you want a different name instead of mydot.
 # For exaple if you are in the same directory as a renamed mydot,
@@ -21,28 +26,34 @@ mydir=$HOME/mydot
 ### Checks
 #
 # check for stow
-{ stow -V && st_im=stow;} || { xstow -V && st_im=xstow;} || { echo "$(tput bold)There is no stow on the sytem! Exiting.$(tput sgr0)"; exit 1; }
+{ stow -V && st_im=stow; } || { xstow -V && st_im=xstow; } || {
+	err_msg "There is no stow on the sytem! Exiting."
+}
 #
 # check for mydir
-[ ! -d "$mydir" ] && { echo "$(tput bold)The location of the scrip is wrong! Exiting.$(tput sgr0)"; exit 1; }
+[ ! -d "$mydir" ] && {
+	err_msg "The location of the scrip is wrong! Exiting."
+}
 #
 # check needed directories
-for chkdir in "$HOME/.config" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.local/share" "$HOME/.config/mpd/playlists"
-do
-    if [ ! -e "$chkdir" ]; then
-	mkdir -p "$chkdir"
-	echo "$chkdir created"
-    else
-	echo "$chkdir exists, good"
-    fi
+for chkdir in "$HOME/.config" "$HOME/.local/share" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.config/mpd/playlists"; do
+	if [ ! -e "$chkdir" ]; then
+		mkdir -p "$chkdir"
+		echo "$chkdir created"
+	else
+		echo "$chkdir exists, good"
+	fi
 done
 
 ### Stow or Unstow
 #
 for target in $(ls $mydir); do
-    if [ -d $mydir/$target ]; then
-	echo "$(tput bold)$target$(tput sgr0)"
-	if [ "$1" = "remove" ]; then $st_im -v -D $target
-	else $st_im -v $target; fi
-    fi
+	if [ -d $mydir/$target ]; then
+		echo "$(tput bold)$target$(tput sgr0)"
+		if [ "$1" = "remove" ]; then
+			$st_im -v -D $target
+		else
+			$st_im -v $target
+		fi
+	fi
 done
