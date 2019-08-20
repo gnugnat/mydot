@@ -104,6 +104,18 @@ super + Escape
 super + m
 	bspc desktop -l next
 #
+# Rotatates the windows 90 degrees
+super + r
+    bspc node @/ -R 90
+#
+# Make split ratios equal
+super + equal
+    bspc node @/ --equalize
+#
+# Make split ratios balanced
+super + minus
+    bspc node @/ --balance
+#
 # Increase/decrease window gap on focused desktop
 super + {less,greater}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
@@ -137,6 +149,11 @@ super + alt + ctrl + {h,j,k,l}
 # move a floating window
 super + alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+#
+# focus all windows
+# can be used to move the entire workspace
+super + alt + s
+    bspc node -f @/
 
 
 ### Hide / Show windows
