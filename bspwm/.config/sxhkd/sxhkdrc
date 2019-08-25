@@ -34,6 +34,10 @@ super + n
 super + e
 	emacs
 #
+# VSCode / VSCodium
+super + c
+	code || codium
+#
 # Web browser
 super + f
 	firefox
