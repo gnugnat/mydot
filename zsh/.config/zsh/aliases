@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #                                            .
 #     .vir.                                 d$b
 #  .d$$$$$$b.     .cd$$b.     .d$$b.   d$$$$$$$$$$$b  .d$$b.      .d$$b.
@@ -52,6 +50,7 @@ eball () {
     sudo ebuild $1 clean manifest merge
 }
 # emerge
+alias elsw='nl /var/lib/portage/world | less'
 alias echk='eix -I | grep "\[U\]"'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'

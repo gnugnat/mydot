@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 pre_git_check="%F{cyan} (%F{blue}"
 post_git_check="%F{cyan})%f"
