@@ -2,7 +2,7 @@
 Xft.antialias:      true
 
 !!!             X T E R M
-xterm*termName:     xterm-256color
+XTerm*termName:     xterm-256color
 XTerm.font:         xft:xos4 Terminus:size=12:style=regular
 XTerm.boldFont:     xft:xos4 Terminus:size=12:style=regular
 
@@ -12,8 +12,8 @@ URxvt*termName:     rxvt-unicode-256color
 !
 ! Fonts
 URxvt*imLocale:     en_US.UTF-8
-Urxvt*buffered:     false
-URxvt.intensityStyles: false
+URxvt*buffered:     false
+URxvt.intensityStyles: true
 URxvt.letterSpace:  0
 URxvt.*font:        xft:xos4 Terminus:size=12:style=regular, \
                     xft:Monospace:style=Medium:size=12, \
@@ -84,7 +84,7 @@ XTerm*cursorColor:  #999C96
 !
 ! blue
 *.color4:           #268BD2
-*.color12:          #9cc4ff
+*.color12:          #729FCF
 !
 ! magenta
 *.color5:           #D33682
@@ -92,7 +92,7 @@ XTerm*cursorColor:  #999C96
 !
 ! cyan
 *.color6:           #2AA198
-*.color14:          #a3f7ff
+*.color14:          #2AA198
 !
 ! white
 *.color7:           #EEE8D5
