@@ -13,6 +13,7 @@
 ### System Tools
 #
 # directories
+alias ,,='cd ../..'
 alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
@@ -55,6 +56,7 @@ alias echk='eix -I | grep "\[U\]"'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
 alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
+alias slr='sudo smart-live-rebuild'
 epull () {
     sudo eix-sync
     sudo eix-remote update
