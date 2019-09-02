@@ -18,6 +18,8 @@ configuration {
 
 /* look */
    display-combi: "Select";
+   display-drun: "";
+   display-window: "";
    columns: 2;
    show-icons: true;
    hide-scrollbar: true;
