@@ -3,7 +3,7 @@
 
   <!-- Virtual Desktops -->
   <!-- Desktop tags can be contained within Desktops for desktop names. -->
-  <Desktops width="4" height="1">
+  <Desktops width="5" height="1">
     
   </Desktops>
   

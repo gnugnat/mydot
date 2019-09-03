@@ -7,6 +7,7 @@
   <StartupCommand>compton -b &amp;</StartupCommand>
   <StartupCommand>~/.fehbg &amp;</StartupCommand>
   <StartupCommand>dunst &amp;</StartupCommand>
+  <StartupCommand>/usr/libexec/polkit-gnome-authentication-agent-1 &amp;</StartupCommand>
   <StartupCommand>udiskie -at &amp;</StartupCommand>
   <StartupCommand>nm-applet &amp;</StartupCommand>
   <StartupCommand>pasystray &amp;</StartupCommand>
