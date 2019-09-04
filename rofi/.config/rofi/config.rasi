@@ -4,19 +4,17 @@
    | | | (_) |  _| |
    |_|  \___/|_| |_|
 
-   Uses pywal:
-   https://github.com/dylanaraps/pywal
    Preferably run with:
    rofi -show combi -combi-modi "window,drun,ssh,keys"
 */
 
 configuration {
 
-/* basic */
-   modi: "combi,keys,ssh,window";
+   /* basic */
+   modi: "combi,drun,ssh,window";
    terminal: "gnome-terminal";
 
-/* look */
+   /* look */
    display-combi: "Select";
    display-drun: "";
    display-window: "";
@@ -25,7 +23,7 @@ configuration {
    hide-scrollbar: true;
    fullscreen: true;
 
-/* vi-like movement */
+   /* vi-like movement */
    kb-row-left: "Control+h";
    kb-row-right: "Control+l";
    kb-row-up: "Up,Control+k";
@@ -90,7 +88,7 @@ configuration {
 }
 
 #inputbar {
-   children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+   children: [ prompt, textbox-prompt-colon, entry, case-indicator];
 }
 
 #textbox-prompt-colon {
@@ -160,8 +158,8 @@ configuration {
 }
 
 #sidebar {
-  border: 2px 0px 0px;
-  border-color: @border-color;
+   border: 2px 0px 0px;
+   border-color: @border-color;
 }
 
 #button {
