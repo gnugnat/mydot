@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+usage() {
+    cat <<USAGE
+    Usage:
+	locate-ebuild PACKAGE
+    Example:
+	locate-ebuild sys-apps/portage
+	locate-ebuild util-linux
+USAGE
+}
+
+main() {
+    rloc=$(emerge --info | grep location | sed 's/location://g')
+    find $rloc -name "*.ebuild" 2>/dev/null | grep -i "$1"
+}
+
+if [ -z "$1" ]; then
+    usage
+    exit 1
+else
+    main "$1"
+fi
