@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Noninteractive auto-backup
+# script for portage
+
+set -e
+export PATH
+
+PBAK=portage-$(date +"%Y-%m-%d")
+
+mkdir $PBAK
+
+cp -r /etc/portage $PBAK/
+rm $PBAK/portage/make.profile
+
+cp /var/lib/portage/world $PBAK/
+cp /var/lib/portage/world_sets $PBAK/
+
+tree -a -L 2 /etc/portage > $PBAK/layout
