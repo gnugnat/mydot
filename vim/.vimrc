@@ -24,5 +24,8 @@
 	set incsearch
 " copy to system clipboard
 	set clipboard=unnamedplus
+" show tabs as dots
+	set list
+	set listchars=tab:..
 " custom bindings
 	nmap q :q<CR>
