@@ -17,3 +17,5 @@ cp /var/lib/portage/world $PBAK/
 cp /var/lib/portage/world_sets $PBAK/
 
 tree -a -L 2 /etc/portage > $PBAK/layout
+
+emerge --info > $PBAK/info
