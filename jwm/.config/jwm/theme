@@ -77,7 +77,7 @@
 
   <!-- Visual Style Tray. -->
   <TrayStyle decorations="flat">
-    <Font>Cantarell-12:antialias=true:encoding=utf8</Font>
+    <Font>Cantarell-11:antialias=true:encoding=utf8</Font>
     <Foreground>#ffffff</Foreground>
     <Background>#1b1c1b</Background>
     <Outline>#0b0c0b</Outline>
@@ -111,7 +111,7 @@
 
   <!-- Visual Style Clock. -->
   <ClockStyle>
-    <Font>Cantarell-14:weight=demibold:antialias=true:encoding=utf8</Font>
+    <Font>Cantarell-12:weight=demibold:antialias=true:encoding=utf8</Font>
   </ClockStyle>
 
 </JWM>
