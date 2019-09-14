@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
-# in cronjob use with >/dev/null
+# in cronjob use with > /dev/null
 
 count_backups() {
     find "$backup_dir" -maxdepth 1 -type f -name "$target_base*.tar.gz" | wc -l
 }
 
 tarup() {
-    tar -zcf "$backup_dir/$target_base-$(date +"%Y-%m-%d-%H-%M").tar.gz" $target_dir
+    archive_name=$target_base-$(date +"%Y-%m-%d-%H-%M").tar.gz
+    echo "Creating $archive_name in $backup_dir"
+    tar -zcf "$backup_dir/$archive_name" --absolute-names $target_dir
 }
 
 rm_old() {
-    rm "$(ls "$backup_dir"/"$target_base"* -t1r | sed 1q)"
+    oldest_archive="$(ls "$backup_dir"/"$target_base"* -t1r | sed 1q)"
+    echo "Removing $oldest_archive"
+    rm $oldest_archive
 }
 
 if [ -z $1 ] || [ -z $2 ]; then
