@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Run specified command for each git
+# repository found in current dir
+
+while read -r -d '' directory; do
+    
+    echo "Repo: $(tput bold)$(basename "${directory%/.git}")$(tput sgr0)"
+    
+    (
+	cd "${directory%.git}" && "$@"
+    )
+    
+done < <(find . -name .git -print0)
