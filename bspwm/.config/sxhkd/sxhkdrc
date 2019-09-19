@@ -24,11 +24,11 @@ alt + Escape
 #
 # Terminal
 super + t
-	gnome-terminal
+	gnome-terminal || urxvt || xterm
 #
 # File Manager
 super + n
-	nemo
+	nemo || nautilus
 #
 # Text Editor
 super + e
