@@ -448,3 +448,145 @@
   (setq show-week-agenda-p t)
   )
 #+END_SRC
+* EXWM
+** Emacs as X Window Manager
+#+BEGIN_SRC emacs-lisp
+  ;; If emacs is launcesd not in a desktop
+  ;; session, download and configure EXWM
+  ;;; Code:
+  (if
+      (not (getenv "DESKTOP_SESSION"))
+      (use-package exwm
+	:ensure t
+	:config
+
+	;; manual configuration
+	(require 'exwm)
+	(require 'exwm-config)
+
+	;; fringe size
+	(fringe-mode 1)
+
+	;; workspaces
+	(setq exwm-workspace-number 9)
+
+	;; bind s-<number> to switch to the corresponding workspace
+	(dotimes (i 10)
+	  (exwm-input-set-key (kbd (format "s-%d" i))
+			      `(lambda ()
+				 (interactive)
+				 (exwm-workspace-switch-create ,i))))
+
+	;; systray
+	(require 'exwm-systemtray)
+	(exwm-systemtray-enable)
+
+	;; start some programs
+	(start-process-shell-command "mpd" nil "mpd &")
+	(start-process-shell-command "compton" nil "compton -b &")
+	(start-process-shell-command "feh" nil "~/.fehbg &")
+	(start-process-shell-command "dunst" nil "dunst &")
+	(start-process-shell-command "authentication-agent" nil "/usr/libexec/polkit-gnome-authentication-agent-1 &")
+	(start-process-shell-command "udiskie" nil "udiskie -at &")
+	(start-process-shell-command "nm-applet" nil "nm-applet &")
+	(start-process-shell-command "pasystray" nil "pasystray &")
+	(start-process-shell-command "xfce4-power-manager" nil "xfce4-power-manager &")
+	(start-process-shell-command "xset" nil "xset b off")
+	(start-process-shell-command "xset" nil "xset s 1200 0")
+	(start-process-shell-command "xss-lock" nil "xss-lock -- i3lock -c 000000 &")
+
+	;; rebind essential GUI keys
+	(exwm-input-set-simulation-keys
+	 '(
+	   ;; movement
+	   ([?\C-b] . left)
+	   ([?\M-b] . C-left)
+	   ([?\C-f] . right)
+	   ([?\M-f] . C-right)
+	   ([?\C-p] . up)
+	   ([?\C-n] . down)
+	   ([?\C-a] . home)
+	   ([?\C-e] . end)
+	   ([?\M-v] . prior)
+	   ([?\C-v] . next)
+	   ([?\C-d] . delete)
+	   ([?\C-k] . (S-end delete))
+	   ;; cut/paste
+	   ([?\C-w] . ?\C-x)
+	   ([?\M-w] . ?\C-c)
+	   ([?\C-y] . ?\C-v)
+	   ;; search
+	   ([?\C-s] . ?\C-f)))
+
+	;; Rename buffers to window title
+	(defun exwm-rename-buffer-to-title ()
+	  (exwm-workspace-rename-buffer exwm-title))
+	(add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
+
+	;; Switch to lat open buffer
+	(defun switch-to-last-buffer()
+	  "Swicht to last open buffer in current window"
+	  (interactive)
+	  (switch-to-buffer (other-buffer (current-buffer) 1)))
+	(exwm-input-set-key (kbd "s-<tab>") #'switch-to-last-buffer)
+
+	;;; Fn keys
+	;;
+	;; audio
+	(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "pactl" nil "pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) +2%")))
+	(exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "pactl" nil "pactl set-sink-volume $(pactl list short sinks | grep RUNNING | cut -f1) -2%")))
+	(exwm-input-set-key (kbd "<XF86AudioMute>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "pactl" nil "pactl set-sink-mute $(pactl list short sinks | grep RUNNING | cut -f1) toggle")))
+	;;
+	;; mpd
+	(exwm-input-set-key (kbd "<XF86AudioPrev>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "mpc" nil "mpc prev")))
+	(exwm-input-set-key (kbd "<XF86AudioNext>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "mpc" nil "mpc next")))
+	(exwm-input-set-key (kbd "<XF86AudioPlay>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "mpc" nil "mpc toggle")))
+	(exwm-input-set-key (kbd "<XF86AudioStop>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "mpc" nil "mpc stop")))
+	;;
+	;; camera
+	(exwm-input-set-key (kbd "<XF86Display>")
+			    (lambda ()
+			      (interactive)
+			      (start-process-shell-command
+			       "mpv" nil "mpv /dev/video0")))
+
+	;; simple launcer
+	(exwm-input-set-key (kbd "s-d")
+			    (lambda (command)
+			      (interactive (list (read-shell-command "» ")))
+			      (start-process-shell-command command nil command)))
+
+	;; enable
+	(exwm-enable)
+
+	)
+    )
+#+END_SRC
