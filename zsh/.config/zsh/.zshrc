@@ -105,7 +105,7 @@ git_check () {
     [ ! -z $branch ] && echo "$pre_git_check$branch$post_git_check"
 }
 
-### Miscellaneous settings
+### Miscellaneous
 #
 # Prompt Substring
 # used by git_check

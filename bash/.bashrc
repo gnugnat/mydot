@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ~/.bashrc
 
@@ -8,26 +8,27 @@
 # | |_) | (_| \__ \ | | | | | (__ 
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
-### Kill Switch ###
+### Kill Switch
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
+	# Shell is non-interactive. Be done now!
 	return
 fi
 
-### Scripts ###
-#
-export PATH=$PATH:$HOME/.local/share/bin
+### Scripts
+export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin
 
-### User Settings ###
-#
-# text editor
-export EDITOR=nano
-
-### Prompt ###
-#
+### Prompt
 PS1=$'\[$(tput bold)\]\[$(tput setaf 3)\] \w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 
-### History ###
+### Source aliases from ZSH
+if [ -e $HOME/.config/zsh/aliases ]; then
+    source $HOME/.config/zsh/aliases
+fi
+
+### Auto-change directory
+shopt -s autocd
+
+### History
 #
 # Size
 HISTSIZE=3000
@@ -38,15 +39,3 @@ export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 #
 # append histroy
 shopt -s histappend
-
-### Aliases ###
-#
-# source aliases from ZSH
-if [ -e $HOME/.config/zsh/aliases ]; then
-    source $HOME/.config/zsh/aliases
-fi
-
-### Misc ###
-#
-# auto-change directory
-shopt -s autocd
