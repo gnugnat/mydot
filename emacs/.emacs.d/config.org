@@ -14,26 +14,16 @@
 #+END_SRC
 ** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
-  ;; Edit ini2.org
+  ;; Edit config.org
   (defun config-visit ()
     (interactive)
     (find-file "~/.emacs.d/config.org" ))
   (global-set-key (kbd "C-c e") 'config-visit)
-  ;; Reload ~/.emacs.d/ini2.org at runtime
+  ;; Reload config.org at runtime
   (defun config-reload ()
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" )))
   (global-set-key (kbd "C-c r") 'config-reload)
-#+END_SRC
-** Terminal
-#+BEGIN_SRC emacs-lisp
-  ;; Set the shell as bash 
-  (defvar my-term-shell "/bin/bash")
-  (defadvice ansi-term (before force-bash)
-    (interactive (list my-term-shell)))
-  (ad-activate 'ansi-term)
-  ;;; bind SUPER (windows key) and enter (RETURN) to launch ansi-term
-  (global-set-key (kbd "<s-return>") 'ansi-term) 
 #+END_SRC
 ** Minor
 #+BEGIN_SRC emacs-lisp
@@ -457,22 +447,43 @@
   (if
       (not (getenv "DESKTOP_SESSION"))
       (and
+
+       ;; create clock
        (setq display-time-24hr-format t)
-       (setq display-time-format "%H:%M - %d %B %Y")
+       (setq display-time-format "%H:%M %d %b")
        (display-time-mode 1)
+
+       ;; super-t to launch ansi-terminal
+       (defvar my-term-shell "/bin/bash")
+       (defadvice ansi-term (before force-bash)
+	 (interactive (list my-term-shell)))
+       (ad-activate 'ansi-term)
+       (global-set-key (kbd "s-t") 'ansi-term)
+
+       ;; configure EXWM
        (use-package exwm
 	 :ensure t
 	 :config
 
 	 ;; manual configuration
-	 (require 'exwm)
 	 (require 'exwm-config)
 
 	 ;; fringe size
 	 (fringe-mode 10)
 
+	 ;; Rename buffers to window title
+	 (defun exwm-rename-buffer-to-title ()
+	   (exwm-workspace-rename-buffer exwm-title))
+	 (add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
+
+	 ;; systray
+	 (require 'exwm-systemtray)
+	 (exwm-systemtray-enable)
+
 	 ;; workspaces
-	 (setq exwm-workspace-number 9)
+	 (setq exwm-workspace-number 10)
+	 (setq exwm-workspace-show-all-buffers nil)
+	 (setq exwm-layout-show-all-buffers nil)
 
 	 ;; bind s-<number> to switch to the corresponding workspace
 	 (dotimes (i 10)
@@ -480,10 +491,6 @@
 			       `(lambda ()
 				  (interactive)
 				  (exwm-workspace-switch-create ,i))))
-
-	 ;; systray
-	 (require 'exwm-systemtray)
-	 (exwm-systemtray-enable)
 
 	 ;; rebind essential GUI keys
 	 (exwm-input-set-simulation-keys
@@ -503,16 +510,28 @@
 	    ([?\M-w] . ?\C-c)
 	    ([?\C-y] . ?\C-v)
 	    ;; search
-	    ([?\C-s] . ?\C-f)))
+	    ([?\C-s] . ?\C-f)
+	    ))
 
-	 ;; Rename buffers to window title
-	 (defun exwm-rename-buffer-to-title ()
-	   (exwm-workspace-rename-buffer exwm-title))
-	 (add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
+	 (setq exwm-input-global-keys
+	       `(
+
+		 ;; exit char-mode and fullscreen mode
+		 ([?\s-r] . exwm-reset)
+
+		 ;; switch workspace interactively
+		 ([?\s-w] . exwm-workspace-switch)
+
+		 ;; "s-<f2>" to lock screen
+		 ([s-f2] . (lambda ()
+			     (interactive)
+			     (start-process-shell-command
+			      "xset" nil "xset s activate")))
+		 ))
 
 	 ;; Switch to last open buffer
 	 (defun switch-to-last-buffer()
-	   "Swicht to last open buffer in current window"
+	   "Switch to last open buffer in current window"
 	   (interactive)
 	   (switch-to-buffer (other-buffer (current-buffer) 1)))
 	 (exwm-input-set-key (kbd "s-<tab>") #'switch-to-last-buffer)
@@ -566,7 +585,7 @@
 				"mpv" nil "mpv /dev/video0")))
 
 	 ;; simple launcher
-	 (exwm-input-set-key (kbd "s-d")
+	 (exwm-input-set-key (kbd "<s-return>")
 			     (lambda (command)
 			       (interactive (list (read-shell-command "» ")))
 			       (start-process-shell-command command nil command)))
@@ -574,11 +593,7 @@
 	 ;; enable
 	 (exwm-enable)
 	 )
-       ;; better launcher
-       (use-package dmenu
-	 :ensure t
-	 :bind
-	 ("s-SPC" . 'dmenu))
+
        )
     )
 #+END_SRC
