@@ -7,3 +7,11 @@ setxkbmap pl -option "caps:ctrl_modifier" &
 #
 # caps=escape
 xcape -e "Caps_Lock=Escape" &
+
+### Xset
+#
+# disable beeping
+xset b off
+#
+# screensaver timeout
+xset s 1200 0
