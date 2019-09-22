@@ -14,7 +14,6 @@
 exec_additional(){
     mpd &
     compton -b &
-    ~/.fehbg &
     dunst &
     /usr/libexec/polkit-gnome-authentication-agent-1 &
     udiskie -at &
