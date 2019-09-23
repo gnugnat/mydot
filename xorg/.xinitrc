@@ -41,7 +41,7 @@ case $session in
     bsp|bspwm	) exec bspwm;;
     exwm|EXWM	)
 	exec_additional
-	exec emacs
+	exec emacs --load ~/.emacs.d/exwm-config.el
 	;;
     gnome	) exec gnome-session;;
     i3		) exec i3;;
