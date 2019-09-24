@@ -26,7 +26,7 @@ session=${1:-jwm}
 case $session in
     bsp|bspwm	) exec bspwm;;
     exwm|EXWM	)
-	exec emacs --load ~/.emacs.d/exwm-config.el --load ~/.emacs.d/exwm-startup.el
+	exec emacs --load ~/.emacs.d/exwm-config.el
 	;;
     gnome	) exec gnome-session;;
     i3		) exec i3;;
