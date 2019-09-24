@@ -213,12 +213,13 @@
       (set-face-attribute 'default nil
 			  :weight 'normal
 			  :width 'normal
-			  :height 100
+			  :height 105
 			  :font (font-candidate "xos4 Terminus"
 						"Terminus"
 						"Dina"
 						"Hack"
 						"Monospace"
+						"Consolas"
 						)))
 #+END_SRC
 ** Theme
