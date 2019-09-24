@@ -211,11 +211,14 @@
   ;; List of fonts
   (if (display-graphic-p)
       (set-face-attribute 'default nil
-			  :font (font-candidate "xos4 Terminus-10:weight=normal"
-						"Terminus-10:weight=normal"
-						"Dina-10:weight=normal"
-						"Hack-10:weight=normal"
-						"Monospace-10:weight=normal"
+			  :weight 'normal
+			  :width 'normal
+			  :height 100
+			  :font (font-candidate "xos4 Terminus"
+						"Terminus"
+						"Dina"
+						"Hack"
+						"Monospace"
 						)))
 #+END_SRC
 ** Theme
