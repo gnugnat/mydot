@@ -162,6 +162,17 @@
     (other-window 1))
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
+** Kill and remove split
+#+BEGIN_SRC emacs-lisp
+  ;; kill buffer and delete its window
+  (defun kill-and-remove-split ()
+    (interactive)
+    (kill-buffer)
+    (delete-window)
+    (balance-windows)
+    (other-window 1))
+  (global-set-key (kbd "C-x x") 'kill-and-remove-split)
+#+END_SRC
 * Look
 ** Window Size
 #+BEGIN_SRC emacs-lisp
