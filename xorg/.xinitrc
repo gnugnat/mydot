@@ -9,20 +9,6 @@
 ### Usage:
 # $ startx ~/.xinitrc [session]
 
-### Stuff outside of ~/.xprofile
-#
-exec_additional(){
-    mpd &
-    compton -b &
-    dunst &
-    /usr/libexec/polkit-gnome-authentication-agent-1 &
-    udiskie -at &
-    nm-applet &
-    pasystray &
-    xfce4-power-manager &
-    xss-lock -- i3lock -c 000000 &
-}
-
 ### Source xprofile
 #
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
@@ -40,8 +26,7 @@ session=${1:-jwm}
 case $session in
     bsp|bspwm	) exec bspwm;;
     exwm|EXWM	)
-	exec_additional
-	exec emacs --load ~/.emacs.d/exwm-config.el
+	exec emacs --load ~/.emacs.d/exwm-config.el --load ~/.emacs.d/exwm-startup.el
 	;;
     gnome	) exec gnome-session;;
     i3		) exec i3;;
