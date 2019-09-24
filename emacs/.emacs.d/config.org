@@ -202,12 +202,20 @@
 ** Font
 #+BEGIN_SRC emacs-lisp
   ;; Font settings
-  (set-face-attribute 'default nil
-		      :font "xos4 Terminus"
-		      :weight 'normal
-		      :width 'normal
-		      :height 110
-		      )
+  ;; Credit: https://www.emacswiki.org/emacs/SetFonts
+  ;;
+  ;; Fallback to another font if first is unavalible
+  (require 'cl)
+  (defun font-candidate (&rest fonts)
+    "Return existing font which first match."
+    (find-if (lambda (f) (find-font (font-spec :name f))) fonts))
+  ;; List of fonts
+  (set-face-attribute 'default nil :font (font-candidate '"xos4 Terminus-10:weight=normal"
+							 "Terminus-10:weight=normal"
+							 "Dina-10:weight=normal"
+							 "Hack-10:weight=normal"
+							 "Monospace-10:weight=normal"
+							 ))
 #+END_SRC
 ** Theme
 #+BEGIN_SRC emacs-lisp
