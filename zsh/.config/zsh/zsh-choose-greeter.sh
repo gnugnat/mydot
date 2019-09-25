@@ -1,12 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 if [ -z $ZDOTDIR ]; then echo "No ZDOTDIR set, exiting..."; exit 1 ; fi
-greeterdir=$ZDOTDIR/greeters
-greeters=$(ls $greeterdir)
 
-ls $greeterdir | nl
+ls $ZDOTDIR/greeters | nl
 
 echo "choose a greeter"
 read greeter
 
-ln -sf $greeterdir/$(echo $greeters | cut -d" " -f$greeter) $ZDOTDIR/zsh-greeter
+ln -sf $(echo $ZDOTDIR/greeters/* | cut -d" " -f$greeter) $ZDOTDIR/zsh-greeter
