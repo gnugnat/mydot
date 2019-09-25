@@ -4,7 +4,6 @@
 * Environment
 ** Auto-Update
 #+BEGIN_SRC emacs-lisp
-  ;; Auto update
   (use-package auto-package-update
     :ensure t
     :config
@@ -26,6 +25,7 @@
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 ** Minor
+Some small tweaks that don't require packages
 #+BEGIN_SRC emacs-lisp
   ;; no toolbar:
   (tool-bar-mode -1)
@@ -33,7 +33,7 @@
   ;;;; can still be accessed with F10
   (menu-bar-mode -1)
   ;; no scrollbar:
-  (scroll-bar-mode -1)
+  (when window-system (scroll-bar-mode -1))
   ;; line numbers:
   (global-display-line-numbers-mode 1)
   ;; scrolling:
@@ -44,7 +44,7 @@
   (when window-system (global-hl-line-mode t))
   ;; prettify (lambda to icon):
   (when window-system (global-prettify-symbols-mode t))
-  ;; use mouse in xterm  
+  ;; use mouse in xterm
   (xterm-mouse-mode)
   ;; auto reloading (reverting) buffers
   (global-auto-revert-mode 1)
@@ -63,23 +63,21 @@
 #+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
-  ;; Binding - Control & Scroll Up - Increase 
+  ;; Control & Scroll Up - Increase
   (global-set-key [C-mouse-4] 'text-scale-increase)
-  ;; Binding - Control & Scroll Down - Decrease
+  ;; Control & Scroll Down - Decrease
   (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
 ** Recent Files
+Show a list of recently opened files with =C-c f=
 #+BEGIN_SRC emacs-lisp
-  ;; Enable recent file mode
   (recentf-mode 1)
-  ;; list length
   (setq recentf-max-menu-items 20)
-  ;; binding
   (global-set-key (kbd "C-c f") 'recentf-open-files)
 #+END_SRC
 ** Keybinding Help
+Key binding hints
 #+BEGIN_SRC emacs-lisp
-  ;; Key binding hints
   (use-package which-key
     :ensure t
     :init
@@ -87,41 +85,40 @@
 #+END_SRC
 * Buffers & Windows
 ** Ibuffer
+Better switching
 #+BEGIN_SRC emacs-lisp
-  ;; Better switching
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 ** Expert mode
+Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
 #+BEGIN_SRC emacs-lisp
-  ;; Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) 
-  ;; without confirmation (y or n)
   (setq ibuffer-expert t)
 #+END_SRC
 ** IDO mode
+Buffer stuff
 #+BEGIN_SRC emacs-lisp
-  ;; Buffer stuff
   (setq ido-enable-flex-matching nil)
   (setq ido-create-new-buffer 'always)
   (setq ido-everywhere t)
   (ido-mode 1)
 #+END_SRC
 ** IDO-vertical
+Better positioning
 #+BEGIN_SRC emacs-lisp
-  ;; Better positioning
   (use-package ido-vertical-mode
     :ensure t
     :init
-    (ido-vertical-mode 1))
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+    (ido-vertical-mode 1)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 #+END_SRC
 ** IDO - switch buffers
+Better buffer switching
 #+BEGIN_SRC emacs-lisp
-  ;; Better buffer switching
   (global-set-key (kbd "C-x b") 'ido-switch-buffer)
 #+END_SRC
 ** Smex config
+Run known programs faster
 #+BEGIN_SRC emacs-lisp
-  ;; Run known programs faster
   (use-package smex
     :ensure t
     :init
@@ -130,9 +127,8 @@
     ("M-x" . smex))
 #+END_SRC
 ** Switch-window
+Faster window switching, when you press C-x o you choose a window
 #+BEGIN_SRC emacs-lisp
-  ;; Faster window switching
-  ;;; when you press C-x o you choose a window
   (use-package switch-window
     :ensure t
     :config
@@ -146,15 +142,16 @@
     ([remap other-window] . switch-window))
 #+END_SRC
 ** Following window splits
+Better window splitting
 #+BEGIN_SRC emacs-lisp
-  ;; Better window splitting
+  ;; horizontal
   (defun split-and-follow-horizontally ()
     (interactive)
     (split-window-below)
     (balance-windows)
     (other-window 1))
   (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
-  ;;;
+  ;; vertical
   (defun split-and-follow-vertically ()
     (interactive)
     (split-window-right)
@@ -163,8 +160,8 @@
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 ** Kill and remove split
+Kill buffer and delete its window
 #+BEGIN_SRC emacs-lisp
-  ;; kill buffer and delete its window
   (defun kill-and-remove-split ()
     (interactive)
     (kill-buffer)
@@ -175,8 +172,8 @@
 #+END_SRC
 * Look
 ** Window Size
+Should work well with 88 x 36
 #+BEGIN_SRC emacs-lisp
-  ;;; Should work well with 88 x 36
   (when window-system
     (set-frame-size (selected-frame) 88 36))
 #+END_SRC
@@ -185,7 +182,7 @@
   ;; Set transparency
   (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
   (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
-  ;;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
+  ;; You can use the following snippet after you’ve set the alpha as above to assign a toggle to “C-c t”
   (defun toggle-transparency ()
     (interactive)
     (let ((alpha (frame-parameter nil 'alpha)))
@@ -193,46 +190,44 @@
        nil 'alpha
        (if (eql (cond ((numberp alpha) alpha)
 		       ((numberp (cdr alpha)) (cdr alpha))
-		       ;;; Also handle undocumented (<active> <inactive>) form.
+		       ;; Also handle undocumented (<active> <inactive>) form.
 		       ((numberp (cadr alpha)) (cadr alpha)))
 		100)
 	   '(95 . 80) '(100 . 100)))))
   (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 ** Font
+Credit: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
-  ;;; Font-setting
-  ;; Credit: https://www.emacswiki.org/emacs/SetFonts
-  ;;
   ;; Fallback to another font if first is unavalible
   (require 'cl)
   (defun font-candidate (&rest fonts)
     (loop for font in fonts when (find-font (font-spec :name font)) return font))
   ;; List of fonts
-  (if (display-graphic-p)
-      (set-face-attribute 'default nil
-			  :weight 'normal
-			  :width 'normal
-			  :height 105
-			  :font (font-candidate "xos4 Terminus"
-						"Terminus"
-						"Dina"
-						"Hack"
-						"Monospace"
-						"Consolas"
-						)))
+  (when window-system
+    (set-face-attribute 'default nil
+			:weight 'normal
+			:width 'normal
+			:height 105
+			:font (font-candidate "xos4 Terminus"
+					      "Terminus"
+					      "Dina"
+					      "Hack"
+					      "Monospace"
+					      "Consolas"
+					      )))
 #+END_SRC
 ** Theme
+Install spacemacs-theme if not installed
 #+BEGIN_SRC emacs-lisp
-  ;; Install spacemacs-theme if not installed
   (unless (package-installed-p 'spacemacs-theme)
     (package-refresh-contents)
     (package-install 'spacemacs-theme))
   (load-theme 'spacemacs-dark t)
 #+END_SRC
 ** Spaceline
+Mode line
 #+BEGIN_SRC emacs-lisp
-  ;; Mode line
   (use-package spaceline
     :ensure t
     :config
@@ -242,26 +237,24 @@
 #+END_SRC
 * File Editing
 ** Insert Date
+Insert date in non-Org documents
+- =C-c d= :		13.04.2004
+- =C-u C-c d= :		2004-04-13
+- =C-u C-u C-c d= :	Dienstag, 13. April 2004
 #+BEGIN_SRC emacs-lisp
-  ;; Insert date in non-Org documents
   (defun insert-date (prefix)
-      (interactive "P")
-      (let ((format (cond
-		     ((not prefix) "%d.%m.%Y")
-		     ((equal prefix '(4)) "%Y-%m-%d")
-		     ((equal prefix '(16)) "%A, %d. %B %Y")))
-	    (system-time-locale "pl_PL"))
-	(insert (format-time-string format))))
-  ;;; binding
+    (interactive "P")
+    (let ((format (cond
+		   ((not prefix) "%d.%m.%Y")
+		   ((equal prefix '(4)) "%Y-%m-%d")
+		   ((equal prefix '(16)) "%A, %d. %B %Y")))
+	  (system-time-locale "pl_PL"))
+      (insert (format-time-string format))))
   (global-set-key (kbd "C-c d") 'insert-date)
-  ;;; Howto:
-  ;;;; ‘C-c d’: 13.04.2004
-  ;;;; ‘C-u C-c d’: 2004-04-13
-  ;;;; ‘C-u C-u C-c d’: Dienstag, 13. April 2004
 #+END_SRC
 ** Encoding
+Set encoding to UTF-8
 #+BEGIN_SRC emacs-lisp
-  ;; Set encoding to UTF-8
   (setq locale-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
@@ -269,97 +262,98 @@
   (prefer-coding-system 'utf-8)
 #+END_SRC
 ** Flycheck
+Auto check
 #+BEGIN_SRC emacs-lisp
-  ;; Auto check
   (use-package flycheck
     :ensure t
     :init
     (global-flycheck-mode t))
 #+END_SRC
 ** Yasnippet
+Code snippets
 #+BEGIN_SRC emacs-lisp
-  ;; Code snippets
   (use-package yasnippet
     :ensure t
     :init
     (yas-global-mode 1))
 #+END_SRC
 ** Rainbow color
+Colorize
 #+BEGIN_SRC emacs-lisp
-  ;; Colorize
   (use-package rainbow-mode
     :ensure t
     :init
     (add-hook 'prog-mode-hook 'rainbow-mode))
 #+END_SRC
 ** Rainbow delimeters
+Colored delimeters
 #+BEGIN_SRC emacs-lisp
-  ;; Colored delimeters
   (use-package rainbow-delimiters
     :ensure t
     :init
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 ** Avy
+Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
 #+BEGIN_SRC emacs-lisp
-  ;; Easier search inside files
-  ;;; after pressung binded keys, pass a letter,
-  ;;; then pass symbols for the highlighted letter to which you want to go to
   (use-package avy
     :ensure t
     :bind
     ("M-s" . avy-goto-char))
 #+END_SRC
 ** Beacon mode
+Line highlight when switching
 #+BEGIN_SRC emacs-lisp
-  ;; Line highlight when switching
   (use-package beacon
     :ensure t
     :config
     (beacon-mode 1))
 #+END_SRC
 ** Projectile
+Project management
 #+BEGIN_SRC emacs-lisp
-  ;; Project management
   (use-package projectile
     :ensure t
     :init
-    (projectile-mode 1))
-  ;;; binding
-  (global-set-key (kbd "<f5>") 'projectile-compile-project)
+    (projectile-mode 1)
+    :bind
+    ("<f5>" . 'projectile-compile-project))
 #+END_SRC
 ** Magit
+Git management
 #+BEGIN_SRC emacs-lisp
-  ;; Git management
   (use-package magit
-  :ensure t
-  :config
-  (setq magit-push-always-verify nil)
-  (setq git-commit-summary-max-length 50)
-  :bind
-  ("M-g" . magit-status))
+    :ensure t
+    :config
+    (setq magit-push-always-verify nil)
+    (setq git-commit-summary-max-length 50)
+    :bind (
+     ("C-c s" . magit-status)
+     ("C-c b" . magit-blame)
+     ))
 #+END_SRC
 ** Sudo Edit
+Edit files as root
 #+BEGIN_SRC emacs-lisp
-  ;; Edit files as root
-  ;;; this changes active user to root
   (use-package sudo-edit
     :ensure t
     :bind
     ("s-e" . sudo-edit))
 #+END_SRC
 ** Dired-Sidebar
+Sidebar for Emacs leveraging Dired
 #+BEGIN_SRC emacs-lisp
-  ;; Sidebar for Emacs leveraging Dired 
   (use-package dired-sidebar
     :ensure t
-    :commands (dired-sidebar-toggle-sidebar)
-    :bind (("C-x C-n" . dired-sidebar-toggle-sidebar)))
+    :commands
+    (dired-sidebar-toggle-sidebar)
+    :bind
+    (("C-x C-n" . dired-sidebar-toggle-sidebar)))
 #+END_SRC
 * Completion
-** Electric - bracket autocompletion.
+** Electric Pairs
+Auto close brackets
 #+BEGIN_SRC emacs-lisp
-  ;; Auto close brackets
   (setq electric-pair-pairs '(
 			      (?\{ . ?\})
 			      (?\( . ?\))
@@ -369,8 +363,8 @@
   (electric-pair-mode t)
 #+END_SRC
 ** HTML Completion
+Enable Web Mode
 #+BEGIN_SRC emacs-lisp
-  ;; Enable Web Mode
   (use-package web-mode
     :ensure t
     :mode
@@ -402,7 +396,6 @@
 #+END_SRC
 ** Auto-Complete
 #+BEGIN_SRC emacs-lisp
-  ;; Auto complete
   (use-package auto-complete
       :ensure t
       :config
@@ -410,26 +403,25 @@
 #+END_SRC
 * Org
 ** Org Bullets
+Make Org look prettier
 #+BEGIN_SRC emacs-lisp
-  ;; Make org look prettier
   (use-package org-bullets
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
 ** Same edit window
+With =C-c '= replace the original .org file with editor
 #+BEGIN_SRC emacs-lisp
-  ;; With C-c ' replace the .org file with editor
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 ** Wrap words
 #+BEGIN_SRC emacs-lisp
-  ;; Wrapping
   (setq org-startup-truncated nil)
 #+END_SRC
 ** Org Agenda
+My Org agenda
 #+BEGIN_SRC emacs-lisp
-  ;; My Org agenda
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
 			  "~/Documents/todo.org"
@@ -438,27 +430,25 @@
 * Startup Customization
 ** Startup screen settings
 #+BEGIN_SRC emacs-lisp
-  ;; Startup
   (setq inhibit-startup-screen t)
   (setq inhibit-startup-message t)
 #+END_SRC
 ** Dashboard
 #+BEGIN_SRC emacs-lisp
-  ;; Dashboard
   (use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  ;;; for Emacs as deamon:
-  ;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!")
-  (setq dashboard-banner-logo-title-face t)
-  (setq dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png")
-  ;;(setq dashboard-startup-banner 'official)
-  (setq dashboard-items '((recents  . 7)
-			  (projects . 5)
-			  ))
-  (add-to-list 'dashboard-items '(agenda) t)
-  (setq show-week-agenda-p t)
-  )
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook)
+    ;;; for Emacs as deamon:
+    ;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!")
+    (setq dashboard-banner-logo-title-face t)
+    (setq dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png")
+    ;;(setq dashboard-startup-banner 'official)
+    (setq dashboard-items '((recents  . 7)
+			    (projects . 5)
+			    ))
+    (add-to-list 'dashboard-items '(agenda) t)
+    (setq show-week-agenda-p t)
+    )
 #+END_SRC
