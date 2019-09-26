@@ -4,4 +4,4 @@ win_path () {
     pwd | tr '/' '\\'
 }
 
-PROMPT=$'C:`win_path`%B>%b '
+PROMPT=$'C:$(win_path)%B>%b '

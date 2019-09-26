@@ -34,5 +34,5 @@ dir_icon () {
 
 pre_git_check="\uf126 "
 
-PROMPT=$'%(?.%K{$pink}.%K{$yellow})%F{$black} \uf30d %K{$purple}%(?.%F{$pink}.%F{$yellow})\ue0b0%F{$black} `dir_icon` %~ `git_check`%K{black}%k%F{$purple}\ue0b0
+PROMPT=$'%(?.%K{$pink}.%K{$yellow})%F{$black} \uf30d %K{$purple}%(?.%F{$pink}.%F{$yellow})\ue0b0%F{$black} $(dir_icon) %~ $(git_check)%K{black}%k%F{$purple}\ue0b0
 %F{$white}\u25b6%k%f '
