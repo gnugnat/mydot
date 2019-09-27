@@ -7,8 +7,8 @@
   (use-package auto-package-update
     :ensure t
     :config
-    (setq auto-package-update-interval 5)
-    (setq auto-package-update-delete-old-verions t)
+    (setq auto-package-update-interval 5
+	  auto-package-update-delete-old-verions t)
     (auto-package-update-maybe))
 #+END_SRC
 ** Edit/Reload configuration
@@ -97,9 +97,9 @@ Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirm
 ** IDO mode
 Buffer stuff
 #+BEGIN_SRC emacs-lisp
-  (setq ido-enable-flex-matching nil)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-everywhere t)
+  (setq ido-enable-flex-matching nil
+	ido-create-new-buffer 'always
+	ido-everywhere t)
   (ido-mode 1)
 #+END_SRC
 ** IDO-vertical
@@ -127,16 +127,16 @@ Run known programs faster
     ("M-x" . smex))
 #+END_SRC
 ** Switch-window
-Faster window switching, when you press C-x o you choose a window
+Faster window switching, when you press =C-x o= you choose a window
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
     :ensure t
     :config
-    (setq switch-window-input-style 'minibuffer)
-    (setq switch-window-increase 4)
-    (setq switch-window-threshold 2)
-    (setq switch-window-shortcut-style 'qwerty)
-    (setq switch-window-qwerty-shortcuts
+    (setq switch-window-input-style 'minibuffer
+	  switch-window-increase 4
+	  switch-window-threshold 2
+	  switch-window-shortcut-style 'qwerty
+	  switch-window-qwerty-shortcuts
 	  '( "a" "s" "d" "f" "g" "h" "j" "k" "l"))
     :bind
     ([remap other-window] . switch-window))
@@ -325,8 +325,8 @@ Git management
   (use-package magit
     :ensure t
     :config
-    (setq magit-push-always-verify nil)
-    (setq git-commit-summary-max-length 50)
+    (setq magit-push-always-verify nil
+	  git-commit-summary-max-length 50)
     :bind (
      ("C-c s" . magit-status)
      ("C-c b" . magit-blame)
@@ -382,17 +382,17 @@ Enable Web Mode
      ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
      )
     :init
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-attr-indent-offset 2)
-    (setq web-mode-attr-value-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-enable-auto-closing t)
-    (setq web-mode-enable-auto-pairing t)
-    (setq web-mode-enable-comment-keywords t)
-    (setq web-mode-enable-current-element-highlight t)
-    )
+    (setq web-mode-markup-indent-offset 2
+	  web-mode-attr-indent-offset 2
+	  web-mode-attr-value-indent-offset 2
+	  web-mode-code-indent-offset 2
+	  web-mode-css-indent-offset 2
+	  web-mode-code-indent-offset 2
+	  web-mode-enable-auto-closing t
+	  web-mode-enable-auto-pairing t
+	  web-mode-enable-comment-keywords t
+	  web-mode-enable-current-element-highlight t
+	  ))
 #+END_SRC
 ** Auto-Complete
 #+BEGIN_SRC emacs-lisp
@@ -430,8 +430,8 @@ My Org agenda
 * Startup Customization
 ** Startup screen settings
 #+BEGIN_SRC emacs-lisp
-  (setq inhibit-startup-screen t)
-  (setq inhibit-startup-message t)
+  (setq inhibit-startup-screen t
+	inhibit-startup-message t)
 #+END_SRC
 ** Dashboard
 #+BEGIN_SRC emacs-lisp
@@ -439,16 +439,14 @@ My Org agenda
     :ensure t
     :config
     (dashboard-setup-startup-hook)
-    ;;; for Emacs as deamon:
-    ;;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-    (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!")
-    (setq dashboard-banner-logo-title-face t)
-    (setq dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png")
-    ;;(setq dashboard-startup-banner 'official)
-    (setq dashboard-items '((recents  . 7)
+    (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!"
+	  dashboard-banner-logo-title-face t
+	  dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
+	  dashboard-items '(
+			    (recents  . 7)
 			    (projects . 5)
-			    ))
+			    )
+	  show-week-agenda-p t)
     (add-to-list 'dashboard-items '(agenda) t)
-    (setq show-week-agenda-p t)
     )
 #+END_SRC

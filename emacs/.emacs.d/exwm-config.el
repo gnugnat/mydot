@@ -25,8 +25,8 @@
   (fringe-mode 10)
 
   ;; create clock
-  (setq display-time-24hr-format t)
-  (setq display-time-format "%H:%M %d %b")
+  (setq display-time-24hr-format t
+	display-time-format "%H:%M %d %b")
   (display-time-mode 1)
 
   ;; make sure dashboard shows up
@@ -74,9 +74,9 @@
   (exwm-systemtray-enable)
 
   ;; workspaces
-  (setq exwm-workspace-number 10)
-  (setq exwm-workspace-show-all-buffers nil)
-  (setq exwm-layout-show-all-buffers nil)
+  (setq exwm-workspace-number 10
+	exwm-workspace-show-all-buffers nil
+	exwm-layout-show-all-buffers nil)
 
   ;; bind s-<number> to switch to the corresponding workspace
   (dotimes (i 10)
@@ -107,7 +107,7 @@
      ))
 
   (setq exwm-input-global-keys
-	`(
+	'(
 
 	  ;; exit char-mode and fullscreen mode
 	  ([?\s-r] . exwm-reset)
