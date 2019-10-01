@@ -25,7 +25,7 @@
 
     <Spacer width="3"/>
 
-    <TrayButton icon="application-exit.png" popup="Exit">exec:jwm -exit</TrayButton>
+    <TrayButton icon="application-exit-symbolic.svg" popup="Exit">exec:jwm -exit</TrayButton>
     
   </Tray>
 

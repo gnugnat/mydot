@@ -2,47 +2,34 @@
 <JWM>
   
   <!-- Find icons in these paths -->
+  <!-- Main: Papirus-Dark -->
   <IconPath>
-    /usr/share/icons/Adwaita/16x16/apps
+    /usr/share/icons/Papirus-Dark/symbolic/actions
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/actions
+    /usr/share/icons/Papirus-Dark/symbolic/apps
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/apps
+    /usr/share/icons/Papirus-Dark/symbolic/devices
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/categories
+    /usr/share/icons/Papirus-Dark/symbolic/places
+  </IconPath>
+  <!-- Fallback: Adwaita -->
+  <IconPath>
+    /usr/share/icons/Adwaita/scalable/actions
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/devices
+    /usr/share/icons/Adwaita/scalable/apps
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/emblems
+    /usr/share/icons/Adwaita/scalable/devices
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/emotes
+    /usr/share/icons/Adwaita/scalable/places
   </IconPath>
   <IconPath>
-    /usr/share/icons/Adwaita/24x24/legacy
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/Adwaita/24x24/mimetypes
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/Adwaita/24x24/places
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/Adwaita/24x24/status
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/hicolor/16x16/apps
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/hicolor/32x32/apps
-  </IconPath>
-  <IconPath>
-    /usr/share/icons/hicolor/48x48/apps
+    /usr/share/icons/Adwaita/scalable/status
   </IconPath>
 
   <!-- Visual Style Window. -->
