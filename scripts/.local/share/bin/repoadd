@@ -1,14 +1,18 @@
 #!/bin/sh
+
 if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]
 then
-    echo "ERROR: Missing variables!
-usage: repoadd <package_category> <package_name> <ebuild>
-example: repoadd app-dicts artha ~/artha-1.0.2.ebuild"
+    cat <<HELP
+ERROR: Missing variables!
+usage: repoadd PACKAGE_CATEGORY PACKAGE_NAME EBUILD
+example: repoadd app-dicts artha ~/artha-1.0.2.ebuild
+notice: uses /var/db/repos/localrepo for this script
+HELP
     exit 1
 else
-    sudo mkdir -p /usr/local/portage/$1/$2
-    sudo cp $3 /usr/local/portage/$1/$2/
-    sudo chown -R portage:portage /usr/local/portage
-    cd /usr/local/portage/$1/$2 || exit
+    sudo mkdir -p /var/db/repos/localrepo/$1/$2
+    sudo cp $3 /var/db/repos/localrepo/$1/$2/
+    sudo chown -R portage:portage /var/db/repos/localrepo
+    cd /var/db/repos/localrepo/$1/$2 || exit 1
     sudo repoman manifest
 fi

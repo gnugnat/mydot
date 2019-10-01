@@ -21,7 +21,7 @@ rm_old() {
 if [ -z $1 ] || [ -z $2 ]; then
     echo "ERROR: Missing variables!"
     echo "usage:"
-    echo "bak-dir <directory to backup> <directory to backup into>"
+    echo "bak-dir DIRECTORY_TO_BACKUP DIRECTORY_TO_BACKUP_INTO"
     echo "example:"
     echo "bak-dir ~/Pictures ~/Data/Backup"
     exit 1
