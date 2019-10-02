@@ -1,20 +1,9 @@
-#+STARTUP: showall inlineimages
 #+TITLE: My dotfiles
+#+ATTR_HTML: style margin-left: auto; margin-right: auto;
 #+CREATOR: xgqt
 #+LANGUAGE: en
-#+ATTR_HTML: style margin-left: auto; margin-right: auto;
+#+STARTUP: showall inlineimages
 [[./Larry_Cow.png]]
-
-* Background
-Worked on this since my first installation of Gentoo, 
-because of this this repo contains a lot of Gentoo specyfic aliases and tools.
-* Legal Disclaimer
-** There are scripts to install some programs made by other people
-*** zsh plugins
-- [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
-- [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
-** References to other git repositorues
-- [[https://github.com/chiku/mjwm][mjwm]]
 * Howto
 ** Installation
 - git clone the repo to ~/mydot
@@ -25,40 +14,24 @@ because of this this repo contains a lot of Gentoo specyfic aliases and tools.
 - run =./stowdot remove=
 ** Selectivity
    You can install/delete configs selectivitely.
-   First change directrory to mydot, ex: =cd ~/mydot=.
+   First change directrory to mydot (=cd ~/mydot=).
    Remember to create needed directories to avoid conflicts:
    - =$HOME/.config= 	- for your users config files
    - =$HOME/.emacs.d= 	- for Emacs
    - =$HOME/.newsboat= 	- for newsboat config file
 *** install one
     example: zsh
-    - =stow -v zsh=
+    - =stow zsh=
 *** uninstall one
     example: zsh
-    - =stow -vD zsh=
+    - =stow -D zsh=
 ** ZSH
-- Run zsh as login shell =zsh -l=
+- Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
 ** JWM
-- For menu to work run [[https://github.com/chiku/mjwm][mjwm.]]
-- If you would start conky with configuration file that is not in your home directory instead link that configuration file to ~/.conkyrc
-** bspwm
-*** important programs
-- [[https://github.com/baskerville/sxhkd][sxhkd]]
-- [[https://github.com/chjj/compton][compton]]
-- [[https://gitlab.com/o9000/tint2][tint2]]
-- [[https://feh.finalrewind.org/][feh]]
-- [[https://github.com/dunst-project/dunst][dunst]]
-- [[https://wiki.gnome.org/Projects/NetworkManager][nm-applet]]
-- [[https://www.freedesktop.org/wiki/Software/PulseAudio/][pulseaudio]]
-- [[https://github.com/christophgysin/pasystray][pasystray]]
-- [[https://goodies.xfce.org/projects/applications/xfce4-power-manager][xfce4-power-manager]] (for laptops)
-- [[https://bitbucket.org/raymonad/xss-lock/src/master/][xss-lock]]
-- [[https://github.com/i3/i3lock][i3lock]]
-- [[https://github.com/davatorium/rofi][rofi]]
-- [[https://github.com/MusicPlayerDaemon/MPD][mpd]]
-- [[https://github.com/MusicPlayerDaemon/mpc][mpc]]
-- [[https://github.com/coldfix/udiskie][udiskie]]
-- [[https://wiki.gnome.org/Apps/Terminal/][gnome-terminal]]
-- [[https://github.com/tmux/tmux][tmux]]
-- lxappearance (setting gtk themes)
+For menu to work run [[https://github.com/chiku/mjwm][mjwm]]
+* Notice
+** Installed by scripts / referenced
+- [[https://github.com/chiku/mjwm][mjwm]]
+- [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
+- [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
