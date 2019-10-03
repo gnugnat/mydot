@@ -2,21 +2,21 @@
 <JWM>
   <RootMenu onroot="2">
 
-    <Program label="Home" icon="user-home-symbolic.svg">nemo ~</Program>
-    <Program label="Desktop" icon="user-desktop-symbolic.svg">nemo ~/Desktop</Program>
-    <Program label="Documents" icon="folder-documents-symbolic.svg">nemo ~/Documents</Program>
-    <Program label="Music" icon="folder-music-symbolic.svg">nemo ~/Music</Program>
-    <Program label="Pictures" icon="folder-pictures-symbolic.svg">nemo ~/Pictures</Program>
-    <Program label="Videos" icon="folder-videos-symbolic.svg">nemo ~/Videos</Program>
-    <Program label="Downloads" icon="folder-download-symbolic.svg">nemo ~/Downloads</Program>
-    <Program label="Filesystem" icon="drive-harddisk-symbolic.svg">nemo /</Program>
+    <Program label="Home" icon="user-home-symbolic.svg"> nemo ~ || spacefm ~ </Program>
+    <Program label="Desktop" icon="user-desktop-symbolic.svg"> nemo ~/Desktop || spacefm ~/Desktop </Program>
+    <Program label="Documents" icon="folder-documents-symbolic.svg"> nemo ~/Documents || spacefm ~/Documents </Program>
+    <Program label="Music" icon="folder-music-symbolic.svg"> nemo ~/Music || spacefm ~/Music </Program>
+    <Program label="Pictures" icon="folder-pictures-symbolic.svg"> nemo ~/Pictures || spacefm ~/Pictures </Program>
+    <Program label="Videos" icon="folder-videos-symbolic.svg"> nemo ~/Videos || spacefm ~/Videos </Program>
+    <Program label="Downloads" icon="folder-download-symbolic.svg"> nemo ~/Downloads || spacefm ~/Downloads </Program>
+    <Program label="Filesystem" icon="drive-harddisk-symbolic.svg"> nemo / || spacefm / </Program>
     <Program label="Trash" icon="user-trash-symbolic.svg">nemo trash:///</Program>
 
   </RootMenu>
   <RootMenu onroot="3">
 
-      <Program label="Terminal" icon="utilities-terminal-symbolic.svg">gnome-terminal</Program>
-      <Program label="Files" icon="system-file-manager-symbolic.svg">nemo</Program>
+      <Program label="Terminal" icon="utilities-terminal-symbolic.svg"> gnome-terminal || urxvt || xterm </Program>
+      <Program label="Files" icon="system-file-manager-symbolic.svg"> nemo || nautilus || spacefm </Program>
 
       <Separator/>
       

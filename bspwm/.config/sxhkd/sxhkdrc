@@ -28,7 +28,7 @@ super + t
 #
 # File Manager
 super + n
-	nemo || nautilus
+	nemo || nautilus || spacefm
 #
 # Text Editor
 super + e
@@ -79,7 +79,7 @@ XF86Display
 #
 # File Manager
 XF86Explorer
-	nemo
+	nemo || nautilus || spacefm
 #
 # Calculator
 XF86Calculator
