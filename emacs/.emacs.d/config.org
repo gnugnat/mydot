@@ -95,8 +95,8 @@ Key binding hints
     :ensure t
     :config
     (setq vterm-shell '"$SHELL -l")
-    (global-set-key [f2] 'vterm)
-    )
+    :bind
+    ("<f2>" . 'vterm))
 #+END_SRC
 * Buffers & Windows
 ** Ibuffer
@@ -117,7 +117,7 @@ Buffer stuff
 	ido-everywhere t)
   (ido-mode 1)
 #+END_SRC
-** IDO-vertical
+** IDO vertically
 Better positioning
 #+BEGIN_SRC emacs-lisp
   (use-package ido-vertical-mode
@@ -126,7 +126,7 @@ Better positioning
     (ido-vertical-mode 1)
     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 #+END_SRC
-** IDO - switch buffers
+** IDO switch buffers
 Better buffer switching
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x b") 'ido-switch-buffer)
