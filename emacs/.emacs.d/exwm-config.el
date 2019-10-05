@@ -32,12 +32,8 @@
   ;; make sure dashboard shows up
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
-  ;; super-t to launch ansi-terminal
-  (defvar my-term-shell "/bin/bash")
-  (defadvice ansi-term (before force-bash)
-    (interactive (list my-term-shell)))
-  (ad-activate 'ansi-term)
-  (global-set-key (kbd "s-t") 'ansi-term)
+  ;; super-t to launch vterm
+  (global-set-key (kbd "s-t") 'vterm)
 
   ;; only enable the connected external screen
   (require 'exwm-randr)
