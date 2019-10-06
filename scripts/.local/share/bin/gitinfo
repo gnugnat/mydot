@@ -1,17 +1,15 @@
 #!/bin/sh
 
-# Get info about mydot
+# Get info about current git repo
 
 color_reset=$(tput sgr0)
 color_bold=$(tput bold)
 color_blue=$(tput setaf 4)
 color_yellow=$(tput setaf 3)
 
-location=$HOME/mydot
-scripts=$HOME/.local/share/bin
+location=${1:-.}
+cd "$location" || exit 1
 
-cd $location || exit 1
 echo $color_bold$color_blue\Remote:$color_reset$color_yellow $(git config --get remote.origin.url)
 echo $color_bold$color_blue\Commits:$color_reset$color_yellow $(git rev-list --count HEAD)
 echo $color_bold$color_blue\Changes:$color_reset$color_yellow $(git status --porcelain)
-echo $color_bold$color_blue\Scripts:$color_reset$color_yellow $(ls $scripts) $color_reset
