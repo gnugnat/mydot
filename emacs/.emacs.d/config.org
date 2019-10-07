@@ -90,13 +90,15 @@ Key binding hints
 - make
 - libtool
 - git
+Load vterm only in GUI
 #+BEGIN_SRC emacs-lisp
-  (use-package vterm
-    :ensure t
-    :config
-    (setq vterm-shell '"$SHELL -l")
-    :bind
-    ("<f2>" . 'vterm))
+  (when window-system
+    (use-package vterm
+      :ensure t
+      :config
+      (setq vterm-shell '"$SHELL -l")
+      :bind
+      ("<f2>" . 'vterm)))
 #+END_SRC
 * Buffers & Windows
 ** Ibuffer
