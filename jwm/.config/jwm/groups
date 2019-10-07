@@ -3,7 +3,6 @@
 
   <!-- aerosnap for all -->
   <Group>
-    <Name></Name>
     <Option>aerosnap</Option>
   </Group>
 
