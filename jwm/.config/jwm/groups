@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <JWM>
 
+  <!-- aerosnap for all -->
+  <Group>
+    <Name></Name>
+    <Option>aerosnap</Option>
+  </Group>
+
   <Group>
     <Name>nemo</Name>
     <Option>centered</Option>
