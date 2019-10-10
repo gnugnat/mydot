@@ -62,7 +62,7 @@ epull () {
     sudo eix-remote update
 }
 epurge () {
-    sudo emerge -avc "$@"
+    sudo emerge -ac "$@"
     sudo eclean-dist --deep
     sudo eclean-pkg --deep
 }
