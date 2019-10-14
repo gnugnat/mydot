@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# "Aggresively" update mydot
+
+./stowdot remove
+git reset --hard
+git pull
+./stowdot
+
+echo
+echo "mydot updated"
