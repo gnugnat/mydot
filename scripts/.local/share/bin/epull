@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if command -v eix; then
+    sudo eix-sync
+    sudo eix-remote update
+else
+    emerge --sync
+fi

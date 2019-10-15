@@ -1,0 +1,3 @@
+#!/bin/sh
+
+curl "https://cht.sh/$1"

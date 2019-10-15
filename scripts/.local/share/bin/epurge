@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo emerge -ac "$@"
+sudo eclean-dist --deep
+sudo eclean-pkg --deep

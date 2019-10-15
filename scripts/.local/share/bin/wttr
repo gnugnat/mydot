@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -z $1 ]; then
+    curl "https://wttr.in/?0"
+else
+    curl "https://wttr.in/$1"
+fi
