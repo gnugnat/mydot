@@ -18,7 +18,6 @@ alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
 alias ll='ls -lahF --color=always'
-mkcd () { mkdir $1 && cd $1 ; }
 #
 # files
 alias rcp='rsync --stats --progress'
@@ -46,10 +45,6 @@ alias E='tail -f /var/log/emerge.log'
 alias P='cd /etc/portage && tree -a -L 2'
 alias Read='sudo eselect news read'
 #
-# developmet
-eball () {
-    sudo ebuild $1 clean manifest merge
-}
 # emerge
 alias elsw='nl /var/lib/portage/world | less'
 alias echk='eix -I | grep "\[U\]"'
@@ -57,19 +52,6 @@ alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
 alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
 alias slr='sudo smart-live-rebuild'
-epull () {
-    sudo eix-sync
-    sudo eix-remote update
-}
-epurge () {
-    sudo emerge -ac "$@"
-    sudo eclean-dist --deep
-    sudo eclean-pkg --deep
-}
-efull () {
-    epull
-    ewup && epurge
-}
 
 ### Other Package Managers
 #
@@ -100,36 +82,3 @@ alias ytd='youtube-dl'
 alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
 alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
-
-### Curl Web Apps
-#
-# Shorten URLs
-tinyurl () {
-    curl "https://tinyurl.com/api-create.php?url=$1"
-}
-#
-# Weather
-wttr () { 
-    ${1:=\?0\?q} 2>/dev/null
-    curl "https://wttr.in/$1"
-}
-#
-# Cheat Sheet
-cht () {
-    curl "https://cht.sh/$1"
-}
-#
-# Dictionary
-cdict () {
-    curl "dict://dict.org/d:$1"
-}
-#
-# News
-getnews () {
-    curl "getnews.tech/$1"
-}
-
-### Other Useful Stuff
-#
-# check the characte's unicode encoding
-codepoints () { printf 'U+%04x\n' ${@/#/\'} ; }
