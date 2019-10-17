@@ -12,4 +12,6 @@ cd "$location" || exit 1
 
 echo $color_bold$color_blue\Remote:$color_reset$color_yellow $(git config --get remote.origin.url)
 echo $color_bold$color_blue\Commits:$color_reset$color_yellow $(git rev-list --count HEAD)
+echo $color_bold$color_blue\First:$color_reset$color_yellow $(git log --reverse --format=%cd | sed 1q)
+echo $color_bold$color_blue\Last:$color_reset$color_yellow $(git log --reverse -1 --format=%cd)
 echo $color_bold$color_blue\Changes:$color_reset$color_yellow $(git status --porcelain)
