@@ -326,6 +326,14 @@ Line highlight when switching
     :config
     (beacon-mode 1))
 #+END_SRC
+** Match words
+   Highlight the same words
+#+BEGIN_SRC emacs-lisp
+  (use-package idle-highlight-mode
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t))))
+#+END_SRC
 ** Projectile
 Project management
 #+BEGIN_SRC emacs-lisp
