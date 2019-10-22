@@ -17,12 +17,12 @@ write_drop_val() {
 
 echo "Writes:"
 sync
-dd if=/dev/zero of=$tmpfile bs=1M count=1024
+dd if=/dev/zero of=$tmpfile bs=64M count=1 oflag=dsync
 sync
 
 echo "Reads:"
 write_drop_val "3"
-dd if=$tmpfile of=/dev/null bs=1M count=1024
+dd if=$tmpfile of=/dev/null bs=64M count=1
 
 if [ -f $tmpfile ]; then
     rm $tmpfile
