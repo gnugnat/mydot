@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Test read and write speed
+
+trap 'exit 128' INT
+export PATH
+
+tmpfile=disktest.img
+
+write_drop_val() {
+    if [ "$(whoami)" = root ]; then
+	sysctl -wq vm.drop_caches=$1
+    else
+	sudo sysctl -wq vm.drop_caches=$1
+    fi
+}
+
+echo "Writes:"
+sync
+dd if=/dev/zero of=$tmpfile bs=1M count=1024
+sync
+
+echo "Reads:"
+write_drop_val "3"
+dd if=$tmpfile of=/dev/null bs=1M count=1024
+
+if [ -f $tmpfile ]; then
+    rm $tmpfile
+fi
