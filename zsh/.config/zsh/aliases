@@ -32,8 +32,8 @@ alias rp='sudo '
 #
 # system resources
 alias mtr='mtr --show-ips --curses'
-alias seeo='sudo netstat -tulpn'
-alias seen='sudo arp-scan --localnet'
+alias seeo='sudo watch netstat -tulpn'
+alias seen='sudo watch arp-scan --localnet'
 
 ### Portage
 #
