@@ -46,7 +46,6 @@ alias P='cd /etc/portage && tree -a -L 2'
 alias Read='sudo eselect news read'
 #
 # emerge
-alias elsw='nl /var/lib/portage/world | less'
 alias echk='eix -I | grep "\[U\]"'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
