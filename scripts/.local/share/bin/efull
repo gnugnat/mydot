@@ -1,4 +1,44 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-epull
-ewup && epurge
+# Upgrade your Gentoo box
+
+trap 'exit 128' INT
+export PATH
+
+script=efull
+
+STEP=0
+
+umsg() {
+    ((STEP++))
+    echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)$STEP$(tput setaf 7)] $1 $(tput sgr0)"
+}
+
+main() {
+    umsg "Syncing the tree"
+    eix-sync
+    eix-remote update
+
+    umsg "Merging changes"
+    emerge --changed-deps --changed-slot @world
+
+    umsg "Upgrading system"
+    emerge -uNUD --with-bdeps=y @world
+
+    umsg "Upgrading git packages"
+    smart-live-rebuild -j 2
+
+    umsg "Cleaning"
+    emerge -c
+    eclean-dist --deep
+}
+
+if [ "$(whoami)" != root ]; then
+    if [ -f ./$script ]; then
+	sudo ./$script
+    else
+	sudo "$(command -v $script)"
+    fi
+else
+    main
+fi
