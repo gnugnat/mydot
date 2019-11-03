@@ -226,9 +226,9 @@ Credit: https://www.emacswiki.org/emacs/SetFonts
 			:weight 'normal
 			:width 'normal
 			:height 105
-			:font (font-candidate "xos4 Terminus"
+			:font (font-candidate "Dina"
+					      "xos4 Terminus"
 					      "Terminus"
-					      "Dina"
 					      "Hack"
 					      "Monospace"
 					      "Consolas"
@@ -277,22 +277,6 @@ Set encoding to UTF-8
   (set-keyboard-coding-system 'utf-8)
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
-#+END_SRC
-** Flycheck
-Auto check
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :ensure t
-    :init
-    (global-flycheck-mode t))
-#+END_SRC
-** Yasnippet
-Code snippets
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :init
-    (yas-global-mode 1))
 #+END_SRC
 ** Rainbow color
 Colorize
@@ -375,6 +359,57 @@ Sidebar for Emacs leveraging Dired
     :bind
     (("C-x C-n" . dired-sidebar-toggle-sidebar)))
 #+END_SRC
+* Programming
+** Web Formatting
+Enable Web Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package web-mode
+    :ensure t
+    :mode
+    (
+     ("\\.[agj]sp\\'" . web-mode)
+     ("\\.as[cp]x\\'" . web-mode)
+     ("\\.blade\\.php\\'" . web-mode)
+     ("\\.djhtml\\'" . web-mode)
+     ("\\.ejs\\'" . web-mode)
+     ("\\.erb\\'" . web-mode)
+     ("\\.html?\\'" . web-mode)
+     ("\\.jsp\\'" . web-mode)
+     ("\\.mustache\\'" . web-mode)
+     ("\\.php\\'" . web-mode)
+     ("\\.phtml\\'" . web-mode)
+     ("\\.tpl\\.php\\'" . web-mode)
+     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+     )
+    :init
+    (setq web-mode-enable-auto-closing t
+	  web-mode-enable-auto-pairing t
+	  web-mode-enable-comment-keywords t
+	  web-mode-enable-current-element-highlight t
+	  web-mode-code-indent-offset 4
+	  web-mode-css-indent-offset 4
+	  web-mode-markup-indent-offset 4
+	  web-mode-block-padding 4
+	  web-mode-script-padding 4
+	  web-mode-style-padding 4
+	  ))
+#+END_SRC
+** Flycheck
+Auto check
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init
+    (global-flycheck-mode t))
+#+END_SRC
+** Yasnippet
+Code snippets
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :init
+    (yas-global-mode 1))
+#+END_SRC
 * Completion
 ** Electric Pairs
 Auto close brackets
@@ -386,38 +421,6 @@ Auto close brackets
 			      (?\" . ?\")
 			      ))
   (electric-pair-mode t)
-#+END_SRC
-** HTML Completion
-Enable Web Mode
-#+BEGIN_SRC emacs-lisp
-  (use-package web-mode
-    :ensure t
-    :mode
-    (
-     ("\\.phtml\\'" . web-mode)
-     ("\\.tpl\\.php\\'" . web-mode)
-     ("\\.blade\\.php\\'" . web-mode)
-     ("\\.jsp\\'" . web-mode)
-     ("\\.as[cp]x\\'" . web-mode)
-     ("\\.erb\\'" . web-mode)
-     ("\\.html?\\'" . web-mode)
-     ("\\.ejs\\'" . web-mode)
-     ("\\.php\\'" . web-mode)
-     ("\\.mustache\\'" . web-mode)
-     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-     )
-    :init
-    (setq web-mode-markup-indent-offset 2
-	  web-mode-attr-indent-offset 2
-	  web-mode-attr-value-indent-offset 2
-	  web-mode-code-indent-offset 2
-	  web-mode-css-indent-offset 2
-	  web-mode-code-indent-offset 2
-	  web-mode-enable-auto-closing t
-	  web-mode-enable-auto-pairing t
-	  web-mode-enable-comment-keywords t
-	  web-mode-enable-current-element-highlight t
-	  ))
 #+END_SRC
 ** Auto-Complete
 #+BEGIN_SRC emacs-lisp
@@ -471,7 +474,8 @@ My Org agenda
 			    (recents  . 7)
 			    (projects . 5)
 			    )
-	  show-week-agenda-p t)
+	  show-week-agenda-p t
+	  dashboard-center-content t)
     (add-to-list 'dashboard-items '(agenda) t)
     )
 #+END_SRC
