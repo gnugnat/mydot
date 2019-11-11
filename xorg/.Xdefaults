@@ -16,27 +16,16 @@ URxvt*buffered:     false
 URxvt.intensityStyles: true
 URxvt.letterSpace:  0
 URxvt.*font:        xft:Dina:size=9:style=regular, \
-                    xft:xos4 Terminus:size=9:style=regular, \
-		    xft:Terminus:size=9:style=regular, \
-                    xft:UbuntuMono Nerd Font:size=9, \
-                    xft:Inconsolata Nerd Font Mono:size=9, \
-                    xft:DejaVuSansMono Nerd Font:size=9, \
-                    xft:DroidSansMono Nerd Font:size=9, \
-                    xft:FuraMono Nerd Font:size=9, \
-                    xft:RobotoMono Nerd Font:size=9, \
-                    xft:Noto Sans Mono:size=9, \
-                    xft:Monospace:size=9
+		    xft:Hack:size=9:style=regular, \
+		    xft:Symbola:size=9:antialias=true:hinting=full, \
+		    xft:Noto Sans Mono:size=9:style=regular, \
+		    xft:Monospace:size=9:style=regular
+
 URxvt.*boldFont:    xft:Dina:size=9:style=bold, \
-		    xft:xos4 Terminus:size=9:style=bold, \
-		    xft:Terminus:size=9:style=bold, \
-		    xft:UbuntuMono Nerd Font:size=9:style=bold, \
-                    xft:Inconsolata Nerd Font Mono:size=9:style=bold, \
-                    xft:DejaVuSansMono Nerd Font:size=9:style=bold, \
-                    xft:DroidSansMono Nerd Font:size=9:style=bold, \
-                    xft:FuraMono Nerd Font:size=9:style=bold, \
-                    xft:RobotoMono Nerd Font:size=9:style=bold, \
-                    xft:Noto Sans Mono:size=9:style=bold, \
-                    xft:Monospace:size=9:style=bold
+		    xft:Hack:size=9:style=bold, \
+		    xft:Symbola:size=9:antialias=true:hinting=full, \
+		    xft:Noto Sans Mono:size=9:style=regular, \
+		    xft:Monospace:size=9:style=bold
 !
 ! Scrolling
 URxvt.saveLines:    1000
