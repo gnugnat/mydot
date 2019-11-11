@@ -2,15 +2,12 @@
 <JWM>
   
   <!-- Start some programs. -->
-  <StartupCommand>sxhkd &amp;</StartupCommand>
   <StartupCommand>mpd &amp;</StartupCommand>
   <StartupCommand>compton -b &amp;</StartupCommand>
-  <StartupCommand>~/.fehbg &amp;</StartupCommand>
+  <StartupCommand>spacefm --desktop &amp;</StartupCommand>
   <StartupCommand>dunst &amp;</StartupCommand>
   <StartupCommand>/usr/libexec/polkit-gnome-authentication-agent-1 &amp;</StartupCommand>
-  <StartupCommand>udiskie -at &amp;</StartupCommand>
   <StartupCommand>nm-applet &amp;</StartupCommand>
-  <StartupCommand>pasystray &amp;</StartupCommand>
   <StartupCommand>xfce4-power-manager &amp;</StartupCommand>
   <StartupCommand>xss-lock -- i3lock -c 000000 &amp;</StartupCommand>
 
