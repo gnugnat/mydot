@@ -29,8 +29,7 @@ case $session in
 	exec emacs --load ~/.emacs.d/exwm-config.el
 	;;
     gnome	) exec gnome-session;;
-    i3		) exec i3;;
-    jwm		) exec jwm;;
+    lxqt|LXQt   ) exec startlxqt;;
     kde		) exec startkde;;
     mate	) exec mate-session;;
     xfce|xfce4	) exec startxfce4;;
