@@ -19,3 +19,5 @@ cp /var/lib/portage/world_sets $PBAK/
 tree -a -L 2 /etc/portage > $PBAK/layout
 
 emerge --info > $PBAK/info
+
+tar zcf "$PBAK.tar.gz" "$PBAK" --remove-files
