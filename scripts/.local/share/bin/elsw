@@ -2,7 +2,9 @@
 
 # A nice way to view Portage's world file
 
-world = open("/var/lib/portage/world")
+import portage
+
+world = open(portage.root + portage.WORLD_FILE)
 
 category_tmp=""
 
