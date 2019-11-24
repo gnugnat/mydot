@@ -1,25 +1,22 @@
 #!/usr/bin/env zsh
 
-#          _                     
+#          _
 #  _______| |__   ___ _ ____   __
 # |_  / __| '_ \ / _ \ '_ \ \ / /
-#  / /\__ \ | | |  __/ | | \ V / 
-# /___|___/_| |_|\___|_| |_|\_/  
+#  / /\__ \ | | |  __/ | | \ V /
+# /___|___/_| |_|\___|_| |_|\_/
 
-### ZSH dirs
-#
-# Set where the rest of
-# ZSH files are located
+# Set where the rest of ZSH files are located
 export ZDOTDIR="$HOME/.config/zsh"
-#
-# Set where ZSH
-# cache files are stored
+# Set where ZSH cache is stored
 export ZCACHEDIR="$HOME/.cache/zsh"
 
-### User settings
-#
-# File Editor
-export EDITOR=vim
-#
-# GO path
-export GOPATH=$HOME/go
+# Auto-set the editor
+if command -v emacs >/dev/null 2>&1; then
+    EDITOR=emacs
+elif command -v vim >/dev/null 2>&1; then
+    EDITOR=vim
+else
+    EDITOR=nano
+fi
+export EDITOR
