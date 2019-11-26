@@ -87,7 +87,8 @@ icon-stop = ""
 icon-play = ""
 icon-pause = ""
 icon-next = ""
-label-song-maxlen = 35
+label-song = "%title% - %artist%"
+label-song-maxlen = 30
 label-song-ellipsis = true
 
 [module/pulseaudio]
