@@ -22,7 +22,6 @@ mkcd() { mkdir "$1" && cd "$1"; }
 #
 # files
 alias rcp='rsync --stats --progress'
-alias c='cat'
 alias n='nano'
 alias v='vim'
 alias e='emacs -nw'
