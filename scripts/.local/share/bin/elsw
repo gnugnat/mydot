@@ -6,7 +6,7 @@ import portage
 
 world = open(portage.root + portage.WORLD_FILE)
 
-category_tmp=""
+category_tmp = ""
 
 for line in world.read().splitlines():
 
@@ -16,5 +16,5 @@ for line in world.read().splitlines():
         category_tmp = category
 
     print("    \033[94m - " + line.split("/")[1])
-    
+
 world.close()
