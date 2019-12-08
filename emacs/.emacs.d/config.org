@@ -411,13 +411,14 @@ Code snippets
     (yas-global-mode 1))
 #+END_SRC
 ** Python
-Python IDE
-remember to run elpy-config to install some necessary packages
+Python IDE.
+Remember to run elpy-config to install some necessary packages
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
     :ensure t
     :init
-    (elpy-enable))
+    (elpy-enable)
+    (setq elpy-rpc-virtualenv-path "~/.local/"))
 #+END_SRC
 * Completion
 ** Electric Pairs
