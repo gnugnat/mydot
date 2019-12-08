@@ -410,6 +410,14 @@ Code snippets
     :init
     (yas-global-mode 1))
 #+END_SRC
+** Python
+Python IDE
+#+BEGIN_SRC emacs-lisp
+  (use-package elpy
+    :ensure t
+    :init
+    (elpy-enable))
+#+END_SRC
 * Completion
 ** Electric Pairs
 Auto close brackets
