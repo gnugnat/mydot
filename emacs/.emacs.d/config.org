@@ -412,6 +412,7 @@ Code snippets
 #+END_SRC
 ** Python
 Python IDE
+remember to run elpy-config to install some necessary packages
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
     :ensure t
