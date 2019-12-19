@@ -418,7 +418,10 @@ Remember to run elpy-config to install some necessary packages
     :ensure t
     :init
     (elpy-enable)
-    (setq elpy-rpc-virtualenv-path "~/.local/"))
+    (setq elpy-rpc-virtualenv-path "~/.local/")
+    (when (load "flycheck" t t)
+      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+      (add-hook 'elpy-mode-hook 'flycheck-mode)))
 #+END_SRC
 * Completion
 ** Electric Pairs
