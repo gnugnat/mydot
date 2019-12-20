@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Noninteractive auto-backup
 # script for portage
@@ -6,18 +6,18 @@
 set -e
 export PATH
 
-PBAK=portage-$(date +"%Y-%m-%d")
+pbak=portage-$(date +"%Y-%m-%d")
 
-mkdir $PBAK
+mkdir "$pbak"
 
-cp -r /etc/portage $PBAK/
-rm $PBAK/portage/make.profile
+cp -r /etc/portage "$pbak/"
+rm "$pbak/portage/make.profile"
 
-cp /var/lib/portage/world $PBAK/
-cp /var/lib/portage/world_sets $PBAK/
+cp /var/lib/portage/world "$pbak/"
+cp /var/lib/portage/world_sets "$pbak/"
 
-tree -a -L 2 /etc/portage > $PBAK/layout
+tree -a -L 2 /etc/portage > "$pbak/layout"
 
-emerge --info > $PBAK/info
+emerge --info > "$pbak/info"
 
-tar zcf "$PBAK.tar.gz" "$PBAK" --remove-files
+tar zcf "$pbak.tar.gz" "$pbak" --remove-files
