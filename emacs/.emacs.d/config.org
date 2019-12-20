@@ -421,7 +421,9 @@ Remember to run elpy-config to install some necessary packages
     (setq elpy-rpc-virtualenv-path "~/.local/")
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode)))
+      (add-hook 'elpy-mode-hook 'flycheck-mode))
+    (add-hook 'python-mode-hook (lambda () (auto-complete-mode -1)))
+    )
 #+END_SRC
 * Completion
 ** Electric Pairs
