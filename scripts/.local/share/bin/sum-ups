@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+trap 'exit 128' INT
+export PATH
+
+STEP=0
+
+dscnd() {
+    cd "$1" || ( echo "Coulnt cd to $1" && exit 1 )
+}
+
+umsg() {
+    ((STEP++))
+    echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)$STEP$(tput setaf 7)] $1 $(tput sgr0)"
+}
+
+# PIP
+if command -v pip >/dev/null; then
+    umsg "Updating python packages"
+    pip install --user -U $(pip list --user --format=freeze | grep -v '^\-e' | cut -d = -f 1)
+fi
+
+# mydot
+if [ -d ~/mydot ]; then
+    umsg "Pulling mydot"
+    dscnd ~/mydot
+    ./stowdot remove
+    git pull
+    ./stowdot
+fi
+
+# GIT - mine
+if [ -d ~/Git/mine ]; then
+    umsg "Pulling maintained repos"
+    dscnd ~/Git/mine
+    git-mass git pull
+fi
+
+# GIT - other
+if [ -d ~/Git/other ]; then
+    umsg "Pulling foreign repos"
+    dscnd ~/Git/other
+    git-mass git pull
+fi
+
+# mpd db update with mpc
+if pgrep mpd >/dev/null && command -v mpc >/dev/null; then
+    umsg "Updating music database"
+    mpc update
+fi
+
+# jwm mjwm
+if command -v mjwm >/dev/null; then
+    umsg "Updating mjwm file"
+    mjwm --iconize=Papirus --no-backup
+    if pgrep jwm >/dev/null; then
+	jwm -reload
+    fi
+fi
