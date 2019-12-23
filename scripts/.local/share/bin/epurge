@@ -1,5 +1,22 @@
 #!/bin/sh
 
-sudo emerge -ac "$@"
-sudo eclean-dist --deep
-sudo eclean-pkg --deep
+trap 'exit 128' INT
+export PATH
+
+script=epurge
+
+main() {
+    emerge -ac
+    eclean-dist --deep
+    eclean-pkg --deep
+}
+
+if [ "$(whoami)" != root ]; then
+    if [ -f ./$script ]; then
+	sudo ./$script
+    else
+	sudo "$(command -v $script)"
+    fi
+else
+    main
+fi
