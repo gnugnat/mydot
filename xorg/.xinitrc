@@ -30,7 +30,7 @@ case $session in
 	;;
     gnome	) exec gnome-session;;
     lxqt|LXQt   ) exec startlxqt;;
-    kde		) exec startkde;;
+    kde		) exec startplasma-x11;;
     mate	) exec mate-session;;
     xfce|xfce4	) exec startxfce4;;
     # Anything different is run as command
