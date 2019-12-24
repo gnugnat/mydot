@@ -1,8 +1,25 @@
 #!/bin/sh
 
-if command -v eix; then
-    sudo eix-sync
-    sudo eix-remote update
+trap 'exit 128' INT
+export PATH
+
+script=epull
+
+main() {
+    if command -v eix; then
+	eix-sync
+	eix-remote update
+    else
+	emerge --sync
+    fi
+}
+
+if [ "$(whoami)" != root ]; then
+    if [ -f ./$script ]; then
+	sudo ./$script
+    else
+	sudo "$(command -v $script)"
+    fi
 else
-    sudo emerge --sync
+    main
 fi
