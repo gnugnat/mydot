@@ -83,23 +83,6 @@ Key binding hints
     :init
     (which-key-mode))
 #+END_SRC
-** Vterm Terminal
-[[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
-- Emacs with module support
-- cmake
-- make
-- libtool
-- git
-Load vterm only in GUI
-#+BEGIN_SRC emacs-lisp
-  (when window-system
-    (use-package vterm
-      :ensure t
-      :config
-      (setq vterm-shell '"$SHELL -l")
-      :bind
-      ("<f2>" . 'vterm)))
-#+END_SRC
 * Buffers & Windows
 ** Ibuffer
 Better switching
@@ -493,4 +476,22 @@ My Org agenda
 	  dashboard-center-content t)
     (add-to-list 'dashboard-items '(agenda) t)
     )
+#+END_SRC
+* Misc Plugins
+** Vterm Terminal
+[[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
+- Emacs with module support
+- cmake
+- make
+- libtool
+- git
+Load vterm only in GUI
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (use-package vterm
+      :ensure t
+      :config
+      (setq vterm-shell '"$SHELL -l")
+      :bind
+      ("<f2>" . 'vterm)))
 #+END_SRC
