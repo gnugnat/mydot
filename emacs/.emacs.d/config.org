@@ -299,7 +299,9 @@ Line highlight when switching
   (use-package idle-highlight-mode
     :ensure t
     :config
-    (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t))))
+    (add-hook 'prog-mode-hook
+	      (lambda ()
+		(idle-highlight-mode t))))
 #+END_SRC
 ** Projectile
 Project management
@@ -405,8 +407,9 @@ Remember to run elpy-config to install some necessary packages
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
       (add-hook 'elpy-mode-hook 'flycheck-mode))
-    (add-hook 'python-mode-hook (lambda () (auto-complete-mode -1)))
-    )
+    (add-hook 'python-mode-hook
+	      (lambda ()
+		(auto-complete-mode -1))))
 #+END_SRC
 * Completion
 ** Electric Pairs
@@ -434,7 +437,9 @@ Make Org look prettier
   (use-package org-bullets
     :ensure t
     :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+    (add-hook 'org-mode-hook
+	      (lambda ()
+		(org-bullets-mode))))
 #+END_SRC
 ** Same edit window
 With =C-c '= replace the original .org file with editor
