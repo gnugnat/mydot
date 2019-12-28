@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 #      _             _       
 #  ___| | ___   __ _(_)_ __
 # |_  / |/ _ \ / _` | | '_ \ 
@@ -7,16 +8,13 @@
 # /___|_|\___/ \__, |_|_| |_|
 #              |___/
 
-### ZDOTDIR Warning
-#
+
+# ZDOTDIR Warning
 [ ! -d $ZDOTDIR ] && echo "!!!Warning!!! No $ZDOTDIR found!!!"
 
-### Create ZSH cache directory
-#
+# Create ZSH cache directory
 [ ! -d $ZCACHEDIR ] && mkdir -p $ZCACHEDIR
 
-### Plugins
-#
 # Get the plugins if there is no plugins directory
 if [ ! -e $ZDOTDIR/plugins ]; then
     echo "Download plugins? [Y/n]"
@@ -34,8 +32,6 @@ if [ ! -e $ZDOTDIR/plugins ]; then
     esac
 fi
 
-### Theme
-#
 # Choose a theme if it's not set
 if [ ! -e $ZDOTDIR/tty.zsh-theme ] || [ ! -e $ZDOTDIR/emu.zsh-theme ]; then
     echo "Choose which ZSH themes to use"
@@ -43,8 +39,6 @@ if [ ! -e $ZDOTDIR/tty.zsh-theme ] || [ ! -e $ZDOTDIR/emu.zsh-theme ]; then
     source $ZDOTDIR/.zshrc
 fi
 
-### Greeter
-#
 # Link one of greeters from
 # greeters to zsh-greeter
 if [ ! -e $ZDOTDIR/zsh-greeter ]; then

@@ -1,10 +1,12 @@
 #!/usr/bin/env zsh
 
+
 #          _
 #  _______| |__   ___ _ ____   __
 # |_  / __| '_ \ / _ \ '_ \ \ / /
 #  / /\__ \ | | |  __/ | | \ V /
 # /___|___/_| |_|\___|_| |_|\_/
+
 
 # Set where the rest of ZSH files are located
 export ZDOTDIR="$HOME/.config/zsh"
