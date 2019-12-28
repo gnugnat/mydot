@@ -105,6 +105,17 @@ git_check () {
     [ ! -z $branch ] && echo "$pre_git_check$branch$post_git_check"
 }
 
+# For some SSH sessions (Emacs)
+if [[ "$TERM" == "dumb" ]]
+then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+    PS1='$ '
+fi
+
 ### Miscellaneous
 #
 # Prompt Substring
