@@ -117,6 +117,18 @@ git_check () {
 }
 
 
+# GPG
+
+# Export some vars
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=1"
+
+# Start GPG agent
+if command -v gpg-agent >/dev/null 2>&1; then
+    pidof gpg-agent &>/dev/null || gpg-agent --daemon 2>/dev/null
+fi
+
+
 # Miscellaneous
 
 # Prompt Substring
