@@ -1,28 +1,32 @@
 #!/bin/sh
 
+
 #       _       _ _
 # __  _(_)_ __ (_) |_ _ __ ___
 # \ \/ / | '_ \| | __| '__/ __|
 #  >  <| | | | | | |_| | | (__
 # /_/\_\_|_| |_|_|\__|_|  \___|
 
-### Usage:
+
+# Usage:
 # $ startx ~/.xinitrc [session]
 
-### Source xprofile
-#
+
+# Source files
+
+# Xprofile
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
-### Source additional X scripts
-#
+# Additional X scripts
 # ex.: xrandr settings
 [ -f "$HOME/.xscripts" ] && . ~/.xscripts
 
-### Start the session
-#
+
+# Start the session
+
 # Here JWM is kept as default
 session=${1:-jwm}
-#
+
 case $session in
     bsp|bspwm	) exec bspwm;;
     exwm|EXWM	)

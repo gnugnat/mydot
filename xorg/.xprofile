@@ -1,17 +1,26 @@
 #!/bin/sh
 
-### Keyboard:
-#
-# Polish + hold caps=control
-setxkbmap pl -option "caps:ctrl_modifier" &
-#
-# caps=escape
-xcape -e "Caps_Lock=Escape" &
 
-### Xset
-#
-# disable beeping
-xset b off
-#
-# screensaver timeout
-xset s 1200 0
+# Keyboard
+
+# Polish + holding Caps Lock acts as Control
+if command -v setxkbmap >/dev/null 2>&1; then
+    setxkbmap pl -option "caps:ctrl_modifier" &
+fi
+
+# Use Caps Lock as Escape
+if command -v xcape >/dev/null 2>&1; then
+    xcape -e "Caps_Lock=Escape" &
+fi
+
+
+# Xset
+
+if command -v xset >/dev/null 2>&1; then
+
+    # disable beeping
+    xset b off
+
+    # screensaver timeout
+    xset s 1200 0
+fi
