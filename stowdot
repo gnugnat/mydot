@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 #      _
 #  ___| |_ _____      __
 # / __| __/ _ \ \ /\ / /
@@ -11,49 +12,68 @@
 #  _|  _| | |  __/\__ \
 # (_)_| |_|_|\___||___/
 
+
 err_msg() {
-	echo "$(tput bold)$1$(tput sgr0)"
-	exit 1
+    echo "$(tput bold)$1$(tput sgr0)"
+    exit 1
 }
 
-### mydir location
+
+# mydir location
 # Change this if you want a different name instead of mydot.
 # For exaple if you are in the same directory as a renamed mydot,
 # ex.: mydot2 you can instead use:
 # mydir=.
 mydir=$HOME/mydot
 
-### Checks
-#
+
+# Checks
+
 # check for stow
 { stow -V && st_im=stow; } || { xstow -V && st_im=xstow; } || {
-	err_msg "There is no stow on the sytem! Exiting."
+    err_msg "There is no stow on the sytem! Exiting."
 }
-#
+
 # check for mydir
 [ ! -d "$mydir" ] && {
-	err_msg "The location of the scrip is wrong! Exiting."
+    err_msg "The location of the scrip is wrong! Exiting."
 }
-#
+
 # check needed directories
-for chkdir in "$HOME/.config" "$HOME/.local/share" "$HOME/.emacs.d" "$HOME/.newsboat" "$HOME/.config/mpd/playlists"; do
-	if [ ! -e "$chkdir" ]; then
-		mkdir -p "$chkdir"
-		echo "$chkdir created"
-	else
-		echo "$chkdir exists, good"
-	fi
+for chkdir in "$HOME/.config" \
+		  "$HOME/.local/share" \
+		  "$HOME/.emacs.d" \
+		  "$HOME/.newsboat" \
+		  "$HOME/.config/mpd/playlists"
+do
+    if [ ! -e "$chkdir" ]; then
+	mkdir -p "$chkdir"
+	echo "$chkdir created"
+    else
+	echo "$chkdir exists, good"
+    fi
 done
 
-### Stow or Unstow
-#
-for target in $(ls $mydir); do
-	if [ -d $mydir/$target ]; then
-		echo "$(tput bold)$target$(tput sgr0)"
-		if [ "$1" = "remove" ]; then
-			$st_im -v -D $target
-		else
-			$st_im -v $target
-		fi
+
+# Stow or Unstow
+
+# go to mydir
+cd "$mydir" || err_msg "Couldn't cd into $mydir"
+
+# then we glob everything there, iterate through it
+for target in *
+do
+    # check if it's a directory
+    if [ -d "$target" ]; then
+
+	# print it's name
+	echo "$(tput bold)$target$(tput sgr0)"
+
+	# finally do some work (link or unlink)
+	if [ "$1" = "remove" ]; then
+	    $st_im -v -D $target
+	else
+	    $st_im -v $target
 	fi
+    fi
 done
