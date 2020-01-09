@@ -9,7 +9,9 @@
 screenchange-reload = true
 
 [colors]
-background = #232629
+;; In Breeze Dark this color (#31363b) is found
+;; in ex.: Active Titlebar, Window Backgroud
+background = #31363b
 ;;background-alt = #232629
 foreground = #c8d0d0
 ;;foreground-alt = #c8d0d0
