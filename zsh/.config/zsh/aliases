@@ -70,7 +70,7 @@ alias Gl='git log --oneline --graph'
 ### System Files
 #
 # zsh
-alias clear-zsh-history='cat /dev/null > ~/.zsh_history'
+alias clear-zsh-history='cat /dev/null > $ZCACHEDIR/zhistory'
 alias so-zrc='source $ZDOTDIR/.zshrc'
 #
 # grub
