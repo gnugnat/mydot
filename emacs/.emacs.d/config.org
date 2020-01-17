@@ -379,6 +379,15 @@ Remember to run elpy-config to install some necessary packages
 	      (lambda ()
 		(auto-complete-mode -1))))
 #+END_SRC
+** Tabs
+Tab width settings
+#+BEGIN_SRC emacs-lisp
+  (setq-default tab-width 4)
+  (setq js-indent-level 4)
+  (setq c-basic-offset 4)
+  (setq css-indent-offset 4)
+  (setq sh-basic-offset 4)
+#+END_SRC
 ** Web Formatting
 Enable Web Mode
 #+BEGIN_SRC emacs-lisp
