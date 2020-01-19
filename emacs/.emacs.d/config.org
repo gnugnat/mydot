@@ -511,6 +511,18 @@ Markdown support
     :init
     (setq markdown-command "multimarkdown"))
 #+END_SRC
+** Reveal.js
+Export ORG mode contents to Reveal.js HTML presentations
+#+BEGIN_SRC emacs-lisp
+  ;; reveal dependency
+  (use-package htmlize
+	:ensure t)
+  (use-package ox-reveal
+	:ensure t
+	:config
+	;; maybe add auto-installer in the future
+	(setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+#+END_SRC
 ** Vterm Terminal
 [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
 - Emacs with module support
