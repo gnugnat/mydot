@@ -1,0 +1,23 @@
+#!/bin/sh
+
+
+# Huh?
+# Find commands
+
+
+header_msg() {
+	echo ""
+    echo "$(tput bold)$1 $(tput sgr0)"
+}
+
+
+header_msg "Found $1 in:"
+whereis $1
+
+header_msg "Executing $1 from:"
+command -v $1
+
+header_msg "About $1:"
+command $1 --help 2>/dev/null | head
+
+echo ""
