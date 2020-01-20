@@ -10,74 +10,84 @@
 
 # My Aliases
 
-### System Tools
-#
-# directories
+
+# Authorization
+
+alias rp='sudo '
+
+
+# Directories
+
 alias ,,='cd ../..'
 alias tree='tree -C'
 alias t='tree -a -L 2'
 alias ls='ls --color=auto'
 alias ll='ls -lahF --color=always'
 mkcd() { mkdir "$1" && cd "$1"; }
-#
-# files
-alias rcp='rsync --stats --progress'
+
+
+# Files
+
+alias e='emacs -nw'
 alias n='nano'
 alias v='vim'
-alias e='emacs -nw'
+alias nranger='EDITOR=nano ranger'
 alias open='xdg-open'
-#
-# Authorization
-alias rp='sudo '
-#
-# system resources
-alias mtr='mtr --show-ips --curses'
-alias seeo='sudo watch netstat -tulpn'
-alias seen='sudo watch arp-scan --localnet'
+alias rcp='rsync --stats --progress'
 
-### Portage
-#
-# logs
-alias F='tail -f /var/log/emerge-fetch.log'
+
+# System resources
+
+alias mtr='mtr --show-ips --curses'
+alias seen='sudo watch arp-scan --localnet'
+alias seeo='sudo watch netstat -tulpn'
+
+
+# ZSH
+
+alias clear-zsh-history='cat /dev/null > $ZCACHEDIR/zhistory'
+alias so-zrc='source $ZDOTDIR/.zshrc'
+
+
+# Portage
+
 alias E='tail -f /var/log/emerge.log'
-#
-# config files
+alias F='tail -f /var/log/emerge-fetch.log'
 alias P='cd /etc/portage && tree -a -L 2'
-alias Read='sudo eselect news read'
-#
-# emerge
-alias echk='eix -I | grep "\[U\]"'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
 alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
 alias slr='sudo smart-live-rebuild'
 
-### Other Package Managers
-#
+
 # Flatpak
+
 alias fpk='flatpak'
 
-### Git
-alias Gs='git status'
-alias Gd='git diff'
+
+# Git
+
 alias Ga='git add .'
 alias Gc='git commit'
-alias Gp='git push'
+alias Gd='git diff'
 alias Gg='git pull'
-alias Gr='git reset --hard'
 alias Gl='git log --oneline --graph'
+alias Gp='git push'
+alias Gr='git reset --hard'
+alias Gs='git status'
 
-### System Files
-#
-# zsh
-alias clear-zsh-history='cat /dev/null > $ZCACHEDIR/zhistory'
-alias so-zrc='source $ZDOTDIR/.zshrc'
-#
-# grub
+
+# GRUB
+
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
-### youtube-dl
+
+# youtube-dl
+
 alias ytd='youtube-dl'
+
 alias ytd-mp3='youtube-dl -i --extract-audio --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
-alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
+alias ytd-webm='youtube-dl --format webm -o "%(title)s.%(ext)s"'
+
 alias ytd-sub-en='youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
+alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
