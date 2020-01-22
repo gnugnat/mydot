@@ -1,91 +1,105 @@
-!!!             X F T
-Xft.antialias:      true
+! __  __
+! \ \/ /
+!  \  /
+!  /  \
+! /_/\_\defaults
 
-!!!             X T E R M
-XTerm*termName:     xterm-256color
-XTerm.font:         xft:Dina:size=9:style=regular
-XTerm.boldFont:     xft:Dina:size=9:style=bold
 
-!!!             U R X V T
-!
-URxvt*termName:     rxvt-unicode-256color
-!
+!				X F T
+Xft.antialias:			true
+
+
+!				X T E R M
+XTerm*termName:			xterm-256color
+XTerm.font:				xft:Dina:size=9:style=regular
+XTerm.boldFont:			xft:Dina:size=9:style=bold
+
+! XTerm Colors
+
+XTerm*foreground:		#999C96
+XTerm*background:		#000000
+XTerm*cursorColor:		#999C96
+
+
+
+!				U R X V T
+
+URxvt*termName:			rxvt-unicode-256color
+
 ! Fonts
-URxvt*imLocale:     en_US.UTF-8
-URxvt*buffered:     false
-URxvt.intensityStyles: true
-URxvt.letterSpace:  0
-URxvt.*font:        xft:Dina:size=9:style=regular, \
-		    xft:Hack:size=9:style=regular, \
-		    xft:Symbola:size=9:antialias=true:hinting=full, \
-		    xft:Noto Sans Mono:size=9:style=regular, \
-		    xft:Monospace:size=9:style=regular
+URxvt*imLocale:			en_US.UTF-8
+URxvt*buffered:			false
+URxvt.intensityStyles:	true
+URxvt.letterSpace:		0
+URxvt.*font:			xft:Dina:size=9:style=regular, \
+						xft:Hack:size=9:style=regular, \
+						xft:Symbola:size=9:antialias=true:hinting=full, \
+						xft:Noto Sans Mono:size=9:style=regular, \
+						xft:Monospace:size=9:style=regular
 
-URxvt.*boldFont:    xft:Dina:size=9:style=bold, \
-		    xft:Hack:size=9:style=bold, \
-		    xft:Symbola:size=9:antialias=true:hinting=full, \
-		    xft:Noto Sans Mono:size=9:style=regular, \
-		    xft:Monospace:size=9:style=bold
-!
+URxvt.*boldFont:		xft:Dina:size=9:style=bold, \
+						xft:Hack:size=9:style=bold, \
+						xft:Symbola:size=9:antialias=true:hinting=full, \
+						xft:Noto Sans Mono:size=9:style=regular, \
+						xft:Monospace:size=9:style=bold
+
 ! Scrolling
-URxvt.saveLines:    1000
-URxvt.scrollBar:    false
-!
-! Transparency (composite)
-urxvt*depth:        32
-urxvt*background:   rgba:0000/0000/0200/dddd
-!
-! Shell
-URxvt*loginShell:   true
-!
-! resize-font
-URxvt.resize-font.smaller: C-j
-URxvt.resize-font.bigger: C-k
+URxvt.saveLines:		1000
+URxvt.scrollBar:		false
 
-!!!             P A L E T T E
-!
-!!! Special
-!
-! URxvt
-URxvt.cursorColor:  white
-URxvt*foreground:   #999C96
-URxvt*cursorColor:  #999C96
-!
-! XTerm
-XTerm*foreground:   #999C96
-XTerm*background:   #000000
-XTerm*cursorColor:  #999C96
-!
-!!! Colors
-!
+! Transparency (composite)
+urxvt*depth:			32
+urxvt*background:		rgba:0000/0000/0200/dddd
+
+! Shell
+URxvt*loginShell:		true
+
+! resize-font
+URxvt.resize-font.smaller:	C-j
+URxvt.resize-font.bigger:	C-k
+
+! URxvt Colors
+URxvt.cursorColor:		white
+URxvt*foreground:		#999C96
+URxvt*cursorColor:		#999C96
+
+
+!				S T / X S T
+st.termname:			xterm-256color
+st.*font:				Dina:size=9:size=9:style=regular
+st.*boldFont:			Dina:size=9:size=9:style=bold
+
+
+!				P A L E T T E
+
 ! black
-*.color0:           #073642
-*.color8:           #002B36
-!
+*.color0:				#073642
+*.color8:				#002B36
+
 ! red
-*.color1:           #DC322F
-*.color9:           #CB4B16
-!
+*.color1:				#DC322F
+*.color9:				#CB4B16
+
 ! green
-*.color2:           #859900
-*.color10:          #859900
-!
+*.color2:				#859900
+*.color10:				#859900
+
 ! yellow
-*.color3:           #B58900
-*.color11:          #B58900
-!
+*.color3:				 #B58900
+*.color11:				 #B58900
+
 ! blue
-*.color4:           #268BD2
-*.color12:          #729FCF
-!
+*.color4:				#268BD2
+*.color12:				#729FCF
+
 ! magenta
-*.color5:           #D33682
-*.color13:          #6C71C4
-!
+*.color5:				#D33682
+*.color13:				#6C71C4
+
 ! cyan
-*.color6:           #2AA198
-*.color14:          #2AA198
-!
+*.color6:				#2AA198
+*.color14:				#2AA198
+
 ! white
-*.color7:           #EEE8D5
-*.color15:          #FDF6E3
+*.color7:				#EEE8D5
+*.color15:				#FDF6E3
