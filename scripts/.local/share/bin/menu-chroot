@@ -1,14 +1,14 @@
 #!/bin/sh
 
-#  __  __                  
-# |  \/  | ___ _ __  _   _ 
+#  __  __
+# |  \/  | ___ _ __  _   _
 # | |\/| |/ _ \ '_ \| | | |
 # | |  | |  __/ | | | |_| |
 # |_|  |_|\___|_| |_|\__,_|
-#   ____ _                     _   
-#  / ___| |__  _ __ ___   ___ | |_ 
+#   ____ _                     _
+#  / ___| |__  _ __ ___   ___ | |_
 # | |   | '_ \| '__/ _ \ / _ \| __|
-# | |___| | | | | | (_) | (_) | |_ 
+# | |___| | | | | | (_) | (_) | |_
 #  \____|_| |_|_|  \___/ \___/ \__|
 #
 # A simle chrooting script
@@ -19,131 +19,128 @@
 # and chroot into it
 
 mount_dpst () {
-    #
-    # dev
-    echo "Mounting dev on $target_dir/dev..."; sleep 1
-    mount --rbind /dev $target_dir/dev
-    mount --make-rslave $target_dir/dev
-    #
-    # proc
-    echo "Mounting proc on $target_dir/proc..."; sleep 1
-    mount -t proc /proc $target_dir/proc
-    #
-    # sys
-    echo "Mounting sys $target_dir/sys..."; sleep 1
-    mount --rbind /sys $target_dir/sys
-    mount --make-rslave $target_dir/sys
-    #
-    # tmp
-    echo "Mounting tmp $target_dir/tmp..."; sleep 1
-    mount --rbind /tmp $target_dir/tmp
+
+	# dev
+	echo "Mounting dev on $target_dir/dev..."; sleep 1
+	mount --rbind /dev $target_dir/dev
+	mount --make-rslave $target_dir/dev
+
+	# proc
+	echo "Mounting proc on $target_dir/proc..."; sleep 1
+	mount -t proc /proc $target_dir/proc
+
+	# sys
+	echo "Mounting sys $target_dir/sys..."; sleep 1
+	mount --rbind /sys $target_dir/sys
+	mount --make-rslave $target_dir/sys
+
+	# tmp
+	echo "Mounting tmp $target_dir/tmp..."; sleep 1
+	mount --rbind /tmp $target_dir/tmp
 }
 
 unmount_dpst () {
-    #
-    # dev
-    echo "Unmounting dev from $target_dir/dev..."; sleep 1
-    umount -l $target_dir/dev
-    #
-    # proc
-    echo "Unmounting proc from $target_dir/proc..."; sleep 1
-    umount -l $target_dir/proc
-    #
-    # sys
-    echo "Unmounting sys from $target_dir/sys..."; sleep 1
-    umount -l $target_dir/sys
-    #
-    # tmp
-    echo "Unmounting tmp from $target_dir/tmp..."; sleep 1
-    umount -l $target_dir/tmp
+
+	# dev
+	echo "Unmounting dev from $target_dir/dev..."; sleep 1
+	umount -l $target_dir/dev
+
+	# proc
+	echo "Unmounting proc from $target_dir/proc..."; sleep 1
+	umount -l $target_dir/proc
+
+	# sys
+	echo "Unmounting sys from $target_dir/sys..."; sleep 1
+	umount -l $target_dir/sys
+
+	# tmp
+	echo "Unmounting tmp from $target_dir/tmp..."; sleep 1
+	umount -l $target_dir/tmp
 }
 
 target_chroot () {
-    # chroot
-    echo "Chrooting to $target_dir..."; sleep 3
-    chroot $target_dir /bin/bash
+	# chroot
+	echo "Chrooting to $target_dir..."; sleep 3
+	chroot $target_dir /bin/bash
 }
 
 cleanup () {
-    echo "Removing $target_dir..."; sleep 1
-    rm -d $target_dir
+	echo "Removing $target_dir..."; sleep 1
+	rm -d $target_dir
 }
 
 main () {
 
-    # Show devices and their mountpoints
-    lsblk
+	# Show devices and their mountpoints
+	lsblk
 
-    ### Chroot to device or directory
-    #
-    echo "Chroot to:"
-    echo "[1] Device"
-    echo "[2] Directory"
-    echo "[3] Exit"
-    read -r d_or_d
+	# Chroot to device or directory
+	echo "Chroot to:"
+	echo "[1] Device"
+	echo "[2] Directory"
+	echo "[3] Exit"
+	read -r d_or_d
 
-    case $d_or_d in
+	case $d_or_d in
 
 	1)
-	    ### Device option
-	    #
-	    echo "Select Device (type path)"
-	    #
-	    # Example: /dev/sdb1
-	    #
-	    read -r device
-	    target_dir=/mnt/mychroot-$(basename $device)
+		# Device option
 
-	    mkdir $target_dir
-	    echo "Mounting device $device on $target_dir..."; sleep 1
-	    mount $device $target_dir || { echo "Mount failed"; cleanup; exit 1; }
+		echo "Select Device (type path)"
 
-	    mount_dpst
-	    target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst; cleanup; exit 1; }
+		# Example: /dev/sdb1
 
-	    echo "You exited the chroot"; sleep 1
-	    unmount_dpst
-	    echo "Unmounting $device from $target_dir..."; sleep 1
-	    umount -l $target_dir || { echo "Unmount of $target_dir failed"; exit 1; }
-	    cleanup
-	    ;;
+		read -r device
+		target_dir=/mnt/mychroot-$(basename $device)
+
+		mkdir $target_dir
+		echo "Mounting device $device on $target_dir..."; sleep 1
+		mount $device $target_dir || { echo "Mount failed"; cleanup; exit 1; }
+
+		mount_dpst
+		target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst; cleanup; exit 1; }
+
+		echo "You exited the chroot"; sleep 1
+		unmount_dpst
+		echo "Unmounting $device from $target_dir..."; sleep 1
+		umount -l $target_dir || { echo "Unmount of $target_dir failed"; exit 1; }
+		cleanup
+		;;
 	2)
-	    ### Directory option
-	    #
-	    echo "Type directory path"
-	    read -r target_dir
+		# Directory option
 
-	    mount_dpst
-	    target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst;  exit 1; }
+		echo "Type directory path"
+		read -r target_dir
 
-	    echo "You exited the chroot"; sleep 1
-	    unmount_dpst
-	    ;;
+		mount_dpst
+		target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst;  exit 1; }
+
+		echo "You exited the chroot"; sleep 1
+		unmount_dpst
+		;;
 	3)
-	    ### Exit option
-	    #
-	    echo "Exiting"
-	    ;;
-	*)
-	    ### In a different case
-	    #
-	    # Re-run main
-	    echo "Unknown option. Choose 1 (device) or 2 (directory) or 3 (exit)"
-	    main
-	    ;;
+		# Exit option
 
-    esac
+		echo "Exiting"
+		;;
+	*)
+		# In a different case
+		# Re-run main
+
+		echo "Unknown option. Choose 1 (device) or 2 (directory) or 3 (exit)"
+		main
+		;;
+
+	esac
 
 }
 
+
 # Become root and
 # run this script
+
 if [ "$(whoami)" != root ]; then
-    if [ -f ./menu-chroot ]; then
-	sudo ./menu-chroot
-    else
-	sudo "$(command -v menu-chroot)"
-    fi
+	sudo "$0"
 else
-    main
+	main
 fi

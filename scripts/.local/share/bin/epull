@@ -1,9 +1,9 @@
 #!/bin/sh
 
+
 trap 'exit 128' INT
 export PATH
 
-script=epull
 
 main() {
     if command -v eix; then
@@ -15,11 +15,7 @@ main() {
 }
 
 if [ "$(whoami)" != root ]; then
-    if [ -f ./$script ]; then
-	sudo ./$script
-    else
-	sudo "$(command -v $script)"
-    fi
+	sudo "$0"
 else
     main
 fi
