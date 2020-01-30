@@ -1,22 +1,33 @@
 #!/bin/sh
 
+
 trap 'exit 128' INT
 export PATH
 
-script=epurge
 
 main() {
-    emerge -ac
-    eclean-dist --deep
-    eclean-pkg --deep
+	case $1
+	in
+		-h | --help | help )
+			echo "Use this to clea up the system (Gentoo)"
+			echo "No options - ask everytime. Auto - don't ask."
+			;;
+		-a | --auto | a | auto )
+			emerge -c
+			eclean-dist --deep
+			eclean-pkg --deep
+			;;
+		* )
+			emerge -ca
+			eclean-dist --deep --interactive
+			eclean-pkg --deep --interactive
+			;;
+	esac
 }
 
+
 if [ "$(whoami)" != root ]; then
-    if [ -f ./$script ]; then
-	sudo ./$script
-    else
-	sudo "$(command -v $script)"
-    fi
+	sudo $0 $1
 else
-    main
+    main $1
 fi
