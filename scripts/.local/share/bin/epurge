@@ -8,10 +8,6 @@ export PATH
 main() {
 	case $1
 	in
-		-h | --help | help )
-			echo "Use this to clea up the system (Gentoo)"
-			echo "No options - ask everytime. Auto - don't ask."
-			;;
 		-a | --auto | a | auto )
 			emerge -c
 			eclean-dist --deep
@@ -26,8 +22,24 @@ main() {
 }
 
 
+case $1
+in
+	-h | --help | help )
+		cat <<EOF
+Use this to clean up the system (Gentoo)
+
+Usage: epurge [options]
+
+Options:
+	auto	don't ask for confirmation
+EOF
+		exit
+		;;
+esac
+
+
 if [ "$(whoami)" != root ]; then
 	sudo $0 $1
 else
-    main $1
+	main $1
 fi
