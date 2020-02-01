@@ -379,6 +379,15 @@ Remember to run elpy-config to install some necessary packages
 			  (lambda ()
 				(auto-complete-mode -1))))
 #+END_SRC
+** Slime
+Superior Lisp interaction mode for Emacs
+#+BEGIN_SRC emacs-lisp
+  (use-package slime
+	:ensure t
+	:config
+	(setq inferior-lisp-program "/usr/bin/sbcl")
+	(setq slime-contribs '(slime-fancy)))
+#+END_SRC
 ** Tabs
 Tab width settings
 #+BEGIN_SRC emacs-lisp
