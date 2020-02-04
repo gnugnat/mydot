@@ -10,8 +10,15 @@
 
 # ZSH path
 
-# Additional programs
-export PATH=$PATH:$HOME/.local/share/bin:$HOME/.local/bin:$HOME/go/bin
+# User's programs
+export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$HOME/.local/share/bin
+
+# Python
+export PATH=$PATH:$HOME/.local/bin
+
+# GO
+export PATH=$PATH:$HOME/go/bin
 
 
 # Completion
