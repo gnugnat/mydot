@@ -454,6 +454,16 @@ Enable Web Mode
 		  web-mode-style-padding 4
 		  ))
 #+END_SRC
+** Yaml
+[[https://yaml.org][Yaml]] language support
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+	:ensure t
+	:config
+	(add-hook 'yaml-mode-hook
+			  (lambda ()
+				(define-key yaml-mode-map "\C-m" 'newline-and-indent))))
+#+END_SRC
 ** Yasnippet
 Code snippets
 #+BEGIN_SRC emacs-lisp
