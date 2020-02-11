@@ -20,6 +20,9 @@ export PATH=$PATH:$HOME/.local/bin
 # GO
 export PATH=$PATH:$HOME/go/bin
 
+# Node
+export PATH=$PATH:$HOME/.npm/bin
+
 
 # Completion
 
