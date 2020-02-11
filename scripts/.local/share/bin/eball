@@ -1,3 +1,6 @@
 #!/bin/sh
 
-sudo ebuild $1 clean manifest merge
+
+repoman manifest || ebuild manifest
+
+sudo ebuild $1 clean merge
