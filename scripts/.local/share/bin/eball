@@ -1,6 +1,6 @@
 #!/bin/sh
 
 
-repoman manifest || ebuild manifest
+repoman manifest || ebuild $1 manifest
 
 sudo ebuild $1 clean merge
