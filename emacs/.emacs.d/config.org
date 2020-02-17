@@ -325,6 +325,11 @@ Edit files as root
     :bind
     ("s-e" . sudo-edit))
 #+END_SRC
+** Spaces
+Use spaces as tabs
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
 * Completion
 ** Auto Complete
 #+BEGIN_SRC emacs-lisp
