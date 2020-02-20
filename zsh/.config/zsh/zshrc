@@ -10,18 +10,28 @@
 
 # ZSH path
 
-# User's programs
-export PATH=$PATH:$HOME/.bin
-export PATH=$PATH:$HOME/.local/share/bin
+addtopath() {
+    if [ -d $1 ]
+    then
+        export PATH=$PATH:$1
+    fi
+}
 
-# Python
-export PATH=$PATH:$HOME/.local/bin
+# User's programs
+addtopath $HOME/.bin
+addtopath $HOME/.local/share/bin
+
+# Cabal (Haskell)
+addtopath $HOME/.cabal/bin
 
 # GO
-export PATH=$PATH:$HOME/go/bin
+addtopath $HOME/go/bin
 
 # Node
-export PATH=$PATH:$HOME/.npm/bin
+addtopath $HOME/.npm/bin
+
+# Python
+addtopath $HOME/.local/bin
 
 
 # Completion
