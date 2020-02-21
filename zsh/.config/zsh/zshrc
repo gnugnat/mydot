@@ -24,6 +24,9 @@ addtopath $HOME/.local/share/bin
 # Cabal (Haskell)
 addtopath $HOME/.cabal/bin
 
+# Cargo (Rust)
+addtopath $HOME/.cargo/bin
+
 # GO
 addtopath $HOME/go/bin
 
