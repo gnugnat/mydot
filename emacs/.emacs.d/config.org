@@ -500,6 +500,15 @@ My Org agenda
 						  "~/Documents/todo.org"
 						  ))
 #+END_SRC
+Create todo.org if it does not exist
+#+BEGIN_SRC emacs-lisp
+  (if (not
+       (file-exists-p "~/Documents/todo.org"))
+      (with-temp-buffer
+        (write-file "~/Documents/todo.org")
+        )
+    )
+#+END_SRC
 ** Org Bullets
 Make Org look prettier
 #+BEGIN_SRC emacs-lisp
@@ -578,11 +587,15 @@ Export ORG mode contents to Reveal.js HTML presentations
 - git
 Load vterm only in GUI
 #+BEGIN_SRC emacs-lisp
-  (when window-system
-	(use-package vterm
-	  :ensure t
-	  :config
-	  (setq vterm-shell '"$SHELL -l")
-	  :bind
-	  ("<f2>" . 'vterm)))
+  (if (eq system-type 'gnu/linux)
+      (when window-system
+        (use-package vterm
+          :ensure t
+          :config
+          (setq vterm-shell '"$SHELL -l")
+          :bind
+          ("<f2>" . 'vterm)
+          )
+        )
+    )
 #+END_SRC
