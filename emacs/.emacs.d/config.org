@@ -178,20 +178,28 @@ Credit: https://www.emacswiki.org/emacs/SetFonts
   (require 'dash)
   (defun font-candidate (&rest fonts)
     "Return the first available font."
-    (--first (find-font (font-spec :name it)) fonts))
+    (--first
+     (find-font (font-spec :name it)) fonts
+     )
+    )
+
   ;; List of fonts
   (when window-system
-    (set-face-attribute 'default nil
-            :weight 'normal
-            :width 'normal
-            :height 105
-            :font (font-candidate "Dina"
-                          "xos4 Terminus"
-                          "Terminus"
-                          "Hack"
-                          "Monospace"
-                          "Consolas"
-                          )))
+    (set-face-attribute
+     'default nil
+     :weight 'normal
+     :width 'normal
+     :height 105
+     :font (font-candidate
+            "Dina"
+            "xos4 Terminus"
+            "Terminus"
+            "Hack"
+            "Monospace"
+            "Consolas"
+            )
+     )
+    )
 #+END_SRC
 ** Spaceline
 Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
