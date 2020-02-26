@@ -5,11 +5,11 @@
 ** Auto Update
 #+BEGIN_SRC emacs-lisp
   (use-package auto-package-update
-	:ensure t
-	:config
-	(setq auto-package-update-interval 5
-		  auto-package-update-delete-old-verions t)
-	(auto-package-update-maybe))
+    :ensure t
+    :config
+    (setq auto-package-update-interval 5
+          auto-package-update-delete-old-verions t)
+    (auto-package-update-maybe))
 #+END_SRC
 ** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
@@ -116,8 +116,8 @@ Better switching
 Buffer stuff
 #+BEGIN_SRC emacs-lisp
   (setq ido-enable-flex-matching nil
-		ido-create-new-buffer 'always
-		ido-everywhere t)
+        ido-create-new-buffer 'always
+        ido-everywhere t)
   (ido-mode 1)
 #+END_SRC
 ** IDO switch buffers
@@ -149,26 +149,26 @@ Kill buffer and delete its window
 Run known programs faster
 #+BEGIN_SRC emacs-lisp
   (use-package smex
-	:ensure t
-	:init
-	(smex-initialize)
-	:bind
-	("M-x" . smex))
+    :ensure t
+    :init
+    (smex-initialize)
+    :bind
+    ("M-x" . smex))
 #+END_SRC
 ** Switch-window
 Faster window switching, when you press =C-x o= you choose a window
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
-	:ensure t
-	:config
-	(setq switch-window-input-style 'minibuffer
-		  switch-window-increase 4
-		  switch-window-threshold 2
-		  switch-window-shortcut-style 'qwerty
-		  switch-window-qwerty-shortcuts
-		  '( "a" "s" "d" "f" "g" "h" "j" "k" "l"))
-	:bind
-	([remap other-window] . switch-window))
+    :ensure t
+    :config
+    (setq switch-window-input-style 'minibuffer
+          switch-window-increase 4
+          switch-window-threshold 2
+          switch-window-shortcut-style 'qwerty
+          switch-window-qwerty-shortcuts
+          '( "a" "s" "d" "f" "g" "h" "j" "k" "l"))
+    :bind
+    ([remap other-window] . switch-window))
 #+END_SRC
 * Look
 ** Font
@@ -177,21 +177,21 @@ Credit: https://www.emacswiki.org/emacs/SetFonts
   ;; Fallback to another font if first is unavalible
   (require 'dash)
   (defun font-candidate (&rest fonts)
-	"Return the first available font."
-	(--first (find-font (font-spec :name it)) fonts))
+    "Return the first available font."
+    (--first (find-font (font-spec :name it)) fonts))
   ;; List of fonts
   (when window-system
-	(set-face-attribute 'default nil
-			:weight 'normal
-			:width 'normal
-			:height 105
-			:font (font-candidate "Dina"
-						  "xos4 Terminus"
-						  "Terminus"
-						  "Hack"
-						  "Monospace"
-						  "Consolas"
-						  )))
+    (set-face-attribute 'default nil
+            :weight 'normal
+            :width 'normal
+            :height 105
+            :font (font-candidate "Dina"
+                          "xos4 Terminus"
+                          "Terminus"
+                          "Hack"
+                          "Monospace"
+                          "Consolas"
+                          )))
 #+END_SRC
 ** Spaceline
 Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
@@ -207,8 +207,8 @@ Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separato
 Install spacemacs-theme if not installed
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'spacemacs-theme)
-	(package-refresh-contents)
-	(package-install 'spacemacs-theme))
+    (package-refresh-contents)
+    (package-install 'spacemacs-theme))
   (load-theme 'spacemacs-dark t)
 #+END_SRC
 ** Transparency
@@ -223,11 +223,11 @@ Install spacemacs-theme if not installed
        (set-frame-parameter
        nil 'alpha
        (if (eql (cond ((numberp alpha) alpha)
-		       ((numberp (cdr alpha)) (cdr alpha))
-		       ;; Also handle undocumented (<active> <inactive>) form.
-		       ((numberp (cadr alpha)) (cadr alpha)))
-		100)
-	   '(95 . 80) '(100 . 100)))))
+               ((numberp (cdr alpha)) (cdr alpha))
+               ;; Also handle undocumented (<active> <inactive>) form.
+               ((numberp (cadr alpha)) (cadr alpha)))
+        100)
+       '(95 . 80) '(100 . 100)))))
   (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 ** Window Size
@@ -264,32 +264,32 @@ Set encoding to UTF-8
 #+END_SRC
 ** Insert Date
 Insert date in non-Org documents
-- =C-c d= :		13.04.2004
-- =C-u C-c d= :		2004-04-13
-- =C-u C-u C-c d= :	Dienstag, 13. April 2004
+- =C-c d= :         13.04.2004
+- =C-u C-c d= :     2004-04-13
+- =C-u C-u C-c d= : Dienstag, 13. April 2004
 #+BEGIN_SRC emacs-lisp
   (defun insert-date (prefix)
-	(interactive "P")
-	(let ((format (cond
-				   ((not prefix) "%d.%m.%Y")
-				   ((equal prefix '(4)) "%Y-%m-%d")
-				   ((equal prefix '(16)) "%A, %d. %B %Y")))
-		  (system-time-locale "pl_PL"))
-	  (insert (format-time-string format))))
+    (interactive "P")
+    (let ((format (cond
+                   ((not prefix) "%d.%m.%Y")
+                   ((equal prefix '(4)) "%Y-%m-%d")
+                   ((equal prefix '(16)) "%A, %d. %B %Y")))
+          (system-time-locale "pl_PL"))
+      (insert (format-time-string format))))
   (global-set-key (kbd "C-c d") 'insert-date)
 #+END_SRC
 ** Magit
 Git management
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-	:ensure t
-	:config
-	(setq magit-push-always-verify nil
-		  git-commit-summary-max-length 50)
-	:bind (
-		   ("C-c s" . magit-status)
-		   ("C-c b" . magit-blame)
-		   ))
+    :ensure t
+    :config
+    (setq magit-push-always-verify nil
+          git-commit-summary-max-length 50)
+    :bind (
+           ("C-c s" . magit-status)
+           ("C-c b" . magit-blame)
+           ))
 #+END_SRC
 ** Projectile
 Project management
@@ -342,11 +342,11 @@ Use spaces as tabs
 Auto close brackets
 #+BEGIN_SRC emacs-lisp
   (setq electric-pair-pairs '(
-							  (?\{ . ?\})
-							  (?\( . ?\))
-							  (?\[ . ?\])
-							  (?\" . ?\")
-							  ))
+                              (?\{ . ?\})
+                              (?\( . ?\))
+                              (?\[ . ?\])
+                              (?\" . ?\")
+                              ))
   (electric-pair-mode t)
 #+END_SRC
 * Programming
@@ -362,73 +362,73 @@ Auto check
 [[https://golang.org/][Go]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
-	:ensure t)
+    :ensure t)
 #+END_SRC
 ** Haskell
 [[https://www.haskell.org/][Haskell]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
-	  :ensure t)
+      :ensure t)
 #+END_SRC
 ** Markdown
 [[https://daringfireball.net/projects/markdown][Markdown]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
-	:ensure t
-	:mode
-	(
-	 ("README\\.md\\'" . gfm-mode)
-	 ("\\.md\\'" . markdown-mode)
-	 ("\\.markdown\\'" . markdown-mode)
-	 )
-	:init
-	(setq markdown-command "multimarkdown"))
+    :ensure t
+    :mode
+    (
+     ("README\\.md\\'" . gfm-mode)
+     ("\\.md\\'" . markdown-mode)
+     ("\\.markdown\\'" . markdown-mode)
+     )
+    :init
+    (setq markdown-command "multimarkdown"))
 #+END_SRC
 ** Match words
    Highlight the same words
 #+BEGIN_SRC emacs-lisp
   (use-package idle-highlight-mode
-	:ensure t
-	:config
-	(add-hook 'prog-mode-hook
-			  (lambda ()
-				(idle-highlight-mode t))))
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook
+              (lambda ()
+                (idle-highlight-mode t))))
 #+END_SRC
 ** Python
 Python IDE.
 Remember to run elpy-config to install some necessary packages
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
-	:ensure t
-	:init
-	(elpy-enable)
-	(setq elpy-rpc-virtualenv-path "~/.local/")
-	(when (load "flycheck" t t)
-	  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-	  (add-hook 'elpy-mode-hook 'flycheck-mode))
-	(add-hook 'python-mode-hook
-			  (lambda ()
-				(auto-complete-mode -1))))
+    :ensure t
+    :init
+    (elpy-enable)
+    (setq elpy-rpc-virtualenv-path "~/.local/")
+    (when (load "flycheck" t t)
+      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+      (add-hook 'elpy-mode-hook 'flycheck-mode))
+    (add-hook 'python-mode-hook
+              (lambda ()
+                (auto-complete-mode -1))))
 #+END_SRC
 ** Rust
 [[https://www.rust-lang.org/][Rust]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
-	:ensure t
-	:config
-	;; Rust style guide recommends spaces for indentation
-	(add-hook 'rust-mode-hook
-			  (lambda ()
-				(setq indent-tabs-mode nil))))
+    :ensure t
+    :config
+    ;; Rust style guide recommends spaces for indentation
+    (add-hook 'rust-mode-hook
+              (lambda ()
+                (setq indent-tabs-mode nil))))
 #+END_SRC
 ** Slime
 Superior Lisp interaction mode for Emacs
 #+BEGIN_SRC emacs-lisp
   (use-package slime
-	:ensure t
-	:config
-	(setq inferior-lisp-program "/usr/bin/sbcl")
-	(setq slime-contribs '(slime-fancy)))
+    :ensure t
+    :config
+    (setq inferior-lisp-program "/usr/bin/sbcl")
+    (setq slime-contribs '(slime-fancy)))
 #+END_SRC
 ** Tabs
 Tab width settings
@@ -443,45 +443,45 @@ Tab width settings
 Enable Web Mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
-	:ensure t
-	:mode
-	(
-	 ("\\.[agj]sp\\'" . web-mode)
-	 ("\\.as[cp]x\\'" . web-mode)
-	 ("\\.blade\\.php\\'" . web-mode)
-	 ("\\.djhtml\\'" . web-mode)
-	 ("\\.ejs\\'" . web-mode)
-	 ("\\.erb\\'" . web-mode)
-	 ("\\.html?\\'" . web-mode)
-	 ("\\.jsp\\'" . web-mode)
-	 ("\\.mustache\\'" . web-mode)
-	 ("\\.php\\'" . web-mode)
-	 ("\\.phtml\\'" . web-mode)
-	 ("\\.tpl\\.php\\'" . web-mode)
-	 ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-	 )
-	:init
-	(setq web-mode-enable-auto-closing t
-		  web-mode-enable-auto-pairing t
-		  web-mode-enable-comment-keywords t
-		  web-mode-enable-current-element-highlight t
-		  web-mode-code-indent-offset 4
-		  web-mode-css-indent-offset 4
-		  web-mode-markup-indent-offset 4
-		  web-mode-block-padding 4
-		  web-mode-script-padding 4
-		  web-mode-style-padding 4
-		  ))
+    :ensure t
+    :mode
+    (
+     ("\\.[agj]sp\\'" . web-mode)
+     ("\\.as[cp]x\\'" . web-mode)
+     ("\\.blade\\.php\\'" . web-mode)
+     ("\\.djhtml\\'" . web-mode)
+     ("\\.ejs\\'" . web-mode)
+     ("\\.erb\\'" . web-mode)
+     ("\\.html?\\'" . web-mode)
+     ("\\.jsp\\'" . web-mode)
+     ("\\.mustache\\'" . web-mode)
+     ("\\.php\\'" . web-mode)
+     ("\\.phtml\\'" . web-mode)
+     ("\\.tpl\\.php\\'" . web-mode)
+     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+     )
+    :init
+    (setq web-mode-enable-auto-closing t
+          web-mode-enable-auto-pairing t
+          web-mode-enable-comment-keywords t
+          web-mode-enable-current-element-highlight t
+          web-mode-code-indent-offset 4
+          web-mode-css-indent-offset 4
+          web-mode-markup-indent-offset 4
+          web-mode-block-padding 4
+          web-mode-script-padding 4
+          web-mode-style-padding 4
+          ))
 #+END_SRC
 ** Yaml
 [[https://yaml.org][Yaml]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
-	:ensure t
-	:config
-	(add-hook 'yaml-mode-hook
-			  (lambda ()
-				(define-key yaml-mode-map "\C-m" 'newline-and-indent))))
+    :ensure t
+    :config
+    (add-hook 'yaml-mode-hook
+              (lambda ()
+                (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
 #+END_SRC
 ** Yasnippet
 Code snippets
@@ -497,8 +497,8 @@ My Org agenda
 #+BEGIN_SRC emacs-lisp
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
-						  "~/Documents/todo.org"
-						  ))
+                          "~/Documents/todo.org"
+                          ))
 #+END_SRC
 Create todo.org if it does not exist
 #+BEGIN_SRC emacs-lisp
@@ -513,13 +513,13 @@ Create todo.org if it does not exist
 Make Org look prettier
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-	:ensure t
-	:config
-	(setq org-bullets-bullet-list
-		  '("🖝"))
-	(add-hook 'org-mode-hook
-			  (lambda ()
-				(org-bullets-mode))))
+    :ensure t
+    :config
+    (setq org-bullets-bullet-list
+          '("🖝"))
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (org-bullets-mode))))
 #+END_SRC
 ** Same edit window
 With =C-c '= replace the original .org file with editor
@@ -535,48 +535,48 @@ With =C-c '= replace the original .org file with editor
 A modern list api for Emacs. Should be required by other packages, but I make sure it is installed.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
-	:ensure t)
+    :ensure t)
 #+END_SRC
 ** Dashboard
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard
-	:ensure t
-	:config
-	(setq inhibit-startup-screen t
-		  inhibit-startup-message t)
-	(dashboard-setup-startup-hook)
-	(setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!"
-		  dashboard-banner-logo-title-face t
-		  dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
-		  dashboard-items '(
-							(recents  . 7)
-							(projects . 5)
-							)
-		  show-week-agenda-p t
-		  dashboard-center-content t)
-	(add-to-list 'dashboard-items '(agenda) t))
+    :ensure t
+    :config
+    (setq inhibit-startup-screen t
+          inhibit-startup-message t)
+    (dashboard-setup-startup-hook)
+    (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!"
+          dashboard-banner-logo-title-face t
+          dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
+          dashboard-items '(
+                            (recents  . 7)
+                            (projects . 5)
+                            )
+          show-week-agenda-p t
+          dashboard-center-content t)
+    (add-to-list 'dashboard-items '(agenda) t))
 #+END_SRC
 ** Dired Sidebar
 Sidebar for Emacs leveraging Dired
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sidebar
-	:ensure t
-	:commands
-	(dired-sidebar-toggle-sidebar)
-	:bind
-	(("C-x C-n" . dired-sidebar-toggle-sidebar)))
+    :ensure t
+    :commands
+    (dired-sidebar-toggle-sidebar)
+    :bind
+    (("C-x C-n" . dired-sidebar-toggle-sidebar)))
 #+END_SRC
 ** Reveal.js
 Export ORG mode contents to Reveal.js HTML presentations
 #+BEGIN_SRC emacs-lisp
   ;; reveal dependency
   (use-package htmlize
-	:ensure t)
+    :ensure t)
   (use-package ox-reveal
-	:ensure t
-	:config
-	;; maybe add auto-installer in the future
-	(setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+    :ensure t
+    :config
+    ;; maybe add auto-installer in the future
+    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 #+END_SRC
 ** Vterm Terminal
 [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
