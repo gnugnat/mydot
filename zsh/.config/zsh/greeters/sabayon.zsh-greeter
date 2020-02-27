@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+
+
+# Based on the Sabayon ascii logo
+# extracted form neofetch
+
+
+# bold
+tput bold
+
+# ascii
+cat << ASCII
+
+
+
+                 o                                  o
+                :W'                                :W'
+                .d.                                .d.
+               .KNO                               .KNO
+               cNNN.                              cNNN.
+               dXXX,                              dXXX,
+    .          dXXX,       .cd,        .          dXXX,       .cd,
+    'kc ..     dKKK.    ,ll;:'         'kc ..     dKKK.    ,ll;:'
+      .xkkxc;..dkkkc',cxkkl              .xkkxc;..dkkkc',cxkkl
+       .,cdddddddddddddo:.                .,cdddddddddddddo:.
+            :lllllll:                          :lllllll:
+              ',,,,,                             ',,,,,
+
+
+
+ASCII
+
+# reset
+tput sgr0
+
+# magenta
+tput setaf 5
+
+# info
+uname -pi
+uname -srm
+
+# reset
+tput sgr0
+
+echo
