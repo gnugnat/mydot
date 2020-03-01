@@ -21,9 +21,18 @@ alias rp='sudo '
 alias ,,='cd ../..'
 alias tree='tree -C'
 alias t='tree -a -L 2 -I ".git"'
-alias ls='ls --color=auto'
-alias ll='ls -lahF --color=always'
 mkcd() { mkdir "$1" && cd "$1"; }
+
+case $(uname)
+in
+    *Linux*)
+        alias ls='ls --color=auto'
+        alias ll='ls -lahF --color=always'
+        ;;
+    *)
+        alias ll='ls -lahF'
+        ;;
+esac
 
 
 # Files
