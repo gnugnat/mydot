@@ -31,16 +31,16 @@ else
     os="Gentoo $(uname -m)"
 fi
 
-if [ -d /var/db/pkg ]
+if [ -d "${EPREFIX}"/var/db/pkg ]
 then
-    packages="$(ls -d /var/db/pkg/*/* | wc -l)"
+    packages="$(find ${EPREFIX}/var/db/pkg/*/* -type d | wc -l)"
 else
     packages="n/a"
 fi
 
-if [ -f /var/lib/portage/world ]
+if [ -f "${EPREFIX}"/var/lib/portage/world ]
 then
-    world="@world: $(wc -l < /var/lib/portage/world)"
+    world="@world: $(wc -l < ${EPREFIX}/var/lib/portage/world)"
 else
     world=""
 fi
