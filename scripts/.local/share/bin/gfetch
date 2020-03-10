@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 #     .vir.
 #   ,d$$$$$$b.
 #   &&&&( )&&&b
@@ -14,40 +15,68 @@
 # based on
 # https://github.com/jschx/ufetch/
 
+
 # INFO
+
 host="$(hostname)"
-os='Gentoo Linux'
 cpu="$(uname -p)"
 kernel="$(uname -sr)"
 uptime="$(uptime -p | sed 's/up //')"
-world="$(wc -l < /var/lib/portage/world)"
-packages="$(ls -d /var/db/pkg/*/* | wc -l)"
 shell="$(basename "$SHELL")"
 
-if [ -n "${DE}" ]; then
-	ui="${DE}"
-	uitype='DE'
-elif [ -n "${WM}" ]; then
-	ui="${WM}"
-	uitype='WM'
-elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
-	ui="${XDG_CURRENT_DESKTOP}"
-	uitype='DE'
-elif [ -n "${DESKTOP_SESSION}" ]; then
-	ui="${DESKTOP_SESSION}"
-	uitype='DE'
-elif [ -f "${HOME}/.xinitrc" ]; then
-	ui="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2)"
-	uitype='WM'
-elif [ -f "${HOME}/.xsession" ]; then
-	ui="$(tail -n 1 "${HOME}/.xsession" | cut -d ' ' -f 2)"
-	uitype='WM'
+if [ -f /etc/lsb-release ]
+then
+    os="$(cut -d \" -f 2 < /etc/lsb-release) $(uname -m)"
 else
-	ui='unknown'
-	uitype='UI'
+    os="Gentoo $(uname -m)"
 fi
 
+if [ -d "${EPREFIX}"/var/db/pkg ]
+then
+    packages="$(find ${EPREFIX}/var/db/pkg/*/* -type d | wc -l)"
+else
+    packages="n/a"
+fi
+
+if [ -f "${EPREFIX}"/var/lib/portage/world ]
+then
+    world="@world: $(wc -l < ${EPREFIX}/var/lib/portage/world)"
+else
+    world=""
+fi
+
+if [ -n "${DE}" ]
+then
+    ui="${DE}"
+    uitype='DE'
+elif [ -n "${WM}" ]
+then
+    ui="${WM}"
+    uitype='WM'
+elif [ -n "${XDG_CURRENT_DESKTOP}" ]
+then
+    ui="${XDG_CURRENT_DESKTOP}"
+    uitype='DE'
+elif [ -n "${DESKTOP_SESSION}" ]
+then
+    ui="${DESKTOP_SESSION}"
+    uitype='DE'
+elif [ -f "${HOME}/.xinitrc" ]
+then
+    ui="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2)"
+    uitype='WM'
+elif [ -f "${HOME}/.xsession" ]
+then
+    ui="$(tail -n 1 "${HOME}/.xsession" | cut -d ' ' -f 2)"
+    uitype='WM'
+else
+    ui='unknown'
+    uitype='UI'
+fi
+
+
 # Color Definitions
+
 if [ -x "$(command -v tput)" ]; then
     bold="$(tput bold)"
     black="$(tput setaf 0)"
@@ -61,22 +90,35 @@ if [ -x "$(command -v tput)" ]; then
     reset="$(tput sgr0)"
 fi
 
+
 # Output color
-lc="${reset}${bold}${magenta}"	# labels
-nc="${reset}${bold}${magenta}"	# user and hostname
-ic="${reset}${bold}${white}"	# info
-c0="${reset}${bold}${magenta}"	# first color
-c1="${reset}${magenta}"		# second color
+
+# labels
+lc="${reset}${bold}${magenta}"
+
+# user and hostname
+nc="${reset}${bold}${magenta}"
+
+# info
+ic="${reset}${bold}${white}"
+
+# first color
+c0="${reset}${bold}${magenta}"
+
+# second color
+c1="${reset}${magenta}"
+
 
 # OUTPUT
+
 cat <<EOF
 
 ${c0}     .vir.       ${nc}${USER}${ic}@${nc}${host}${reset}
 ${c0}   ,d\$\$\$\$${c1}\$\$b.    ${lc}CPU:     ${ic}${cpu}${reset}
-${c0}   &&&&${c1}( )&&&b   ${lc}KERN:    ${ic}${kernel}${lc} on ${ic}${os}${reset}
-${c0}   Q\$\$\$\$\$\$\$\$${c1}\$\$B  ${lc}UP:      ${ic}${uptime}${reset}
-${c0}     "\$\$\$\$\$${c1}\$\$P   ${lc}PKGS:    ${ic}${packages}${reset}
-${c0}   ,d\$\$\$\$${c1}\$\$P"    ${lc}WORLD:   ${ic}${world}${reset}
+${c0}   &&&&${c1}( )&&&b   ${lc}OS:      ${ic}${os}${reset}
+${c0}   Q\$\$\$\$\$\$\$\$${c1}\$\$B  ${lc}KERNEL:  ${ic}${kernel}${reset}
+${c0}     "\$\$\$\$\$${c1}\$\$P   ${lc}UP:      ${ic}${uptime}${reset}
+${c0}   ,d\$\$\$\$${c1}\$\$P"    ${lc}PKGS:    ${ic}${packages} ${world}${reset}
 ${c0}   \$\$\$\$${c1}\$\$P       ${lc}SHELL:   ${ic}${shell}${reset}
 ${c0}   \`Q\$\$${c1}P"        ${lc}${uitype}:      ${ic}${ui}${reset}
 

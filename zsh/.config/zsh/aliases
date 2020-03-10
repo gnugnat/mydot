@@ -60,9 +60,9 @@ alias so-zrc='source $ZDOTDIR/.zshrc'
 
 # Portage
 
-alias E='tail -f /var/log/emerge.log'
-alias F='tail -f /var/log/emerge-fetch.log'
-alias P='cd /etc/portage && tree -a -L 2'
+alias E='tail -f ${EPREFIX}/var/log/emerge.log'
+alias F='tail -f ${EPREFIX}/var/log/emerge-fetch.log'
+alias P='cd ${EPREFIX}/etc/portage && tree -a -L 2'
 alias pep='sudo emerge -av'
 alias chu='sudo emerge -avNUD @world'
 alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
