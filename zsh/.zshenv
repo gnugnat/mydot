@@ -9,9 +9,9 @@
 
 
 # Set where the rest of ZSH files are located
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="${HOME}/.config/zsh"
 # Set where ZSH cache is stored
-export ZCACHEDIR="$HOME/.cache/zsh"
+export ZCACHEDIR="${HOME}/.cache/zsh"
 
 # Auto-set the editor
 if command -v emacs >/dev/null 2>&1; then

@@ -10,31 +10,46 @@
 
 # ZSH path
 
+# this function first checks if specified directory
+# already is in path, if it is not and it exists
+# it is added to the path
 addtopath() {
-    if [ -d $1 ]
+    if [[ ! "${PATH}" == *"${1}"* ]]
     then
-        export PATH=$PATH:$1
+       if [ -d ${1} ]
+       then
+           export PATH=${PATH}:${1}
+       fi
     fi
 }
 
+# System directories that could be missing
+addtopath /bin
+addtopath /opt/bin
+addtopath /sbin
+addtopath /usr/bin
+addtopath /usr/local/bin
+addtopath /usr/local/sbin
+addtopath /usr/sbin
+
 # User's programs
-addtopath $HOME/.bin
-addtopath $HOME/.local/share/bin
+addtopath ${HOME}/.bin
+addtopath ${HOME}/.local/share/bin
 
 # Cabal (Haskell)
-addtopath $HOME/.cabal/bin
+addtopath ${HOME}/.cabal/bin
 
 # Cargo (Rust)
-addtopath $HOME/.cargo/bin
+addtopath ${HOME}/.cargo/bin
 
 # GO
-addtopath $HOME/go/bin
+addtopath ${HOME}/go/bin
 
 # Node
-addtopath $HOME/.npm/bin
+addtopath ${HOME}/.npm/bin
 
 # Python
-addtopath $HOME/.local/bin
+addtopath ${HOME}/.local/bin
 
 
 # Completion
@@ -44,7 +59,7 @@ setopt extendedglob
 
 # Load compinit
 autoload -U compinit
-compinit -d $ZCACHEDIR/zcompdump
+compinit -d ${ZCACHEDIR}/zcompdump
 
 # Advanced tab-completion
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -58,9 +73,9 @@ setopt correctall
 # History
 
 # Necessary to save history
-HISTFILE=$ZCACHEDIR/zhistory
+HISTFILE=${ZCACHEDIR}/zhistory
 HISTSIZE=5000
-SAVEHIST=$HISTSIZE
+SAVEHIST=${HISTSIZE}
 
 # Ignore duplicates
 setopt hist_ignore_all_dups
@@ -97,7 +112,7 @@ bindkey -r "^D"
 # Aliases
 
 # Source shell-agnostic aliases
-source $ZDOTDIR/aliases
+source ${ZDOTDIR}/aliases
 
 
 # Theme
@@ -107,36 +122,36 @@ autoload -U promptinit
 promptinit
 
 # Set themes
-ztheme_tty="$ZDOTDIR/tty.zsh-theme"
-ztheme_emu="$ZDOTDIR/emu.zsh-theme"
+ztheme_tty="${ZDOTDIR}/tty.zsh-theme"
+ztheme_emu="${ZDOTDIR}/emu.zsh-theme"
 
 # Source appropriate theme
-if [ -z $DISPLAY ]; then
+if [ -z ${DISPLAY} ]; then
     # theme in tty
-    [ -f $ztheme_tty ] && source $ztheme_tty
+    [ -f ${ztheme_tty} ] && source ${ztheme_tty}
 else
     # theme in emulators
-    [ -f $ztheme_emu ] && source $ztheme_emu
+    [ -f ${ztheme_emu} ] && source ${ztheme_emu}
 fi
 
 
 # Plugins
 
 # Syntax coloring
-zplug_sh="$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-[ -f $zplug_sh ] && source $zplug_sh
+zplug_sh="${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[ -f ${zplug_sh} ] && source ${zplug_sh}
 
 # Autosuggestions
-zplug_as="$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -f $zplug_as ] && source $zplug_as
+zplug_as="${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f ${zplug_as} ] && source ${zplug_as}
 
 # Autosuggestions highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
 # Check Git branch
-git_check () {
+git_check() {
     branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
-    [ ! -z $branch ] && echo "$pre_git_check$branch$post_git_check"
+    [ ! -z ${branch} ] && echo "${pre_git_check}${branch}${post_git_check}"
 }
 
 
@@ -172,18 +187,22 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-case $TERM in
+case ${TERM} in
     xterm* )
-	# Change the window title of X terminals
-        precmd () { print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"; } ;;
+	    # Change the window title of X terminals
+        precmd() {
+            print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"
+        }
+        ;;
     dumb )
-	# For some SSH sessions (Emacs)
-	unsetopt zle
-	unsetopt prompt_cr
-	unsetopt prompt_subst
-	unfunction precmd
-	unfunction preexec
-	PS1='$ '
+	    # For some SSH sessions (Emacs)
+	    unsetopt zle
+	    unsetopt prompt_cr
+	    unsetopt prompt_subst
+	    unfunction precmd
+	    unfunction preexec
+	    PS1='$ '
+        ;;
 esac
 
 # ls after changing directory
