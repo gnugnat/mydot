@@ -24,19 +24,33 @@
 
 # Start the session
 
-# Here JWM is kept as default
-session=${1:-jwm}
+# Here KDE is kept as default
+session=${1:-kde}
 
 case $session in
-    bsp|bspwm	) exec bspwm;;
-    exwm|EXWM	)
-	exec emacs --load ~/.emacs.d/exwm-config.el
-	;;
-    gnome	) exec gnome-session;;
-    lxqt|LXQt   ) exec startlxqt;;
-    kde		) exec startplasma-x11;;
-    mate	) exec mate-session;;
-    xfce|xfce4	) exec startxfce4;;
+    bsp|bspwm )
+        exec bspwm
+        ;;
+    exwm|EXWM )
+        exec emacs --load ~/.emacs.d/exwm-config.el
+        ;;
+    gnome )
+        exec gnome-session
+        ;;
+    lxqt|LXQt )
+        exec startlxqt
+        ;;
+    kde )
+        exec startplasma-x11
+        ;;
+    mate )
+        exec mate-session
+        ;;
+    xfce|xfce4 )
+        exec startxfce4
+        ;;
     # Anything different is run as command
-    *		) exec $1;;
+    * )
+        exec "${1}"
+        ;;
 esac
