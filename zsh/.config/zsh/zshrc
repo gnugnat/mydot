@@ -16,10 +16,10 @@
 addtopath() {
     if [[ ! "${PATH}" == *"${1}"* ]]
     then
-       if [ -d ${1} ]
-       then
-           export PATH=${PATH}:${1}
-       fi
+        if [ -d ${1} ]
+        then
+            export PATH=${PATH}:${1}
+        fi
     fi
 }
 
@@ -189,19 +189,19 @@ bindkey "^X^E" edit-command-line
 
 case ${TERM} in
     xterm* )
-	    # Change the window title of X terminals
+        # Change the window title of X terminals
         precmd() {
             print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"
         }
         ;;
     dumb )
-	    # For some SSH sessions (Emacs)
-	    unsetopt zle
-	    unsetopt prompt_cr
-	    unsetopt prompt_subst
-	    unfunction precmd
-	    unfunction preexec
-	    PS1='$ '
+        # For some SSH sessions (Emacs)
+        unsetopt zle
+        unsetopt prompt_cr
+        unsetopt prompt_subst
+        unfunction precmd
+        unfunction preexec
+        PS1='$ '
         ;;
 esac
 
