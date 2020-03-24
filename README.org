@@ -18,7 +18,6 @@
    Remember to create needed directories to avoid conflicts:
    - =$HOME/.config= 	- for your users config files
    - =$HOME/.emacs.d= 	- for Emacs
-   - =$HOME/.newsboat= 	- for newsboat config file
 *** install one
     example: zsh
     - =stow zsh=
@@ -28,10 +27,7 @@
 ** ZSH
 - Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
-** JWM
-For menu to work run [[https://github.com/chiku/mjwm][mjwm]]
 * Notice
 ** Installed by scripts / referenced
-- [[https://github.com/chiku/mjwm][mjwm]]
 - [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
 - [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
