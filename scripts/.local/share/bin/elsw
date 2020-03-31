@@ -1,20 +1,44 @@
 #!/usr/bin/env python
 
+
 # A nice way to view Portage's world file
 
-import portage
+
+try:
+    import portage
+except ImportError:
+    import sys
+    sys.exit("Could not import portage")
+
 
 world = open(portage.root + portage.WORLD_FILE)
 
-category_tmp = ""
 
-for line in world.read().splitlines():
+category_indicator = "\033[92m \u25cf"
+package_indicator = "    \033[94m -"
+category_tmp = ""
+category_count = 0
+package_count = 0
+
+
+for line in sorted(world.read().splitlines()):
 
     category = line.split("/")[0]
-    if category != category_tmp:
-        print("\033[92m \u25cf " + category)
-        category_tmp = category
 
-    print("    \033[94m - " + line.split("/")[1])
+    if category != category_tmp:
+        print(category_indicator, category)
+        category_tmp = category
+        category_count += 1
+
+    print(package_indicator, line.split("/")[1])
+    package_count += 1
+
 
 world.close()
+
+
+# Reset color + newline
+print("\033[0m")
+
+print(category_count, "categories")
+print(package_count, "packages")
