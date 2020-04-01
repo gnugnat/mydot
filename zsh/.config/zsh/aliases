@@ -53,7 +53,7 @@ alias rcp='rsync --stats --progress'
 
 alias mtr='mtr --show-ips --curses'
 alias seen='sudo watch arp-scan --localnet'
-alias seeo='sudo watch netstat -tulpn'
+alias seeo='sudo netstat -acnptu'
 
 
 # ZSH
