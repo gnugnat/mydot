@@ -22,11 +22,13 @@ in
         alias ls='ls --color=auto'
         alias ll='ls -lahF --color=always'
         alias grep='grep --colour=always'
-        alias tree='tree -C'
+        alias tree='tree -C -F'
         alias t='tree -a -L 2 -I ".git"'
         ;;
     *)
         alias ll='ls -lahF'
+        alias tree='tree -F'
+        alias t='tree -a -L 2'
         ;;
 esac
 
