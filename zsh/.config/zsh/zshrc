@@ -8,51 +8,43 @@
 # /___|___/_| |_|_|  \___|
 
 
-# ZSH path
+# >>> General setup
 
-# this function first checks if specified directory
-# already is in path, if it is not and it exists
-# it is added to the path
-addtopath() {
-    if [[ ! "${PATH}" == *"${1}"* ]]
-    then
-        if [ -d ${1} ]
-        then
-            export PATH=${PATH}:${1}
-        fi
-    fi
-}
+# Source common shell functions
 
-# System directories that could be missing
-addtopath /bin
-addtopath /opt/bin
-addtopath /sbin
-addtopath /usr/bin
-addtopath /usr/local/bin
-addtopath /usr/local/sbin
-addtopath /usr/sbin
-
-# User's programs
-addtopath ${HOME}/.bin
-addtopath ${HOME}/.local/share/bin
-
-# Cabal (Haskell)
-addtopath ${HOME}/.cabal/bin
-
-# Cargo (Rust)
-addtopath ${HOME}/.cargo/bin
-
-# GO
-addtopath ${HOME}/go/bin
-
-# Node
-addtopath ${HOME}/.npm/bin
-
-# Python
-addtopath ${HOME}/.local/bin
+shell_functions="${HOME}/.config/sh/functions"
+[ -f "${shell_functions}" ] && source "${shell_functions}"
 
 
-# Completion
+# >>> Path
+
+setup_path
+
+
+# >>> Aliases
+
+# Source shell-agnostic aliases
+source_file "${HOME}/.config/sh/aliases"
+
+
+# >>> History
+
+# Necessary to save history
+HISTFILE=${ZCACHEDIR}/zhistory
+HISTSIZE=50000
+SAVEHIST=${HISTSIZE}
+
+# Ignore duplicates
+setopt hist_ignore_all_dups
+
+# Ignore space
+setopt hist_ignore_space
+
+# Save immediatelly, share history between terminals
+setopt share_history
+
+
+# >>> Completion
 
 # Extendedglob
 setopt extendedglob
@@ -70,24 +62,7 @@ zstyle ':completion:*' menu select
 setopt correctall
 
 
-# History
-
-# Necessary to save history
-HISTFILE=${ZCACHEDIR}/zhistory
-HISTSIZE=5000
-SAVEHIST=${HISTSIZE}
-
-# Ignore duplicates
-setopt hist_ignore_all_dups
-
-# Ignore space
-setopt hist_ignore_space
-
-# Save immediatelly, share history between terminals
-setopt share_history
-
-
-# Key bindings
+# >>> Key bindings
 
 # Kill & Yank
 # for this set Emacs key bindings
@@ -109,41 +84,29 @@ bindkey "^R" history-incremental-search-backward
 bindkey -r "^D"
 
 
-# Aliases
-
-# Source shell-agnostic aliases
-source ${ZDOTDIR}/aliases
-
-
-# Theme
+# >>> Theme
 
 # Prompt init
 autoload -U promptinit
 promptinit
 
-# Set themes
-ztheme_tty="${ZDOTDIR}/tty.zsh-theme"
-ztheme_emu="${ZDOTDIR}/emu.zsh-theme"
-
 # Source appropriate theme
 if [ -z ${DISPLAY} ]; then
     # theme in tty
-    [ -f ${ztheme_tty} ] && source ${ztheme_tty}
+    source_file "${ZDOTDIR}/tty.zsh-theme"
 else
     # theme in emulators
-    [ -f ${ztheme_emu} ] && source ${ztheme_emu}
+    source_file "${ZDOTDIR}/emu.zsh-theme"
 fi
 
 
-# Plugins
+# >>> Plugins
 
 # Syntax coloring
-zplug_sh="${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-[ -f ${zplug_sh} ] && source ${zplug_sh}
+source_file "${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Autosuggestions
-zplug_as="${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -f ${zplug_as} ] && source ${zplug_as}
+source_file "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Autosuggestions highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
@@ -151,11 +114,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 # Check Git branch
 git_check() {
     branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
-    [ ! -z ${branch} ] && echo "${pre_git_check}${branch}${post_git_check}"
+    [ ! -z "${branch}" ] && echo "${pre_git_check}${branch}${post_git_check}"
 }
 
 
-# GPG
+# >>> GPG
 
 # Export some vars
 export GPG_TTY=$(tty)
@@ -167,7 +130,7 @@ if command -v gpg-agent >/dev/null 2>&1; then
 fi
 
 
-# Miscellaneous
+# >>> Miscellaneous
 
 # Prompt Substring
 # used by git_check

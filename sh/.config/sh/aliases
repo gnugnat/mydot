@@ -1,3 +1,6 @@
+#!/bin/sh
+
+
 #                                            .
 #     .vir.                                 d$b
 #  .d$$$$$$b.     .cd$$b.     .d$$b.   d$$$$$$$$$$$b  .d$$b.      .d$$b.
@@ -19,6 +22,8 @@ in
         alias ls='ls --color=auto'
         alias ll='ls -lahF --color=always'
         alias grep='grep --colour=always'
+        alias tree='tree -C'
+        alias t='tree -a -L 2 -I ".git"'
         ;;
     *)
         alias ll='ls -lahF'
@@ -31,51 +36,30 @@ esac
 alias rp='sudo '
 
 
-# Directories
+# Editing
 
 alias ,,='cd ../..'
-alias tree='tree -C'
-alias t='tree -a -L 2 -I ".git"'
-mkcd() { mkdir "$1" && cd "$1"; }
-
-
-# Files
 
 alias e='emacs -nw'
 alias n='nano'
 alias v='vim'
+
 alias nranger='EDITOR=nano ranger'
 alias open='xdg-open'
 alias rcp='rsync --stats --progress'
 
+alias ed-shrc='${EDITOR} ${HOME}/.profile'
+alias so-shrc='source ${HOME}/.profile'
 
-# System resources
+alias clear-zhistory='cat /dev/null > ${ZCACHEDIR}/zhistory'
+alias ed-bashrc='${EDITOR} ${HOME}/.bashrc'
+alias so-bashrc='source ${HOME}/.bashrc'
 
-alias mtr='mtr --show-ips --curses'
-alias seen='sudo watch arp-scan --localnet'
-alias seeo='sudo netstat -acnptu'
+alias clear-zhistory='cat /dev/null > ${ZCACHEDIR}/zhistory'
+alias ed-bashrc='${EDITOR} ${ZDOTDIR}/.zshrc'
+alias so-zshrc='source ${ZDOTDIR}/.zshrc'
 
-
-# ZSH
-
-alias clear-zsh-history='cat /dev/null > $ZCACHEDIR/zhistory'
-alias so-zrc='source $ZDOTDIR/.zshrc'
-
-
-# Portage
-
-alias E='tail -f ${EPREFIX}/var/log/emerge.log'
-alias F='tail -f ${EPREFIX}/var/log/emerge-fetch.log'
-alias P='cd ${EPREFIX}/etc/portage && tree -a -L 2'
-alias pep='sudo emerge -av'
-alias chu='sudo emerge -avNUD @world'
-alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
-alias slr='sudo smart-live-rebuild'
-
-
-# Flatpak
-
-alias fpk='flatpak'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 
 # Git
@@ -91,9 +75,28 @@ alias Gr='git reset --hard'
 alias Gs='git status'
 
 
-# GRUB
+# Network
 
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias mtr='mtr --show-ips --curses'
+alias seen='sudo watch arp-scan --localnet'
+alias seeo='sudo netstat -acnptu'
+
+
+# Portage
+
+alias E='tail -f ${EPREFIX}/var/log/emerge.log'
+alias F='tail -f ${EPREFIX}/var/log/emerge-fetch.log'
+alias P='cd ${EPREFIX}/etc/portage && tree -a -L 2'
+
+alias pep='sudo emerge -av'
+alias chu='sudo emerge -avNUD @world'
+alias ewup='sudo emerge -avuDNU --with-bdeps=y @world'
+alias slr='sudo smart-live-rebuild'
+
+
+# Other PKG managers
+
+alias fpk='flatpak'
 
 
 # youtube-dl
