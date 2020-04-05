@@ -58,7 +58,7 @@ alias ed-bashrc='${EDITOR} ${HOME}/.bashrc'
 alias so-bashrc='source ${HOME}/.bashrc'
 
 alias clear-zhistory='cat /dev/null > ${ZCACHEDIR}/zhistory'
-alias ed-bashrc='${EDITOR} ${ZDOTDIR}/.zshrc'
+alias ed-zshrc='${EDITOR} ${ZDOTDIR}/.zshrc'
 alias so-zshrc='source ${ZDOTDIR}/.zshrc'
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
