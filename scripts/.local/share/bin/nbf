@@ -1,0 +1,52 @@
+#!/bin/sh
+
+
+# No Bullshit Find
+
+
+usage() {
+    cat <<EOF
+Usage: nbf [OPTION]... FILE
+nbf - no-bullshit-find
+
+Options:
+    -d  specify search directory
+    -f  specify search target
+    -h  show avalible options
+
+Copyright (c) 2020, XGQT
+Licensed under the ISC License
+EOF
+}
+
+
+# Defalt search directory
+directory="."
+
+
+while [ -n "${1}" ]; do
+    case "${1}" in
+    -h | --help)
+        usage
+        exit 0
+        ;;
+    -d | --directory )
+        directory="$2"
+        ;;
+    -f | --file )
+        file="${2}"
+        ;;
+    -* )
+        usage
+        exit 1
+        ;;
+    * )
+        file="${1}"
+        ;;
+    esac
+    shift
+done
+
+find -L "${directory}" 2>/dev/null \
+    | grep -i --color=always "${file}" \
+    | less
