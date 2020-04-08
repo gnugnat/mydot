@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+
+# Try out python pkgs in tmpfs
+
+
+set -e
+
+
+try_out() {
+
+    # Create a virtual env
+    virt_dir="/tmp/${1}-$(date +"%Y-%m-%d-%H-%M")"
+    mkdir "${virt_dir}"
+    python3 -m venv "${virt_dir}"
+    . "${virt_dir}"/bin/activate
+
+    # Upgrade pip
+    pip install --upgrade pip
+
+    # Install
+    pip install "${1}"
+
+    # Open python shell
+    echo "import ${1}" >> "${virt_dir}"/pythonstartup
+    export  PYTHONSTARTUP="${virt_dir}"/pythonstartup
+    python
+
+    # Destroy env
+    rm -rfd "${virt_dir}"
+}
+
+
+# No exact search option in pip?
+# Dunno... I pipe it into grep to match
+# anything on the start of the line & followed by
+# a space after the name before the version number
+pip search "${1}" | grep "^${1} "
+
+echo "Want to try it out? [y/n]"
+read -r answer
+case ${answer}
+in
+    "" | [Yy]* )
+        try_out "${1}"
+        ;;
+    [Nn]* )
+        exit
+        ;;
+    * )
+        echo "Please answer yes or no"
+        exit 1
+        ;;
+esac
