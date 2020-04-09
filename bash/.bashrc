@@ -46,7 +46,7 @@ HISTFILESIZE=50000
 
 # >>> Theme
 
-PS1=$'\[$(tput bold)\]\[$(tput setaf 3)\] \w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
+PS1=$'\[$(tput bold)\]\[$(tput setaf 3)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 
 
 # >>> Miscellaneous
