@@ -47,6 +47,8 @@ while [ -n "${1}" ]; do
     shift
 done
 
-find -L "${directory}" 2>/dev/null \
-    | grep -i --color=always "${file}" \
-    | less
+(
+    find -L "${directory}" 2>/dev/null \
+        | grep -i --color=always "${file}" \
+        || echo "Nothing found"
+) | less
