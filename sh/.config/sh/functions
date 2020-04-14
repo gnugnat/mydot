@@ -74,5 +74,5 @@ setup_path() {
 }
 
 mkcd() {
-    mkdir "${1}" && cd "${1}" || return
+    mkdir "${1}" && cd "${1}" || return 1
 }
