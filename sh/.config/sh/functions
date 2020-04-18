@@ -42,7 +42,6 @@ add_to_path() {
 
 
 # Add some dirs
-
 setup_path() {
     # Common programs' homes
     add_to_path /bin
@@ -73,6 +72,27 @@ setup_path() {
     add_to_path "${HOME}/.local/bin"
 }
 
+
+# CD aliases
+# ${1} - alias name
+# ${2} - directory
+# Example:
+#   cd_alias etc /etc
+#   Means:
+#     alias etc="cd /etc && echo $(pwd)"
+cd_alias() {
+    # If ${1} is not already in use
+    if [ -d "${2}" ]
+    then
+        if ! command -v "${1}" >/dev/null 2>&1
+        then
+            alias "${1}"="cd ${2} && echo ' * Changed the Directory to' ${2}"
+        fi
+    fi
+}
+
+
+# Make a directory and cd into it
 mkcd() {
     mkdir "${1}" && cd "${1}" || return 1
 }
