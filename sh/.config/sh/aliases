@@ -119,9 +119,11 @@ if . "${HOME}/.config/sh/functions" >/dev/null 2>&1
 then
     # system
     cd_alias conf /etc/conf.d
-    cd_alias tmp /tmp
+    cd_alias gentoo-tree /var/db/repos/gentoo
+    cd_alias localht /var/www/localhost/htdocs
     cd_alias logs /var/log
     cd_alias services /etc/init.d
+    cd_alias tmp /tmp
     cd_alias www /var/www
     # user - standard
     cd_alias data "${HOME}"/Data
@@ -142,6 +144,7 @@ then
     cd_alias other "${HOME}"/Git/other
     cd_alias pre "${HOME}"/Git/pre
     cd_alias src_ "${HOME}"/Git/src_prepare
+    cd_alias src_overlay "${HOME}"/Git/src_prepare/src_prepare-overlay
     # user - hidden
     cd_alias applications "${HOME}"/.local/share/applications
     cd_alias apps "${HOME}"/.local/share/applications
