@@ -46,6 +46,8 @@ alias e='emacs -nw'
 alias n='nano'
 alias v='vim'
 
+alias nuke='rm -rfd'
+
 alias nranger='EDITOR=nano ranger'
 alias open='xdg-open'
 alias rcp='rsync --stats --progress'
