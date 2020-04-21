@@ -39,6 +39,16 @@ source_file "${HOME}/.config/sh/aliases"
 
 # >>> History
 
+# File
+if [ -n "${XDG_CACHE_HOME}" ]
+then
+    mkdir -p "${XDG_CACHE_HOME}"/bash
+    export HISTFILE="${XDG_CACHE_HOME}"/bash/history
+else
+    mkdir -p "${HOME}"/.cache/bash
+    export HISTFILE="${HOME}"/.cache/bash/history
+fi
+
 # Size
 HISTSIZE=50000
 HISTFILESIZE=50000
