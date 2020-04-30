@@ -124,9 +124,22 @@ git_check() {
 export GPG_TTY=$(tty)
 export PINENTRY_USER_DATA="USE_CURSES=1"
 
-# Start GPG agent
-if command -v gpg-agent >/dev/null 2>&1; then
-    pidof gpg-agent &>/dev/null || gpg-agent --daemon 2>/dev/null
+# Check if GPG agent exists
+if command -v gpg-agent >/dev/null 2>&1
+then
+    # Start GPG agent if it is not running
+    pgrep -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
+fi
+
+
+# >>> SSH
+
+# Check if SSH agent nad XDG runtime directory exist
+if command -v ssh-agent >/dev/null 2>&1 && [ -d "${XDG_RUNTIME_DIR}" ]
+then
+    # Start SSH agent if it is not running
+    pgrep -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
+    [ -f "${SSH_AUTH_SOCK}" ] || eval "$(< "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
 fi
 
 
