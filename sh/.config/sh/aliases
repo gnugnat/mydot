@@ -140,8 +140,9 @@ then
     cd_alias programming "${HOME}"/Documents/Programming
     cd_alias videos "${HOME}"/Videos
     # user - git
-    cd_alias dead "${HOME}"/Git/dead
     cd_alias eternal "${HOME}"/Git/eternal
+    cd_alias gentoo-dev "${HOME}"/Git/gentoo
+    cd_alias guru "${HOME}"/Git/gentoo/guru
     cd_alias mine "${HOME}"/Git/mine
     cd_alias other "${HOME}"/Git/other
     cd_alias pre "${HOME}"/Git/pre
