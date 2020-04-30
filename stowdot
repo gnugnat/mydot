@@ -43,7 +43,6 @@ mydir=$HOME/mydot
 for chkdir in "$HOME/.config" \
 		  "$HOME/.local/share" \
 		  "$HOME/.emacs.d" \
-		  "$HOME/.newsboat" \
 		  "$HOME/.config/mpd/playlists"
 do
     if [ ! -e "$chkdir" ]; then
