@@ -11,34 +11,81 @@ except ImportError:
     sys.exit("Could not import portage")
 
 
-world = open(portage.root + portage.WORLD_FILE)
+def parse_category(category):
+
+    indicator = " \u25cf "
+
+    def choose_color(category):
+
+        color_good = "\033[92m"
+        color_warn = "\033[93m"
+        color_erro = "\033[91m"
+
+        category_warn = [
+            "acct-group",
+            "acct-user",
+            "app-crypt",
+            "app-dicts",
+            "app-i18n",
+            "dev-texlive",
+            "gui-wm",
+            "media-plugins",
+            "sci-libs",
+            "sys-apps",
+            "sys-auth",
+            "sys-firmware",
+            "sys-fs",
+            "sys-libs",
+            "x11-apps",
+            "x11-base",
+            "x11-misc",
+            "x11-plugins"
+        ]
+        category_erro = [
+            "dev-libs"
+            "gnustep-libs",
+            "gui-libs",
+            "java-virtuals",
+            "media-libs",
+            "net-libs",
+            "sci-libs",
+            "sec-policy",
+            "sys-libs",
+            "virtual",
+            "x11-drivers",
+            "x11-libs",
+        ]
+
+        if category in category_warn:
+            return color_warn
+        elif category in category_erro:
+            return color_erro
+        else:
+            return color_good
+
+    return choose_color(category)+indicator+category
 
 
-category_indicator = "\033[92m \u25cf"
-package_indicator = "    \033[94m -"
-category_tmp = ""
-category_count = 0
-package_count = 0
+with open(portage.root + portage.WORLD_FILE) as world:
 
+    category_tmp = ""
+    category_count = 0
+    package_count = 0
 
-for line in sorted(world.read().splitlines()):
+    for line in sorted(world.read().splitlines()):
 
-    category = line.split("/")[0]
+        read_category = line.split("/")[0]
 
-    if category != category_tmp:
-        print(category_indicator, category)
-        category_tmp = category
-        category_count += 1
+        if read_category != category_tmp:
+            print(parse_category(read_category))
+            category_tmp = read_category
+            category_count += 1
 
-    print(package_indicator, line.split("/")[1])
-    package_count += 1
+        print("    \033[94m -", line.split("/")[1])
+        package_count += 1
 
+    # Reset color + newline
+    print("\033[0m")
 
-world.close()
-
-
-# Reset color + newline
-print("\033[0m")
-
-print(category_count, "categories")
-print(package_count, "packages")
+    print(category_count, "categories")
+    print(package_count, "packages")
