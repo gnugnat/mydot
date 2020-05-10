@@ -11,8 +11,8 @@ yellow=$(tput setaf 3)
 
 remote=$(git config --get remote.origin.url)
 commits=$(git rev-list --count HEAD)
-first=$(git log --reverse -1 --format=%cd)
-last=$(git log --reverse --format=%cd | sed 1q)
+first=$(git log --reverse --format=%cd | sed 1q)
+last=$(git log --reverse -1 --format=%cd)
 changes=$(git status --porcelain)
 
 
