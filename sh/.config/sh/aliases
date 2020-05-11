@@ -124,6 +124,7 @@ then
     # system
     cd_alias conf /etc/conf.d
     cd_alias gentoo-tree /var/db/repos/gentoo
+    cd_alias linux-src /usr/src/linux
     cd_alias localht /var/www/localhost/htdocs
     cd_alias logs /var/log
     cd_alias services /etc/init.d
