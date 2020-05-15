@@ -13,66 +13,84 @@
 # (_)_| |_|_|\___||___/
 
 
+msg() {
+    echo "$(tput bold)${1}$(tput sgr0)"
+}
+
 err_msg() {
-    echo "$(tput bold)$1$(tput sgr0)"
+    msg "${1}"
     exit 1
 }
 
+exists() {
+    if command -v "${1}" >/dev/null 2>&1
+    then
+        return 0
+    else
+        return 1
+    fi
+}
 
-# mydir location
+
+# >>> Location of mydir
+
 # Change this if you want a different name instead of mydot.
 # For exaple if you are in the same directory as a renamed mydot,
 # ex.: mydot2 you can instead use:
 # mydir=.
-mydir=$HOME/mydot
+mydir=${HOME}/mydot
 
 
-# Checks
+# >>> Needed checks
 
 # check for stow
-{ stow -V && st_im=stow; } || { xstow -V && st_im=xstow; } || {
-    err_msg "There is no stow on the sytem! Exiting."
-}
+if exists stow
+then
+    stow_impl=stow
+elif exists xstow
+then
+    stow_impl=xstow
+else
+    err_msg "There is no stow on the sytem! Exiting"
+fi
 
 # check for mydir
-[ ! -d "$mydir" ] && {
-    err_msg "The location of the scrip is wrong! Exiting."
-}
+[ ! -d "${mydir}" ] && err_msg "${mydir} doesn't exist! Exiting"
 
 # check needed directories
-for chkdir in "$HOME/.config" \
-		  "$HOME/.local/share" \
-		  "$HOME/.emacs.d" \
-		  "$HOME/.config/mpd/playlists"
+for chkdir in "${HOME}/.config" "${HOME}/.local/share" \
+		                        "${HOME}/.emacs.d" \
+		                        "${HOME}/.config/mpd/playlists"
 do
-    if [ ! -e "$chkdir" ]; then
-	mkdir -p "$chkdir"
-	echo "$chkdir created"
+    if [ -e "${chkdir}" ]
+    then
+        echo "${chkdir} exists, good"
     else
-	echo "$chkdir exists, good"
+	    mkdir -p "${chkdir}"
+	    echo "${chkdir} created"
     fi
 done
 
 
-# Stow or Unstow
+# >>> Perform desired Stow action
 
 # go to mydir
-cd "$mydir" || err_msg "Couldn't cd into $mydir"
+cd "${mydir}" || err_msg "Couldn't cd into ${mydir}"
 
-# then we glob everything there, iterate through it
+# then we iterate through everything there
 for target in *
 do
     # check if it's a directory
-    if [ -d "$target" ]; then
-
-	# print it's name
-	echo "$(tput bold)$target$(tput sgr0)"
-
-	# finally do some work (link or unlink)
-	if [ "$1" = "remove" ]; then
-	    $st_im -v -D $target
-	else
-	    $st_im -v $target
-	fi
+    if [ -d "${target}" ]
+    then
+	    # finally do some work
+	    if [ "${1}" = "remove" ]
+        then
+            msg "Removing $(tput bold)$target$(tput sgr0)"
+	        ${stow_impl} -v -D "${target}"
+	    else
+            msg "Installing $(tput bold)$target$(tput sgr0)"
+	        ${stow_impl} -v "${target}"
+	    fi
     fi
 done
