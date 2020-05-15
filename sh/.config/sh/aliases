@@ -46,6 +46,8 @@ alias e='emacs -nw'
 alias n='nano'
 alias v='vim'
 
+alias hl='highlight -O truecolor'
+
 alias nuke='rm -rfd'
 
 alias nranger='EDITOR=nano ranger'
