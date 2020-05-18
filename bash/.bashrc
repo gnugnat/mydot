@@ -58,7 +58,7 @@ HISTFILESIZE=50000
 
 if [ ${EUID} -eq 0 ]
 then
-    PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h\[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
+    PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 else
     PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 3)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 fi
