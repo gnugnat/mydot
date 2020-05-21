@@ -54,6 +54,18 @@ HISTSIZE=50000
 HISTFILESIZE=50000
 
 
+# >>> Safety
+
+# set root user editor to nano
+if [ ${EUID} -eq 0 ]
+then
+    if command -v nano >/dev/null 2>&1
+    then
+        export EDITOR=nano
+    fi
+fi
+
+
 # >>> Theme
 
 if [ ${EUID} -eq 0 ]
