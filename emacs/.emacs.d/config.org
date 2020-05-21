@@ -491,14 +491,6 @@ Enable Web Mode
               (lambda ()
                 (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
 #+END_SRC
-** Yasnippet
-Code snippets
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :init
-    (yas-global-mode 1))
-#+END_SRC
 * Org
 ** Org Agenda
 My Org agenda
