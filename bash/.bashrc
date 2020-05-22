@@ -20,8 +20,10 @@ fi
 
 # >>> General setup
 
-# Source common shell functions
+# Source the system profile
+[ -f /etc/profile ] && source /etc/profile
 
+# Source common shell functions
 shell_functions="${HOME}/.config/sh/functions"
 [ -f "${shell_functions}" ] && source "${shell_functions}"
 
