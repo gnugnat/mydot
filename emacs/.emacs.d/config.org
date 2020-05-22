@@ -553,6 +553,7 @@ A modern list api for Emacs. Should be required by other packages, but I make su
     (setq inhibit-startup-screen t
           inhibit-startup-message t)
     (dashboard-setup-startup-hook)
+    ;; This is a parody of Warhammer Noise Marine quote in case you wondered :)
     (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!"
           dashboard-banner-logo-title-face t
           dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
