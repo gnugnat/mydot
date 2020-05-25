@@ -109,6 +109,7 @@ alias fpk='flatpak'
 
 alias ytd='youtube-dl -i -o "%(title)s.%(ext)s"'
 
+alias ytd-bestaudio='youtube-dl -i -f bestaudio -x -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-flac='youtube-dl -i -f bestaudio -x --audio-format flac -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-mp3='youtube-dl -i -f bestaudio -x --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytd-opus='youtube-dl -i -f bestaudio -x --audio-format opus -o "%(playlist_index)s - %(title)s.%(ext)s"'
