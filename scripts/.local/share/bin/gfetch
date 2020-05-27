@@ -21,7 +21,7 @@
 host="$(hostname 2>/dev/null)"
 cpu="$(uname -p 2>/dev/null)"
 kernel="$(uname -sr 2>/dev/null)"
-uptime="$(uptime -p | sed 's/up //' 2>/dev/null)"
+uptime="$(uptime -p 2>/dev/null | sed 's/up //')"
 shell="$(basename "${SHELL}" 2>/dev/null)"
 
 if [ -f /etc/lsb-release ]
