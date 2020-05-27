@@ -18,11 +18,11 @@
 
 # INFO
 
-host="$(hostname)"
-cpu="$(uname -p)"
-kernel="$(uname -sr)"
-uptime="$(uptime -p | sed 's/up //')"
-shell="$(basename "$SHELL")"
+host="$(hostname 2>/dev/null)"
+cpu="$(uname -p 2>/dev/null)"
+kernel="$(uname -sr 2>/dev/null)"
+uptime="$(uptime -p | sed 's/up //' 2>/dev/null)"
+shell="$(basename "${SHELL}" 2>/dev/null)"
 
 if [ -f /etc/lsb-release ]
 then
@@ -33,14 +33,14 @@ fi
 
 if [ -d "${EPREFIX}"/var/db/pkg ]
 then
-    packages="$(find ${EPREFIX}/var/db/pkg/*/* -type d | wc -l)"
+    packages="$(find "${EPREFIX}"/var/db/pkg/*/* -type d | wc -l)"
 else
     packages="n/a"
 fi
 
 if [ -f "${EPREFIX}"/var/lib/portage/world ]
 then
-    world="@world: $(wc -l < ${EPREFIX}/var/lib/portage/world)"
+    world="@world: $(wc -l < "${EPREFIX}"/var/lib/portage/world)"
 else
     world=""
 fi
@@ -79,13 +79,13 @@ fi
 
 if [ -x "$(command -v tput)" ]; then
     bold="$(tput bold)"
-    black="$(tput setaf 0)"
-    red="$(tput setaf 1)"
-    green="$(tput setaf 2)"
-    yellow="$(tput setaf 3)"
-    blue="$(tput setaf 4)"
+    # black="$(tput setaf 0)"
+    # red="$(tput setaf 1)"
+    # green="$(tput setaf 2)"
+    # yellow="$(tput setaf 3)"
+    # blue="$(tput setaf 4)"
     magenta="$(tput setaf 5)"
-    cyan="$(tput setaf 6)"
+    # cyan="$(tput setaf 6)"
     white="$(tput setaf 7)"
     reset="$(tput sgr0)"
 fi
