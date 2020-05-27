@@ -3,4 +3,4 @@
 # backup a FILE to current directory
 # as FILE-name_of_machine-year-mounth-day-hour-minute
 
-cp $1 "$(basename $1)-$(uname -n)-$(date +"%Y-%m-%d-%H-%M")"
+cp "${1}" "$(basename "${1}")-$(uname -n)-$(date +"%Y-%m-%d-%H-%M")"
