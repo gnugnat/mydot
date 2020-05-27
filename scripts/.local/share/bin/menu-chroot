@@ -22,51 +22,51 @@ mount_dpst () {
 
 	# dev
 	echo "Mounting dev on $target_dir/dev..."; sleep 1
-	mount --rbind /dev $target_dir/dev
-	mount --make-rslave $target_dir/dev
+	mount --rbind /dev "${target_dir}"/dev
+	mount --make-rslave "${target_dir}"/dev
 
 	# proc
 	echo "Mounting proc on $target_dir/proc..."; sleep 1
-	mount -t proc /proc $target_dir/proc
+	mount -t proc /proc "${target_dir}"/proc
 
 	# sys
 	echo "Mounting sys $target_dir/sys..."; sleep 1
-	mount --rbind /sys $target_dir/sys
-	mount --make-rslave $target_dir/sys
+	mount --rbind /sys "${target_dir}"/sys
+	mount --make-rslave "${target_dir}"/sys
 
 	# tmp
 	echo "Mounting tmp $target_dir/tmp..."; sleep 1
-	mount --rbind /tmp $target_dir/tmp
+	mount --rbind /tmp "${target_dir}"/tmp
 }
 
 unmount_dpst () {
 
 	# dev
 	echo "Unmounting dev from $target_dir/dev..."; sleep 1
-	umount -l $target_dir/dev
+	umount -l "${target_dir}"/dev
 
 	# proc
 	echo "Unmounting proc from $target_dir/proc..."; sleep 1
-	umount -l $target_dir/proc
+	umount -l "${target_dir}"/proc
 
 	# sys
 	echo "Unmounting sys from $target_dir/sys..."; sleep 1
-	umount -l $target_dir/sys
+	umount -l "${target_dir}"/sys
 
 	# tmp
 	echo "Unmounting tmp from $target_dir/tmp..."; sleep 1
-	umount -l $target_dir/tmp
+	umount -l "${target_dir}"/tmp
 }
 
 target_chroot () {
 	# chroot
 	echo "Chrooting to $target_dir..."; sleep 3
-	chroot $target_dir /bin/bash
+	chroot "${target_dir}" /bin/bash
 }
 
 cleanup () {
 	echo "Removing $target_dir..."; sleep 1
-	rm -d $target_dir
+	rm -d "${target_dir}"
 }
 
 main () {
@@ -91,11 +91,11 @@ main () {
 		# Example: /dev/sdb1
 
 		read -r device
-		target_dir=/mnt/mychroot-$(basename $device)
+		target_dir=/mnt/mychroot-$(basename "${device}")
 
-		mkdir $target_dir
+		mkdir "${target_dir}"
 		echo "Mounting device $device on $target_dir..."; sleep 1
-		mount $device $target_dir || { echo "Mount failed"; cleanup; exit 1; }
+		mount "${device}" "${target_dir}" || { echo "Mount failed"; cleanup; exit 1; }
 
 		mount_dpst
 		target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst; cleanup; exit 1; }
@@ -103,7 +103,7 @@ main () {
 		echo "You exited the chroot"; sleep 1
 		unmount_dpst
 		echo "Unmounting $device from $target_dir..."; sleep 1
-		umount -l $target_dir || { echo "Unmount of $target_dir failed"; exit 1; }
+		umount -l "${target_dir}" || { echo "Unmount of $target_dir failed"; exit 1; }
 		cleanup
 		;;
 	2)
@@ -140,7 +140,7 @@ main () {
 # run this script
 
 if [ "$(whoami)" != root ]; then
-	sudo "$0"
+	sudo "${0}"
 else
 	main
 fi
