@@ -13,6 +13,7 @@ try_out() {
     virt_dir="/tmp/${1}-$(date +"%Y-%m-%d-%H-%M")"
     mkdir "${virt_dir}"
     python3 -m venv "${virt_dir}"
+    # shellcheck disable=SC1090
     . "${virt_dir}"/bin/activate
 
     # Upgrade pip
