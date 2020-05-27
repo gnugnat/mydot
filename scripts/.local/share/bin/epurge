@@ -6,7 +6,7 @@ export PATH
 
 
 main() {
-	case $1
+	case ${1}
 	in
 		-a | --auto | a | auto )
 			emerge -c
@@ -38,8 +38,9 @@ EOF
 esac
 
 
-if [ "$(whoami)" != root ]; then
-	sudo $0 $1
+if [ "$(whoami)" != root ]
+then
+	sudo "${0}" "${1}"
 else
-	main $1
+	main "${1}"
 fi
