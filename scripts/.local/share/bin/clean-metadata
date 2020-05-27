@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exiftool -overwrite_original -all= ${1:-.}
+exiftool -overwrite_original -all= "${1:-.}"
