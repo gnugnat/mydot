@@ -1,5 +1,7 @@
 #+TITLE: My Primary Emacs Config in Org
 #+STARTUP: content inlineimages
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_THEME: black
 [[./img/Noise_Marine_Transparent.png]]
 * Environment
 ** Auto Update
