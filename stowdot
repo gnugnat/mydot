@@ -32,15 +32,6 @@ exists() {
 }
 
 
-# >>> Location of mydir
-
-# Change this if you want a different name instead of mydot.
-# For exaple if you are in the same directory as a renamed mydot,
-# ex.: mydot2 you can instead use:
-# mydir=.
-mydir=${HOME}/mydot
-
-
 # >>> Needed checks
 
 # check for stow
@@ -53,9 +44,6 @@ then
 else
     err_msg "There is no stow on the sytem! Exiting"
 fi
-
-# check for mydir
-[ ! -d "${mydir}" ] && err_msg "${mydir} doesn't exist! Exiting"
 
 # check needed directories
 for chkdir in "${HOME}/.config" "${HOME}/.local/share" \
@@ -87,10 +75,10 @@ do
 	    if [ "${1}" = "remove" ]
         then
             msg "Removing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v -D "${target}"
+	        ${stow_impl} -v -t "${HOME}" -D "${target}"
 	    else
             msg "Installing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v "${target}"
+	        ${stow_impl} -v -t "${HOME}" "${target}"
 	    fi
     fi
 done
