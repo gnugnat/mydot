@@ -124,6 +124,8 @@ alias ytd-sub-pl='youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"
 # shellcheck disable=SC1090
 if . "${HOME}/.config/sh/functions" >/dev/null 2>&1
 then
+    # compatibility
+    cd_alias mydot "${HOME}"/mydot
     # system
     cd_alias conf /etc/conf.d
     cd_alias gentoo-tree /var/db/repos/gentoo
@@ -141,7 +143,6 @@ then
     cd_alias downloads "${HOME}"/Downloads
     cd_alias games "${HOME}"/Games
     cd_alias music "${HOME}"/Music
-    cd_alias mydot "${HOME}"/mydot
     cd_alias pictures "${HOME}"/Pictures
     cd_alias programming "${HOME}"/Documents/Programming
     cd_alias videos "${HOME}"/Videos
@@ -150,6 +151,7 @@ then
     cd_alias gentoo-dev "${HOME}"/Git/gentoo
     cd_alias guru "${HOME}"/Git/gentoo/guru
     cd_alias mine "${HOME}"/Git/mine
+    cd_alias mydot "${HOME}"/Git/mine/mydot
     cd_alias other "${HOME}"/Git/other
     cd_alias pre "${HOME}"/Git/pre
     cd_alias src_ "${HOME}"/Git/src_prepare
