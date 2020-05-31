@@ -561,6 +561,10 @@ With =C-c '= replace the original .org file with editor
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
 #+END_SRC
+** Template
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c C-,") 'org-insert-structure-template)
+#+END_SRC
 ** Wrap words
 #+BEGIN_SRC emacs-lisp
   (setq org-startup-truncated nil)
