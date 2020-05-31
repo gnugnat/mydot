@@ -570,6 +570,10 @@ With =C-c '= replace the original .org file with editor
   (setq org-startup-truncated nil)
 #+END_SRC
 * Misc Plugins
+** Uppercase
+#+BEGIN_SRC emacs-lisp
+  (put 'upcase-region 'disabled nil)
+#+END_SRC
 ** Dash
 A modern list api for Emacs. Should be required by other packages, but I make sure it is installed.
 #+BEGIN_SRC emacs-lisp
