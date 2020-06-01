@@ -11,19 +11,22 @@
     :config
     (setq auto-package-update-interval 5
           auto-package-update-delete-old-verions t)
-    (auto-package-update-maybe))
+    (auto-package-update-maybe)
+    )
 #+END_SRC
 ** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
   ;; Edit config.org
   (defun config-visit ()
     (interactive)
-    (find-file "~/.emacs.d/config.org" ))
+    (find-file "~/.emacs.d/config.org" )
+    )
   (global-set-key (kbd "C-c e") 'config-visit)
   ;; Reload config.org at runtime
   (defun config-reload ()
     (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" )))
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" ))
+    )
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 ** Keybinding Help
@@ -32,7 +35,8 @@ Key binding hints
   (use-package which-key
     :ensure t
     :init
-    (which-key-mode))
+    (which-key-mode)
+    )
 #+END_SRC
 ** Minor
 Some small tweaks that don't require packages
@@ -99,14 +103,16 @@ Better window splitting
     (interactive)
     (split-window-below)
     (balance-windows)
-    (other-window 1))
+    (other-window 1)
+    )
   (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
   ;; vertical
   (defun split-and-follow-vertically ()
     (interactive)
     (split-window-right)
     (balance-windows)
-    (other-window 1))
+    (other-window 1)
+    )
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 ** Ibuffer
@@ -134,7 +140,8 @@ Better positioning
     :ensure t
     :init
     (ido-vertical-mode 1)
-    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+    )
 #+END_SRC
 ** Kill and remove split
 Kill buffer and delete its window
@@ -144,7 +151,8 @@ Kill buffer and delete its window
     (kill-buffer)
     (delete-window)
     (balance-windows)
-    (other-window 1))
+    (other-window 1)
+    )
   (global-set-key (kbd "C-x x") 'kill-and-remove-split)
 #+END_SRC
 ** Smex config
@@ -155,7 +163,8 @@ Run known programs faster
     :init
     (smex-initialize)
     :bind
-    ("M-x" . smex))
+    ("M-x" . smex)
+    )
 #+END_SRC
 ** Switch-window
 Faster window switching, when you press =C-x o= you choose a window
@@ -170,7 +179,8 @@ Faster window switching, when you press =C-x o= you choose a window
           switch-window-qwerty-shortcuts
           '( "a" "s" "d" "f" "g" "h" "j" "k" "l"))
     :bind
-    ([remap other-window] . switch-window))
+    ([remap other-window] . switch-window)
+    )
 #+END_SRC
 * Look
 ** Font
@@ -211,14 +221,16 @@ Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separato
     :config
     (require 'spaceline-config)
     (setq powerline-default-separator 'wave)
-    (spaceline-spacemacs-theme))
+    (spaceline-spacemacs-theme)
+    )
 #+END_SRC
 ** Theme
 Install spacemacs-theme if not installed
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'spacemacs-theme)
     (package-refresh-contents)
-    (package-install 'spacemacs-theme))
+    (package-install 'spacemacs-theme)
+    )
   (load-theme 'spacemacs-dark t)
 #+END_SRC
 ** Transparency
@@ -252,7 +264,8 @@ Install spacemacs-theme if not installed
 Should work well with 88 x 36
 #+BEGIN_SRC emacs-lisp
   (when window-system
-    (set-frame-size (selected-frame) 88 36))
+    (set-frame-size (selected-frame) 88 36)
+    )
 #+END_SRC
 * File Editing
 ** Avy
@@ -261,7 +274,8 @@ Easier search inside files - after pressung binded keys, pass a letter, then pas
   (use-package avy
     :ensure t
     :bind
-    ("M-s" . avy-goto-char))
+    ("M-s" . avy-goto-char)
+    )
 #+END_SRC
 ** Beacon mode
 Line highlight when switching
@@ -269,7 +283,8 @@ Line highlight when switching
   (use-package beacon
     :ensure t
     :config
-    (beacon-mode 1))
+    (beacon-mode 1)
+    )
 #+END_SRC
 ** Encoding
 Set encoding to UTF-8
@@ -291,9 +306,14 @@ Insert date in non-Org documents
     (let ((format (cond
                    ((not prefix) "%d.%m.%Y")
                    ((equal prefix '(4)) "%Y-%m-%d")
-                   ((equal prefix '(16)) "%A, %d. %B %Y")))
-          (system-time-locale "pl_PL"))
-      (insert (format-time-string format))))
+                   ((equal prefix '(16)) "%A, %d. %B %Y")
+                   )
+                  )
+          (system-time-locale "pl_PL")
+          )
+      (insert (format-time-string format))
+      )
+    )
   (global-set-key (kbd "C-c d") 'insert-date)
 #+END_SRC
 ** Magit
@@ -304,10 +324,12 @@ Git management
     :config
     (setq magit-push-always-verify nil
           git-commit-summary-max-length 50)
-    :bind (
-           ("C-c s" . magit-status)
-           ("C-c b" . magit-blame)
-           ))
+    :bind
+    (
+     ("C-c s" . magit-status)
+     ("C-c b" . magit-blame)
+     )
+    )
 #+END_SRC
 ** Projectile
 Project management
@@ -317,7 +339,8 @@ Project management
     :init
     (projectile-mode 1)
     :bind
-    ("<f5>" . 'projectile-compile-project))
+    ("<f5>" . 'projectile-compile-project)
+    )
 #+END_SRC
 ** Rainbow color
 Colorize
@@ -325,7 +348,8 @@ Colorize
   (use-package rainbow-mode
     :ensure t
     :init
-    (add-hook 'prog-mode-hook 'rainbow-mode))
+    (add-hook 'prog-mode-hook 'rainbow-mode)
+    )
 #+END_SRC
 ** Rainbow delimeters
 Colored delimeters
@@ -333,7 +357,8 @@ Colored delimeters
   (use-package rainbow-delimiters
     :ensure t
     :init
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    )
 #+END_SRC
 ** Sudo Edit
 Edit files as root
@@ -341,7 +366,8 @@ Edit files as root
   (use-package sudo-edit
     :ensure t
     :bind
-    ("s-e" . sudo-edit))
+    ("s-e" . sudo-edit)
+    )
 #+END_SRC
 ** Spaces
 Use spaces as tabs
@@ -354,7 +380,8 @@ Use spaces as tabs
   (use-package auto-complete
       :ensure t
       :config
-      (ac-config-default))
+      (ac-config-default)
+      )
 #+END_SRC
 ** Electric Pairs
 Auto close brackets
@@ -374,19 +401,22 @@ Auto check
   (use-package flycheck
     :ensure t
     :init
-    (global-flycheck-mode t))
+    (global-flycheck-mode t)
+    )
 #+END_SRC
 ** Golang
 [[https://golang.org/][Go]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
-    :ensure t)
+    :ensure t
+    )
 #+END_SRC
 ** Haskell
 [[https://www.haskell.org/][Haskell]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
-      :ensure t)
+    :ensure t
+    )
 #+END_SRC
 ** Markdown
 [[https://daringfireball.net/projects/markdown][Markdown]] language support
@@ -400,7 +430,8 @@ Auto check
      ("\\.markdown\\'" . markdown-mode)
      )
     :init
-    (setq markdown-command "multimarkdown"))
+    (setq markdown-command "multimarkdown")
+    )
 #+END_SRC
 ** Match words
    Highlight the same words
@@ -410,7 +441,10 @@ Auto check
     :config
     (add-hook 'prog-mode-hook
               (lambda ()
-                (idle-highlight-mode t))))
+                (idle-highlight-mode t)
+                )
+              )
+    )
 #+END_SRC
 ** Python
 Python IDE.
@@ -423,10 +457,14 @@ Remember to run elpy-config to install some necessary packages
     (setq elpy-rpc-virtualenv-path "~/.local/")
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode))
+      (add-hook 'elpy-mode-hook 'flycheck-mode)
+      )
     (add-hook 'python-mode-hook
               (lambda ()
-                (auto-complete-mode -1))))
+                (auto-complete-mode -1)
+                )
+              )
+    )
 #+END_SRC
 ** Rust
 [[https://www.rust-lang.org/][Rust]] language support
@@ -437,7 +475,10 @@ Remember to run elpy-config to install some necessary packages
     ;; Rust style guide recommends spaces for indentation
     (add-hook 'rust-mode-hook
               (lambda ()
-                (setq indent-tabs-mode nil))))
+                (setq indent-tabs-mode nil)
+                )
+              )
+    )
 #+END_SRC
 ** Slime
 Superior Lisp interaction mode for Emacs
@@ -446,7 +487,8 @@ Superior Lisp interaction mode for Emacs
     :ensure t
     :config
     (setq inferior-lisp-program "/usr/bin/sbcl")
-    (setq slime-contribs '(slime-fancy)))
+    (setq slime-contribs '(slime-fancy))
+    )
 #+END_SRC
 ** Tabs
 Tab width settings
@@ -489,7 +531,8 @@ Enable Web Mode
           web-mode-block-padding 4
           web-mode-script-padding 4
           web-mode-style-padding 4
-          ))
+          )
+    )
 #+END_SRC
 ** Yaml
 [[https://yaml.org][Yaml]] language support
@@ -499,7 +542,10 @@ Enable Web Mode
     :config
     (add-hook 'yaml-mode-hook
               (lambda ()
-                (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
+                (define-key yaml-mode-map "\C-m" 'newline-and-indent)
+                )
+              )
+    )
 #+END_SRC
 ** Yasnippet
 Code snippets
@@ -533,7 +579,8 @@ My Org agenda
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
                           "~/Documents/todo.org"
-                          ))
+                          )
+        )
 #+END_SRC
 Create todo.org if it does not exist
 #+BEGIN_SRC emacs-lisp
@@ -554,7 +601,10 @@ Make Org look prettier
           '("⦿"))
     (add-hook 'org-mode-hook
               (lambda ()
-                (org-bullets-mode))))
+                (org-bullets-mode)
+                )
+              )
+    )
 #+END_SRC
 ** Same edit window
 With =C-c '= replace the original .org file with editor
@@ -578,7 +628,8 @@ With =C-c '= replace the original .org file with editor
 A modern list api for Emacs. Should be required by other packages, but I make sure it is installed.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
-    :ensure t)
+    :ensure t
+    )
 #+END_SRC
 ** Dashboard
 #+BEGIN_SRC emacs-lisp
@@ -598,7 +649,8 @@ A modern list api for Emacs. Should be required by other packages, but I make su
                             )
           show-week-agenda-p t
           dashboard-center-content t)
-    (add-to-list 'dashboard-items '(agenda) t))
+    (add-to-list 'dashboard-items '(agenda) t)
+    )
 #+END_SRC
 ** Dired Sidebar
 Sidebar for Emacs leveraging Dired
@@ -608,7 +660,8 @@ Sidebar for Emacs leveraging Dired
     :commands
     (dired-sidebar-toggle-sidebar)
     :bind
-    (("C-x C-n" . dired-sidebar-toggle-sidebar)))
+    (("C-x C-n" . dired-sidebar-toggle-sidebar))
+    )
 #+END_SRC
 ** Reveal.js
 Export ORG mode contents to Reveal.js HTML presentations
@@ -620,7 +673,8 @@ Export ORG mode contents to Reveal.js HTML presentations
     :ensure t
     :config
     ;; maybe add auto-installer in the future
-    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+    )
 #+END_SRC
 ** Vterm Terminal
 [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
