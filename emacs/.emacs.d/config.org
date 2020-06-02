@@ -573,6 +573,29 @@ Code snippets
     )
 #+END_SRC
 * Org
+** Deft
+My deft setup
+#+BEGIN_SRC emacs-lisp
+  (use-package deft
+    :ensure t
+    :bind
+    ("<f8>" . deft)
+    :commands
+    (deft)
+    :config
+    (setq deft-directory "~/Documents/Diary"
+          deft-extensions '("md" "org" "rst" "tex" "text" "txt")
+          )
+    )
+#+END_SRC
+Create Diary if it does not exist
+#+BEGIN_SRC emacs-lisp
+  (if (not (file-exists-p "~/Documents/Diary"))
+      (with-temp-buffer
+        (make-directory "~/Documents/Diary")
+        )
+    )
+#+END_SRC
 ** Org Agenda
 My Org agenda
 #+BEGIN_SRC emacs-lisp
