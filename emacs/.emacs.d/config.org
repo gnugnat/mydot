@@ -395,6 +395,16 @@ Auto close brackets
   (electric-pair-mode t)
 #+END_SRC
 * Programming
+** Company
+Company completion
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 2)
+    )
+#+END_SRC
 ** Flycheck
 Auto check
 #+BEGIN_SRC emacs-lisp
@@ -467,9 +477,13 @@ Remember to run elpy-config to install some necessary packages
     )
 #+END_SRC
 ** Racket
+[[https://racket-lang.org/][Racket]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :ensure t
+    :config
+    (add-hook 'racket-mode-hook 'company-mode)
+    (add-hook 'racket-mode-hook 'racket-xp-mode)
     )
 #+END_SRC
 ** Rust
