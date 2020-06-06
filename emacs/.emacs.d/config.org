@@ -30,7 +30,7 @@
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 ** Keybinding Help
-Key binding hints
+   Key binding hints
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
     :ensure t
@@ -39,7 +39,7 @@ Key binding hints
     )
 #+END_SRC
 ** Minor
-Some small tweaks that don't require packages
+   Some small tweaks that don't require packages
 #+BEGIN_SRC emacs-lisp
   ;; no toolbar:
   (tool-bar-mode -1)
@@ -76,7 +76,7 @@ Some small tweaks that don't require packages
   (setq x-select-enable-clipboard-manager nil)
 #+END_SRC
 ** Recent Files
-Show a list of recently opened files with =C-c f=
+   Show a list of recently opened files with =C-c f=
 #+BEGIN_SRC emacs-lisp
   (recentf-mode 1)
   (setq recentf-max-menu-items 20)
@@ -91,12 +91,12 @@ Show a list of recently opened files with =C-c f=
 #+END_SRC
 * Buffers & Windows
 ** Expert mode
-Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
+   Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
 #+BEGIN_SRC emacs-lisp
   (setq ibuffer-expert t)
 #+END_SRC
 ** Following window splits
-Better window splitting
+   Better window splitting
 #+BEGIN_SRC emacs-lisp
   ;; horizontal
   (defun split-and-follow-horizontally ()
@@ -116,12 +116,12 @@ Better window splitting
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 ** Ibuffer
-Better switching
+   Better switching
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 ** IDO mode
-Buffer stuff
+   Buffer stuff
 #+BEGIN_SRC emacs-lisp
   (setq ido-enable-flex-matching nil
         ido-create-new-buffer 'always
@@ -129,12 +129,12 @@ Buffer stuff
   (ido-mode 1)
 #+END_SRC
 ** IDO switch buffers
-Better buffer switching
+   Better buffer switching
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x b") 'ido-switch-buffer)
 #+END_SRC
 ** IDO vertically
-Better positioning
+   Better positioning
 #+BEGIN_SRC emacs-lisp
   (use-package ido-vertical-mode
     :ensure t
@@ -144,7 +144,7 @@ Better positioning
     )
 #+END_SRC
 ** Kill and remove split
-Kill buffer and delete its window
+   Kill buffer and delete its window
 #+BEGIN_SRC emacs-lisp
   (defun kill-and-remove-split ()
     (interactive)
@@ -156,7 +156,7 @@ Kill buffer and delete its window
   (global-set-key (kbd "C-x x") 'kill-and-remove-split)
 #+END_SRC
 ** Smex config
-Run known programs faster
+   Run known programs faster
 #+BEGIN_SRC emacs-lisp
   (use-package smex
     :ensure t
@@ -167,7 +167,7 @@ Run known programs faster
     )
 #+END_SRC
 ** Switch-window
-Faster window switching, when you press =C-x o= you choose a window
+   Faster window switching, when you press =C-x o= you choose a window
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
     :ensure t
@@ -184,7 +184,7 @@ Faster window switching, when you press =C-x o= you choose a window
 #+END_SRC
 * Look
 ** Font
-Credit: https://www.emacswiki.org/emacs/SetFonts
+   Credit: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
   ;; Fallback to another font if first is unavalible
   (require 'dash)
@@ -214,7 +214,7 @@ Credit: https://www.emacswiki.org/emacs/SetFonts
     )
 #+END_SRC
 ** Spaceline
-Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
+   Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline
     :ensure t
@@ -225,7 +225,7 @@ Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separato
     )
 #+END_SRC
 ** Theme
-Install spacemacs-theme if not installed
+   Install spacemacs-theme if not installed
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'spacemacs-theme)
     (package-refresh-contents)
@@ -261,7 +261,7 @@ Install spacemacs-theme if not installed
   (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 ** Window Size
-Should work well with 88 x 36
+   Should work well with 88 x 36
 #+BEGIN_SRC emacs-lisp
   (when window-system
     (set-frame-size (selected-frame) 88 36)
@@ -269,7 +269,7 @@ Should work well with 88 x 36
 #+END_SRC
 * File Editing
 ** Avy
-Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
+   Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
 #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
@@ -278,7 +278,7 @@ Easier search inside files - after pressung binded keys, pass a letter, then pas
     )
 #+END_SRC
 ** Beacon mode
-Line highlight when switching
+   Line highlight when switching
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
     :ensure t
@@ -287,7 +287,7 @@ Line highlight when switching
     )
 #+END_SRC
 ** Encoding
-Set encoding to UTF-8
+   Set encoding to UTF-8
 #+BEGIN_SRC emacs-lisp
   (setq locale-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
@@ -296,10 +296,10 @@ Set encoding to UTF-8
   (prefer-coding-system 'utf-8)
 #+END_SRC
 ** Insert Date
-Insert date in non-Org documents
-- =C-c d= :         13.04.2004
-- =C-u C-c d= :     2004-04-13
-- =C-u C-u C-c d= : Dienstag, 13. April 2004
+   In non-Org documents:
+     - =C-c d= :         13.04.2004
+     - =C-u C-c d= :     2004-04-13
+     - =C-u C-u C-c d= : Dienstag, 13. April 2004
 #+BEGIN_SRC emacs-lisp
   (defun insert-date (prefix)
     (interactive "P")
@@ -317,7 +317,7 @@ Insert date in non-Org documents
   (global-set-key (kbd "C-c d") 'insert-date)
 #+END_SRC
 ** Magit
-Git management
+   Git management
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -332,7 +332,7 @@ Git management
     )
 #+END_SRC
 ** Projectile
-Project management
+   Project management
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
@@ -343,7 +343,7 @@ Project management
     )
 #+END_SRC
 ** Rainbow color
-Colorize
+   Colorize
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t
@@ -352,7 +352,7 @@ Colorize
     )
 #+END_SRC
 ** Rainbow delimeters
-Colored delimeters
+   Colored delimeters
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
@@ -361,7 +361,7 @@ Colored delimeters
     )
 #+END_SRC
 ** Sudo Edit
-Edit files as root
+   Edit files as root
 #+BEGIN_SRC emacs-lisp
   (use-package sudo-edit
     :ensure t
@@ -370,7 +370,7 @@ Edit files as root
     )
 #+END_SRC
 ** Spaces
-Use spaces as tabs
+   Use spaces as tabs
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
@@ -384,7 +384,7 @@ Use spaces as tabs
       )
 #+END_SRC
 ** Electric Pairs
-Auto close brackets
+   Auto close brackets
 #+BEGIN_SRC emacs-lisp
   (setq electric-pair-pairs '(
                               (?\{ . ?\})
@@ -415,14 +415,14 @@ Auto close brackets
     )
 #+END_SRC
 ** Golang
-[[https://golang.org/][Go]] language support
+   [[https://golang.org/][Go]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :ensure t
     )
 #+END_SRC
 ** Haskell
-[[https://www.haskell.org/][Haskell]] language support
+   [[https://www.haskell.org/][Haskell]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
     :ensure t
@@ -511,7 +511,7 @@ Auto close brackets
     )
 #+END_SRC
 ** Tabs
-Tab width settings
+   Tab width settings
 #+BEGIN_SRC emacs-lisp
   (setq-default tab-width 4)
   (setq js-indent-level 4)
@@ -520,7 +520,7 @@ Tab width settings
   (setq sh-basic-offset 4)
 #+END_SRC
 ** Web Formatting
-Enable Web Mode
+   Enable Web Mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
@@ -555,7 +555,7 @@ Enable Web Mode
     )
 #+END_SRC
 ** Yaml
-[[https://yaml.org][Yaml]] language support
+   [[https://yaml.org][Yaml]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
     :ensure t
@@ -594,7 +594,7 @@ Enable Web Mode
 #+END_SRC
 * Org
 ** Deft
-My deft setup
+   My deft setup
 #+BEGIN_SRC emacs-lisp
   (use-package deft
     :ensure t
@@ -608,7 +608,7 @@ My deft setup
           )
     )
 #+END_SRC
-Create Diary if it does not exist
+   Create Diary if it does not exist
 #+BEGIN_SRC emacs-lisp
   (if (not (file-exists-p "~/Documents/Diary"))
       (with-temp-buffer
@@ -617,7 +617,7 @@ Create Diary if it does not exist
     )
 #+END_SRC
 ** Org Agenda
-My Org agenda
+   My Org agenda
 #+BEGIN_SRC emacs-lisp
   (global-set-key "\C-ca" 'org-agenda)
   (setq org-agenda-files (list
@@ -625,7 +625,7 @@ My Org agenda
                           )
         )
 #+END_SRC
-Create todo.org if it does not exist
+   Create todo.org if it does not exist
 #+BEGIN_SRC emacs-lisp
   (if (not
        (file-exists-p "~/Documents/todo.org"))
@@ -635,7 +635,7 @@ Create todo.org if it does not exist
     )
 #+END_SRC
 ** Org Bullets
-Make Org look prettier
+   Make Org look prettier
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -650,7 +650,7 @@ Make Org look prettier
     )
 #+END_SRC
 ** Same edit window
-With =C-c '= replace the original .org file with editor
+   With =C-c '= replace the original .org file with editor
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
 #+END_SRC
@@ -668,7 +668,8 @@ With =C-c '= replace the original .org file with editor
   (put 'upcase-region 'disabled nil)
 #+END_SRC
 ** Dash
-A modern list api for Emacs. Should be required by other packages, but I make sure it is installed.
+   Modern list api for Emacs
+   Should be required by other packages, but I make sure it is installed.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
     :ensure t
@@ -696,7 +697,7 @@ A modern list api for Emacs. Should be required by other packages, but I make su
     )
 #+END_SRC
 ** Dired Sidebar
-Sidebar for Emacs leveraging Dired
+   Sidebar for Emacs leveraging Dired
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sidebar
     :ensure t
@@ -707,7 +708,7 @@ Sidebar for Emacs leveraging Dired
     )
 #+END_SRC
 ** Reveal.js
-Export ORG mode contents to Reveal.js HTML presentations
+   Export ORG mode contents to Reveal.js HTML presentations
 #+BEGIN_SRC emacs-lisp
   ;; reveal dependency
   (use-package htmlize
@@ -720,13 +721,14 @@ Export ORG mode contents to Reveal.js HTML presentations
     )
 #+END_SRC
 ** Vterm Terminal
-[[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]], installation of libvterm will be performed automatically if the prerequisites are met:
-- Emacs with module support
-- cmake
-- make
-- libtool
-- git
-Load vterm only in GUI
+   [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
+   Installation of libvterm will be performed automatically if the prerequisites are met:
+     - Emacs with module support
+     - cmake
+     - make
+     - libtool
+     - git
+   Load vterm only in GUI
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'gnu/linux)
       (when window-system
