@@ -88,6 +88,12 @@ alias seen='sudo watch arp-scan --localnet'
 alias seeo='sudo netstat -acnptu'
 
 
+# Programming
+
+alias py='python'
+alias rkt='racket'
+
+
 # Portage
 
 alias E='tail -f ${EPREFIX}/var/log/emerge.log'
