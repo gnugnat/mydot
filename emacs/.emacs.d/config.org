@@ -396,7 +396,7 @@ Auto close brackets
 #+END_SRC
 * Programming
 ** Company
-Company completion
+   [[https://company-mode.github.io/][Completion]]
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
@@ -406,7 +406,7 @@ Company completion
     )
 #+END_SRC
 ** Flycheck
-Auto check
+   [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :ensure t
@@ -429,7 +429,7 @@ Auto check
     )
 #+END_SRC
 ** Markdown
-[[https://daringfireball.net/projects/markdown][Markdown]] language support
+   [[https://daringfireball.net/projects/markdown][Markdown]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
@@ -457,8 +457,8 @@ Auto check
     )
 #+END_SRC
 ** Python
-Python IDE.
-Remember to run elpy-config to install some necessary packages
+   [[https://www.python.org/][Python]] IDE
+   Remember to run elpy-config to install some necessary packages
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
     :ensure t
@@ -477,7 +477,7 @@ Remember to run elpy-config to install some necessary packages
     )
 #+END_SRC
 ** Racket
-[[https://racket-lang.org/][Racket]] language support
+   [[https://racket-lang.org/][Racket]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :ensure t
@@ -487,7 +487,7 @@ Remember to run elpy-config to install some necessary packages
     )
 #+END_SRC
 ** Rust
-[[https://www.rust-lang.org/][Rust]] language support
+   [[https://www.rust-lang.org/][Rust]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
     :ensure t
@@ -501,7 +501,7 @@ Remember to run elpy-config to install some necessary packages
     )
 #+END_SRC
 ** Slime
-Superior Lisp interaction mode for Emacs
+   [[https://common-lisp.net/project/slime/][Lisp]] language support
 #+BEGIN_SRC emacs-lisp
   (use-package slime
     :ensure t
@@ -568,7 +568,7 @@ Enable Web Mode
     )
 #+END_SRC
 ** Yasnippet
-Code snippets
+   [[https://github.com/AndreaCrotti/yasnippet-snippets][Code snippets]]
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
