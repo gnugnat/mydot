@@ -201,8 +201,9 @@
      'default nil
      :weight 'normal
      :width 'normal
-     :height 105
+     :height 100
      :font (font-candidate
+            "JetBrains Mono"
             "Dina"
             "xos4 Terminus"
             "Terminus"
