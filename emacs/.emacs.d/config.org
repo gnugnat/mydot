@@ -689,8 +689,8 @@
           dashboard-banner-logo-title-face t
           dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
           dashboard-items '(
-                            (recents  . 7)
-                            (projects . 5)
+                            (recents  . 5)
+                            (projects . 7)
                             )
           show-week-agenda-p t
           dashboard-center-content t)
