@@ -139,7 +139,7 @@ if command -v ssh-agent >/dev/null 2>&1 && [ -d "${XDG_RUNTIME_DIR}" ]
 then
     # Start SSH agent if it is not running
     pgrep -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
-    [ -x "${SSH_AUTH_SOCK}" ] || eval "$(< "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
+    [ -e "${SSH_AUTH_SOCK}" ] || eval "$(< "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
 fi
 
 
