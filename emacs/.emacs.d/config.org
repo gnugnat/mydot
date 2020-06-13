@@ -2,7 +2,7 @@
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
-[[./img/Noise_Marine_Transparent.png]]
+[[./assets/icons/mydot.png]]
 * Environment
 ** Auto Update
 #+BEGIN_SRC emacs-lisp
@@ -684,10 +684,8 @@
     (setq inhibit-startup-screen t
           inhibit-startup-message t)
     (dashboard-setup-startup-hook)
-    ;; This is a parody of Warhammer Noise Marine quote in case you wondered :)
-    (setq dashboard-banner-logo-title "This lack of Emacs offends Stallman!"
-          dashboard-banner-logo-title-face t
-          dashboard-startup-banner "~/.emacs.d/img/Noise_Marine_Transparent.png"
+    (setq dashboard-banner-logo-title-face t
+          dashboard-startup-banner "~/.emacs.d/assets/icons/mydot.png"
           dashboard-items '(
                             (recents  . 5)
                             (projects . 7)
