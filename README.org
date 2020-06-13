@@ -22,10 +22,10 @@
    - =$HOME/.emacs.d= 	- for Emacs
 *** install one
     example: zsh
-    - =stow zsh=
+    - =stow -t ~ zsh=
 *** uninstall one
     example: zsh
-    - =stow -D zsh=
+    - =stow -t ~ -D zsh=
 ** ZSH
 - Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
