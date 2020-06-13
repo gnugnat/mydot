@@ -1,9 +1,11 @@
 #+TITLE: My dotfiles
-#+ATTR_HTML: style margin-left: auto; margin-right: auto;
-#+CREATOR: xgqt
+#+AUTHOR: XGQT
 #+LANGUAGE: en
+#+ATTR_HTML: style margin-left: auto; margin-right: auto;
 #+STARTUP: showall inlineimages
-[[./Larry_Cow.png]]
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_THEME: black
+[[./mydot.png]]
 * Howto
 ** Installation
 - git clone the repo to ~/mydot
