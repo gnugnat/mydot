@@ -46,7 +46,7 @@
 (define show
   (lambda atoms
     (map (lambda (atom) (display atom)) atoms)
-    (display "\n")
+    (display "")
    )
   )
 
