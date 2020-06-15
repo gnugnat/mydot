@@ -1,0 +1,120 @@
+#!/usr/bin/env guile
+!#
+
+
+;;; ~/.guile
+
+;; Some Guile REPL customizations
+
+
+;;; Modules
+
+;; Readline interface
+(cond
+ ((false-if-exception (resolve-interface '(ice-9 readline)))
+  =>
+  (lambda (module)
+    ((module-ref module 'activate-readline))
+    )
+  )
+ (else
+  (show "Consider installing 'guile-readline' package" "\n")
+   )
+  )
+
+
+;;; Environment
+
+;; History file (setting it here doesn't work)
+;; (setenv "GUILE_HISTORY" "$HOME/.cache/guile/history")
+
+
+;;; Aliases
+
+(define (first atom)
+  (car atom)
+  )
+
+(define (rest atom)
+  (cdr atom)
+  )
+
+
+;;; Helpers
+
+;; Dispaly any atoms
+(define show
+  (lambda atoms
+    (map (lambda (atom) (display atom)) atoms)
+    (display "\n")
+   )
+  )
+
+;; Load the RC file
+(define reload
+  (lambda ()
+    (load
+     (string-append (getenv "HOME") "/.guile")
+     )
+    )
+  )
+
+;; Get a random element of a list
+(define (list->random lst)
+  (list-ref lst (random (length lst)))
+  )
+
+;; From among given atoms select one at random
+(define atoms->random
+  (lambda atoms
+    (list->random atoms)
+    )
+  )
+
+;; Read a file into a list of characters
+(define (file->list-of-chars file)
+  (with-input-from-file file
+    (lambda ()
+      (let
+          reading ((chars '()))
+        (let
+            ((char (read-char)))
+          (if (eof-object? char)
+              (reverse chars)
+              (reading (cons char chars))
+              )
+          )
+        )
+      )
+    )
+  )
+
+;; Display a file
+(define (display-file file)
+  (display
+   (list->string (file->list-of-chars file))
+   )
+  )
+
+
+;;; Greeter
+
+(show
+ "\n"
+ "        .,;::::.    .......                                     " "\n"
+ "     ..;:::::'`       .......                                   " "\n"
+ "   .;::::::'`           .......                                 " "\n"
+ "  .;::::;'    .,;:;,.     ......         ...  ...               " "\n"
+ " .;::::;.  ;kNMMMWMMMKd.   ......       .WMN  xMM.              " "\n"
+ " ;:::::  .KMMk;`  `'oNMWx   ;:;...       ```  xMM.     .;:;.    " "\n"
+ ".:::::' .XMW:         ```  ,MMO... 'MMo .WMN  xMM.  .'WMNXNWWk' " "\n"
+ "':::::. ;MM0   ..........  ,MMO... 'MMo .WMN  xMM. :WM0,.  .xMW;" "\n"
+ "::::::. .WMN.  cXXXXXXNNNK ,MMO... 'MMo .WMN  xMM. KMMNXXXXXNMM0" "\n"
+ "`:::::;  cWMK;      .oWMW; 'MMK... cMMo .WMN  xMM. xMMd     ...." "\n"
+ "`::::::   'kWMNOxdx0WMWx.   0MMKxdkWMMo .WMN  xMM.  dWMKdooOWMk." "\n"
+ " `::::::.  `:okO00ko:'`    ..ck00Od;x;   xkd  ckk.   `:dO00kl`  " "\n"
+ "  `::::::.               ......                                 " "\n"
+ "   `::::::.            ......                                   " "\n"
+ "     ``:::::.        .....                                      " "\n"
+ "\n"
+ )
