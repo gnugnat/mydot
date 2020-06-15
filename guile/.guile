@@ -7,22 +7,6 @@
 ;; Some Guile REPL customizations
 
 
-;;; Modules
-
-;; Readline interface
-(cond
- ((false-if-exception (resolve-interface '(ice-9 readline)))
-  =>
-  (lambda (module)
-    ((module-ref module 'activate-readline))
-    )
-  )
- (else
-  (show "Consider installing 'guile-readline' package" "\n")
-   )
-  )
-
-
 ;;; Environment
 
 ;; History file (setting it here doesn't work)
@@ -95,6 +79,35 @@
    (list->string (file->list-of-chars file))
    )
   )
+
+
+;;; Modules
+
+;; Readline interface
+(cond
+ ((false-if-exception (resolve-interface '(ice-9 readline)))
+  =>
+  (lambda (module)
+    ((module-ref module 'activate-readline))
+    )
+  )
+ (else
+  (show "Consider installing 'guile-readline'" "\n")
+  )
+ )
+
+;; Colorized REPL
+(cond
+ ((false-if-exception (resolve-interface '(ice-9 colorized)))
+  =>
+  (lambda (module)
+    ((module-ref module 'activate-colorized))
+    )
+  )
+ (else
+  (show "Consider installing 'guile-colorized'" "\n")
+  )
+ )
 
 
 ;;; Greeter
