@@ -1,0 +1,88 @@
+#!/usr/bin/env racket
+
+
+;;; ~/.racketrc
+
+;; Some Racket REPL customizations
+
+;; This file isn't loaded at startup
+;; if we define the language, like:
+;; #lang racket
+
+
+;;; Modules
+
+(require xrepl/xrepl)
+
+;; For tracing
+(require racket/trace)
+
+
+;; Helpers
+
+;; Dispaly any atoms
+(define show
+  (lambda atoms
+    (map (lambda (atom) (display atom)) atoms)
+    (display "")
+    )
+  )
+
+;; Load the RC file
+(define reload
+  (lambda ()
+    (load
+     (string-append (path->string (find-system-path 'home-dir)) ".racketrc")
+     )
+    )
+  )
+
+;; Get a random element of a list
+(define (list->random lst)
+  [(list? lst) (list-ref lst (random (length lst)))]
+  )
+
+;; From among given atoms select one at random
+(define atoms->random
+  (lambda atoms
+    (list->random atoms)
+    )
+  )
+
+;; Display files inside REPL
+(define (display-file str)
+  (display-lines
+   (file->lines str)
+   )
+  )
+
+
+;;; Greeter
+
+(show
+ "\n"
+ "                .,;;;;;;;;;;;;;;,'." "\n"
+ "                   .,;;;;;;;;;;;;;;;;." "\n"
+ "       ..            .';;;;;;;;;;;;;;;;,." "\n"
+ "     .'''''..          .';;;;;;;;;;;;;;;;,." "\n"
+ "   .''''''''''.           ';;;;;;;;;;;;;;;;." "\n"
+ "  .'''''''''''''..          ';;;;;;;;;;;;;;;;." "\n"
+ " .'''''''''''''''''.         .,;;;;;;;;;;;;;;;." "\n"
+ ".''''''''''''''''''.           ';;;;;;;;;;;;;;," "\n"
+ "'''''''''''''''''.              .;;;;;;;;;;;;;;'" "\n"
+ "'''''''''''''''..                 ';;;;;;;;;;;;;" "\n"
+ "''''''''''''''.        .''         .;;;;;;;;;;;;" "\n"
+ "'''''''''''''.       .'''''.        .;;;;;;;;;;;" "\n"
+ "'''''''''''.        .'''''''.        .;;;;;;;;;;" "\n"
+ "''''''''''.        .'''''''''.        .;;;;;;;;;" "\n"
+ "'''''''''.        ''''''''''''.        .;;;;;;;." "\n"
+ " '''''''.        ''''''''''''''.        .;;;;;," "\n"
+ " `'''''.        ''''''''''''''''.        .;;;," "\n"
+ "  `''''        ''''''''''''''''''.        ,;," "\n"
+ "    `'        .'''''''''''''''''''        .." "\n"
+ "             .''''''''''''''''''''." "\n"
+ "             ''''''''''''''''''''''" "\n"
+ "            .''''''''''''''''''''''" "\n"
+ "             ```'''''''''''''''''" "\n"
+ "\n"
+ )
