@@ -6,25 +6,13 @@
 # |_  / __| '_ \| '__/ __|
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
+# ~/.config/zsh/zshrc
 
 
-# >>> General setup
+# >>> Common settings
 
-# Source common shell functions
-
-shell_functions="${HOME}/.config/sh/functions"
-[ -f "${shell_functions}" ] && source "${shell_functions}"
-
-
-# >>> Path
-
-setup_path
-
-
-# >>> Aliases
-
-# Source shell-agnostic aliases
-source_file "${HOME}/.config/sh/aliases"
+profile="${HOME}/.profile"
+[ -e "${profile}" ] && source "${profile}"
 
 
 # >>> History
@@ -84,7 +72,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey -r "^D"
 
 
-# >>> Theme
+# >>> Prompt theme
 
 # Prompt init
 autoload -U promptinit
@@ -143,7 +131,7 @@ then
 fi
 
 
-# >>> Miscellaneous
+# >>> ZSH tweaks
 
 # Prompt Substring
 # used by git_check

@@ -18,30 +18,15 @@ then
 fi
 
 
-# >>> General setup
+# >>> Common settings
 
-# Source the system profile
-[ -f /etc/profile ] && source /etc/profile
-
-# Source common shell functions
-shell_functions="${HOME}/.config/sh/functions"
-[ -f "${shell_functions}" ] && source "${shell_functions}"
-
-
-# >>> Path
-
-setup_path
-
-
-# >>> Aliases
-
-# Source shell-agnostic aliases
-source_file "${HOME}/.config/sh/aliases"
+profile="${HOME}/.profile"
+[ -e "${profile}" ] && . "${profile}"
 
 
 # >>> History
 
-# File
+# File location
 if [ -n "${XDG_CACHE_HOME}" ]
 then
     mkdir -p "${XDG_CACHE_HOME}"/bash
@@ -58,7 +43,7 @@ HISTFILESIZE=50000
 
 # >>> Safety
 
-# set root user editor to nano
+# Set root's editor to nano
 if [ ${EUID} -eq 0 ]
 then
     if command -v nano >/dev/null 2>&1
@@ -68,7 +53,7 @@ then
 fi
 
 
-# >>> Theme
+# >>> Prompt theme
 
 if [ ${EUID} -eq 0 ]
 then
@@ -78,7 +63,7 @@ else
 fi
 
 
-# >>> Miscellaneous
+# >>> Bash tweaks
 
 # Auto-change directory
 shopt -s autocd
