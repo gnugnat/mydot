@@ -101,7 +101,7 @@
 
 (show
  "\n"
- "        .,;::::.    .......                                     " "\n"
+ "        .,;::::.    ......                                      " "\n"
  "     ..;:::::'`       .......                                   " "\n"
  "   .;::::::'`           .......                                 " "\n"
  "  .;::::;'    .,;:;,.     ......         ...  ...               " "\n"
@@ -111,8 +111,8 @@
  "':::::. ;MM0   ..........  ,MMO... 'MMo .WMN  xMM. :WM0,.  .xMW;" "\n"
  "::::::. .WMN.  cXXXXXXNNNK ,MMO... 'MMo .WMN  xMM. KMMNXXXXXNMM0" "\n"
  "`:::::;  cWMK;      .oWMW; 'MMK... cMMo .WMN  xMM. xMMd     ...." "\n"
- "`::::::   'kWMNOxdx0WMWx.   0MMKxdkWMMo .WMN  xMM.  dWMKdooOWMk." "\n"
- " `::::::.  `:okO00ko:'`    ..ck00Od;x;   xkd  ckk.   `:dO00kl`  " "\n"
+ "`::::::   'kWMNOxdx0WMWx.  .0MMKxdkWMMo .WMN  xMM.  dWMKdooOWMk." "\n"
+ " `::::::.  `:okO00ko:'`   ...ck00Od;x;   xkd  ckk.   `:dO00kl`  " "\n"
  "  `::::::.               ......                                 " "\n"
  "   `::::::.            ......                                   " "\n"
  "     ``:::::.        .....                                      " "\n"
