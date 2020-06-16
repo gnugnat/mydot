@@ -594,6 +594,39 @@
     )
 #+END_SRC
 * Org
+** Agenda
+   My Org agenda
+#+BEGIN_SRC emacs-lisp
+  (global-set-key "\C-ca" 'org-agenda)
+  (setq org-agenda-files (list
+                          "~/Documents/todo.org"
+                          )
+        )
+#+END_SRC
+   Create todo.org if it does not exist
+#+BEGIN_SRC emacs-lisp
+  (if (not
+       (file-exists-p "~/Documents/todo.org"))
+      (with-temp-buffer
+        (write-file "~/Documents/todo.org")
+        )
+    )
+#+END_SRC
+** Bullets
+   Make Org look prettier
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (setq org-bullets-bullet-list
+          '("⦿"))
+    (add-hook 'org-mode-hook
+              (lambda ()
+                (org-bullets-mode)
+                )
+              )
+    )
+#+END_SRC
 ** Deft
    My deft setup
 #+BEGIN_SRC emacs-lisp
@@ -617,40 +650,7 @@
         )
     )
 #+END_SRC
-** Org Agenda
-   My Org agenda
-#+BEGIN_SRC emacs-lisp
-  (global-set-key "\C-ca" 'org-agenda)
-  (setq org-agenda-files (list
-                          "~/Documents/todo.org"
-                          )
-        )
-#+END_SRC
-   Create todo.org if it does not exist
-#+BEGIN_SRC emacs-lisp
-  (if (not
-       (file-exists-p "~/Documents/todo.org"))
-      (with-temp-buffer
-        (write-file "~/Documents/todo.org")
-        )
-    )
-#+END_SRC
-** Org Bullets
-   Make Org look prettier
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :config
-    (setq org-bullets-bullet-list
-          '("⦿"))
-    (add-hook 'org-mode-hook
-              (lambda ()
-                (org-bullets-mode)
-                )
-              )
-    )
-#+END_SRC
-** Same edit window
+** Edit window
    With =C-c '= replace the original .org file with editor
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
@@ -659,7 +659,7 @@
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c t") 'org-insert-structure-template)
 #+END_SRC
-** Wrap words
+** Word wrap
 #+BEGIN_SRC emacs-lisp
   (setq org-startup-truncated nil)
 #+END_SRC
