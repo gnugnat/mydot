@@ -375,14 +375,16 @@
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
-* Completion
-** Auto Complete
+* Programming
+** Company
+   [[https://company-mode.github.io/][Completion]]
 #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-      :ensure t
-      :config
-      (ac-config-default)
-      )
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 2)
+    )
 #+END_SRC
 ** Electric Pairs
    Auto close brackets
@@ -394,17 +396,6 @@
                               (?\" . ?\")
                               ))
   (electric-pair-mode t)
-#+END_SRC
-* Programming
-** Company
-   [[https://company-mode.github.io/][Completion]]
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :ensure t
-    :config
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 2)
-    )
 #+END_SRC
 ** Flycheck
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
@@ -465,16 +456,12 @@
     :ensure t
     :init
     (elpy-enable)
+    :config
     (setq elpy-rpc-virtualenv-path "~/.local/")
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
       (add-hook 'elpy-mode-hook 'flycheck-mode)
       )
-    (add-hook 'python-mode-hook
-              (lambda ()
-                (auto-complete-mode -1)
-                )
-              )
     )
 #+END_SRC
 ** Racket
