@@ -498,6 +498,18 @@
     (setq slime-contribs '(slime-fancy))
     )
 #+END_SRC
+** Scheme
+#+BEGIN_SRC emacs-lisp
+  (use-package geiser
+    :ensure t
+    :init
+    (setq geiser-active-implementations
+          '(
+            guile
+            )
+          )
+    )
+#+END_SRC
 ** Tabs
    Tab width settings
 #+BEGIN_SRC emacs-lisp
