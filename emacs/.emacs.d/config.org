@@ -2,7 +2,7 @@
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
-[[./assets/icons/mydot.png]]
+[[./assets/icons/steal_your_emacs_250x250.png]]
 * Environment
 ** Auto Update
 #+BEGIN_SRC emacs-lisp
@@ -684,7 +684,7 @@
           inhibit-startup-message t)
     (dashboard-setup-startup-hook)
     (setq dashboard-banner-logo-title-face t
-          dashboard-startup-banner "~/.emacs.d/assets/icons/mydot.png"
+          dashboard-startup-banner "~/.emacs.d/assets/icons/steal_your_emacs_250x250.png"
           dashboard-items '(
                             (recents  . 5)
                             (projects . 7)
