@@ -1,4 +1,6 @@
 #+TITLE: My Primary Emacs Config in Org
+#+AUTHOR: XGQT
+#+LANGUAGE: en
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
