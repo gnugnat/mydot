@@ -80,6 +80,20 @@ mkcd() {
     mkdir "${1}" && cd "${1}" || return 1
 }
 
+# Open a link in Emacs web browser
+# $1 - URL
+# $2 - a additional flag, i.e. -nw
+eww() {
+    eval emacs "${2}" \
+         --eval "'(eww" "\"" "${1}" "\"" ")'" \
+}
+
+# Open current directory in Emacs dired
+# $@ (any) - a additional flag, i.e. -nw
+dired() {
+    eval emacs "${@}" \
+         --eval "'(dired nil)'" \
+}
 
 # >>> Environment
 
