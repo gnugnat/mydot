@@ -83,12 +83,7 @@
   (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
 * Buffers & Windows
-** Expert mode
-   Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
-#+BEGIN_SRC emacs-lisp
-  (setq ibuffer-expert t)
-#+END_SRC
-** Following window splits
+** Follow Splits
    Better window splitting
 #+BEGIN_SRC emacs-lisp
   ;; horizontal
@@ -112,6 +107,11 @@
    Better switching
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+** Ibuffer Expert
+   Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
+#+BEGIN_SRC emacs-lisp
+  (setq ibuffer-expert t)
 #+END_SRC
 ** IDO mode
    Buffer stuff
@@ -148,7 +148,7 @@
     )
   (global-set-key (kbd "C-x x") 'kill-and-remove-split)
 #+END_SRC
-** Smex config
+** Smex
    Run known programs faster
 #+BEGIN_SRC emacs-lisp
   (use-package smex
@@ -159,7 +159,7 @@
     ("M-x" . smex)
     )
 #+END_SRC
-** Switch-window
+** Switch window
    Faster window switching, when you press =C-x o= you choose a window
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
@@ -271,7 +271,7 @@
     ("M-s" . avy-goto-char)
     )
 #+END_SRC
-** Beacon mode
+** Beacon
    Line highlight when switching
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
@@ -289,7 +289,7 @@
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
 #+END_SRC
-** Insert Date
+** Insert date
    In non-Org documents:
      - =C-c d= :         13.04.2004
      - =C-u C-c d= :     2004-04-13
@@ -656,10 +656,6 @@
   (setq org-startup-truncated nil)
 #+END_SRC
 * Misc Plugins
-** Uppercase
-#+BEGIN_SRC emacs-lisp
-  (put 'upcase-region 'disabled nil)
-#+END_SRC
 ** Dash
    Modern list api for Emacs
    Should be required by other packages, but I make sure it is installed.
@@ -699,6 +695,11 @@
     :bind
     (("C-x C-n" . dired-sidebar-toggle-sidebar))
     )
+#+END_SRC
+** Uppercase
+   =C-x C-u= to convert a region to uppercase
+#+BEGIN_SRC emacs-lisp
+  (put 'upcase-region 'disabled nil)
 #+END_SRC
 ** Reveal.js
    Export ORG mode contents to Reveal.js HTML presentations
