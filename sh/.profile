@@ -103,6 +103,9 @@ dired() {
 # If EDITOR variable is empty set the editor to nano
 [ -z "$EDITOR" ] && export EDITOR=nano
 
+# Disable less history file
+export LESSHISTFILE=-
+
 # Guile history file
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
