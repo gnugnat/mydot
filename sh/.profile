@@ -85,14 +85,14 @@ mkcd() {
 # $2 - a additional flag, i.e. -nw
 eww() {
     eval emacs "${2}" \
-         --eval "'(eww" "\"" "${1}" "\"" ")'" \
+         --eval "'(eww" "\"" "${1}" "\"" ")'"
 }
 
 # Open current directory in Emacs dired
 # $@ (any) - a additional flag, i.e. -nw
 dired() {
     eval emacs "${@}" \
-         --eval "'(dired nil)'" \
+         --eval "'(dired nil)'"
 }
 
 # >>> Environment
