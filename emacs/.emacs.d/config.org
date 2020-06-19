@@ -75,13 +75,6 @@
   ;; Disable clipboard
   (setq x-select-enable-clipboard-manager nil)
 #+END_SRC
-** Recent Files
-   Show a list of recently opened files with =C-c f=
-#+BEGIN_SRC emacs-lisp
-  (recentf-mode 1)
-  (setq recentf-max-menu-items 20)
-  (global-set-key (kbd "C-c f") 'recentf-open-files)
-#+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
   ;; Control & Scroll Up - Increase
@@ -681,16 +674,18 @@
     :ensure t
     :config
     (setq inhibit-startup-screen t
-          inhibit-startup-message t)
+          inhibit-startup-message t
+          )
     (dashboard-setup-startup-hook)
     (setq dashboard-banner-logo-title-face t
           dashboard-startup-banner "~/.emacs.d/assets/icons/steal_your_emacs_250x250.png"
           dashboard-items '(
                             (recents  . 5)
-                            (projects . 7)
+                            (projects . 5)
                             )
           show-week-agenda-p t
-          dashboard-center-content t)
+          dashboard-center-content t
+          )
     (add-to-list 'dashboard-items '(agenda) t)
     )
 #+END_SRC
