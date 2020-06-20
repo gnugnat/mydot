@@ -76,6 +76,8 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
   ;; Disable clipboard
   (setq x-select-enable-clipboard-manager nil)
+  ;; Highlight parens
+  (show-paren-mode t)
 #+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
