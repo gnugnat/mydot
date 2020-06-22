@@ -88,12 +88,6 @@ eww() {
          --eval "'(eww" "\"" "${1}" "\"" ")'"
 }
 
-# Open current directory in Emacs dired
-# $@ (any) - a additional flag, i.e. -nw
-dired() {
-    eval emacs "${@}" \
-         --eval "'(dired nil)'"
-}
 
 # >>> Environment
 
