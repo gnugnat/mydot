@@ -173,13 +173,15 @@ alias seeo='sudo netstat -acnptu'
 # Editing
 alias ,,='cd ../..'
 alias e='emacs -nw'
-alias n='nano'
-alias v='vim'
+alias eq='emacs -Q -nw --eval "(setq auto-save-default nil create-lockfiles nil make-backup-files nil scroll-conservatively 100 x-select-enable-clipboard-manager nil)"'
 alias hl='highlight -O truecolor'
-alias nuke='rm -rfd'
+alias n='nano'
 alias nranger='EDITOR=nano ranger'
+alias nuke='rm -rfd'
 alias open='xdg-open'
 alias rcp='rsync --stats --progress'
+alias v='vim'
+
 
 # Shell
 alias ed-shrc='${EDITOR} ${HOME}/.profile'
