@@ -466,6 +466,10 @@
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :ensure t
+    :mode
+    (
+     ("\\.rkt\\'" . racket-mode)
+     )
     :config
     (add-hook 'racket-mode-hook 'company-mode)
     (add-hook 'racket-mode-hook 'racket-xp-mode)
