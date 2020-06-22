@@ -76,12 +76,9 @@ add_to_path() {
 # create a alias only if a command and/or alias
 # with the desired name does not exist
 a_k_a() {
-    if ! alias "${1}" >/dev/null 2>&1
+    if ! command -v "${1}" >/dev/null 2>&1
     then
-       if ! command -v "${1}" >/dev/null 2>&1
-       then
-           alias "${1}"="${2}"
-       fi
+        alias "${1}"="${2}"
     fi
 }
 
