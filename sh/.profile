@@ -198,7 +198,6 @@ a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a v 'vim'
 
-
 # Shell
 a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
 a_k_a so-shrc 'source ${HOME}/.profile'
@@ -228,11 +227,11 @@ a_k_a rkt 'racket'
 a_k_a E 'tail -f ${EPREFIX}/var/log/emerge.log'
 a_k_a F 'tail -f ${EPREFIX}/var/log/emerge-fetch.log'
 a_k_a P 'cd ${EPREFIX}/etc/portage && tree -a -L 2'
-
-a_k_a pep 'sudo emerge -av'
 a_k_a chu 'sudo emerge -avNUD @world'
 a_k_a ewup 'sudo emerge -avuDNU --with-bdeps=y @world'
+a_k_a pep 'sudo emerge -av'
 a_k_a slr 'sudo smart-live-rebuild'
+a_k_a vmerge 'sudo emerge --verbose --jobs=1 --quiet-build=n'
 
 # Other PKG managers
 a_k_a fpk 'flatpak'
