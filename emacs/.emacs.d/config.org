@@ -394,6 +394,16 @@
                               ))
   (electric-pair-mode t)
 #+END_SRC
+** Elixir
+   [[https://elixir-lang.org/][Elixir]] language support
+#+BEGIN_SRC emacs-lisp
+  (use-package alchemist
+    :ensure t
+    :config
+    (add-hook 'alchemist-mode-hook 'company-mode)
+    (add-hook 'alchemist-mode-hook 'flycheck-mode)
+    )
+#+END_SRC
 ** Flycheck
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
 #+BEGIN_SRC emacs-lisp
