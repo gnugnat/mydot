@@ -404,6 +404,14 @@
     (add-hook 'alchemist-mode-hook 'flycheck-mode)
     )
 #+END_SRC
+** Erlang
+   [[https://www.erlang.org/][Erlang]] language support
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'erlang-mode-hook 'company-mode)
+  ;; Prevent annoying hang-on-compile
+  ;; From https://www.lambdacat.com/post-modern-emacs-setup-for-erlang/
+  (defvar inferior-erlang-prompt-timeout t)
+#+END_SRC
 ** Flycheck
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
 #+BEGIN_SRC emacs-lisp
