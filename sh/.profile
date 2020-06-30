@@ -122,6 +122,10 @@ eww() {
 # Disable less history file
 export LESSHISTFILE=-
 
+# Erlang (OTP) history file (in ~/.cache/erlang-history)
+ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_AFLAGS
+
 # Guile history file
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
