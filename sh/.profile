@@ -186,6 +186,7 @@ a_k_a rp 'sudo '
 a_k_a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 # Network
+a_k_a no-net-sh 'unshare -r -n ${SH}'
 a_k_a seen 'sudo watch arp-scan --localnet'
 a_k_a seeo 'sudo netstat -acnptu'
 alias mtr='mtr --show-ips --curses'
