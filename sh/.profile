@@ -130,6 +130,16 @@ export ERL_AFLAGS
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
 
+# If we're root we don't need sudo in most cases (covered here)
+if [ "$(whoami)" = "root" ]
+then
+    NEED_UID0=""
+else
+
+    NEED_UID0="sudo"
+fi
+export NEED_UID0
+
 
 # >>> PATH setup
 
@@ -183,12 +193,12 @@ esac
 
 # System
 a_k_a rp 'sudo '
-a_k_a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
+a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
 
 # Network
 a_k_a no-net-sh 'unshare -r -n ${SH}'
-a_k_a seen 'sudo watch arp-scan --localnet'
-a_k_a seeo 'sudo netstat -acnptu'
+a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
+a_k_a seeo '${NEED_UID0} netstat -acnptu'
 alias mtr='mtr --show-ips --curses'
 
 # Editing
@@ -232,11 +242,11 @@ a_k_a rkt 'racket'
 a_k_a E 'tail -f ${EPREFIX}/var/log/emerge.log'
 a_k_a F 'tail -f ${EPREFIX}/var/log/emerge-fetch.log'
 a_k_a P 'cd ${EPREFIX}/etc/portage && tree -a -L 2'
-a_k_a chu 'sudo emerge -avNUD @world'
-a_k_a ewup 'sudo emerge -avuDNU --with-bdeps=y @world'
-a_k_a pep 'sudo emerge -av'
-a_k_a slr 'sudo smart-live-rebuild'
-a_k_a vmerge 'sudo emerge --verbose --jobs=1 --quiet-build=n'
+a_k_a chu '${NEED_UID0} emerge -avNUD @world'
+a_k_a ewup '${NEED_UID0} emerge -avuDNU --with-bdeps=y @world'
+a_k_a pep '${NEED_UID0} emerge -av'
+a_k_a slr '${NEED_UID0} smart-live-rebuild'
+a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 
 # Other PKG managers
 a_k_a fpk 'flatpak'
