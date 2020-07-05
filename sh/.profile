@@ -135,7 +135,6 @@ if [ "$(whoami)" = "root" ]
 then
     NEED_UID0=""
 else
-
     NEED_UID0="sudo"
 fi
 export NEED_UID0
