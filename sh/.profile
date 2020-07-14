@@ -212,6 +212,12 @@ a_k_a nuke 'rm -rfd'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a v 'vim'
+a_k_a ec 'emacsclient -n -a ""'
+a_k_a ec-kill 'emacsclient -n --eval "(kill-emacs)"'
+a_k_a ecf 'emacsclient -n -a "" -c'
+a_k_a ecg 'emacsclient -nc -a "" --eval "(gui-reload)"'
+a_k_a ed-start 'emacs --daemon'
+a_k_a ed-stop 'ec-kill'
 
 # Shell
 a_k_a update-mydot 'mydot && sh update && cd -'

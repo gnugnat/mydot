@@ -1,0 +1,104 @@
+#+TITLE: My GUI Emacs Config in Org
+#+AUTHOR: XGQT
+#+LANGUAGE: en
+#+STARTUP: content inlineimages
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_THEME: black
+[[./assets/icons/steal_your_emacs_250x250.png]]
+* Environment
+** Minor
+   Some small tweaks that don't require packages
+#+BEGIN_SRC emacs-lisp
+  (global-prettify-symbols-mode t)
+#+END_SRC
+* Look
+  "Spaceline" and "Theme" will have to be reloaded
+** Font
+   Credit: https://www.emacswiki.org/emacs/SetFonts
+#+BEGIN_SRC emacs-lisp
+  ;; Fallback to another font if first is unavalible
+  (require 'dash)
+  (defun font-candidate (&rest fonts)
+    "Return the first available font."
+    (--first
+     (find-font (font-spec :name it)) fonts
+     )
+    )
+
+  ;; List of fonts
+  (when window-system
+    (set-face-attribute
+     'default nil
+     :weight 'normal
+     :width 'normal
+     :height 100
+     :font (font-candidate
+            "JetBrains Mono"
+            "Dina"
+            "xos4 Terminus"
+            "Terminus"
+            "Hack"
+            "Monospace"
+            "Consolas"
+            )
+     )
+    )
+#+END_SRC
+** Theme
+   The theme needs to be reloaded.
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'spacemacs-dark t)
+#+END_SRC
+** Transparency
+#+BEGIN_SRC emacs-lisp
+  ;; Set transparency
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
+  (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
+
+  ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
+  (defun toggle-transparency ()
+    (interactive)
+    (let ((alpha (frame-parameter nil 'alpha)))
+      (set-frame-parameter
+       nil 'alpha
+       (if (eql
+            (cond ((numberp alpha) alpha)
+                  ((numberp (cdr alpha)) (cdr alpha))
+                  ;; Also handle undocumented (<active> <inactive>) form.
+                  ((numberp (cadr alpha)) (cadr alpha))
+                  )
+            100)
+           '(95 . 80) '(100 . 100)
+           )
+       )
+      )
+    )
+
+  (global-set-key (kbd "C-c t") 'toggle-transparency)
+#+END_SRC
+** Window Size
+   Should work well with 88 x 36
+#+BEGIN_SRC emacs-lisp
+  (set-frame-size (selected-frame) 88 36)
+#+END_SRC
+* Misc Plugins
+** Vterm Terminal
+   [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
+   Installation of libvterm will be performed automatically if the prerequisites are met:
+     - Emacs with module support
+     - cmake
+     - make
+     - libtool
+     - git
+   Load vterm only in GUI
+#+BEGIN_SRC emacs-lisp
+  (if (eq system-type 'gnu/linux)
+      (use-package vterm
+        :ensure t
+        :config
+        (setq vterm-shell '"$SHELL -l")
+        :bind
+        ("<f2>" . 'vterm)
+        )
+    )
+#+END_SRC

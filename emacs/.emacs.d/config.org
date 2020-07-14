@@ -18,18 +18,35 @@
 #+END_SRC
 ** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
-  ;; Edit config.org
   (defun config-visit ()
+    "Edit config.org."
     (interactive)
     (find-file "~/.emacs.d/config.org" )
     )
   (global-set-key (kbd "C-c e") 'config-visit)
-  ;; Reload config.org at runtime
+
   (defun config-reload ()
+    "Reload config.org at runtime."
     (interactive)
-    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" ))
+    (when (file-readable-p "~/.emacs.d/config.org")
+      (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" ))
+      )
     )
   (global-set-key (kbd "C-c r") 'config-reload)
+
+  (defun gui-reload ()
+    "Reload gui-config.org at runtime."
+    (interactive)
+    (when (file-readable-p "~/.emacs.d/gui-config.org")
+      (org-babel-load-file (expand-file-name "~/.emacs.d/gui-config.org"))
+      )
+    )
+  (global-set-key (kbd "C-c g") 'gui-reload)
+
+  ;; Try to load the GUI config
+  (when window-system
+    (gui-reload)
+    )
 #+END_SRC
 ** Keybinding Help
    Key binding hints
@@ -58,8 +75,6 @@
   (setq ring-bell-function 'ignore)
   ;; highlight:
   (global-hl-line-mode t)
-  ;; prettify (lambda to icon):
-  (when window-system (global-prettify-symbols-mode t))
   ;; use mouse in xterm
   (xterm-mouse-mode)
   ;; auto reloading (reverting) buffers
@@ -180,37 +195,6 @@
     )
 #+END_SRC
 * Look
-** Font
-   Credit: https://www.emacswiki.org/emacs/SetFonts
-#+BEGIN_SRC emacs-lisp
-  ;; Fallback to another font if first is unavalible
-  (require 'dash)
-  (defun font-candidate (&rest fonts)
-    "Return the first available font."
-    (--first
-     (find-font (font-spec :name it)) fonts
-     )
-    )
-
-  ;; List of fonts
-  (when window-system
-    (set-face-attribute
-     'default nil
-     :weight 'normal
-     :width 'normal
-     :height 100
-     :font (font-candidate
-            "JetBrains Mono"
-            "Dina"
-            "xos4 Terminus"
-            "Terminus"
-            "Hack"
-            "Monospace"
-            "Consolas"
-            )
-     )
-    )
-#+END_SRC
 ** Spaceline
    Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
 #+BEGIN_SRC emacs-lisp
@@ -230,40 +214,6 @@
     (package-install 'spacemacs-theme)
     )
   (load-theme 'spacemacs-dark t)
-#+END_SRC
-** Transparency
-#+BEGIN_SRC emacs-lisp
-  ;; Set transparency
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
-
-  ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
-  (defun toggle-transparency ()
-    (interactive)
-    (let ((alpha (frame-parameter nil 'alpha)))
-      (set-frame-parameter
-       nil 'alpha
-       (if (eql
-            (cond ((numberp alpha) alpha)
-                  ((numberp (cdr alpha)) (cdr alpha))
-                  ;; Also handle undocumented (<active> <inactive>) form.
-                  ((numberp (cadr alpha)) (cadr alpha))
-                  )
-            100)
-           '(95 . 80) '(100 . 100)
-           )
-       )
-      )
-    )
-
-  (global-set-key (kbd "C-c t") 'toggle-transparency)
-#+END_SRC
-** Window Size
-   Should work well with 88 x 36
-#+BEGIN_SRC emacs-lisp
-  (when window-system
-    (set-frame-size (selected-frame) 88 36)
-    )
 #+END_SRC
 * File Editing
 ** Avy
@@ -738,27 +688,5 @@
     :config
     ;; maybe add auto-installer in the future
     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
-    )
-#+END_SRC
-** Vterm Terminal
-   [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
-   Installation of libvterm will be performed automatically if the prerequisites are met:
-     - Emacs with module support
-     - cmake
-     - make
-     - libtool
-     - git
-   Load vterm only in GUI
-#+BEGIN_SRC emacs-lisp
-  (if (eq system-type 'gnu/linux)
-      (when window-system
-        (use-package vterm
-          :ensure t
-          :config
-          (setq vterm-shell '"$SHELL -l")
-          :bind
-          ("<f2>" . 'vterm)
-          )
-        )
     )
 #+END_SRC
