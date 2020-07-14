@@ -62,9 +62,6 @@ done
 
 # >>> Perform desired Stow action
 
-# go to mydir
-cd "${mydir}" || err_msg "Couldn't cd into ${mydir}"
-
 # then we iterate through everything there
 for target in *
 do
