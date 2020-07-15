@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Development;
+Comment=Start Emacs Daemon and open a GUI frame
+Comment[en_US]=Start Emacs Daemon and open a GUI frame
+Exec=emacsclient -a "" -n -c --eval "(gui-reload)"
+GenericName=Start Emacsclient
+GenericName[en_US]=Start Emacsclient
+Icon=emacs
+MimeType=text/css;text/english;text/html;text/plain;text/x-c;text/x-chdr;text/x-csrc;text/x-c++;text/x-c++hdr;text/x-c++src;text/x-java;text/x-makefile;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;
+Name=Start Emacsclient
+Name[en_US]=Start Emacsclient
+Path=
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=0.1
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
