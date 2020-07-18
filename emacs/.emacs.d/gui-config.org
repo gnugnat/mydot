@@ -12,9 +12,8 @@
   (global-prettify-symbols-mode t)
 #+END_SRC
 * Look
-  "Spaceline" and "Theme" will have to be reloaded
 ** Font
-   Credit: https://www.emacswiki.org/emacs/SetFonts
+   Credits: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
   ;; Fallback to another font if first is unavalible
   (require 'dash)
