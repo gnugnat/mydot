@@ -24,24 +24,28 @@
      )
     )
 
-  ;; List of fonts
-  (when window-system
-    (set-face-attribute
-     'default nil
-     :weight 'normal
-     :width 'normal
-     :height 100
-     :font (font-candidate
-            "JetBrains Mono"
-            "Dina"
-            "xos4 Terminus"
-            "Terminus"
-            "Hack"
-            "Monospace"
-            "Consolas"
-            )
-     )
+  (set-face-attribute
+   'default nil
+   :weight 'normal
+   :width 'normal
+   :height 100
+   :font
+   ;; List of fonts
+   (font-candidate
+    "JetBrains Mono"
+    "Dina"
+    "xos4 Terminus"
+    "Terminus"
+    "Hack"
+    "Monospace"
+    "Consolas"
     )
+   )
+#+END_SRC
+** Spaceline
+   The spaceline needs to be reloaded.
+#+BEGIN_SRC emacs-lisp
+  (spaceline-spacemacs-theme)
 #+END_SRC
 ** Theme
    The theme needs to be reloaded.
@@ -57,7 +61,10 @@
   ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
   (defun toggle-transparency ()
     (interactive)
-    (let ((alpha (frame-parameter nil 'alpha)))
+    (let
+        (
+         (alpha (frame-parameter nil 'alpha))
+         )
       (set-frame-parameter
        nil 'alpha
        (if (eql
@@ -95,7 +102,7 @@
       (use-package vterm
         :ensure t
         :config
-        (setq vterm-shell '"$SHELL -l")
+        (setq vterm-shell '"${SHELL} -l")
         :bind
         ("<f2>" . 'vterm)
         )
