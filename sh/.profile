@@ -117,7 +117,7 @@ eww() {
 [ -e /etc/profile ] && . /etc/profile
 
 # If EDITOR variable is empty set the editor to nano
-[ -z "$EDITOR" ] && export EDITOR=nano
+[ -z "${EDITOR}" ] && export EDITOR=nano
 
 # Disable less history file
 export LESSHISTFILE=-
@@ -201,9 +201,15 @@ a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
 alias mtr='mtr --show-ips --curses'
 
-# Editing
+# Editors
 a_k_a ,, 'cd ../..'
 a_k_a e 'emacs -nw'
+a_k_a ec 'emacsclient -a ""'
+a_k_a ec-kill 'emacsclient -n --eval "(kill-emacs)"'
+a_k_a ecf 'emacsclient -a "" -n -c'
+a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
+a_k_a ed-start 'emacs --daemon'
+a_k_a ed-stop 'ec-kill'
 a_k_a eq 'emacs -Q -nw --eval "(setq auto-save-default nil create-lockfiles nil make-backup-files nil scroll-conservatively 100 x-select-enable-clipboard-manager nil)"'
 a_k_a hl 'highlight -O truecolor'
 a_k_a n 'nano'
@@ -212,12 +218,6 @@ a_k_a nuke 'rm -rfd'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a v 'vim'
-a_k_a ec 'emacsclient -a ""'
-a_k_a ec-kill 'emacsclient -n --eval "(kill-emacs)"'
-a_k_a ecf 'emacsclient -a "" -n -c'
-a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
-a_k_a ed-start 'emacs --daemon'
-a_k_a ed-stop 'ec-kill'
 
 # Shell
 a_k_a update-mydot 'mydot && sh update && cd -'
