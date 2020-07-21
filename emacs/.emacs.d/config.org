@@ -65,8 +65,10 @@
   ;; no menubar:
   ;;;; can still be accessed with F10
   (menu-bar-mode -1)
-  ;; no scrollbar:
-  (scroll-bar-mode -1)
+  ;; no scrollbar (only if that function is available):
+  (if (fboundp 'scroll-bar-mode)
+      (scroll-bar-mode -1)
+    )
   ;; line numbers:
   (global-display-line-numbers-mode 1)
   ;; scrolling:
