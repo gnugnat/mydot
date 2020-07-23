@@ -335,6 +335,14 @@
     (setq company-minimum-prefix-length 2)
     )
 #+END_SRC
+** C
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c-mode-hook 'company-mode)
+#+END_SRC
+** C++
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c++-mode-hook 'company-mode)
+#+END_SRC
 ** Electric Pairs
    Auto close brackets
 #+BEGIN_SRC emacs-lisp
@@ -345,6 +353,10 @@
                               (?\" . ?\")
                               ))
   (electric-pair-mode t)
+#+END_SRC
+** Elisp
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
 #+END_SRC
 ** Elixir
    [[https://elixir-lang.org/][Elixir]] language support
@@ -463,6 +475,10 @@
                 )
               )
     )
+#+END_SRC
+** Shell Scripting
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'sh-mode-hook 'company-mode)
 #+END_SRC
 ** Slime
    [[https://common-lisp.net/project/slime/][Lisp]] language support
