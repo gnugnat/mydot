@@ -627,7 +627,7 @@
 #+END_SRC
 ** Template
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c t") 'org-insert-structure-template)
+  (global-set-key (kbd "C-c i") 'org-insert-structure-template)
 #+END_SRC
 ** Word wrap
 #+BEGIN_SRC emacs-lisp
