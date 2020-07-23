@@ -518,6 +518,7 @@
     :ensure t
     :mode
     (
+     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
      ("\\.[agj]sp\\'" . web-mode)
      ("\\.as[cp]x\\'" . web-mode)
      ("\\.blade\\.php\\'" . web-mode)
@@ -530,20 +531,21 @@
      ("\\.php\\'" . web-mode)
      ("\\.phtml\\'" . web-mode)
      ("\\.tpl\\.php\\'" . web-mode)
-     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+     ("\\.xml\\'" . web-mode)
      )
     :init
-    (setq web-mode-enable-auto-closing t
-          web-mode-enable-auto-pairing t
-          web-mode-enable-comment-keywords t
-          web-mode-enable-current-element-highlight t
-          web-mode-code-indent-offset 4
-          web-mode-css-indent-offset 4
-          web-mode-markup-indent-offset 4
-          web-mode-block-padding 4
-          web-mode-script-padding 4
-          web-mode-style-padding 4
-          )
+    (setq
+     web-mode-enable-auto-closing t
+     web-mode-enable-auto-pairing t
+     web-mode-enable-comment-keywords t
+     web-mode-enable-current-element-highlight t
+     web-mode-code-indent-offset 4
+     web-mode-css-indent-offset 4
+     web-mode-markup-indent-offset 4
+     web-mode-block-padding 4
+     web-mode-script-padding 4
+     web-mode-style-padding 4
+     )
     )
 #+END_SRC
 ** Yaml
