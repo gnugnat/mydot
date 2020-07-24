@@ -393,6 +393,10 @@
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :ensure t
+    :hook
+    (
+     (go-mode . company-mode)
+     )
     )
 #+END_SRC
 ** Haskell
