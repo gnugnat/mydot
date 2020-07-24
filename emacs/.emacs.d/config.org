@@ -406,6 +406,16 @@
     :ensure t
     )
 #+END_SRC
+** Lisp
+   [[https://common-lisp.net/project/slime/][Lisp]] language support
+#+BEGIN_SRC emacs-lisp
+  (use-package slime
+    :ensure t
+    :config
+    (setq inferior-lisp-program "/usr/bin/sbcl")
+    (setq slime-contribs '(slime-fancy))
+    )
+#+END_SRC
 ** Markdown
    [[https://daringfireball.net/projects/markdown][Markdown]] language support
 #+BEGIN_SRC emacs-lisp
@@ -495,16 +505,6 @@
 ** Shell
 #+BEGIN_SRC emacs-lisp
   (add-hook 'sh-mode-hook 'company-mode)
-#+END_SRC
-** Slime
-   [[https://common-lisp.net/project/slime/][Lisp]] language support
-#+BEGIN_SRC emacs-lisp
-  (use-package slime
-    :ensure t
-    :config
-    (setq inferior-lisp-program "/usr/bin/sbcl")
-    (setq slime-contribs '(slime-fancy))
-    )
 #+END_SRC
 ** Tabs
    Tab width settings
