@@ -293,7 +293,7 @@
     )
 #+END_SRC
 ** Rainbow color
-   Colorize
+   Colorize hexadecimal values
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t
@@ -515,7 +515,7 @@
   (setq css-indent-offset 4)
   (setq sh-basic-offset 4)
 #+END_SRC
-** Web Formatting
+** Web
    Enable Web Mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
@@ -537,7 +537,7 @@
      ("\\.tpl\\.php\\'" . web-mode)
      ("\\.xml\\'" . web-mode)
      )
-    :init
+    :config
     (setq
      web-mode-enable-auto-closing t
      web-mode-enable-auto-pairing t
