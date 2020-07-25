@@ -404,6 +404,11 @@
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
     :ensure t
+    :hook
+    (
+     (haskell-mode . company-mode)
+     (haskell-mode . interactive-haskell-mode)
+     )
     )
 #+END_SRC
 ** Lisp
@@ -444,6 +449,12 @@
               )
     )
 #+END_SRC
+** Perl
+#+BEGIN_SRC emacs-lisp
+  (defalias 'perl-mode 'cperl-mode)
+  (add-hook 'perl-mode-hook 'company-mode)
+  (add-hook 'cperl-mode-hook 'company-mode)
+#+END_SRC
 ** Python
    [[https://www.python.org/][Python]] IDE
    Remember to run elpy-config to install some necessary packages
@@ -481,6 +492,8 @@
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
     :ensure t
+    :hook
+    ((rust-mode . company-mode))
     :config
     ;; Rust style guide recommends spaces for indentation
     (add-hook 'rust-mode-hook
