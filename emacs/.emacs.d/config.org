@@ -550,6 +550,8 @@
      ("\\.tpl\\.php\\'" . web-mode)
      ("\\.xml\\'" . web-mode)
      )
+    :hook
+    ((web-mode . company-mode))
     :config
     (setq
      web-mode-enable-auto-closing t
