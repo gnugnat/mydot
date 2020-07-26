@@ -1,7 +1,8 @@
-zsh/.config/zsh/tty.zsh-theme
-zsh/.config/zsh/emu.zsh-theme
-zsh/.config/zsh/zsh-greeter
-zsh/.config/zsh/plugins
-.zcompdump
-.idea/
 *.swp
+*_archive
+.zcompdump
+/.idea/
+zsh/.config/zsh/emu.zsh-theme
+zsh/.config/zsh/plugins
+zsh/.config/zsh/tty.zsh-theme
+zsh/.config/zsh/zsh-greeter
