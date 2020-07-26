@@ -1,6 +1,13 @@
 #!/bin/sh
 
 
-repoman manifest || ebuild $1 manifest
+# one may want this to be unprivileged
+repoman manifest || ebuild "${1}" manifest
 
-sudo ebuild $1 clean merge
+# we want this to be privileged on Gentoo systems
+if [ "$(whoami)" != root ] && [ -z "${EPREFIX}" ]
+then
+    sudo ebuild "${1}" clean merge
+else
+    ebuild "${1}" clean merge
+fi
