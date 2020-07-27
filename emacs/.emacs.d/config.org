@@ -519,6 +519,15 @@
 #+BEGIN_SRC emacs-lisp
   (add-hook 'sh-mode-hook 'company-mode)
 #+END_SRC
+** Sr-Speedbar
+   [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
+#+BEGIN_SRC emacs-lisp
+  (use-package sr-speedbar
+    :ensure t
+    :bind
+    (("s-s" . sr-speedbar-toggle))
+    )
+#+END_SRC
 ** Tabs
    Tab width settings
 #+BEGIN_SRC emacs-lisp
