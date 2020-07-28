@@ -24,20 +24,20 @@
 
 # Start the session
 
-# Here KDE is kept as default
-session=${1:-kde}
+# Here XFCE is kept as default
+session=${1:-xfce}
 
-case $session in
-    bsp|bspwm )
+case ${session} in
+    bsp | bspwm )
         exec bspwm
         ;;
-    exwm|EXWM )
+    exwm | EXWM )
         exec emacs --load ~/.emacs.d/exwm-config.el
         ;;
     gnome )
         exec gnome-session
         ;;
-    lxqt|LXQt )
+    lxqt | LXQt )
         exec startlxqt
         ;;
     kde )
@@ -46,7 +46,7 @@ case $session in
     mate )
         exec mate-session
         ;;
-    xfce|xfce4 )
+    xfce | xfce4 )
         exec startxfce4
         ;;
     # Anything different is run as command

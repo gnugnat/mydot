@@ -38,6 +38,16 @@
 
 # >>> Helper functions
 
+# Check if a command exists (without redirecting each time)
+command_exists() {
+    if command -v "${1}" >/dev/null 2>&1
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Check if 1st string contains the 2nd
 contains_string() {
     string="${1}"
@@ -76,7 +86,7 @@ add_to_path() {
 # create a alias only if a command and/or alias
 # with the desired name does not exist
 a_k_a() {
-    if ! command -v "${1}" >/dev/null 2>&1
+    if ! command_exists "${1}"
     then
         alias "${1}"="${2}"
     fi
@@ -327,3 +337,11 @@ export PS1
 
 PS2="└── "
 export PS2
+
+
+# >>> Autostart X11 if it is available
+
+if [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ -t 0 ] && [ ! "${DISPLAY}" ]
+then
+    startx ~/.xinitrc || echo "Failed to start the default X session"
+fi
