@@ -341,6 +341,9 @@ export PS2
 
 # >>> Autostart X11 if it is available
 
+# If you enable autologin on getty this can replace a Display Manager
+# c1:12345:respawn:/sbin/agetty --autologin <user> --noclear 38400 tty1 linux
+
 if [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ -t 0 ] && [ ! "${DISPLAY}" ]
 then
     startx ~/.xinitrc || echo "Failed to start the default X session"
