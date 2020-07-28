@@ -269,6 +269,7 @@ a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 
 # Other PKG managers
 a_k_a fpk 'flatpak'
+a_k_a fpkup 'flatpak update && flatpak uninstall --unused'
 
 # youtube-dl
 a_k_a ytd 'youtube-dl -i -o "%(title)s.%(ext)s"'
