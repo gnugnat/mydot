@@ -231,15 +231,15 @@ a_k_a rcp 'rsync --stats --progress'
 a_k_a v 'vim'
 
 # Shell
-a_k_a update-mydot 'mydot && sh update && cd -'
-a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
-a_k_a so-shrc 'source ${HOME}/.profile'
+a_k_a ash 'busybox ash'
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/zhistory'
 a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
-a_k_a so-bashrc 'source ${HOME}/.bashrc'
-a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/zhistory'
+a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
 a_k_a ed-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
+a_k_a so-bashrc 'source ${HOME}/.bashrc'
+a_k_a so-shrc 'source ${HOME}/.profile'
 a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
+a_k_a update-mydot 'mydot && sh update && cd -'
 
 # Git
 a_k_a Ga 'git add .'
