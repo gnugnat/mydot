@@ -99,6 +99,12 @@ source_file "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # Autosuggestions highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
+# Completion for kitty
+if command_exists kitty
+then
+    kitty + complete setup zsh | source /dev/stdin
+fi
+
 # Check Git branch
 git_check() {
     branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
