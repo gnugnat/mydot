@@ -87,6 +87,15 @@
 #+BEGIN_SRC emacs-lisp
   (set-frame-size (selected-frame) 88 36)
 #+END_SRC
+* Programming
+** Company Box
+#+BEGIN_SRC emacs-lisp
+  (use-package company-box
+    :ensure t
+    :hook
+    (company-mode . company-box-mode)
+    )
+#+END_SRC
 * Misc Plugins
 ** Vterm Terminal
    [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
