@@ -105,37 +105,6 @@ then
     kitty + complete setup zsh | source /dev/stdin
 fi
 
-# Check Git branch
-git_check() {
-    branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
-    [ ! -z "${branch}" ] && echo "${pre_git_check}${branch}${post_git_check}"
-}
-
-
-# >>> GPG
-
-# Export some vars
-export GPG_TTY=$(tty)
-export PINENTRY_USER_DATA="USE_CURSES=1"
-
-# Check if GPG agent exists
-if command_exists gpg-agent
-then
-    # Start GPG agent if it is not running
-    pgrep -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
-fi
-
-
-# >>> SSH
-
-# Check if SSH agent and XDG runtime directory exist
-if command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
-then
-    # Start SSH agent if it is not running
-    pgrep -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
-    [ -e "${SSH_AUTH_SOCK}" ] || eval "$(< "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
-fi
-
 
 # >>> ZSH tweaks
 

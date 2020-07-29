@@ -107,6 +107,24 @@ cd_alias() {
     fi
 }
 
+# Are you root?
+am_i_root() {
+    if [ "$(whoami)" = root ]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Check Git branch
+pre_git_check=""
+post_git_check=""
+git_check() {
+    branch="$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')"
+    [ -n "${branch}" ] && echo "${pre_git_check}${branch}${post_git_check}"
+}
+
 # Make a directory and cd into it
 mkcd() {
     mkdir "${1}" && cd "${1}" || return 1
@@ -130,7 +148,8 @@ eww() {
 [ -z "${EDITOR}" ] && export EDITOR=nano
 
 # Disable less history file
-export LESSHISTFILE=-
+LESSHISTFILE=-
+export LESSHISTFILE
 
 # Erlang (OTP) history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
@@ -340,12 +359,39 @@ PS2="└── "
 export PS2
 
 
+# >>> Autostart the GPG Agent
+
+# Export some vars
+GPG_TTY=$(tty)
+export GPG_TTY
+PINENTRY_USER_DATA="USE_CURSES=1"
+export PINENTRY_USER_DATA
+
+# Check if GPG agent exists
+if ! am_i_root && command_exists gpg-agent
+then
+    # Start GPG agent if it is not running
+    pgrep -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
+fi
+
+
+# >>> Autostart the SSH Agent
+
+# Check if SSH agent and XDG runtime directory exist
+if ! am_i_root && command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
+then
+    # Start SSH agent if it is not running
+    pgrep -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
+    [ -e "${SSH_AUTH_SOCK}" ] || eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
+fi
+
+
 # >>> Autostart X11 if it is available
 
 # If you enable autologin on getty this can replace a Display Manager
 # c1:12345:respawn:/sbin/agetty --autologin <user> --noclear 38400 tty1 linux
 
-if [ "$(whoami)" != root ] && [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ ! "${DISPLAY}" ]
+if ! am_i_root && [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ ! "${DISPLAY}" ]
 then
     startx ~/.xinitrc || echo "Failed to start the default X session"
 fi
