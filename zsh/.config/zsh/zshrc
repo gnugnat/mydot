@@ -18,7 +18,7 @@ profile="${HOME}/.profile"
 # >>> History
 
 # Necessary to save history
-HISTFILE=${ZCACHEDIR}/zhistory
+HISTFILE=${ZCACHEDIR}/history
 HISTSIZE=50000
 SAVEHIST=${HISTSIZE}
 
@@ -39,7 +39,7 @@ setopt extendedglob
 
 # Load compinit
 autoload -U compinit
-compinit -d ${ZCACHEDIR}/zcompdump
+compinit -d ${ZCACHEDIR}/compdump
 
 # Advanced tab-completion
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
