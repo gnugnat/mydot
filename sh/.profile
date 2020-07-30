@@ -251,7 +251,7 @@ a_k_a v 'vim'
 
 # Shell
 a_k_a ash 'busybox ash'
-a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/zhistory'
+a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
 a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
 a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
 a_k_a ed-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
