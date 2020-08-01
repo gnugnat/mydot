@@ -273,6 +273,7 @@ a_k_a Gs 'git status'
 
 # Programming
 a_k_a diff-git 'git diff --no-index'
+a_k_a ipy 'ipython'
 a_k_a py 'python'
 a_k_a rkt 'racket'
 
