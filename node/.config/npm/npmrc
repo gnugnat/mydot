@@ -1,0 +1,4 @@
+cache = ${HOME}/.cache/npm
+init-module = ${HOME}/.config/npm/npm-init.js
+prefix = ${HOME}/.local/share/npm
+tmp = /tmp/npm

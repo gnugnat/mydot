@@ -147,9 +147,9 @@ eww() {
 # If EDITOR variable is empty set the editor to nano
 [ -z "${EDITOR}" ] && export EDITOR=nano
 
-# Disable less history file
-LESSHISTFILE=-
-export LESSHISTFILE
+# Cargo directory
+CARGO_HOME="${HOME}/.local/share/cargo"
+export CARGO_HOME
 
 # Erlang (OTP) history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
@@ -158,6 +158,22 @@ export ERL_AFLAGS
 # Guile history file
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
+
+# Ipython & Jupyter directory
+IPYTHONDIR="${HOME}/.config/jupyter"
+export IPYTHONDIR
+JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
+export JUPYTER_CONFIG_DIR
+
+# Disable less history file
+LESSHISTFILE=-
+export LESSHISTFILE
+
+# Node
+NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
+export NODE_REPL_HISTORY
+NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
+export NPM_CONFIG_USERCONFIG
 
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
@@ -170,6 +186,9 @@ export NEED_UID0
 
 
 # >>> PATH setup
+
+# We also add old path for compatibility (ie. Cargo & NPM)
+# the other one is the one exported by this profile file
 
 # Common programs' homes
 add_to_path /bin
@@ -189,12 +208,14 @@ add_to_path "${HOME}/.cabal/bin"
 
 # Cargo (Rust)
 add_to_path "${HOME}/.cargo/bin"
+add_to_path "${HOME}/.local/share/cargo/bin"
 
 # GO
 add_to_path "${HOME}/go/bin"
 
-# Node
+# NPM (Node)
 add_to_path "${HOME}/.npm/bin"
+add_to_path "${HOME}/.local/share/npm/bin"
 
 # Python
 add_to_path "${HOME}/.local/bin"
