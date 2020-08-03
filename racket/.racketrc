@@ -39,7 +39,9 @@
 
 ;; Get a random element of a list
 (define (list->random lst)
-  [(list? lst) (list-ref lst (random (length lst)))]
+  (cond
+    [(list? lst) (list-ref lst (random (length lst)))]
+    )
   )
 
 ;; From among given atoms select one at random
