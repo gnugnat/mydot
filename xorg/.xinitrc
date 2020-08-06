@@ -11,6 +11,8 @@
 # Usage:
 # $ startx ~/.xinitrc [session]
 
+# Here XFCE is kept as default session
+session=${1:-xfce}
 
 # Source files
 
@@ -18,15 +20,11 @@
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
 # Additional X scripts
-# ex.: xrandr settings
+# ex.: xrandr settings or session choice
 [ -f "$HOME/.xscripts" ] && . ~/.xscripts
 
 
 # Start the session
-
-# Here XFCE is kept as default
-session=${1:-xfce}
-
 case ${session} in
     bsp | bspwm )
         exec bspwm
