@@ -165,6 +165,10 @@ export IPYTHONDIR
 JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
+# Racket directory
+PLTUSERHOME="${HOME}/.local/share/racket"
+export PLTUSERHOME
+
 # Disable less history file
 LESSHISTFILE=-
 export LESSHISTFILE

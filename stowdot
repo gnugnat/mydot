@@ -46,16 +46,19 @@ else
 fi
 
 # check needed directories
-for chkdir in "${HOME}/.config" "${HOME}/.local/share" \
-		                        "${HOME}/.emacs.d" \
-		                        "${HOME}/.config/mpd/playlists"
+req_dirs="
+    ${HOME}/.config/mpd/playlists
+    ${HOME}/.local/share/racket
+    ${HOME}/.emacs.d
+"
+for dir in ${req_dirs}
 do
-    if [ -e "${chkdir}" ]
+    if [ -e "${dir}" ]
     then
-        echo "${chkdir} exists, good"
+        echo "${dir} exists, good"
     else
-	    mkdir -p "${chkdir}"
-	    echo "${chkdir} created"
+	    mkdir -p "${dir}"
+	    echo "${dir} created"
     fi
 done
 
