@@ -411,6 +411,11 @@
      )
     )
 #+END_SRC
+** JavaScript
+   [[https://www.javascript.com/][JavaScript]] language support
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'js-mode-hook 'company-mode)
+#+END_SRC
 ** Lisp
    [[https://common-lisp.net/project/slime/][Lisp]] language support
 #+BEGIN_SRC emacs-lisp
