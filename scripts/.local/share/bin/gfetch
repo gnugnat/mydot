@@ -33,14 +33,16 @@ fi
 
 if [ -d "${EPREFIX}"/var/db/pkg ]
 then
-    packages="$(find "${EPREFIX}"/var/db/pkg/*/* -type d | wc -l)"
+    packages="All: $(find "${EPREFIX}"/var/db/pkg/*/* -type d | wc -l)"
+    real="Real: $(find "${EPREFIX}"/var/db/pkg/*/* -type d | grep -v -E 'acct-group|acct-user|java-virtuals|virtual' | wc -l)"
 else
     packages="n/a"
+    real=""
 fi
 
 if [ -f "${EPREFIX}"/var/lib/portage/world ]
 then
-    world="@world: $(wc -l < "${EPREFIX}"/var/lib/portage/world)"
+    world="World: $(wc -l < "${EPREFIX}"/var/lib/portage/world)"
 else
     world=""
 fi
@@ -118,7 +120,7 @@ ${c0}   ,d\$\$\$\$${c1}\$\$b.    ${lc}CPU:     ${ic}${cpu}${reset}
 ${c0}   &&&&${c1}( )&&&b   ${lc}OS:      ${ic}${os}${reset}
 ${c0}   Q\$\$\$\$\$\$\$\$${c1}\$\$B  ${lc}KERNEL:  ${ic}${kernel}${reset}
 ${c0}     "\$\$\$\$\$${c1}\$\$P   ${lc}UP:      ${ic}${uptime}${reset}
-${c0}   ,d\$\$\$\$${c1}\$\$P"    ${lc}PKGS:    ${ic}${packages} ${world}${reset}
+${c0}   ,d\$\$\$\$${c1}\$\$P"    ${lc}PKGS:    ${ic}${packages}  ${world}  ${real}${reset}
 ${c0}   \$\$\$\$${c1}\$\$P       ${lc}SHELL:   ${ic}${shell}${reset}
 ${c0}   \`Q\$\$${c1}P"        ${lc}${uitype}:      ${ic}${ui}${reset}
 
