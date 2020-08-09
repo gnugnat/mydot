@@ -35,6 +35,11 @@
 # shellcheck disable=2139
 # https://github.com/koalaman/shellcheck/wiki/SC2139
 
+# Ignore "For loops over find output are fragile. Use find -exec or a while read loop."
+# We nned to pass a function defined here and 'find -exec' does not support that
+# shellcheck disable=2044
+# https://github.com/koalaman/shellcheck/wiki/SC2044
+
 
 # >>> Helper functions
 
@@ -223,6 +228,18 @@ add_to_path "${HOME}/.local/share/npm/bin"
 
 # Python
 add_to_path "${HOME}/.local/bin"
+
+# Racket
+if [ -d "${PLTUSERHOME}"/.racket ]
+then
+    # We loop to include all different Racket implementation directories
+    # ~/.local/share/racket/.racket/7.0/bin or ~/.local/share/racket/.racket/7.7/bin
+    for racket_bin_dir in $(find "${PLTUSERHOME}"/.racket -name bin -type d)
+    do
+        add_to_path "${racket_bin_dir}"
+    done
+    unset racket_bin_dir
+fi
 
 
 # >>> Aliases
