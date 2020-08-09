@@ -1,23 +1,43 @@
 #!/bin/sh
 
+
 # Noninteractive auto-backup
 # script for portage
 
+
 set -e
 export PATH
+trap 'exit 128' INT
 
-pbak=portage-$(date +"%Y-%m-%d")
 
-mkdir "$pbak"
+command_exists () {
+	if command -v "${1}" > /dev/null 2>&1
+	then
+		return 0
+	else
+		return 1
+	fi
+}
 
-cp -r /etc/portage "$pbak/"
-rm "$pbak/portage/make.profile"
 
-cp /var/lib/portage/world "$pbak/"
-cp /var/lib/portage/world_sets "$pbak/"
+# Setup
+pbak="portage-$(date +'%Y-%m-%d')"
+mkdir "${pbak}"
+command_exists emerge || echo "Are you sure you are using Portage?"
 
-tree -a -L 2 /etc/portage > "$pbak/layout"
+# Portage tree
+cp -r /etc/portage "${pbak}/"
+rm "${pbak}/portage/make.profile"
+command_exists tree && tree -a -L 2 /etc/portage > "${pbak}/layout.txt"
 
-emerge --info > "$pbak/info"
+# Installed packages
+cp /var/lib/portage/world "${pbak}/"
+cp /var/lib/portage/world_sets "${pbak}/"
+command_exists qlist && qlist --installed --nocolor --umap --verbose > "${pbak}/installed.txt"
 
-tar zcf "$pbak.tar.gz" "$pbak" --remove-files
+# System info
+emerge --info > "${pbak}/info.txt"
+command_exists gfetch && gfetch > "${pbak}/gfetch.txt"
+
+# Archive + cleanup
+tar zcf "${pbak}.tar.gz" "${pbak}" --remove-files
