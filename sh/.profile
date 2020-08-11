@@ -164,6 +164,10 @@ export ERL_AFLAGS
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
 
+# Octave history file
+OCTAVE_HISTFILE=${HOME}/.cache/octave_repl_history
+export OCTAVE_HISTFILE
+
 # Ipython & Jupyter directory
 IPYTHONDIR="${HOME}/.config/jupyter"
 export IPYTHONDIR
