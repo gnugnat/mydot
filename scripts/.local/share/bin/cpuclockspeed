@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+trap 'exit 128' INT
+export PATH
+
+
+speeds=$(grep -i mhz /proc/cpuinfo | cut -d ":" -f 2)
+CPU=0
+
+for speed in ${speeds}
+do
+	((CPU++))
+	echo "CPU ${CPU}: ${speed}"
+done
