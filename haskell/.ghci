@@ -1,0 +1,8 @@
+--   ____ _   _  ____ 
+--  / ___| | | |/ ___|
+-- | |  _| |_| | |    
+-- | |_| |  _  | |___ 
+--  \____|_| |_|\____|
+-- Haskell Interactive REPL
+
+:set prompt "\ESC[35m\STX(\ESC[34m\STX%s\ESC[35m\STX)>\ESC[m\STX "
