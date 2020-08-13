@@ -10,13 +10,21 @@
 
 # Set where the rest of ZSH files are located
 export ZDOTDIR="${HOME}/.config/zsh"
+
 # Set where ZSH cache is stored
 export ZCACHEDIR="${HOME}/.cache/zsh"
 
 # Auto-set the editor
-if command -v emacs >/dev/null 2>&1; then
-    EDITOR=emacs
-elif command -v vim >/dev/null 2>&1; then
+if command -v emacs >/dev/null 2>&1
+then
+    if pgrep -f 'emacs --daemon'
+    then
+        EDITOR=emacsclient
+    else
+        EDITOR=emacs
+    fi
+elif command -v vim >/dev/null 2>&1
+then
     EDITOR=vim
 else
     EDITOR=nano
