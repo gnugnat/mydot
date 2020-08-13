@@ -277,8 +277,25 @@ a_k_a seeo '${NEED_UID0} netstat -acnptu'
 alias mtr='mtr --show-ips --curses'
 
 # Editors
+if command_exists emacs
+then
+    a_k_a e 'emacs -nw'
+else
+    a_k_a e '${EDITOR}'
+fi
+if command_exists nano
+then
+    a_k_a n 'nano'
+else
+    a_k_a n '${EDITOR}'
+fi
+if command_exists vim
+then
+    a_k_a v 'vim'
+else
+    a_k_a v '${EDITOR}'
+fi
 a_k_a ,, 'cd ../..'
-a_k_a e 'emacs -nw'
 a_k_a ec 'emacsclient -a ""'
 a_k_a ec-kill 'emacsclient -n --eval "(kill-emacs)"'
 a_k_a ecf 'emacsclient -a "" -n -c'
@@ -288,12 +305,10 @@ a_k_a ed-start 'emacs --daemon'
 a_k_a ed-stop 'ec-kill'
 a_k_a eq 'emacs -Q -nw --eval "(setq auto-save-default nil create-lockfiles nil make-backup-files nil scroll-conservatively 100 x-select-enable-clipboard-manager nil)"'
 a_k_a hl 'highlight -O truecolor'
-a_k_a n 'nano'
 a_k_a nranger 'EDITOR=nano ranger'
 a_k_a nuke 'rm -rfd'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
-a_k_a v 'vim'
 
 # Shell
 a_k_a ash 'busybox ash'
