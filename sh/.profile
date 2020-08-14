@@ -202,14 +202,6 @@ export NODE_REPL_HISTORY
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
 
-# ZSH directories
-# Set where the rest of ZSH files are located
-ZDOTDIR="${HOME}/.config/zsh"
-export ZDOTDIR
-# Set where ZSH cache is stored
-ZCACHEDIR="${HOME}/.cache/zsh"
-export ZCACHEDIR
-
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
 then
