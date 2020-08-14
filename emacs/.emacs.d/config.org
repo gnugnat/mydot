@@ -476,6 +476,17 @@
       )
     )
 #+END_SRC
+** R
+   [[https://www.r-project.org/][R]] language support
+#+BEGIN_SRC emacs-lisp
+  (use-package ess
+    :ensure t
+    :mode
+    (("\\.R\\'" . ess-mode))
+    :hook
+    ((ess-mode . company-mode))
+    )
+#+END_SRC
 ** Racket
    [[https://racket-lang.org/][Racket]] language support
 #+BEGIN_SRC emacs-lisp
