@@ -147,10 +147,24 @@ eww() {
 # >>> Environment
 
 # Source the system profile
-[ -e /etc/profile ] && . /etc/profile
+source_file /etc/profile
 
-# If EDITOR variable is empty set the editor to nano
-[ -z "${EDITOR}" ] && export EDITOR=nano
+# Auto-set the editor
+if command_exists emacs
+then
+    if pgrep -u "${USER}" -f 'emacs --daemon' >/dev/null 2>&1
+    then
+        EDITOR=emacsclient
+    else
+        EDITOR=emacs
+    fi
+elif command_exists vim
+then
+    EDITOR=vim
+else
+    EDITOR=nano
+fi
+export EDITOR
 
 # Cargo directory
 CARGO_HOME="${HOME}/.local/share/cargo"
@@ -187,6 +201,14 @@ NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
+
+# ZSH directories
+# Set where the rest of ZSH files are located
+ZDOTDIR="${HOME}/.config/zsh"
+export ZDOTDIR
+# Set where ZSH cache is stored
+ZCACHEDIR="${HOME}/.cache/zsh"
+export ZCACHEDIR
 
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
