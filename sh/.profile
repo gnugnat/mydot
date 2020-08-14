@@ -105,7 +105,7 @@ a_k_a() {
 #   Means:
 #     alias etc="cd /etc && echo * Changed the Directory to etc"
 cd_alias() {
-    # If ${1} is not already in use
+    # Check if target directory exits
     if [ -d "${2}" ]
     then
         a_k_a "${1}" "cd ${2} && echo ' * Changed the Directory to' ${2}"
