@@ -388,7 +388,7 @@ a_k_a ytd-webm 'youtube-dl -i --format webm -o "%(title)s.%(ext)s"'
 
 # >>> Change-directory aliases
 
-# Compatibility (should get overwritten)
+# Compatibility (should be skipped - target dir probably doesn't exist)
 cd_alias mydot "${HOME}"/mydot
 
 # System
