@@ -17,7 +17,7 @@ export ZCACHEDIR="${HOME}/.cache/zsh"
 # Auto-set the editor
 if command -v emacs >/dev/null 2>&1
 then
-    if pgrep -f 'emacs --daemon'
+    if pgrep -u "${USER}" -f 'emacs --daemon'
     then
         EDITOR=emacsclient
     else
