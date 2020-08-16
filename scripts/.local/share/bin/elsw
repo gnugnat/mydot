@@ -63,25 +63,31 @@ def parse_category(category):
         else:
             return color_good
 
-    return choose_color(category)+indicator+category
+    return "    " + choose_color(category) + indicator + category
 
 
 with open(portage.root + portage.WORLD_FILE) as world:
 
     category_tmp = ""
+    group_tmp = ""
     category_count = 0
     package_count = 0
 
     for line in sorted(world.read().splitlines()):
 
         read_category = line.split("/")[0]
+        read_group = read_category.split("-")[0]
+
+        if read_group != group_tmp:
+            print("\033[97m" + " \u25cb " + str.upper(read_group))
+            group_tmp = read_group
 
         if read_category != category_tmp:
             print(parse_category(read_category))
             category_tmp = read_category
             category_count += 1
 
-        print("    \033[94m -", line.split("/")[1])
+        print("        \033[94m -", line.split("/")[1])
         package_count += 1
 
     # Reset color + newline
