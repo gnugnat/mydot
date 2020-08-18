@@ -4,6 +4,8 @@
 # Huh?
 # Find commands
 
+# Also recommended: 'which'
+
 
 header_msg() {
     echo
@@ -11,13 +13,22 @@ header_msg() {
 }
 
 
-header_msg "Found $1 in:"
-whereis "${1}"
+for arg in "${@}"
+do
 
-header_msg "Executing $1 from:"
-command -v "${1}"
+    if command -v "${arg}" > /dev/null 2>&1
+    then
+        header_msg "Found ${arg} in:"
+        whereis "${arg}"
 
-header_msg "About $1:"
-command "${1}" --help 2>/dev/null | head
+        header_msg "Executing ${arg} from:"
+        command -v "${arg}"
+
+        header_msg "About ${arg}:"
+        command "${arg}" --help 2>/dev/null | head
+    else
+        header_msg "${arg} not found"
+    fi
+done
 
 echo
