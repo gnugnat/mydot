@@ -325,7 +325,6 @@ a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 
 # Shell
-a_k_a ash 'busybox ash'
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
 a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
 a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
@@ -377,6 +376,18 @@ a_k_a ytd-opus 'youtube-dl -i -f bestaudio -x --audio-format opus -o "%(playlist
 a_k_a ytd-sub-en 'youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
 a_k_a ytd-sub-pl 'youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
 a_k_a ytd-webm 'youtube-dl -i --format webm -o "%(title)s.%(ext)s"'
+
+# Busybox
+# If BB is installed, then try to get unavailable programs from it
+# Keep this last
+if command_exists busybox
+then
+    for bb_impl in $(busybox --list)
+    do
+        a_k_a "${bb_impl}" "busybox ${bb_impl}"
+    done
+    unset bb_impl
+fi
 
 
 # >>> Change-directory aliases
