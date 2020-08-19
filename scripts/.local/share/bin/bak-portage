@@ -5,7 +5,6 @@
 # script for portage
 
 
-set -e
 export PATH
 trap 'exit 128' INT
 
@@ -27,7 +26,7 @@ command_exists emerge || echo "Are you sure you are using Portage?"
 
 # Portage tree
 cp -r /etc/portage "${pbak}/"
-rm "${pbak}/portage/make.profile"
+rm -rfd "${pbak}/portage/make.profile"
 command_exists tree && tree -a -L 2 /etc/portage > "${pbak}/layout.txt"
 
 # Installed packages
