@@ -49,6 +49,9 @@ zstyle ':completion:*' menu select
 # Correction
 setopt correctall
 
+# Racket completion
+source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
+
 
 # >>> Key bindings
 
