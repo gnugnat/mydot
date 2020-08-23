@@ -144,10 +144,16 @@ eww() {
 }
 
 
-# >>> Environment
+# >>> System
+
+# Failsafe PATH (because '[' and ']' are programs)
+PATH=${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}
 
 # Source the system profile
 source_file /etc/profile
+
+
+# >>> Environment
 
 # Auto-set the editor
 if command_exists emacs
@@ -201,6 +207,36 @@ NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
+
+# XDG Base Directory (failsafe)
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
+export XDG_CACHE_HOME
+XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-/etc/xdg}
+export XDG_CONFIG_DIRS
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}
+export XDG_CONFIG_HOME
+XDG_DATA_DIRS=${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
+export XDG_DATA_DIRS
+XDG_DATA_HOME=${XDG_DATA_HOME:-${HOME}/.local/share}
+export XDG_DATA_HOME
+if [ -z "${XDG_RUNTIME_DIR}" ]
+then
+    candidate_XDG_RUNTIME_DIR=/run/user/$(id -u "${USER}")
+    if [ -d "${candidate_XDG_RUNTIME_DIR}" ]
+    then
+        XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+    else
+        if mkdir "${candidate_XDG_RUNTIME_DIR}"
+        then
+            XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+            chmod 0700 "${XDG_RUNTIME_DIR}"
+        else
+            XDG_RUNTIME_DIR=/tmp
+        fi
+    fi
+    unset candidate_XDG_RUNTIME_DIR
+fi
+export XDG_RUNTIME_DIR
 
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
@@ -265,7 +301,7 @@ fi
 # Operating System specific
 case $(uname)
 in
-    *Linux*)
+    *Linux* )
         a_k_a ll 'ls -lahF --color=always'
         a_k_a ta 'tree -a -I ".git"'
         a_k_a t 'tree -a -L 2 -I ".git"'
@@ -273,9 +309,10 @@ in
         alias ls='ls --color=auto'
         alias tree='tree -C -F'
         ;;
-    *)
+    * )
         a_k_a ll 'ls -lahF'
         a_k_a t 'tree -a -L 2'
+        a_k_a ta 'tree -a'
         alias tree='tree -F'
         ;;
 esac
@@ -326,9 +363,9 @@ a_k_a rcp 'rsync --stats --progress'
 
 # Shell
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
-a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
-a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
-a_k_a ed-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
+a_k_a edit-bashrc '${EDITOR} ${HOME}/.bashrc'
+a_k_a edit-shrc '${EDITOR} ${HOME}/.profile'
+a_k_a edit-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
 a_k_a so-bashrc 'source ${HOME}/.bashrc'
 a_k_a so-shrc 'source ${HOME}/.profile'
 a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
@@ -443,7 +480,7 @@ cd_alias zdotdir "${ZDOTDIR}"
 PS1="(SH)> "
 export PS1
 
-PS2="└── "
+PS2="... "
 export PS2
 
 
