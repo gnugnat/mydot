@@ -180,6 +180,10 @@ export CARGO_HOME
 ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_AFLAGS
 
+# Go directory
+GOPATH="${HOME}/.local/share/go"
+export GOPATH
+
 # Guile history file
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
@@ -274,7 +278,7 @@ add_to_path "${HOME}/.cargo/bin"
 add_to_path "${HOME}/.local/share/cargo/bin"
 
 # GO
-add_to_path "${HOME}/go/bin"
+add_to_path "${GOPATH}/bin"
 
 # NPM (Node)
 add_to_path "${HOME}/.npm/bin"
