@@ -1,4 +1,4 @@
 #!/bin/sh
 
 
-exec Xorg -novtswitch -nolisten tcp -nolisten local "$@" vt$XDG_VTNR
+exec Xorg -novtswitch -nolisten tcp -nolisten local "$@" vt"${XDG_VTNR}"
