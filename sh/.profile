@@ -229,18 +229,22 @@ then
     if [ -d "${candidate_XDG_RUNTIME_DIR}" ]
     then
         XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+        export XDG_RUNTIME_DIR
     else
-        if mkdir "${candidate_XDG_RUNTIME_DIR}"
+        # We're not going to create the XDG_RUNTIME_DIR on /run
+        # because it probably won't be cleaned, instead
+        # we'll go with /tmp since it is common for it to be tmpfs
+        candidate_XDG_RUNTIME_DIR=/tmp/user/$(id -u "${USER}")
+        if mkdir -p "${candidate_XDG_RUNTIME_DIR}" >/dev/null 2>&1
         then
             XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+            export XDG_RUNTIME_DIR
             chmod 0700 "${XDG_RUNTIME_DIR}"
-        else
-            XDG_RUNTIME_DIR=/tmp
+            # else: we don't set XDG_RUNTIME_DIR
         fi
     fi
     unset candidate_XDG_RUNTIME_DIR
 fi
-export XDG_RUNTIME_DIR
 
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
