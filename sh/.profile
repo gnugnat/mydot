@@ -158,7 +158,7 @@ source_file /etc/profile
 # Auto-set the editor
 if command_exists emacs
 then
-    if pgrep -u "${USER}" -f 'emacs --daemon' >/dev/null 2>&1
+    if pgrep -fi -u "${USER}" 'emacs --daemon' >/dev/null 2>&1
     then
         EDITOR=emacsclient
     else
@@ -504,7 +504,7 @@ export PINENTRY_USER_DATA
 if ! am_i_root && command_exists gpg-agent
 then
     # Start GPG agent if it is not running
-    pgrep -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
+    pgrep -i -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
 fi
 
 
@@ -514,7 +514,7 @@ fi
 if ! am_i_root && command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
 then
     # Start SSH agent if it is not running
-    pgrep -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
+    pgrep -i -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
     [ -e "${SSH_AUTH_SOCK}" ] || eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
 fi
 
