@@ -156,7 +156,7 @@ source_file /etc/profile
 # >>> Environment
 
 # Configure missing variables
-USER=${USER:-$(whomai)}
+USER=${USER:-$(whoami)}
 export USER
 
 # Auto-set the editor
