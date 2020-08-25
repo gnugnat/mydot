@@ -11,8 +11,10 @@
   (use-package auto-package-update
     :ensure t
     :config
-    (setq auto-package-update-interval 5
-          auto-package-update-delete-old-verions t)
+    (setq
+     auto-package-update-delete-old-verions t
+     auto-package-update-interval 5
+     )
     (auto-package-update-maybe)
     )
 #+END_SRC
@@ -109,6 +111,7 @@
 #+BEGIN_SRC emacs-lisp
   ;; horizontal
   (defun split-and-follow-horizontally ()
+    "Split and follow horizontally."
     (interactive)
     (split-window-below)
     (balance-windows)
@@ -117,6 +120,7 @@
   (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
   ;; vertical
   (defun split-and-follow-vertically ()
+    "Split and follow vertically."
     (interactive)
     (split-window-right)
     (balance-windows)
@@ -137,9 +141,11 @@
 ** IDO mode
    Buffer stuff
 #+BEGIN_SRC emacs-lisp
-  (setq ido-enable-flex-matching nil
-        ido-create-new-buffer 'always
-        ido-everywhere t)
+  (setq
+   ido-create-new-buffer 'always
+   ido-enable-flex-matching nil
+   ido-everywhere t
+   )
   (ido-mode 1)
 #+END_SRC
 ** IDO switch buffers
@@ -161,6 +167,7 @@
    Kill buffer and delete its window
 #+BEGIN_SRC emacs-lisp
   (defun kill-and-remove-split ()
+    "Kill and remove split."
     (interactive)
     (kill-buffer)
     (delete-window)
@@ -186,12 +193,16 @@
   (use-package switch-window
     :ensure t
     :config
-    (setq switch-window-input-style 'minibuffer
-          switch-window-increase 4
-          switch-window-threshold 2
-          switch-window-shortcut-style 'qwerty
-          switch-window-qwerty-shortcuts
-          '( "a" "s" "d" "f" "g" "h" "j" "k" "l"))
+    (setq
+     switch-window-increase 4
+     switch-window-input-style 'minibuffer
+     switch-window-shortcut-style 'qwerty
+     switch-window-threshold 2
+     )
+    (setq
+     switch-window-qwerty-shortcuts
+     '( "a" "s" "d" "f" "g" "h" "j" "k" "l")
+     )
     :bind
     ([remap other-window] . switch-window)
     )
@@ -272,8 +283,10 @@
   (use-package magit
     :ensure t
     :config
-    (setq magit-push-always-verify nil
-          git-commit-summary-max-length 50)
+    (setq
+     git-commit-summary-max-length 80
+     magit-push-always-verify nil
+     )
     :bind
     (
      ("C-c s" . magit-status)
@@ -331,8 +344,10 @@
   (use-package company
     :ensure t
     :config
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 2)
+    (setq
+     company-idle-delay 0
+     company-minimum-prefix-length 2
+     )
     )
 #+END_SRC
 ** C
@@ -346,12 +361,15 @@
 ** Electric Pairs
    Auto close brackets
 #+BEGIN_SRC emacs-lisp
-  (setq electric-pair-pairs '(
-                              (?\{ . ?\})
-                              (?\( . ?\))
-                              (?\[ . ?\])
-                              (?\" . ?\")
-                              ))
+  (setq
+   electric-pair-pairs
+   '(
+     (?\{ . ?\})
+     (?\( . ?\))
+     (?\[ . ?\])
+     (?\" . ?\")
+     )
+   )
   (electric-pair-mode t)
 #+END_SRC
 ** Elisp
@@ -422,8 +440,10 @@
   (use-package slime
     :ensure t
     :config
-    (setq inferior-lisp-program "/usr/bin/sbcl")
-    (setq slime-contribs '(slime-fancy))
+    (setq
+     inferior-lisp-program "/usr/bin/sbcl"
+     slime-contribs '(slime-fancy)
+     )
     )
 #+END_SRC
 ** Markdown
@@ -447,11 +467,12 @@
   (use-package idle-highlight-mode
     :ensure t
     :config
-    (add-hook 'prog-mode-hook
-              (lambda ()
-                (idle-highlight-mode t)
-                )
-              )
+    (add-hook
+     'prog-mode-hook
+     (lambda ()
+       (idle-highlight-mode t)
+       )
+     )
     )
 #+END_SRC
 ** Perl
@@ -512,11 +533,12 @@
     ((rust-mode . company-mode))
     :config
     ;; Rust style guide recommends spaces for indentation
-    (add-hook 'rust-mode-hook
-              (lambda ()
-                (setq indent-tabs-mode nil)
-                )
-              )
+    (add-hook
+     'rust-mode-hook
+     (lambda ()
+       (setq indent-tabs-mode nil)
+       )
+     )
     )
 #+END_SRC
 ** Scheme
@@ -524,11 +546,12 @@
   (use-package geiser
     :ensure t
     :init
-    (setq geiser-active-implementations
-          '(
-            guile
-            )
-          )
+    (setq
+     geiser-active-implementations
+     '(
+       guile
+       )
+     )
     )
 #+END_SRC
 ** Shell
@@ -548,10 +571,12 @@
    Tab width settings
 #+BEGIN_SRC emacs-lisp
   (setq-default tab-width 4)
-  (setq js-indent-level 4)
-  (setq c-basic-offset 4)
-  (setq css-indent-offset 4)
-  (setq sh-basic-offset 4)
+  (setq
+   js-indent-level 4
+   c-basic-offset 4
+   css-indent-offset 4
+   sh-basic-offset 4
+   )
 #+END_SRC
 ** Web
    Enable Web Mode
@@ -598,11 +623,12 @@
   (use-package yaml-mode
     :ensure t
     :config
-    (add-hook 'yaml-mode-hook
-              (lambda ()
-                (define-key yaml-mode-map "\C-m" 'newline-and-indent)
-                )
-              )
+    (add-hook
+     'yaml-mode-hook
+     (lambda ()
+       (define-key yaml-mode-map "\C-m" 'newline-and-indent)
+       )
+     )
     )
 #+END_SRC
 ** Yasnippet
@@ -611,7 +637,8 @@
   (use-package yasnippet
     :ensure t
     :hook
-    ((
+    (
+     (
       c++-mode
       c-mode
       go-mode
@@ -623,10 +650,11 @@
       rust-mode
       shell-mode
       ) . yas-minor-mode
-        )
+     )
     :config
     (use-package yasnippet-snippets
-      :ensure t)
+      :ensure t
+      )
     (yas-reload-all)
     )
 #+END_SRC
@@ -635,10 +663,12 @@
    My Org agenda
 #+BEGIN_SRC emacs-lisp
   (global-set-key "\C-ca" 'org-agenda)
-  (setq org-agenda-files (list
-                          "~/Documents/todo.org"
-                          )
-        )
+  (setq
+   org-agenda-files
+   (list
+    "~/Documents/todo.org"
+    )
+   )
 #+END_SRC
    Create todo.org if it does not exist
 #+BEGIN_SRC emacs-lisp
@@ -674,9 +704,10 @@
     :commands
     (deft)
     :config
-    (setq deft-directory "~/Documents/Diary"
-          deft-extensions '("md" "org" "rst" "tex" "text" "txt")
-          )
+    (setq
+     deft-directory "~/Documents/Diary"
+     deft-extensions '("md" "org" "rst" "tex" "text" "txt")
+     )
     )
 #+END_SRC
    Create Diary if it does not exist
@@ -714,19 +745,22 @@
   (use-package dashboard
     :ensure t
     :config
-    (setq inhibit-startup-screen t
-          inhibit-startup-message t
-          )
     (dashboard-setup-startup-hook)
-    (setq dashboard-banner-logo-title-face t
-          dashboard-startup-banner "~/.emacs.d/assets/icons/steal_your_emacs_250x250.png"
-          dashboard-items '(
-                            (recents  . 5)
-                            (projects . 5)
-                            )
-          show-week-agenda-p t
-          dashboard-center-content t
-          )
+    (setq
+     dashboard-banner-logo-title-face t
+     dashboard-center-content t
+     dashboard-startup-banner "~/.emacs.d/assets/icons/steal_your_emacs_250x250.png"
+     inhibit-startup-message t
+     inhibit-startup-screen t
+     show-week-agenda-p t
+     )
+    (setq
+     dashboard-items
+     '(
+       (recents  . 5)
+       (projects . 5)
+       )
+     )
     (add-to-list 'dashboard-items '(agenda) t)
     )
 #+END_SRC
@@ -751,7 +785,8 @@
 #+BEGIN_SRC emacs-lisp
   ;; reveal dependency
   (use-package htmlize
-    :ensure t)
+    :ensure t
+    )
   (use-package ox-reveal
     :ensure t
     :config
