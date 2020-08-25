@@ -155,6 +155,10 @@ source_file /etc/profile
 
 # >>> Environment
 
+# Configure missing variables
+USER=${USER:-$(whomai)}
+export USER
+
 # Auto-set the editor
 if command_exists emacs
 then
