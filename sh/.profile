@@ -339,7 +339,7 @@ a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
 alias mtr='mtr --show-ips --curses'
 
-# Editors
+# Files
 if command_exists emacs
 then
     a_k_a e 'emacs -nw'
@@ -372,6 +372,7 @@ a_k_a nranger 'EDITOR=nano ranger'
 a_k_a nuke 'rm -rfd'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
+a_k_a tf 'tail -fv --retry'
 
 # Shell
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
