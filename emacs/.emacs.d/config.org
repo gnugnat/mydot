@@ -503,7 +503,7 @@
   (use-package ess
     :ensure t
     :mode
-    (("\\.R\\'" . ess-mode))
+    (("\\.R\\'" . ess-r-mode))
     :hook
     ((ess-mode . company-mode))
     )
