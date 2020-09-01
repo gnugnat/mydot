@@ -13,13 +13,16 @@ STEP=0
 
 umsg() {
     ((STEP++))
-    echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)$STEP$(tput setaf 7)] $1 $(tput sgr0)"
+    echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)${STEP}$(tput setaf 7)] ${1} $(tput sgr0)"
 }
 
 main() {
     umsg "Syncing the tree"
     eix-sync
     eix-remote update
+
+    umsg "Upgrading portage"
+    emerge -1u sys-apps/portage
 
     umsg "Merging changes"
     emerge --changed-deps --changed-slot @world
@@ -37,7 +40,7 @@ main() {
 
 
 if [ "$(whoami)" != root ]; then
-	sudo "$0"
+    sudo "${0}"
 else
     main
 fi
