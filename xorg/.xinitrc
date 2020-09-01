@@ -7,9 +7,11 @@
 #  >  <| | | | | | |_| | | (__
 # /_/\_\_|_| |_|_|\__|_|  \___|
 
+# shellcheck disable=1090
 
 # Usage:
 # $ startx ~/.xinitrc [session]
+
 
 # Here XFCE is kept as default session
 session=${1:-xfce}

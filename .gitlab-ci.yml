@@ -1,0 +1,14 @@
+image: gentoo/stage3-amd64:latest
+
+stages:
+  - test
+
+before_script:
+  - mkdir /var/db/repos/gentoo
+  - emerge-webrsync
+
+test:
+  stage: test
+  script:
+    - emerge -q dev-util/shellcheck-bin
+    - bash test.sh

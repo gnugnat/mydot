@@ -34,7 +34,7 @@ fi
 if [ -d "${EPREFIX}"/var/db/pkg ]
 then
     packages="All: $(find "${EPREFIX}"/var/db/pkg/*/* -type d | wc -l)"
-    real="Real: $(find "${EPREFIX}"/var/db/pkg/*/* -type d | grep -v -E 'acct-group|acct-user|java-virtuals|virtual' | wc -l)"
+    real="Real: $(find "${EPREFIX}"/var/db/pkg/*/* -type d | grep -c -v -E 'acct-group|acct-user|java-virtuals|virtual')"
 else
     packages="n/a"
     real=""

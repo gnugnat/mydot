@@ -8,6 +8,8 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 # ~/.bashrc
 
+# shellcheck disable=1090
+
 
 # >>> Kill Switch
 

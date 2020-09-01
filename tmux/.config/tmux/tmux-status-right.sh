@@ -4,6 +4,8 @@
 # This script doesn't really execute anything else
 # It just formats the status-right nicely
 
+# shellcheck disable=2016
+
 
 printf "%s" '#(${HOME}/.config/tmux/tmux-battery.sh)'
 
