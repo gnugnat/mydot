@@ -1,0 +1,91 @@
+#!/bin/sh
+
+
+# wrapper for WINE
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+# Defaults
+WINEARCH="win32"
+WINEPREFIX="${HOME}/.wine"
+winelog="/tmp/winelog"
+do_winecfg="NO"
+
+
+# Help info
+usage() {
+    cat << USAGE
+Usage: winewrapper [OPTION]... FILE
+winewrapper - wrapper for WINE
+
+Options:
+    -a --arch       select the architecture
+    -c --config     configure WINE
+    -l --log        select the log directory
+    -p --prefix     select the wine prefix
+    -h --help       show this help information
+
+Examples:
+    -a 32           wine32 architecture
+
+Copyright (c) 2020, XGQT
+Licensed under the ISC License
+USAGE
+}
+
+
+while [ -n "${1}" ]
+do
+    case ${1}
+    in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+        -a | --arch )
+            WINEARCH="win${2}"
+            ;;
+        -c | --cfg | --config )
+            do_winecfg="YES"
+            ;;
+        -l | --log )
+            winelog="${2}"
+            ;;
+        -p | --prefix )
+            WINEPREFIX="${2}"
+            ;;
+        * )
+            program="${1}"
+            ;;
+    esac
+    shift
+done
+
+if ! mkdir -p "${winelog}"
+then
+    echo "Cannot create WINE log directory: ${winelog}"
+    exit 1
+fi
+
+export WINEARCH
+export WINEPREFIX
+
+echo "WINE from:          $(command -v wine)"
+echo "WINE architecture:  ${WINEARCH}"
+echo "WINE prefix:        ${WINEPREFIX}"
+echo "WINE log directory  ${winelog}"
+
+if [ "${do_winecfg}" = "YES" ]
+then
+    exec winecfg
+else
+    if [ ! -f "${program}" ]
+    then
+        echo "No such file: ${program}"
+        exit 1
+    fi
+    echo "Executing Program:  $(basename "${program}")"
+    exec wine "${program}" >"${winelog}/wine-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+fi
