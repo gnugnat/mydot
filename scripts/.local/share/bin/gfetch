@@ -27,6 +27,9 @@ shell="$(basename "${SHELL}" 2>/dev/null)"
 if [ -f /etc/lsb-release ]
 then
     os="$(cut -d \" -f 2 < /etc/lsb-release) $(uname -m)"
+elif [ -f /etc/os-release ]
+then
+    os="$(cut -d = -f 2 < /etc/os-release | sed 1q) $(uname -m)"
 else
     os="Gentoo $(uname -m)"
 fi
