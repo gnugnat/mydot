@@ -41,6 +41,9 @@ then
 elif exists xstow
 then
     stow_impl=xstow
+elif exists pystow
+then
+    stow_impl=pystow
 else
     err_msg "There is no stow on the sytem! Exiting"
 fi
@@ -66,7 +69,7 @@ done
 # >>> Perform desired Stow action
 
 # then we iterate through everything there
-for target in *
+for target in ./*
 do
     # check if it's a directory
     if [ -d "${target}" ]
@@ -75,10 +78,10 @@ do
 	    if [ "${1}" = "remove" ]
         then
             msg "Removing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v -t "${HOME}" -D "${target}"
+	        ${stow_impl} -v -t "${HOME}" -d "${target}" -D
 	    else
             msg "Installing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v -t "${HOME}" "${target}"
+	        ${stow_impl} -v -t "${HOME}" -d "${target}"
 	    fi
     fi
 done
