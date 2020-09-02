@@ -14,11 +14,11 @@
 
 
 msg() {
-    echo "$(tput bold)${1}$(tput sgr0)"
+    echo "$(tput bold)${*}$(tput sgr0)"
 }
 
 err_msg() {
-    msg "${1}"
+    msg "${*}"
     exit 1
 }
 
@@ -48,6 +48,8 @@ else
     err_msg "There is no stow on the sytem! Exiting"
 fi
 
+msg "Stow implementation: ${stow_impl}"
+
 # check needed directories
 req_dirs="
     ${HOME}/.config/mpd/playlists
@@ -60,8 +62,8 @@ do
     then
         echo "${dir} exists, good"
     else
-	    mkdir -p "${dir}"
-	    echo "${dir} created"
+        mkdir -p "${dir}"
+        echo "${dir} created"
     fi
 done
 
@@ -69,19 +71,19 @@ done
 # >>> Perform desired Stow action
 
 # then we iterate through everything there
-for target in ./*
+for target in *
 do
     # check if it's a directory
     if [ -d "${target}" ]
     then
-	    # finally do some work
-	    if [ "${1}" = "remove" ]
+        # finally do some work
+        if [ "${1}" = "remove" ]
         then
             msg "Removing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v -t "${HOME}" -d "${target}" -D
-	    else
+            ${stow_impl} -v -t "${HOME}" -D "${target}"
+        else
             msg "Installing $(tput bold)$target$(tput sgr0)"
-	        ${stow_impl} -v -t "${HOME}" -d "${target}"
-	    fi
+            ${stow_impl} -v -t "${HOME}" "${target}"
+        fi
     fi
 done
