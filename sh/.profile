@@ -164,15 +164,25 @@ if command_exists emacs
 then
     if pgrep -fi -u "${USER}" 'emacs --daemon' >/dev/null 2>&1
     then
-        EDITOR=emacsclient
+        EDITOR="emacsclient"
     else
-        EDITOR=emacs
+        EDITOR="emacs"
     fi
+elif command_exists neovim
+then
+    EDITOR="neovim"
 elif command_exists vim
 then
-    EDITOR=vim
+    EDITOR="vim"
+elif command_exists vi
+then
+    EDITOR="vi"
+elif command_exists vi
+then
+    EDITOR="nano"
 else
-    EDITOR=nano
+    # The standard editor /s
+    EDITOR="ed"
 fi
 export EDITOR
 
