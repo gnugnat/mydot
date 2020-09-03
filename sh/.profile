@@ -202,29 +202,33 @@ export GOPATH
 GUILE_HISTORY=${HOME}/.cache/guile/history
 export GUILE_HISTORY
 
-# Octave history file
-OCTAVE_HISTFILE=${HOME}/.cache/octave_repl_history
-export OCTAVE_HISTFILE
-
 # Ipython & Jupyter directory
 IPYTHONDIR="${HOME}/.config/jupyter"
 export IPYTHONDIR
 JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
-# Racket directory
-PLTUSERHOME="${HOME}/.local/share/racket"
-export PLTUSERHOME
-
 # Disable less history file
 LESSHISTFILE=-
 export LESSHISTFILE
+
+# Mednafen configuration directory
+MEDNAFEN_HOME="${HOME}/.config/mednafen"
+export MEDNAFEN_HOME
 
 # Node
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
+
+# Octave history file
+OCTAVE_HISTFILE="${HOME}/.cache/octave_repl_history"
+export OCTAVE_HISTFILE
+
+# Racket directory
+PLTUSERHOME="${HOME}/.local/share/racket"
+export PLTUSERHOME
 
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
@@ -259,6 +263,15 @@ then
     fi
     unset candidate_XDG_RUNTIME_DIR
 fi
+
+# Xorg X11 Server
+# Why here? We use XDG_RUNTIME_DIR for Xauthority
+XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+export XAUTHORITY
+XINITRC="${HOME}/.config/X11/xinitrc"
+export XINITRC
+XSERVERRC="${HOME}/.config/X11/xserverrc"
+export XSERVERRC
 
 # If we're root we don't need sudo in most cases (covered here)
 if [ "$(whoami)" = "root" ]
@@ -541,5 +554,5 @@ fi
 
 if ! am_i_root && [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ ! "${DISPLAY}" ]
 then
-    startx ~/.xinitrc || echo "Failed to start the default X session"
+    startx ~/.config/X11/xinitrc -- ~/.config/X11/xserverrc || echo "Failed to start the default X session"
 fi

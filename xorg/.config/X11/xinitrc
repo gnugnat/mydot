@@ -19,11 +19,12 @@ session=${1:-xfce}
 # Source files
 
 # Xprofile
-[ -f "$HOME/.xprofile" ] && . ~/.xprofile
+[ -f "${HOME}/.xprofile" ] && . ~/.xprofile
+[ -f "${HOME}/.config/X11/xprofile" ] && . ~/.config/X11/xprofile
 
 # Additional X scripts
 # ex.: xrandr settings or session choice
-[ -f "$HOME/.xscripts" ] && . ~/.xscripts
+[ -f "${HOME}/.xscripts" ] && . ~/.xscripts
 
 
 # Start the session
