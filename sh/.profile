@@ -314,17 +314,17 @@ fi
 case $(uname)
 in
     *Linux* )
-        a_k_a ll 'ls -lahF --color=always'
-        a_k_a ta 'tree -a -I ".git"'
         a_k_a t 'tree -a -L 2 -I ".git"'
+        a_k_a ta 'tree -a -I ".git"'
         alias grep='grep --colour=always'
+        alias ll='ls -lahF --color=always'
         alias ls='ls --color=auto'
         alias tree='tree -C -F'
         ;;
     * )
-        a_k_a ll 'ls -lahF'
         a_k_a t 'tree -a -L 2'
         a_k_a ta 'tree -a'
+        alias ll='ls -lahF'
         alias tree='tree -F'
         ;;
 esac
