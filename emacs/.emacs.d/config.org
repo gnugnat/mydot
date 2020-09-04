@@ -356,6 +356,11 @@
      company-minimum-prefix-length 2
      )
     )
+  (use-package company-quickhelp
+    :ensure t
+    :hook
+    (company-mode . company-quickhelp-mode)
+    )
 #+END_SRC
 ** C
 #+BEGIN_SRC emacs-lisp
