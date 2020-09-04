@@ -94,6 +94,8 @@
     :ensure t
     :hook
     (company-mode . company-box-mode)
+    :config
+    (setq company-box-enable-icon nil)
     )
 #+END_SRC
 * Misc Plugins
