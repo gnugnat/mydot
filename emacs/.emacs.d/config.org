@@ -98,6 +98,13 @@
   ;; Highlight parens
   (show-paren-mode t)
 #+END_SRC
+** No suspend key
+   Disable suspending Emacs with =C-z= and bind it to undo
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-z"))
+  (global-set-key (kbd "C-z") 'undo)
+#+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
   ;; Control & Scroll Up - Increase
