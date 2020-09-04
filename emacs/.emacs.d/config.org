@@ -99,8 +99,7 @@
   (show-paren-mode t)
 #+END_SRC
 ** No suspend key
-   Disable suspending Emacs with =C-z= and bind it to undo
-   and rebind shourtcuts with =C-z= to:
+   Disable suspending Emacs with =C-z= and bind:
    - =C-z= - undo
    - =C-x C-z= - revert buffer
 #+BEGIN_SRC emacs-lisp
