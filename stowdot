@@ -45,7 +45,12 @@ elif exists pystow
 then
     stow_impl=pystow
 else
-    err_msg "There is no stow on the sytem! Exiting"
+    echo "There is none of supported 'stow' implementations on the sytem!"
+    echo "If you don't want to use 'ln' manually please install any of:"
+    echo "- stow"
+    echo "- xstow"
+    echo "- pystow"
+    err_msg "No stow program! Exiting"
 fi
 
 msg "Stow implementation: ${stow_impl}"
