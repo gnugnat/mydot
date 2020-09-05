@@ -132,7 +132,7 @@ git_check() {
 
 # Make a directory and cd into it
 mkcd() {
-    mkdir "${1}" && cd "${1}" || return 1
+    mkdir "${*}" && cd "${*}" || return 1
 }
 
 # Open a link in Emacs web browser
