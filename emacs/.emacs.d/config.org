@@ -341,15 +341,6 @@
     ((prog-mode . rainbow-delimiters-mode))
     )
 #+END_SRC
-** Sudo Edit
-   Edit files as root
-#+BEGIN_SRC emacs-lisp
-  (use-package sudo-edit
-    :ensure t
-    :bind
-    ("s-e" . sudo-edit)
-    )
-#+END_SRC
 ** Spaces
    Use spaces as tabs
 #+BEGIN_SRC emacs-lisp
