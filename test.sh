@@ -22,10 +22,10 @@ done
 if [ ${exit_result} = 0 ]
 then
     echo "No errors reported"
-    echo "Existing successfully"
+    echo "Exiting successfully"
     exit ${exit_result}
 else
     echo "Some errors reported"
-    echo "Existing without success"
+    echo "Exiting without success"
     exit ${exit_result}
 fi
