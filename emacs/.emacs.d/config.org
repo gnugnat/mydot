@@ -99,14 +99,11 @@
   (show-paren-mode t)
 #+END_SRC
 ** No suspend key
-   Disable suspending Emacs with =C-z= and bind:
-   - =C-z= - undo
-   - =C-x C-z= - revert buffer
+   Disable suspending Emacs with =C-z= and bind it to undo
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-z"))
   (global-unset-key (kbd "C-x C-z"))
   (global-set-key (kbd "C-z") 'undo)
-  (global-set-key (kbd "C-x C-z") 'revert-buffer)
 #+END_SRC
 ** Zoom with Scroll
 #+BEGIN_SRC emacs-lisp
@@ -302,6 +299,17 @@
      ("C-c s" . magit-status)
      ("C-c b" . magit-blame)
      )
+    )
+#+END_SRC
+** Undoo-tree
+   [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :ensure t
+    :bind
+    ("C-x C-z" . 'undo-tree-visualize)
+    :init
+    (global-undo-tree-mode)
     )
 #+END_SRC
 ** Projectile
