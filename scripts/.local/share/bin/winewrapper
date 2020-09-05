@@ -12,6 +12,7 @@ WINEARCH="win32"
 WINEPREFIX="${HOME}/.wine"
 winelog="/tmp/winelog"
 do_winecfg="NO"
+do_kill="NO"
 
 
 # Help info
@@ -23,8 +24,9 @@ winewrapper - wrapper for WINE
 Options:
     -a --arch       select the architecture
     -c --config     configure WINE
+    -k --kill       kill all running WINE processes
     -l --log        select the log directory
-    -p --prefix     select the wine prefix
+    -p --prefix     select the WINE prefix
     -h --help       show this help information
 
 Examples:
@@ -50,6 +52,9 @@ do
         -c | --cfg | --config )
             do_winecfg="YES"
             ;;
+        -k | --kill )
+            do_kill="YES"
+            ;;
         -l | --log )
             winelog="${2}"
             ;;
@@ -72,20 +77,31 @@ fi
 export WINEARCH
 export WINEPREFIX
 
-echo "WINE from:          $(command -v wine)"
-echo "WINE architecture:  ${WINEARCH}"
-echo "WINE prefix:        ${WINEPREFIX}"
-echo "WINE log directory  ${winelog}"
-
-if [ "${do_winecfg}" = "YES" ]
+if [ "${do_kill}" = "YES" ]
 then
-    exec winecfg >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+    echo "Killing WINE processes:"
+    # shellcheck disable=1003
+    for pid in $(pgrep -fi -u "${USER}" ':\\')
+    do
+        ps -p "${pid}" -o comm=
+        kill "${pid}" 2>/dev/null
+    done
 else
-    if [ ! -f "${program}" ]
+    echo "WINE from:          $(command -v wine)"
+    echo "WINE architecture:  ${WINEARCH}"
+    echo "WINE prefix:        ${WINEPREFIX}"
+    echo "WINE log directory  ${winelog}"
+
+    if [ "${do_winecfg}" = "YES" ]
     then
-        echo "No such file: ${program}"
-        exit 1
+        exec winecfg >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+    else
+        if [ ! -f "${program}" ]
+        then
+            echo "No such file: ${program}"
+            exit 1
+        fi
+        echo "Executing Program:  $(basename "${program}")"
+        exec wine "${program}" >"${winelog}/wine-exe-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
     fi
-    echo "Executing Program:  $(basename "${program}")"
-    exec wine "${program}" >"${winelog}/wine-exe-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
 fi
