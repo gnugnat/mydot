@@ -6,6 +6,7 @@
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
 [[./mydot.png]]
+
 [[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]] [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:https://img.shields.io/badge/feed-atom-orange.svg]] [[./LICENSE][file:https://img.shields.io/badge/license-ISC-blue.svg]]
 * Howto
 ** Installation
