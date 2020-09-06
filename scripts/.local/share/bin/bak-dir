@@ -1,6 +1,12 @@
 #!/bin/sh
 
-# in cronjob use with > /dev/null
+
+# In cronjob use with > /dev/null
+
+
+trap 'exit 128' INT
+export PATH
+
 
 count_backups() {
     find "${backup_dir}" -maxdepth 1 -type f -name "${target_base}*.tar.gz" | wc -l
@@ -18,6 +24,7 @@ rm_old() {
     echo "Removing ${oldest_archive}"
     rm "${oldest_archive}"
 }
+
 
 if [ -z "${1}" ] || [ -z "${2}" ]
 then

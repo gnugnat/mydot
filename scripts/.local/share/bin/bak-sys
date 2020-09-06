@@ -1,0 +1,46 @@
+#!/bin/sh
+
+
+trap 'exit 128' INT
+export PATH
+
+
+sh_msg() {
+    echo "$(tput bold)$(tput setaf 2)>>>$(tput setaf 7) ${*}$(tput sgr0)"
+}
+
+bak_dir() {
+    if [ -d "${1}" ]
+    then
+        mkdir -p "${2}"
+        sh_msg "Backing up ${1} into ${2}"
+        bak-dir "${1}" "${2}" >/dev/null 2>&1
+    else
+        "WARNING: ${1} not found"
+    fi
+}
+
+
+if [ -n "${1}" ]
+then
+    mkdir -p "${1}"
+    cd "${1}" || exit 1
+fi
+
+bak_dir "/boot" "$(hostname -s)-boot"
+bak_dir "/etc" "$(hostname -s)-etc"
+bak_dir "/opt" "$(hostname -s)-opt"
+bak_dir "/var/www" "$(hostname -s)-www"
+
+if [ -d "${EPREFIX}/etc/portage" ]
+then
+    sh_msg "Backing up portage"
+    bak-portage "$(hostname -s)-portage"
+fi
+
+if [ -f /proc/config.gz ]
+then
+    sh_msg "Backing up $(hostname -s) kernel configuration"
+    mkdir -p "$(hostname -s)-kernel"
+    zcat /proc/config.gz > "$(hostname -s)-kernel/config-$(hostname -s)-$(uname -r)"
+fi
