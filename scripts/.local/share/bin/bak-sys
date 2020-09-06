@@ -1,4 +1,4 @@
-#!/bin/sh
+\#!/bin/sh
 
 
 trap 'exit 128' INT
@@ -16,7 +16,7 @@ bak_dir() {
         sh_msg "Backing up ${1} into ${2}"
         bak-dir "${1}" "${2}" >/dev/null 2>&1
     else
-        "WARNING: ${1} not found"
+        echo "WARNING: ${1} not found"
     fi
 }
 
