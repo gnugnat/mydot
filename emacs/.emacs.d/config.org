@@ -460,6 +460,19 @@
      )
     )
 #+END_SRC
+** Lua
+   [[http://www.lua.org/][Lua]] language support with [[http://luajit.org/][LuaJIT]]
+#+BEGIN_SRC emacs-lisp
+  (use-package lua-mode
+    :ensure t
+    :hook
+    (
+     (lua-mode . company-mode)
+     )
+    :config
+    (setq lua-default-application "luajit")
+    )
+#+END_SRC
 ** Markdown
    [[https://daringfireball.net/projects/markdown][Markdown]] language support
 #+BEGIN_SRC emacs-lisp
