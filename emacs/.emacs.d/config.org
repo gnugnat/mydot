@@ -592,8 +592,11 @@
    sh-basic-offset 4
    )
 #+END_SRC
-** Web
-   Enable Web Mode
+** Web Development
+   Enable Web Mode for:
+   - [[https://whatwg.org/][HTML]]
+   - [[https://www.php.net/][PHP]]
+   - [[https://www.w3.org/TR/xml11/][XML]]
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
@@ -630,6 +633,10 @@
      web-mode-style-padding 4
      )
     )
+#+END_SRC
+   Tweak [[https://www.w3.org/TR/CSS2/][CSS]] support
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'css-mode-hook 'company-mode)
 #+END_SRC
 ** Yaml
    [[https://yaml.org][Yaml]] language support
