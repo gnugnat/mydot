@@ -6,9 +6,10 @@
 
 try:
     import portage
+    world_file = portage.root + portage.WORLD_FILE
 except ImportError:
-    import sys
-    sys.exit("Could not import portage")
+    print("WARNING: Could not import portage")
+    world_file = "/var/lib/portage/world"
 
 
 def parse_category(category):
@@ -66,7 +67,7 @@ def parse_category(category):
     return "    " + choose_color(category) + indicator + category
 
 
-with open(portage.root + portage.WORLD_FILE) as world:
+with open(world_file) as world:
 
     category_tmp = ""
     group_tmp = ""
