@@ -16,22 +16,52 @@ umsg() {
     echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)${STEP}$(tput setaf 7)] ${1} $(tput sgr0)"
 }
 
+command_exists () {
+    if command -v "${1}" > /dev/null 2>&1
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
 main() {
+    if command_exists update-genlica
+    then
+        umsg "Updating Genlica"
+        update-genlica
+    fi
+
     umsg "Syncing the tree"
     eix-sync
     eix-remote update
 
-    umsg "Upgrading portage"
+    umsg "Updating portage"
     emerge -1u sys-apps/portage
 
     umsg "Merging changes"
     emerge --changed-deps --changed-slot @world
 
-    umsg "Upgrading system"
+    umsg "Updating system"
     emerge -uNUD --with-bdeps=y @world
 
-    umsg "Upgrading git packages"
-    smart-live-rebuild -j 2
+    umsg "Rebuilding Perl packages"
+    perl-cleaner --all
+
+    if command_exists haskell-updater
+    then
+        umsg "Rebuilding Haskell packages"
+        haskell-updater
+    fi
+
+    umsg "Rebuilding preserved packages"
+    emerge -1v @preserved-rebuild
+
+    if command_exists smart-live-rebuild
+    then
+        umsg "Updating git packages"
+        smart-live-rebuild -j 2
+    fi
 
     umsg "Cleaning"
     emerge -c
@@ -39,7 +69,9 @@ main() {
 }
 
 
-if [ "$(whoami)" != root ]; then
+if [ "$(whoami)" != root ]
+then
+    echo "Switching to the root user account"
     sudo "${0}"
 else
     main
