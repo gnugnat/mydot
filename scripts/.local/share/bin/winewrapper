@@ -13,6 +13,7 @@ WINEPREFIX="${HOME}/.wine"
 winelog="/tmp/winelog"
 do_winecfg="NO"
 do_kill="NO"
+do_tricks="NO"
 
 
 # Help info
@@ -24,10 +25,11 @@ winewrapper - wrapper for WINE
 Options:
     -a --arch       select the architecture
     -c --config     configure WINE
+    -h --help       show this help information
     -k --kill       kill all running WINE processes
     -l --log        select the log directory
     -p --prefix     select the WINE prefix
-    -h --help       show this help information
+    -t --tricks     open Winetricks
 
 Examples:
     -a 32           wine32 architecture
@@ -54,6 +56,9 @@ do
             ;;
         -k | --kill )
             do_kill="YES"
+            ;;
+        -t | --tricks )
+            do_tricks="YES"
             ;;
         -l | --log )
             winelog="${2}"
@@ -95,6 +100,9 @@ else
     if [ "${do_winecfg}" = "YES" ]
     then
         exec winecfg >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+    elif [ "${do_tricks}" = "YES" ]
+    then
+        exec winetricks >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
     else
         if [ ! -f "${program}" ]
         then
