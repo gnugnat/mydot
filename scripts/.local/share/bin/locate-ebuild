@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+trap 'exit 128' INT
+export PATH
+
+
 usage() {
     cat <<USAGE
 Usage: locate-ebuild PACKAGE

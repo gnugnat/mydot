@@ -4,6 +4,10 @@
 # No Bullshit Find
 
 
+trap 'exit 128' INT
+export PATH
+
+
 usage() {
     cat <<EOF
 Usage: nbf [OPTION]... FILE

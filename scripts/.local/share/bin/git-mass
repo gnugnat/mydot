@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+
 # Run specified command for each git
 # repository found in current dir
+
+
+trap 'exit 128' INT
+export PATH
+
 
 while read -r -d '' directory; do
     

@@ -1,6 +1,12 @@
 #!/bin/sh
 
+
 # Get info about current git repo
+
+
+trap 'exit 128' INT
+export PATH
+
 
 location=${1:-.}
 

@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+trap 'exit 128' INT
+export PATH
+
+
 # one may want this to be unprivileged
 repoman manifest || ebuild "${1}" manifest
 

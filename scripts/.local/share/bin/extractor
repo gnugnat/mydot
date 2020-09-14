@@ -4,6 +4,10 @@
 # Simple archive extractor wrapper
 
 
+trap 'exit 128' INT
+export PATH
+
+
 if [ -f "${1}" ]; then
     case ${1} in
         *.7z)        bsdtar xf "${1}"                ;;

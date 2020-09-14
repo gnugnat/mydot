@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+trap 'exit 128' INT
+export PATH
+
+
 if [ -z "${1}" ] || [ -z "${2}" ] || [ -z "${3}" ]
 then
     cat <<HELP

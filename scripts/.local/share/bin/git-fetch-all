@@ -5,6 +5,10 @@
 # https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
 
 
+trap 'exit 128' INT
+export PATH
+
+
 git branch -r | grep -v '\->' | while read -r remote
 do
     git branch --track "${remote#origin/}" "$remote"
