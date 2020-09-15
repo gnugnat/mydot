@@ -43,9 +43,15 @@
 
 # >>> Helper functions
 
+# Send stdout and stderr of 'command' to /dev/null
+# Basically this will return the exit status
+nullwrap() {
+    (exec "${@}") >/dev/null 2>&1
+}
+
 # Check if a command exists (without redirecting each time)
 command_exists() {
-    if command -v "${1}" >/dev/null 2>&1
+    if nullwrap command -v "${1}"
     then
         return 0
     else
@@ -162,7 +168,7 @@ export USER
 # Auto-set the editor
 if command_exists emacs
 then
-    if pgrep -fi -u "${USER}" 'emacs --daemon' >/dev/null 2>&1
+    if nullwrap pgrep -fi -u "${USER}" 'emacs --daemon'
     then
         EDITOR="emacsclient"
     else
@@ -253,7 +259,7 @@ then
         # because it probably won't be cleaned, instead
         # we'll go with /tmp since it is common for it to be tmpfs
         candidate_XDG_RUNTIME_DIR=/tmp/user/$(id -u "${USER}")
-        if mkdir -p "${candidate_XDG_RUNTIME_DIR}" >/dev/null 2>&1
+        if nullwrap mkdir -p "${candidate_XDG_RUNTIME_DIR}"
         then
             XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
             export XDG_RUNTIME_DIR
@@ -532,7 +538,7 @@ export PINENTRY_USER_DATA
 if ! am_i_root && command_exists gpg-agent
 then
     # Start GPG agent if it is not running
-    pgrep -i -u "${USER}" gpg-agent >/dev/null 2>&1 || gpg-agent --daemon 2>/dev/null
+    nullwrap pgrep -i -u "${USER}" gpg-agent || gpg-agent --daemon 2>/dev/null
 fi
 
 
@@ -542,8 +548,8 @@ fi
 if ! am_i_root && command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
 then
     # Start SSH agent if it is not running
-    pgrep -i -u "${USER}" ssh-agent >/dev/null 2>&1 || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
-    [ -e "${SSH_AUTH_SOCK}" ] || eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")" >/dev/null 2>&1
+    nullwrap pgrep -i -u "${USER}" ssh-agent || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
+    [ -e "${SSH_AUTH_SOCK}" ] || nullwrap eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")"
 fi
 
 
