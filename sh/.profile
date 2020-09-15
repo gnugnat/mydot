@@ -177,7 +177,7 @@ then
 elif command_exists vi
 then
     EDITOR="vi"
-elif command_exists vi
+elif command_exists nano
 then
     EDITOR="nano"
 else
