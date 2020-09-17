@@ -236,6 +236,10 @@ export OCTAVE_HISTFILE
 PLTUSERHOME="${HOME}/.local/share/racket"
 export PLTUSERHOME
 
+# Pylint directory
+PYLINTHOME="${HOME}/.cache/pylint"
+export PYLINTHOME
+
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
 export XDG_CACHE_HOME
