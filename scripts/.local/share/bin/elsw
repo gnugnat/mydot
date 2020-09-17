@@ -1,98 +1,109 @@
 #!/usr/bin/env python
 
 
-# A nice way to view Portage's world file
+"""
+A nice way to view Portage's world file
+"""
 
 
 try:
     import portage
-    world_file = portage.root + portage.WORLD_FILE
+    WORLD_FILE = portage.root + portage.WORLD_FILE
 except ImportError:
     print("WARNING: Could not import portage")
-    world_file = "/var/lib/portage/world"
+    WORLD_FILE = "/var/lib/portage/world"
+
+
+def choose_color(category):
+
+    """
+    Colorize
+    """
+
+    color_good = "\033[92m"
+    color_warn = "\033[93m"
+    color_erro = "\033[91m"
+
+    category_warn = [
+        "acct-group",
+        "acct-user",
+        "app-crypt",
+        "app-dicts",
+        "app-i18n",
+        "dev-texlive",
+        "gui-wm",
+        "media-plugins",
+        "sci-libs",
+        "sys-apps",
+        "sys-auth",
+        "sys-firmware",
+        "sys-fs",
+        "sys-libs",
+        "x11-apps",
+        "x11-base",
+        "x11-misc",
+        "x11-plugins"
+    ]
+    category_erro = [
+        "dev-libs"
+        "gnustep-libs",
+        "gui-libs",
+        "java-virtuals",
+        "media-libs",
+        "net-libs",
+        "sci-libs",
+        "sec-policy",
+        "sys-libs",
+        "virtual",
+        "x11-drivers",
+        "x11-libs",
+    ]
+
+    if category in category_warn:
+        return color_warn
+    if category in category_erro:
+        return color_erro
+    return color_good
 
 
 def parse_category(category):
 
+    """
+    Parse categories
+    Add special characters
+    """
+
     indicator = " \u25cf "
 
-    def choose_color(category):
-
-        color_good = "\033[92m"
-        color_warn = "\033[93m"
-        color_erro = "\033[91m"
-
-        category_warn = [
-            "acct-group",
-            "acct-user",
-            "app-crypt",
-            "app-dicts",
-            "app-i18n",
-            "dev-texlive",
-            "gui-wm",
-            "media-plugins",
-            "sci-libs",
-            "sys-apps",
-            "sys-auth",
-            "sys-firmware",
-            "sys-fs",
-            "sys-libs",
-            "x11-apps",
-            "x11-base",
-            "x11-misc",
-            "x11-plugins"
-        ]
-        category_erro = [
-            "dev-libs"
-            "gnustep-libs",
-            "gui-libs",
-            "java-virtuals",
-            "media-libs",
-            "net-libs",
-            "sci-libs",
-            "sec-policy",
-            "sys-libs",
-            "virtual",
-            "x11-drivers",
-            "x11-libs",
-        ]
-
-        if category in category_warn:
-            return color_warn
-        elif category in category_erro:
-            return color_erro
-        else:
-            return color_good
-
-    return "    " + choose_color(category) + indicator + category
+    return 4 * " " + choose_color(category) + indicator + category
 
 
-with open(world_file) as world:
+with open(WORLD_FILE) as world:
 
-    category_tmp = ""
-    group_tmp = ""
-    category_count = 0
-    package_count = 0
+    CATEGORY_TMP = ""
+    GROUP_TMP = ""
+    CATEGORY_COUNT = 0
+    PACKAGE_COUNT = 0
 
     for line in sorted(world.read().splitlines()):
 
         read_category = line.split("/")[0]
         read_group = read_category.split("-")[0]
 
-        if read_group != group_tmp:
+        if read_group != GROUP_TMP:
             print("\033[97m" + " \u25cb " + str.upper(read_group))
-            group_tmp = read_group
+            GROUP_TMP = read_group
 
-        if read_category != category_tmp:
+        if read_category != CATEGORY_TMP:
             print(parse_category(read_category))
-            category_tmp = read_category
-            category_count += 1
+            CATEGORY_TMP = read_category
+            CATEGORY_COUNT += 1
 
-        print("        \033[94m -", line.split("/")[1])
-        package_count += 1
+        print(8 * " " + "\033[94m -", line.split("/")[1])
+        PACKAGE_COUNT += 1
 
     # Reset color + newline
     print("\033[0m")
 
-    print(category_count, "categories")
-    print(package_count, "packages")
+    print(CATEGORY_COUNT, "categories")
+    print(PACKAGE_COUNT, "packages")

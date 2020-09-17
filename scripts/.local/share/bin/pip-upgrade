@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 
-# Upgrade python packages installed with pip under the active user.
+"""
+Upgrade python packages installed with pip under the active user.
+"""
 
 
 import subprocess
@@ -17,13 +19,15 @@ except ImportError:
 def main():
 
     pkgs = eval(str(subprocess.run(
-        "pip list --user --outdated --format=json", shell=True,
+        "pip list --user --outdated --format=json",
+        shell=True, check=True,
         stdout=subprocess.PIPE).stdout, encoding='utf-8'))
 
     for pkg in pkgs:
         print("upgrading", pkg['name'])
         subprocess.run(
-            "pip install --user --upgrade " + pkg['name'], shell=True)
+            "pip install --user --upgrade " + pkg['name'],
+            shell=True, check=True)
 
 
 if __name__ == "__main__":
