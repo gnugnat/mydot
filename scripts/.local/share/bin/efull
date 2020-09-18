@@ -17,7 +17,7 @@ umsg() {
 }
 
 command_exists () {
-    if command -v "${1}" > /dev/null 2>&1
+    if command -v "${1}" >/dev/null 2>&1
     then
         return 0
     else
@@ -29,43 +29,43 @@ main() {
     if command_exists update-genlica
     then
         umsg "Updating Genlica"
-        update-genlica
+        time update-genlica
     fi
 
     umsg "Syncing the tree"
-    eix-sync
-    eix-remote update
+    time eix-sync
+    time eix-remote update
 
     umsg "Updating portage"
-    emerge -1u sys-apps/portage
+    time emerge -1u sys-apps/portage
 
     umsg "Merging changes"
-    emerge --changed-deps --changed-slot @world
+    time emerge --changed-deps --changed-slot @world
 
     umsg "Updating system"
-    emerge -uNUD --with-bdeps=y @world
+    time emerge -uNUD --with-bdeps=y @world
 
     umsg "Rebuilding Perl packages"
-    perl-cleaner --all
+    time perl-cleaner --all
 
     if command_exists haskell-updater
     then
         umsg "Rebuilding Haskell packages"
-        haskell-updater
+        time haskell-updater
     fi
 
     umsg "Rebuilding preserved packages"
-    emerge -1v @preserved-rebuild
+    time emerge -1v @preserved-rebuild
 
     if command_exists smart-live-rebuild
     then
         umsg "Updating git packages"
-        smart-live-rebuild -j 2
+        time smart-live-rebuild -j 2
     fi
 
     umsg "Cleaning"
-    emerge -c
-    eclean-dist --deep
+    time emerge -c
+    time eclean-dist --deep
 }
 
 
