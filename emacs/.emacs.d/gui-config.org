@@ -18,7 +18,7 @@
   ;; Fallback to another font if first is unavalible
   (require 'dash)
   (defun font-candidate (&rest fonts)
-    "Return the first available font."
+    "Return the first available font from FONTS."
     (--first
      (find-font (font-spec :name it)) fonts
      )
@@ -60,6 +60,7 @@
 
   ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
   (defun toggle-transparency ()
+    "Toggle transparency of the Emacs frame."
     (interactive)
     (let
         (
