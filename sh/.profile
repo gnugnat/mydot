@@ -59,40 +59,6 @@ command_exists() {
     fi
 }
 
-# Check if 1st string contains the 2nd
-contains_string() {
-    string="${1}"
-    substring="${2}"
-
-    if [ "${string#*${substring}}" != "${string}" ]
-    then
-        # $substring is in $string
-        return 0
-    else
-        # $substring is not in $string
-        return 1
-    fi
-}
-
-# Source a file if it exists
-source_file() {
-    [ -f "${1}" ] && . "${1}"
-}
-
-# Add a directory to PATH
-# This function first checks if specified directory
-# already is in path, if it is not and it exists
-# it is added to the path
-add_to_path() {
-    if ! contains_string "${PATH}" "${1}"
-    then
-        if [ -d "${1}" ]
-        then
-            export PATH=${PATH}:${1}
-        fi
-    fi
-}
-
 # A.K.A - safe alias
 # create a alias only if a command and/or alias
 # with the desired name does not exist
@@ -118,6 +84,35 @@ cd_alias() {
     fi
 }
 
+# Check if 1st string contains the 2nd
+contains_string() {
+    string="${1}"
+    substring="${2}"
+
+    if [ "${string#*${substring}}" != "${string}" ]
+    then
+        # $substring is in $string
+        return 0
+    else
+        # $substring is not in $string
+        return 1
+    fi
+}
+
+# Add a directory to PATH
+# This function first checks if specified directory
+# already is in path, if it is not and it exists
+# it is added to the path
+add_to_path() {
+    if ! contains_string "${PATH}" "${1}"
+    then
+        if [ -d "${1}" ]
+        then
+            export PATH=${PATH}:${1}
+        fi
+    fi
+}
+
 # Are you root?
 am_i_root() {
     if [ "$(whoami)" = root ]
@@ -126,6 +121,14 @@ am_i_root() {
     else
         return 1
     fi
+}
+
+# Open a link in Emacs web browser
+# $1 - URL
+# $2 - a additional flag, i.e. -nw
+eww() {
+    eval emacs "${2}" \
+         --eval "'(eww" "\"" "${1}" "\"" ")'"
 }
 
 # Check Git branch
@@ -141,12 +144,9 @@ mkcd() {
     mkdir "${*}" && cd "${*}" || return 1
 }
 
-# Open a link in Emacs web browser
-# $1 - URL
-# $2 - a additional flag, i.e. -nw
-eww() {
-    eval emacs "${2}" \
-         --eval "'(eww" "\"" "${1}" "\"" ")'"
+# Source a file if it exists
+source_file() {
+    [ -f "${1}" ] && . "${1}"
 }
 
 
