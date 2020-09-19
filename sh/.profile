@@ -46,7 +46,7 @@
 # Send stdout and stderr of 'command' to /dev/null
 # Basically this will return the exit status
 nullwrap() {
-    (exec "${@}") >/dev/null 2>&1
+    "${@}" >/dev/null 2>&1
 }
 
 # Check if a command exists (without redirecting each time)
