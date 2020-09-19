@@ -435,35 +435,6 @@ a_k_a ipy 'ipython'
 a_k_a py 'python'
 a_k_a rkt 'racket'
 
-# Windows CMD-like aliases, more or less...
-# Because why not? ;P
-a_k_a attrib 'chmod'
-a_k_a cacls 'chown'
-a_k_a call 'sh'
-a_k_a chkdsk 'fsck'
-a_k_a cls 'clear'
-a_k_a comp 'diff --side-by-side --color=always'
-a_k_a copy 'cp'
-a_k_a del 'rm -f'
-a_k_a diskpart 'parted -a optimal'
-a_k_a driverquery 'lsmod'
-a_k_a erase 'rm -Idrv'
-a_k_a findstr 'grep -Ri'
-a_k_a md 'mkdir -p'
-a_k_a mklink 'ln -fsv'
-a_k_a move 'mv'
-a_k_a path 'echo ${PATH}'
-a_k_a pause 'sleep'
-a_k_a prompt 'echo ${PS1} && echo ${PS2}'
-a_k_a rd 'rm -dr'
-a_k_a ren 'rename'
-a_k_a systeminfo 'uname -a'
-a_k_a taskkill 'pkill'
-a_k_a tasklist 'ps avx'
-a_k_a title 'echo ${PROMPT_COMMAND}'
-a_k_a vol 'lsblk -af'
-a_k_a xcopy 'cp -riv'
-
 # Portage
 a_k_a E 'tail -f ${EPREFIX}/var/log/emerge.log'
 a_k_a F 'tail -f ${EPREFIX}/var/log/emerge-fetch.log'
@@ -583,6 +554,19 @@ then
     # Start SSH agent if it is not running
     nullwrap pgrep -i -u "${USER}" ssh-agent || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
     [ -e "${SSH_AUTH_SOCK}" ] || nullwrap eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")"
+fi
+
+
+# >>> Additional source
+# Source additional files
+# that are not critical to running the shell
+if [ -d "${HOME}/.config/sh" ]
+then
+    for shext in "${HOME}/.config/sh"/*
+    do
+        source_file "${shext}"
+    done
+    unset shext
 fi
 
 
