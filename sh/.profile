@@ -420,13 +420,16 @@ a_k_a update-mydot 'mydot && sh update && cd -'
 # Git
 a_k_a Ga 'git add .'
 a_k_a Gc 'git commit'
+a_k_a Gcc 'git log --cc --show-signature'
 a_k_a Gd 'git diff'
 a_k_a Gg 'git pull'
 a_k_a Gl 'git log --oneline --graph'
 a_k_a Go 'git clone --recursive --verbose'
 a_k_a Gp 'git push'
+a_k_a Gq 'git add . && git commit && git pull --rebase && git push'
 a_k_a Gr 'git reset --hard'
 a_k_a Gs 'git status'
+a_k_a Gu 'git reset HEAD --'
 
 # Programming
 a_k_a diff-git 'git diff --no-index'
@@ -509,6 +512,7 @@ cd_alias mydot "${HOME}"/Git/mine/mydot
 cd_alias other "${HOME}"/Git/other
 cd_alias pre "${HOME}"/Git/pre
 cd_alias src_ "${HOME}"/Git/src_prepare
+cd_alias src_overlay "${HOME}"/Git/src_prepare/overlay
 cd_alias src_overlay "${HOME}"/Git/src_prepare/src_prepare-overlay
 
 # User - hidden
