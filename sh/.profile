@@ -483,7 +483,7 @@ cd_alias mydot "${HOME}"/mydot
 
 # System
 cd_alias conf /etc/conf.d
-cd_alias gentoo-tree /var/db/repos/gentoo
+cd_alias repos /var/db/repos
 cd_alias linux-src /usr/src/linux
 cd_alias localht /var/www/localhost/htdocs
 cd_alias logs /var/log
@@ -504,6 +504,7 @@ cd_alias programming "${HOME}"/Documents/Programming
 cd_alias videos "${HOME}"/Videos
 
 # User - git
+cd_alias G "${HOME}"/Git
 cd_alias eternal "${HOME}"/Git/eternal
 cd_alias gentoo-dev "${HOME}"/Git/gentoo
 cd_alias guru "${HOME}"/Git/gentoo/guru
