@@ -137,6 +137,7 @@ post_git_check=""
 git_check() {
     branch="$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')"
     [ -n "${branch}" ] && echo "${pre_git_check}${branch}${post_git_check}"
+    unset branch
 }
 
 # Make a directory and cd into it
