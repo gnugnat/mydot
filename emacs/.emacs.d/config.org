@@ -372,6 +372,32 @@
 #+BEGIN_SRC emacs-lisp
   (add-hook 'c++-mode-hook 'company-mode)
 #+END_SRC
+** C#
+#+BEGIN_SRC emacs-lisp
+  (use-package omnisharp
+    :ensure t
+    :hook
+    (
+     (csharp-mode . omnisharp-mode)
+     (omnisharp-mode . company-mode)
+     (omnisharp-mode . flycheck-mode)
+     )
+    :config
+    (add-to-list 'company-backends 'company-omnisharp)
+    (setq
+     c-syntactic-indentation t
+     truncate-lines t
+     )
+    )
+  (use-package dotnet
+    :ensure t
+    :hook
+    (
+     (csharp-mode . dotnet-mode)
+     (fsharp-mode . dotnet-mode)
+     )
+    )
+#+END_SRC
 ** Electric Pairs
    Auto close brackets
 #+BEGIN_SRC emacs-lisp
