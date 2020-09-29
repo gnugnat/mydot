@@ -656,6 +656,11 @@
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
     :ensure t
+    :mode
+    (
+     ;; Saltstack
+     ("\\.sls\\'" . yaml-mode)
+     )
     :config
     (add-hook
      'yaml-mode-hook
