@@ -142,7 +142,8 @@ git_check() {
 
 # Make a directory and cd into it
 mkcd() {
-    mkdir "${*}" && cd "${*}" || return 1
+    mkdir -p "${*}"
+    cd "${*}" || return 1
 }
 
 # Source a file if it exists
