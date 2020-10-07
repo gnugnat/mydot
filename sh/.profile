@@ -395,7 +395,7 @@ else
 fi
 a_k_a ,, 'cd ../..'
 a_k_a ec 'emacsclient -a ""'
-a_k_a ec-kill 'emacsclient -n --eval "(kill-emacs)"'
+a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
 a_k_a ecf 'emacsclient -a "" -n -c'
 a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
 a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
