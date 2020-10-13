@@ -17,6 +17,8 @@ yellow=$(tput setaf 3)
 
 remote=$(git config --get remote.origin.url 2>/dev/null)
 commits=$(git rev-list --count HEAD 2>/dev/null)
+branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
+latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo 'N/A')
 first=$(git log --reverse --format=%cd | sed 1q 2>/dev/null)
 last=$(git log --reverse -1 --format=%cd 2>/dev/null)
 changes=$(git status --porcelain 2>/dev/null)
@@ -26,6 +28,8 @@ cd "${location}" || exit 1
 
 echo "${bold}${blue}Remote:  ${reset}${yellow}${remote}"
 echo "${bold}${blue}Commits: ${reset}${yellow}${commits}"
+echo "${bold}${blue}Branch:  ${reset}${yellow}${branch}"
+echo "${bold}${blue}Tag:     ${reset}${yellow}${latest_tag}"
 echo "${bold}${blue}First:   ${reset}${yellow}${first}"
 echo "${bold}${blue}Last:    ${reset}${yellow}${last}"
 echo "${bold}${blue}Changes:${reset}${yellow}${changes}${reset}"
