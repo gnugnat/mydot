@@ -1,0 +1,30 @@
+#!/bin/sh
+
+
+set -e
+trap 'exit 1' INT
+export PATH
+
+
+prog_name=$(basename "${0}")
+log_dir="${HOME}/.cache/cron"
+log_file="${log_dir}/${prog_name}.log"
+
+
+run_command() {
+    if ! "${@}" 2>&1
+    then
+        echo "ERROR: ${*} failed!"
+        exit 1
+    fi
+}
+
+
+mkdir -p "${log_dir}" >/dev/null 2>&1
+
+
+(
+    run_command eix-sync
+    run_command eix-update
+    run_command emerge -fuD @world
+) | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_file}" 2>&1
