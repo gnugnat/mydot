@@ -10,17 +10,15 @@ trap 'exit 128' INT
 
 
 command_exists() {
-	if command -v "${1}" >/dev/null 2>&1
-	then
-		return 0
-	else
-		return 1
-	fi
+    if command -v "${1}" >/dev/null 2>&1; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 
-if [ -n "${1}" ]
-then
+if [ -n "${1}" ]; then
     mkdir -p "${1}"
     cd "${1}" || exit 1
 fi
@@ -31,18 +29,24 @@ mkdir "${pbak}"
 command_exists emerge || echo "Are you sure you are using Portage?"
 
 # Portage tree
-cp -r /etc/portage "${pbak}/"
-rm -rfd "${pbak}/portage/make.profile"
-command_exists tree && tree -a -L 2 /etc/portage > "${pbak}/layout.txt"
+cp -r /etc/portage "${pbak}"/
+rm -rfd "${pbak}"/portage/make.profile
+command_exists tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
 
 # Installed packages
-cp /var/lib/portage/world "${pbak}/"
-cp /var/lib/portage/world_sets "${pbak}/"
-command_exists qlist && qlist --installed --nocolor --umap --verbose > "${pbak}/installed.txt"
+cp /var/lib/portage/world "${pbak}"/
+cp /var/lib/portage/world_sets "${pbak}"/
+command_exists qlist && qlist --installed --nocolor --umap --verbose > "${pbak}"/installed.txt
 
 # System info
-emerge --info > "${pbak}/info.txt"
-command_exists gfetch && gfetch > "${pbak}/gfetch.txt"
+emerge --info > "${pbak}"/info.txt
+command_exists gfetch && gfetch > "${pbak}"/gfetch.txt
+
+# Back up package (ebuild) database
+if [ -d /var/db/pkg ]; then
+    cp -r /var/db/pkg "${pbak}"/pkgdb
+    tar zcf "${pbak}"/pkgdb.tar.gz "${pbak}"/pkgdb --remove-files
+fi
 
 # Archive + cleanup
-tar zcf "${pbak}.tar.gz" "${pbak}" --remove-files
+tar zcf "${pbak}".tar.gz "${pbak}" --remove-files
