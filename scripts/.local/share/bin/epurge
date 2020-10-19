@@ -5,6 +5,17 @@ trap 'exit 128' INT
 export PATH
 
 
+usage() {
+    cat <<EOF
+Use this to clean up the system (Gentoo)
+
+Usage: epurge [options]
+
+Options:
+	auto	don't ask for confirmation
+EOF
+}
+
 main() {
 	case ${1}
 	in
@@ -13,27 +24,26 @@ main() {
 			eclean-dist --deep
 			eclean-pkg --deep
 			;;
-		* )
+		"" | -n | --noauto | n | noauto )
 			emerge -ca
 			eclean-dist --deep --interactive
 			eclean-pkg --deep --interactive
 			;;
+        * )
+            echo "Wrong option ${1}"
+            usage
+            exit 1
+            ;;
 	esac
 }
 
 
-case $1
+# Help may be run unprivileged
+case ${1}
 in
 	-h | --help | help )
-		cat <<EOF
-Use this to clean up the system (Gentoo)
-
-Usage: epurge [options]
-
-Options:
-	auto	don't ask for confirmation
-EOF
-		exit
+	    usage
+		exit 0
 		;;
 esac
 
