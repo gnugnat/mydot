@@ -13,8 +13,51 @@
 # $ startx ~/.xinitrc [session]
 
 
-# Here XFCE is kept as default session
-session=${1:-xfce}
+# Autochoose a available session if none is given
+
+cmdex() {
+    if command -v "${1}" >/dev/null 2>&1
+    then
+	return 0
+    else
+	return 1
+    fi
+}
+
+if [ -n "${1}" ]
+then
+    session="${1}"
+else
+    if cmdex gnome-session
+    then
+	session="gnome"
+    elif cmdex startxfce4
+    then
+	session="xfce"
+    elif cmdex mate-session
+    then
+	session="mate"
+    elif cmdex startplasma-x11
+    then
+	session="kde"
+    elif cmdex
+    then
+	session="lxqt"
+    elif cmdex openbox
+    then
+	session="openbox"
+    elif cmdex bspwm
+    then
+	session="bspwm"
+    elif cmdex dwm
+    then
+	session="dwm"
+    elif cmdex emacs
+    then
+	session="exwm"
+    fi
+fi
+
 
 # Source files
 
@@ -30,28 +73,28 @@ session=${1:-xfce}
 # Start the session
 case ${session} in
     bsp | bspwm )
-        exec bspwm
-        ;;
+	exec bspwm
+	;;
     exwm | EXWM )
-        exec emacs --load ~/.emacs.d/exwm-config.el
-        ;;
+	exec emacs --load ~/.emacs.d/exwm-config.el
+	;;
     gnome )
-        exec gnome-session
-        ;;
+	exec gnome-session
+	;;
     lxqt | LXQt )
-        exec startlxqt
-        ;;
+	exec startlxqt
+	;;
     kde )
-        exec startplasma-x11
-        ;;
+	exec startplasma-x11
+	;;
     mate )
-        exec mate-session
-        ;;
+	exec mate-session
+	;;
     xfce | xfce4 )
-        exec startxfce4
-        ;;
+	exec startxfce4
+	;;
     # Anything different is run as command
     * )
-        exec "${1}"
-        ;;
+	exec "${1}"
+	;;
 esac
