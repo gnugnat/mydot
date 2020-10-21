@@ -48,7 +48,10 @@ HISTFILESIZE=50000
 # Set root's editor to nano
 if [ ${EUID} -eq 0 ]
 then
-    if command -v nano >/dev/null 2>&1
+    if command -v qmacs >/dev/null 2>&1
+    then
+        export EDITOR=qmacs
+    elif command -v nano >/dev/null 2>&1
     then
         export EDITOR=nano
     fi
