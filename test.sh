@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 exit_result=0
 files="$(grep -R --exclude-dir='.git' --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
 

@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 trap 'exit 128' INT
 export PATH
 
@@ -12,45 +16,45 @@ Use this to clean up the system (Gentoo)
 Usage: epurge [options]
 
 Options:
-	auto	don't ask for confirmation
+    auto    don't ask for confirmation
 EOF
 }
 
 main() {
-	case ${1}
-	in
-		-a | --auto | a | auto )
-			emerge -c
-			eclean-dist --deep
-			eclean-pkg --deep
-			;;
-		"" | -n | --noauto | n | noauto )
-			emerge -ca
-			eclean-dist --deep --interactive
-			eclean-pkg --deep --interactive
-			;;
+    case ${1}
+    in
+        -a | --auto | a | auto )
+            emerge -c
+            eclean-dist --deep
+            eclean-pkg --deep
+            ;;
+        "" | -n | --noauto | n | noauto )
+            emerge -ca
+            eclean-dist --deep --interactive
+            eclean-pkg --deep --interactive
+            ;;
         * )
             echo "Wrong option ${1}"
             usage
             exit 1
             ;;
-	esac
+    esac
 }
 
 
 # Help may be run unprivileged
 case ${1}
 in
-	-h | --help | help )
-	    usage
-		exit 0
-		;;
+    -h | --help | help )
+        usage
+        exit 0
+        ;;
 esac
 
 
 if [ "$(whoami)" != root ]
 then
-	sudo "${0}" "${1}"
+    sudo "${0}" "${1}"
 else
-	main "${1}"
+    main "${1}"
 fi

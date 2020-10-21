@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 #          _
 #  _______| |__   ___ _ ____   __
 # |_  / __| '_ \ / _ \ '_ \ \ / /

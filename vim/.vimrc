@@ -1,9 +1,14 @@
+" Copyright (c) 2020, XGQT
+" Licensed under the ISC License
+
 "	 _                    
 " __   _(_)_ __ ___  _ __ ___ 
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__ 
 "   \_/ |_|_| |_| |_|_|  \___|
-"	
+"
+
+
 " encoding
 	set encoding=utf-8
 " numbers

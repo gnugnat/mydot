@@ -1,5 +1,9 @@
 ;;; init --- initialization
 ;;; Commentary:
+;;
+;;  Copyright (c) 2020, XGQT
+;;  Licensed under the ISC License
+;;
 ;;  delete ~/.emacs file
 ;;  place this file in
 ;;  ~/.emacs.d directory

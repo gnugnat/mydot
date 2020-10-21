@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 batteries=/sys/class/power_supply
 
 

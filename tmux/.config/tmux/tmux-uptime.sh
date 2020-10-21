@@ -1,8 +1,11 @@
 #!/bin/sh
 
 
-totalseconds=$(awk -F . '{print $1}' < /proc/uptime)
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
 
+
+totalseconds=$(awk -F . '{print $1}' < /proc/uptime)
 
 seconds=$((totalseconds % 60))
 minutes=$(((totalseconds / 60) % 60))

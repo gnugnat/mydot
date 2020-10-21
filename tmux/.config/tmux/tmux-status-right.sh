@@ -1,6 +1,9 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # This script doesn't really execute anything else
 # It just formats the status-right nicely
 

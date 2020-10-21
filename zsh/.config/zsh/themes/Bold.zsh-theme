@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 pre_git_check="\ue0a0 "
 
 PROMPT=$'%B%F{green}%n@%M %F{blue}%3~ %(?.%F{blue}.%F{red})%(!.#.$)%f%b '

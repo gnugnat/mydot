@@ -1,3 +1,8 @@
 #!/usr/bin/env zsh
 
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 (fortune 2>/dev/null || zsh --version) | cowsay -f $ZDOTDIR/extra/larry.cow 2>/dev/null

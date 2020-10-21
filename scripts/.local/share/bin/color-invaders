@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # Space Invaders in terminal colors
 
 # shellcheck disable=2034,2086,2154

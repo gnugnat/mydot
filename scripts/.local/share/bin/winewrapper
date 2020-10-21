@@ -1,10 +1,10 @@
 #!/bin/sh
 
 
-# wrapper for WINE
-
 # Copyright (c) 2020, XGQT
 # Licensed under the ISC License
+
+# wrapper for WINE
 
 
 # Defaults

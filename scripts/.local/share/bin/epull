@@ -1,21 +1,25 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 trap 'exit 128' INT
 export PATH
 
 
 main() {
     if command -v eix; then
-	eix-sync
-	eix-remote update
+        eix-sync
+        eix-remote update
     else
-	emerge --sync
+        emerge --sync
     fi
 }
 
 if [ "$(whoami)" != root ]; then
-	sudo "$0"
+    sudo "$0"
 else
     main
 fi

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # This file is sourced by bash for login shells.
 
 # shellcheck disable=1090

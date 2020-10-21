@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 #  _               _
 # | |__   __ _ ___| |__  _ __ ___
 # | '_ \ / _` / __| '_ \| '__/ __|

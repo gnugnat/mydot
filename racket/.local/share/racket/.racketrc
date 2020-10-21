@@ -1,6 +1,9 @@
 #!/usr/bin/env racket
 
 
+;; Copyright (c) 2020, XGQT
+;; Licensed under the ISC License
+
 ;;; ~/.racketrc
 
 ;; Some Racket REPL customizations

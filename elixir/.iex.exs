@@ -1,3 +1,6 @@
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # Based upon:
 #  https://github.com/blackode/custom-iex
 

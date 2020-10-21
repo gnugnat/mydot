@@ -1,3 +1,7 @@
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 .PHONY: all install uninstall test
 
 

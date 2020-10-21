@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 pre_git_check=" (%F{green}"
 post_git_check="%f)"
 

@@ -1,4 +1,8 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 exec Xorg -novtswitch -nolisten tcp -nolisten local "${@}" vt"${XDG_VTNR}"

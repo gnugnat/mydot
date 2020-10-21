@@ -1,6 +1,11 @@
 #!/bin/sh
 
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # backup a FILE to current directory
 # as FILE-name_of_machine-year-mounth-day-hour-minute
+
 
 cp "${1}" "$(basename "${1}")-$(uname -n)-$(date +"%Y-%m-%d-%H-%M")"

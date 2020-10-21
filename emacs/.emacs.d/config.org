@@ -4,6 +4,8 @@
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
 [[./assets/icons/steal_your_emacs_250x250.png]]
 * Environment
 ** Auto Update

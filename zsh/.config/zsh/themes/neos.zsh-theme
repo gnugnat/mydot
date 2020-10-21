@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 pre_git_check=" git:$branch"
 
 PROMPT=$'%F{yellow}\u250C%F{white}%n%F{yellow}::%F{white}%m%F{yellow} %F{red}%~%F{white}$(git_check)%F{yellow}

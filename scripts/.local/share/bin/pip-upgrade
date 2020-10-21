@@ -2,6 +2,9 @@
 
 
 """
+Copyright (c) 2020, XGQT
+Licensed under the ISC License
+
 Upgrade python packages installed with pip under the active user.
 """
 

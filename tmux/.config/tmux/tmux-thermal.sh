@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 thermal_zone=/sys/devices/virtual/thermal/thermal_zone0/temp
 
 

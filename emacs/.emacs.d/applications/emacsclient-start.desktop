@@ -1,3 +1,7 @@
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 [Desktop Entry]
 Categories=Development;
 Comment=Start Emacs Daemon and open a GUI frame

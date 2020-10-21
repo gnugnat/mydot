@@ -1,6 +1,9 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # Test read and write speed
 
 
@@ -14,9 +17,9 @@ tmpfile=disktest.img
 write_drop_val() {
     if [ "$(whoami)" = root ]
     then
-	    sysctl -wq vm.drop_caches="${1}"
+        sysctl -wq vm.drop_caches="${1}"
     else
-	    sudo sysctl -wq vm.drop_caches="${1}"
+        sudo sysctl -wq vm.drop_caches="${1}"
     fi
 }
 

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 trap 'exit 128' INT
 export PATH
 
@@ -10,6 +14,6 @@ CPU=0
 
 for speed in ${speeds}
 do
-	((CPU++))
-	echo "CPU ${CPU}: ${speed}"
+    ((CPU++))
+    echo "CPU ${CPU}: ${speed}"
 done

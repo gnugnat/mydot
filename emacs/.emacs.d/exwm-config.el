@@ -1,6 +1,9 @@
 ;;; EXWM --- configuration
 ;;; Commentary:
 ;;
+;; Copyright (c) 2020, XGQT
+;; Licensed under the ISC License
+;;
 ;;  _______  ____        ____  __
 ;; | ____\ \/ /\ \      / /  \/  |
 ;; |  _|  \  /  \ \ /\ / /| |\/| |

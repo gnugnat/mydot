@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # Run specified command for each git
 # repository found in current dir
 
@@ -10,11 +13,11 @@ export PATH
 
 
 while read -r -d '' directory; do
-    
+
     echo "Repo: $(tput bold)$(basename "${directory%/.git}")$(tput sgr0)"
-    
+
     (
-	cd "${directory%.git}" && "$@"
+        cd "${directory%.git}" && "$@"
     )
-    
+
 done < <(find . -name .git -print0)

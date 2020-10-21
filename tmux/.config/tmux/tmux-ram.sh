@@ -1,6 +1,10 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
 memory="$(vmstat -s | grep 'free memory' | awk -F ' ' '{print $1}')"
 
 # > 1024^2
