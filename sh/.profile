@@ -423,7 +423,6 @@ a_k_a edit-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
 a_k_a so-bashrc 'source ${HOME}/.bashrc'
 a_k_a so-shrc 'source ${HOME}/.profile'
 a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
-a_k_a update-mydot 'mydot && sh update && cd -'
 
 # Git
 a_k_a Ga 'git add .'
@@ -487,9 +486,6 @@ fi
 
 
 # >>> Change-directory aliases
-
-# Compatibility (should be skipped - target dir probably doesn't exist)
-cd_alias mydot "${HOME}"/mydot
 
 # System
 cd_alias conf /etc/conf.d
