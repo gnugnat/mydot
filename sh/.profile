@@ -355,6 +355,7 @@ in
         a_k_a t 'tree -a -L 2 -I ".git"'
         a_k_a ta 'tree -a -I ".git"'
         alias grep='grep --colour=always'
+        alias l='ls -A'
         alias ll='ls -lahF --color=always'
         alias ls='ls --color=auto'
         alias tree='tree -C -F'
@@ -362,6 +363,7 @@ in
     * )
         a_k_a t 'tree -a -L 2'
         a_k_a ta 'tree -a'
+        alias l='ls -A'
         alias ll='ls -lahF'
         alias tree='tree -F'
         ;;
@@ -406,7 +408,6 @@ a_k_a ed-remove-generated 'rm -v ~/.emacs.d/gui-config.el ~/.emacs.d/config.el'
 a_k_a ed-restart 'ed-stop ; ed-start'
 a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
 a_k_a ed-stop 'ec-kill'
-a_k_a eq 'emacs -Q -nw --eval "(setq auto-save-default nil column-number-mode t create-lockfiles nil make-backup-files nil scroll-conservatively 100 x-select-enable-clipboard-manager nil)"'
 a_k_a hl 'highlight -O truecolor'
 a_k_a nranger 'EDITOR=nano ranger'
 a_k_a nuke 'rm -rfd'
@@ -443,6 +444,8 @@ a_k_a diff-git 'git diff --no-index'
 a_k_a ff 'firefox'
 a_k_a ipy 'ipython'
 a_k_a py 'python'
+a_k_a py2 'python2'
+a_k_a py3 'python3'
 a_k_a rkt 'racket'
 
 # Portage
@@ -509,19 +512,6 @@ cd_alias music "${HOME}"/Music
 cd_alias pictures "${HOME}"/Pictures
 cd_alias programming "${HOME}"/Documents/Programming
 cd_alias videos "${HOME}"/Videos
-
-# User - git
-cd_alias G "${HOME}"/Git
-cd_alias eternal "${HOME}"/Git/eternal
-cd_alias gentoo-dev "${HOME}"/Git/gentoo
-cd_alias guru "${HOME}"/Git/gentoo/guru
-cd_alias mine "${HOME}"/Git/mine
-cd_alias mydot "${HOME}"/Git/mine/mydot
-cd_alias other "${HOME}"/Git/other
-cd_alias pre "${HOME}"/Git/pre
-cd_alias src_ "${HOME}"/Git/src_prepare
-cd_alias src_overlay "${HOME}"/Git/src_prepare/overlay
-cd_alias src_overlay "${HOME}"/Git/src_prepare/src_prepare-overlay
 
 # User - hidden
 cd_alias applications "${HOME}"/.local/share/applications
