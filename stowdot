@@ -58,6 +58,9 @@ fi
 
 msg "Stow implementation: ${stow_impl}"
 
+# Go to mydot source
+cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
+
 # check needed directories
 req_dirs="
     ${HOME}/.config/mpd/playlists
