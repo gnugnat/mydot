@@ -1,0 +1,47 @@
+#!/bin/sh
+
+
+trap 'exit 1' INT
+export PATH
+
+
+sv="
+	NetworkManager
+	netmount
+	libvirtd
+	libvirt-guests
+	ntp-client
+	uptimed
+"
+
+warning() {
+    echo "$(tput bold)$(tput setaf 1)WARNING: $(tput setaf 7)${*}$(tput sgr0)"
+    return 1
+}
+
+restart_delayed() {
+    rc-service "${1}" stop || warning "${1} did not stop!"
+    sleep 15
+    rc-service "${1}" start || warning "${1} did not start!"
+}
+
+main() {
+    for s in ${sv}
+    do
+	if [ -x "${EPREFIX}"/etc/init.d/"${s}" ]
+	then
+	    restart_delayed "${s}"
+	else
+	    warning "service ${s} does not exist!"
+	fi
+    done
+}
+
+
+# TODO: wait for NM
+if [ "$(whoami)" != root ] && [ -z "${EPREFIX}" ]
+then
+    sudo "${0}"
+else
+    main
+fi
