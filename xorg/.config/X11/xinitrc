@@ -21,9 +21,9 @@
 cmdex() {
     if command -v "${1}" >/dev/null 2>&1
     then
-	return 0
+        return 0
     else
-	return 1
+        return 1
     fi
 }
 
@@ -33,31 +33,34 @@ then
 else
     if cmdex gnome-session
     then
-	session="gnome"
+        session="gnome"
     elif cmdex startxfce4
     then
-	session="xfce"
+        session="xfce"
     elif cmdex mate-session
     then
-	session="mate"
+        session="mate"
     elif cmdex startplasma-x11
     then
-	session="kde"
-    elif cmdex
+        session="kde"
+    elif cmdex enlightenment_start
     then
-	session="lxqt"
+        session="enlightenment"
+    elif cmdex lxqt-session
+    then
+        session="lxqt"
     elif cmdex openbox
     then
-	session="openbox"
+        session="openbox"
     elif cmdex bspwm
     then
-	session="bspwm"
+        session="bspwm"
     elif cmdex dwm
     then
-	session="dwm"
+        session="dwm"
     elif cmdex emacs
     then
-	session="exwm"
+        session="exwm"
     fi
 fi
 
@@ -76,28 +79,31 @@ fi
 # Start the session
 case ${session} in
     bsp | bspwm )
-	exec bspwm
-	;;
+        exec bspwm
+        ;;
+    E | e | enlightenment )
+        exec enlightenment_start
+        ;;
     exwm | EXWM )
-	exec emacs --load ~/.emacs.d/exwm-config.el
-	;;
+        exec emacs --load ~/.emacs.d/exwm-config.el
+        ;;
     gnome )
-	exec gnome-session
-	;;
+        exec gnome-session
+        ;;
     lxqt | LXQt )
-	exec startlxqt
-	;;
+        exec startlxqt
+        ;;
     kde )
-	exec startplasma-x11
-	;;
+        exec startplasma-x11
+        ;;
     mate )
-	exec mate-session
-	;;
+        exec mate-session
+        ;;
     xfce | xfce4 )
-	exec startxfce4
-	;;
+        exec startxfce4
+        ;;
     # Anything different is run as command
     * )
-	exec "${1}"
-	;;
+        exec "${1}"
+        ;;
 esac
