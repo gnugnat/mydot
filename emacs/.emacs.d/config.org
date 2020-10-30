@@ -816,7 +816,7 @@
     (setq
      dashboard-banner-logo-title-face t
      dashboard-center-content t
-     dashboard-startup-banner "~/.emacs.d/assets/icons/steal_your_emacs_250x250.png"
+     dashboard-startup-banner 'logo
      inhibit-startup-message t
      inhibit-startup-screen t
      show-week-agenda-p t
