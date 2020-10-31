@@ -7,6 +7,9 @@
 # "Aggresively" update mydot
 
 
+# Go to mydot source
+cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
+
 if sh stowdot remove
 then
     git reset --hard
