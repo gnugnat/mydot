@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Thanks to: https://www.redhat.com/sysadmin/clear-swap-linux
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+trap 'exit 1' INT
+export PATH
+
+
+main() {
+    if [ -z "${1}" ]
+    then
+        echo "[D] Deactivating: all"
+        swapoff -a -v
+        sleep 30
+        echo "[A] Activating: all"
+        swapon -a -v
+    else
+        for dev in "${@}"
+        do
+            echo "[D] Deactivating: ${dev}"
+            swapoff -v "${dev}"
+            sleep 30
+            echo "[A] Activating: ${dev}"
+            swapon -v "${dev}"
+        done
+    fi
+}
+
+
+if [ "$(whoami)" != root ]
+then
+    sudo "${0}" "${@}"
+else
+    main "${@}"
+fi
