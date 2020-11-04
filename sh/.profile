@@ -448,8 +448,9 @@ a_k_a py3 'python3'
 a_k_a rkt 'racket'
 
 # Portage
-a_k_a E 'tail -f ${EPREFIX}/var/log/emerge.log'
-a_k_a F 'tail -f ${EPREFIX}/var/log/emerge-fetch.log'
+a_k_a B 'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
+a_k_a E 'tail -fv ${EPREFIX}/var/log/emerge.log'
+a_k_a F 'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
 a_k_a P 'cd ${EPREFIX}/etc/portage && tree -a -L 2'
 a_k_a chu '${NEED_UID0} emerge -avNUD @world'
 a_k_a ewup '${NEED_UID0} emerge -avuDNU --with-bdeps=y @world'
