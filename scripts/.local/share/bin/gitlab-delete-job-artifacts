@@ -1,0 +1,36 @@
+#!/bin/sh
+
+
+# Delete GitLab job artifacts
+
+
+trap 'exit 1' INT
+export PATH
+
+
+server="${1}"
+token="${2}"
+project_id="${3}"
+job_id="${4}"
+
+URL="https://${server}/api/v4/projects/${project_id}/jobs/${job_id}/erase"
+
+
+if [ -z "${4}" ]
+then
+    echo "Not enough arguments"
+    exit 1
+fi
+
+cat << INFO
+Environment:
+  - GitLab Server: ${server}
+  - Access Token:  ${token}
+  - Project ID:    ${project_id}
+  - Job ID:        ${job_id}
+  - Request URL:   ${URL}
+INFO
+
+curl --request POST --header "PRIVATE-TOKEN:${token}" "${URL}"
+
+echo "Done"
