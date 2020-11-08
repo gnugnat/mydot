@@ -1,6 +1,9 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 #     .vir.
 #   ,d$$$$$$b.
 #   &&&&( )&&&b
@@ -9,10 +12,10 @@
 #   ,d$$$$$$P"
 #   $$$$$$P
 #   `Q$$P"
-#
+
 # gfetch - tiny system info for gentoo
-#
-# based on
+
+# based on:
 # https://github.com/jschx/ufetch/
 
 
