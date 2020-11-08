@@ -1,6 +1,9 @@
 #!/bin/sh
 
 
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
 # Delete GitLab job artifacts
 
 
@@ -16,12 +19,6 @@ job_id="${4}"
 URL="https://${server}/api/v4/projects/${project_id}/jobs/${job_id}/erase"
 
 
-if [ -z "${4}" ]
-then
-    echo "Not enough arguments"
-    exit 1
-fi
-
 cat << INFO
 Environment:
   - GitLab Server: ${server}
@@ -31,6 +28,12 @@ Environment:
   - Request URL:   ${URL}
 INFO
 
+if [ -z "${4}" ]
+then
+    echo "Not enough arguments"
+    exit 1
+fi
+
 curl --request POST --header "PRIVATE-TOKEN:${token}" "${URL}"
 
-echo "Done"
+echo
