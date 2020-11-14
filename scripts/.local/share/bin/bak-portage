@@ -8,11 +8,11 @@
 # script for portage
 
 
-export PATH
 trap 'exit 128' INT
+export PATH
 
 
-command_exists() {
+cmdex() {
     if command -v "${1}" >/dev/null 2>&1; then
         return 0
     else
@@ -29,27 +29,30 @@ fi
 # Setup
 pbak="portage-$(date +'%Y-%m-%d')"
 mkdir "${pbak}"
-command_exists emerge || echo "Are you sure you are using Portage?"
+cmdex emerge || echo "Are you sure you are using Portage?"
 
 # Portage tree
-cp -r /etc/portage "${pbak}"/
+cp -Lr /etc/portage "${pbak}"/
 rm -rfd "${pbak}"/portage/make.profile
-command_exists tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
+cmdex tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
 
 # Installed packages
 cp /var/lib/portage/world "${pbak}"/
 cp /var/lib/portage/world_sets "${pbak}"/
-command_exists qlist && qlist --installed --nocolor --umap --verbose > "${pbak}"/installed.txt
+if cmdex qlist; then
+    qlist --installed --nocolor --umap > "${pbak}"/qlist-use.txt
+    qlist --installed --nocolor --verbose > "${pbak}"/qlist-ver.txt
+fi
 
 # System info
-emerge --info > "${pbak}"/info.txt
-command_exists gfetch && gfetch > "${pbak}"/gfetch.txt
+cmdex emerge && emerge --info > "${pbak}"/info.txt
+cmdex update-genlica && update-genlica -v > "${pbak}"/genlica-version.txt
+cmdex gfetch && gfetch > "${pbak}"/gfetch.txt
 
 # Back up package (ebuild) database
 if [ -d /var/db/pkg ]; then
     cp -r /var/db/pkg "${pbak}"/pkgdb
-    tar zcf "${pbak}"/pkgdb.tar.gz "${pbak}"/pkgdb --remove-files
 fi
 
 # Archive + cleanup
-tar zcf "${pbak}".tar.gz "${pbak}" --remove-files
+tar zcf "${pbak}".tar.gz "${pbak}" --remove-files || exit 1
