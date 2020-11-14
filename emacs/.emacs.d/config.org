@@ -479,8 +479,13 @@
 ** Lisp
    [[https://common-lisp.net/project/slime/][Lisp]] language support
 #+BEGIN_SRC emacs-lisp
+  ;; TODO: autostart slime
   (use-package slime
     :ensure t
+    :hook
+    (
+     (lisp-mode . company-mode)
+     )
     :config
     (setq
      inferior-lisp-program "/usr/bin/sbcl"
