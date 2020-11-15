@@ -349,35 +349,26 @@ fi
 # >>> Aliases
 
 # Operating System specific
-case $(uname)
+# !!! Keep this first !!!
+case "$(uname)"
 in
     *Linux* )
+        alias tree='tree -C -F'
         a_k_a t 'tree -a -L 2 -I ".git"'
         a_k_a ta 'tree -a -I ".git"'
         alias grep='grep --colour=always'
         alias l='ls -A'
         alias ll='ls -lahF --color=always'
         alias ls='ls --color=auto'
-        alias tree='tree -C -F'
         ;;
     * )
+        alias tree='tree -F'
         a_k_a t 'tree -a -L 2'
         a_k_a ta 'tree -a'
         alias l='ls -A'
         alias ll='ls -lahF'
-        alias tree='tree -F'
         ;;
 esac
-
-# System
-a_k_a rp 'sudo '
-a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
-
-# Network
-a_k_a no-net-sh 'unshare -r -n ${SH}'
-a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
-a_k_a seeo '${NEED_UID0} netstat -acnptu'
-alias mtr='mtr --show-ips --curses'
 
 # Files
 if command_exists emacs
@@ -398,31 +389,24 @@ then
 else
     a_k_a v '${EDITOR}'
 fi
+if command_exists emacsclient
+then
+    a_k_a ec 'emacsclient -a ""'
+    a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
+    a_k_a ecf 'emacsclient -a "" -n -c'
+    a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
+    a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
+    a_k_a ed-remove-generated 'rm -v ~/.emacs.d/gui-config.el ~/.emacs.d/config.el'
+    a_k_a ed-restart 'ed-stop ; ed-start'
+    a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
+    a_k_a ed-stop 'ec-kill'
+fi
 a_k_a ,, 'cd ../..'
-a_k_a ec 'emacsclient -a ""'
-a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
-a_k_a ecf 'emacsclient -a "" -n -c'
-a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
-a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
-a_k_a ed-remove-generated 'rm -v ~/.emacs.d/gui-config.el ~/.emacs.d/config.el'
-a_k_a ed-restart 'ed-stop ; ed-start'
-a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
-a_k_a ed-stop 'ec-kill'
 a_k_a hl 'highlight -O truecolor'
-a_k_a nranger 'EDITOR=nano ranger'
-a_k_a nuke 'rm -rfd'
+a_k_a nuke 'rm -dfr'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a tf 'tail -fv --retry'
-
-# Shell
-a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
-a_k_a edit-bashrc '${EDITOR} ${HOME}/.bashrc'
-a_k_a edit-shrc '${EDITOR} ${HOME}/.profile'
-a_k_a edit-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
-a_k_a so-bashrc 'source ${HOME}/.bashrc'
-a_k_a so-shrc 'source ${HOME}/.profile'
-a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
 
 # Git
 a_k_a Ga 'git add .'
@@ -438,14 +422,18 @@ a_k_a Gr 'git reset --hard'
 a_k_a Gs 'git status'
 a_k_a Gu 'git reset HEAD --'
 
-# Programming
-a_k_a diff-git 'git diff --no-index'
-a_k_a ff 'firefox'
-a_k_a ipy 'ipython'
-a_k_a py 'python'
-a_k_a py2 'python2'
-a_k_a py3 'python3'
-a_k_a rkt 'racket'
+# Multimedia
+a_k_a ffsound 'ffplay -nodisp -hide_banner'
+
+# Network
+a_k_a no-net-sh 'unshare -r -n ${SH}'
+a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
+a_k_a seeo '${NEED_UID0} netstat -acnptu'
+alias mtr='mtr --show-ips --curses'
+
+# Other PKG managers
+a_k_a fpk 'flatpak --user'
+a_k_a fpkup 'flatpak --user update && flatpak --user uninstall --unused'
 
 # Portage
 a_k_a B 'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
@@ -459,11 +447,30 @@ a_k_a preb '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
 a_k_a slr '${NEED_UID0} smart-live-rebuild'
 a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 
-# Other PKG managers
-a_k_a fpk 'flatpak --user'
-a_k_a fpkup 'flatpak --user update && flatpak --user uninstall --unused'
+# Programming
+a_k_a diff-git 'git diff --no-index'
+a_k_a ff 'firefox'
+a_k_a ipy 'ipython'
+a_k_a py 'python'
+a_k_a py2 'python2'
+a_k_a py3 'python3'
+a_k_a rkt 'racket'
 
-# youtube-dl
+# Shell
+a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
+a_k_a edit-bashrc '${EDITOR} ${HOME}/.bashrc'
+a_k_a edit-shrc '${EDITOR} ${HOME}/.profile'
+a_k_a edit-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
+a_k_a so-bashrc 'source ${HOME}/.bashrc'
+a_k_a so-shrc 'source ${HOME}/.profile'
+a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
+
+# System
+a_k_a root '${NEED_UID0} su -l'
+a_k_a rp 'sudo '
+a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
+
+# Youtube-DL
 a_k_a ytd 'youtube-dl -i -o "%(title)s.%(ext)s"'
 a_k_a ytd-bestaudio 'youtube-dl -i -f bestaudio -x -o "%(playlist_index)s - %(title)s.%(ext)s"'
 a_k_a ytd-flac 'youtube-dl -i -f bestaudio -x --audio-format flac -o "%(playlist_index)s - %(title)s.%(ext)s"'
@@ -476,7 +483,7 @@ a_k_a ytd-webm 'youtube-dl -i --format webm -o "%(title)s.%(ext)s"'
 
 # Busybox
 # If BB is installed, then try to get unavailable programs from it
-# Keep this last
+# !!! Keep this last !!!
 if command_exists busybox
 then
     for bb_impl in $(busybox --list)
