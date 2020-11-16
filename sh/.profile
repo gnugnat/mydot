@@ -444,7 +444,7 @@ a_k_a chu '${NEED_UID0} emerge -avNUD @world'
 a_k_a ewup '${NEED_UID0} emerge -avuDNU --with-bdeps=y @world'
 a_k_a pep '${NEED_UID0} emerge -av'
 a_k_a preb '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
-a_k_a slr '${NEED_UID0} smart-live-rebuild'
+a_k_a slr '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
 a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 
 # Programming
