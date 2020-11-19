@@ -227,6 +227,12 @@ export LESSHISTFILE
 MEDNAFEN_HOME="${HOME}/.config/mednafen"
 export MEDNAFEN_HOME
 
+# NCurses
+TERMINFO="${HOME}/.local/share/terminfo"
+export TERMINFO
+TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
+export TERMINFO_DIRS
+
 # Node
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
