@@ -362,7 +362,6 @@ in
         alias tree='tree -C -F'
         a_k_a t 'tree -a -L 2 -I ".git"'
         a_k_a ta 'tree -a -I ".git"'
-        alias grep='grep --colour=always'
         alias l='ls -A'
         alias ll='ls -lahF --color=always'
         alias ls='ls --color=auto'
@@ -409,8 +408,8 @@ then
 fi
 a_k_a ,, 'cd ../..'
 a_k_a hl 'highlight -O truecolor'
-a_k_a nuke 'rm -dfr'
-a_k_a open 'xdg-open'
+a_k_a nuke 'rm -fr'
+a_k_a open 'xdg-open "$(pwd)"'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a tf 'tail -fv --retry'
 
