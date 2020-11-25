@@ -7,7 +7,7 @@
 # Delete GitLab job artifacts
 
 
-trap 'exit 1' INT
+trap 'exit 128' INT
 export PATH
 
 

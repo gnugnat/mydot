@@ -6,7 +6,7 @@
 # Licensed under the ISC License
 
 
-trap 'exit 1' INT
+trap 'exit 128' INT
 export PATH
 
 
