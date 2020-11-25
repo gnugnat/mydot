@@ -409,7 +409,7 @@ fi
 a_k_a ,, 'cd ../..'
 a_k_a hl 'highlight -O truecolor'
 a_k_a nuke 'rm -fr'
-a_k_a open 'xdg-open "$(pwd)"'
+a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
 a_k_a tf 'tail -fv --retry'
 
