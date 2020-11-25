@@ -32,7 +32,7 @@ mkdir "${pbak}"
 cmdex emerge || echo "Are you sure you are using Portage?"
 
 # Portage tree
-cp -Lr /etc/portage "${pbak}"/
+rsync --exclude=".git" -Lr /etc/portage "${pbak}"/
 rm -rfd "${pbak}"/portage/make.profile
 cmdex tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
 
