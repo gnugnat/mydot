@@ -210,8 +210,12 @@ GOPATH="${HOME}/.local/share/go"
 export GOPATH
 
 # Guile history file
-GUILE_HISTORY=${HOME}/.cache/guile/history
+GUILE_HISTORY="${HOME}/.cache/guile/history"
 export GUILE_HISTORY
+
+# ICE (X11)
+ICEAUTHORITY="${HOME}/.cache/ICEauthority"
+export ICEAUTHORITY
 
 # Ipython & Jupyter directory
 IPYTHONDIR="${HOME}/.config/jupyter"
