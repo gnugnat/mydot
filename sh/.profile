@@ -179,21 +179,16 @@ then
     else
         EDITOR="emacs"
     fi
-elif command_exists neovim
-then
-    EDITOR="neovim"
-elif command_exists vim
-then
-    EDITOR="vim"
-elif command_exists vi
-then
-    EDITOR="vi"
-elif command_exists nano
-then
-    EDITOR="nano"
 else
-    # The standard editor /s
-    EDITOR="ed"
+    for editor in xemacs mg neovim vim vi nano ed
+    do
+        if command_exists "${editor}"
+        then
+            EDITOR="${editor}"
+            break
+        fi
+    done
+    unset editor
 fi
 export EDITOR
 
