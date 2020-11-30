@@ -180,7 +180,7 @@ then
         EDITOR="emacs"
     fi
 else
-    for editor in xemacs mg neovim vim vi nano ed
+    for editor in xemacs zile mg neovim vim vi nano ed
     do
         if command_exists "${editor}"
         then
