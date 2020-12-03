@@ -196,6 +196,12 @@ export EDITOR
 CARGO_HOME="${HOME}/.local/share/cargo"
 export CARGO_HOME
 
+# Conan
+CONAN_COLOR_DARK="1"
+export CONAN_COLOR_DARK
+CONAN_USER_HOME="${HOME}/.local/share/conan"
+export CONAN_USER_HOME
+
 # Erlang (OTP) history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_AFLAGS
