@@ -196,6 +196,11 @@ export EDITOR
 CARGO_HOME="${HOME}/.local/share/cargo"
 export CARGO_HOME
 
+# CCache directory
+# primary config is then ~/.cache/ccache/ccache.conf
+CCACHE_DIR="${HOME}/.cache/ccache"
+export CCACHE_DIR
+
 # Conan
 CONAN_COLOR_DARK="1"
 export CONAN_COLOR_DARK
