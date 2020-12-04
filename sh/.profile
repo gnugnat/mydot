@@ -467,13 +467,24 @@ a_k_a slr '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
 a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 
 # Programming
+# The following will attempt to alias 'python' as 'python3'
+# if 'python' doesnt exist, also it creates 'py2'/'py3' aliases
+if command_exists python3
+then
+    a_k_a py3 'python3'
+    a_k_a python 'python3'
+fi
+if command_exists python2
+then
+    a_k_a py2 'python2'
+    a_k_a python 'python2'
+fi
 a_k_a diff-git 'git diff --no-index'
 a_k_a ff 'firefox'
 a_k_a ipy 'ipython'
 a_k_a py 'python'
-a_k_a py2 'python2'
-a_k_a py3 'python3'
 a_k_a rkt 'racket'
+a_k_a venv 'python -m venv'
 
 # Shell
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
