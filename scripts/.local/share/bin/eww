@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+trap 'exit 128' INT
+export PATH
+
+
+if  [ -z "${1}" ]
+then
+    echo "Usage: eww LINK OPTIONS"
+else
+    eval emacs "${2}" --eval "'(eww " "\"" "${1}" "\"" ")'"
+fi

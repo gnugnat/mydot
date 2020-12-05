@@ -130,14 +130,6 @@ am_i_root() {
     fi
 }
 
-# Open a link in Emacs web browser
-# $1 - URL
-# $2 - a additional flag, i.e. -nw
-eww() {
-    eval emacs "${2}" \
-         --eval "'(eww" "\"" "${1}" "\"" ")'"
-}
-
 # Check Git branch
 pre_git_check=""
 post_git_check=""
