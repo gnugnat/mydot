@@ -1,0 +1,20 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+trap 'exit 128' INT
+export PATH
+
+
+rn=0
+
+
+while ! "${@}"
+do
+    echo "FAILED [${rn}]: ${*}"
+    sleep 1
+    rn=$((rn + 1))
+done
