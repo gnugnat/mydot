@@ -162,16 +162,16 @@ source_file() {
 # >>> System
 
 # Failsafe PATH (because '[' and ']' are programs)
-PATH=${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}
+PATH="${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}"
 
 # Source the system profile
-source_file /etc/profile
+source_file "/etc/profile"
 
 
 # >>> Environment
 
 # Configure missing variables
-USER=${USER:-$(whoami)}
+USER="${USER:-$(whoami)}"
 export USER
 
 # Auto-set the editor
@@ -201,9 +201,13 @@ CARGO_HOME="${HOME}/.local/share/cargo"
 export CARGO_HOME
 
 # CCache directory
-# primary config is then ~/.cache/ccache/ccache.conf
-CCACHE_DIR="${HOME}/.cache/ccache"
-export CCACHE_DIR
+# Exclude root user - breaks ccache in portage
+if ! am_i_root
+then
+    # primary config is then ~/.cache/ccache/ccache.conf
+    CCACHE_DIR="${HOME}/.cache/ccache"
+    export CCACHE_DIR
+fi
 
 # Conan
 CONAN_COLOR_DARK="1"
@@ -266,31 +270,31 @@ PYLINTHOME="${HOME}/.cache/pylint"
 export PYLINTHOME
 
 # XDG Base Directory (failsafe)
-XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
+XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_CACHE_HOME
-XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-/etc/xdg}
+XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
 export XDG_CONFIG_DIRS
-XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
-XDG_DATA_DIRS=${XDG_DATA_DIRS:-/usr/local/share:/usr/share}
+XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export XDG_DATA_DIRS
-XDG_DATA_HOME=${XDG_DATA_HOME:-${HOME}/.local/share}
+XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 export XDG_DATA_HOME
 if [ -z "${XDG_RUNTIME_DIR}" ]
 then
     candidate_XDG_RUNTIME_DIR=/run/user/$(id -u "${USER}")
     if [ -d "${candidate_XDG_RUNTIME_DIR}" ]
     then
-        XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+        XDG_RUNTIME_DIR="${candidate_XDG_RUNTIME_DIR}"
         export XDG_RUNTIME_DIR
     else
         # We're not going to create the XDG_RUNTIME_DIR on /run
         # because it probably won't be cleaned, instead
         # we'll go with /tmp since it is common for it to be tmpfs
-        candidate_XDG_RUNTIME_DIR=/tmp/user/$(id -u "${USER}")
+        candidate_XDG_RUNTIME_DIR="/tmp/user/$(id -u "${USER}")"
         if nullwrap mkdir -p "${candidate_XDG_RUNTIME_DIR}"
         then
-            XDG_RUNTIME_DIR=${candidate_XDG_RUNTIME_DIR}
+            XDG_RUNTIME_DIR="${candidate_XDG_RUNTIME_DIR}"
             export XDG_RUNTIME_DIR
             chmod 0700 "${XDG_RUNTIME_DIR}"
             # else: we don't set XDG_RUNTIME_DIR
@@ -324,13 +328,13 @@ export NEED_UID0
 # the other one is the one exported by this profile file
 
 # Common programs' homes
-add_to_path /bin
-add_to_path /opt/bin
-add_to_path /sbin
-add_to_path /usr/bin
-add_to_path /usr/local/bin
-add_to_path /usr/local/sbin
-add_to_path /usr/sbin
+add_to_path "/bin"
+add_to_path "/opt/bin"
+add_to_path "/sbin"
+add_to_path "/usr/bin"
+add_to_path "/usr/local/bin"
+add_to_path "/usr/local/sbin"
+add_to_path "/usr/sbin"
 
 # User's programs
 add_to_path "${HOME}/.bin"
@@ -354,11 +358,11 @@ add_to_path "${HOME}/.local/share/npm/bin"
 add_to_path "${HOME}/.local/bin"
 
 # Racket
-if [ -d "${PLTUSERHOME}"/.racket ]
+if [ -d "${PLTUSERHOME}/.racket" ]
 then
     # We loop to include all different Racket implementation directories
     # ~/.local/share/racket/.racket/7.0/bin or ~/.local/share/racket/.racket/7.7/bin
-    for racket_bin_dir in $(find "${PLTUSERHOME}"/.racket -name bin -type d)
+    for racket_bin_dir in $(find "${PLTUSERHOME}/.racket" -name bin -type d)
     do
         add_to_path "${racket_bin_dir}"
     done
@@ -528,33 +532,33 @@ fi
 # >>> Change-directory aliases
 
 # System
-cd_alias conf /etc/conf.d
-cd_alias repos /var/db/repos
-cd_alias linux-src /usr/src/linux
-cd_alias localht /var/www/localhost/htdocs
-cd_alias logs /var/log
-cd_alias services /etc/init.d
-cd_alias tmp /tmp
-cd_alias www /var/www
+cd_alias conf "/etc/conf.d"
+cd_alias repos "/var/db/repos"
+cd_alias linux-src "/usr/src/linux"
+cd_alias localht "/var/www/localhost/htdocs"
+cd_alias logs "/var/log"
+cd_alias services "/etc/init.d"
+cd_alias tmp "/tmp"
+cd_alias www "/var/www"
 
 # User - standard
-cd_alias data "${HOME}"/Data
-cd_alias desktop "${HOME}"/Desktop
-cd_alias diary "${HOME}"/Documents/Diary
-cd_alias documents "${HOME}"/Documents
-cd_alias downloads "${HOME}"/Downloads
-cd_alias games "${HOME}"/Games
-cd_alias music "${HOME}"/Music
-cd_alias pictures "${HOME}"/Pictures
-cd_alias programming "${HOME}"/Documents/Programming
-cd_alias videos "${HOME}"/Videos
+cd_alias data "${HOME}/Data"
+cd_alias desktop "${HOME}/Desktop"
+cd_alias diary "${HOME}/Documents/Diary"
+cd_alias documents "${HOME}/Documents"
+cd_alias downloads "${HOME}/Downloads"
+cd_alias games "${HOME}/Games"
+cd_alias music "${HOME}/Music"
+cd_alias pictures "${HOME}/Pictures"
+cd_alias programming "${HOME}/Documents/Programming"
+cd_alias videos "${HOME}/Videos"
 
 # User - hidden
-cd_alias applications "${HOME}"/.local/share/applications
-cd_alias apps "${HOME}"/.local/share/applications
-cd_alias autostart "${HOME}"/.config/autostart
-cd_alias bins "${HOME}"/.bin
-cd_alias config "${HOME}"/.config
+cd_alias applications "${HOME}/.local/share/applications"
+cd_alias apps "${HOME}/.local/share/applications"
+cd_alias autostart "${HOME}/.config/autostart"
+cd_alias bins "${HOME}/.bin"
+cd_alias config "${HOME}/.config"
 cd_alias zcachedir "${ZCACHEDIR}"
 cd_alias zdotdir "${ZDOTDIR}"
 
@@ -571,7 +575,7 @@ export PS2
 # >>> Autostart the GPG Agent
 
 # Export some vars
-GPG_TTY=$(tty)
+GPG_TTY="$(tty)"
 export GPG_TTY
 PINENTRY_USER_DATA="USE_CURSES=1"
 export PINENTRY_USER_DATA
@@ -613,7 +617,7 @@ fi
 # If you enable autologin on getty this can replace a Display Manager
 # c1:12345:respawn:/sbin/agetty --autologin <user> --noclear 38400 tty1 linux
 
-if ! am_i_root && [ "$(tty)" = /dev/tty1 ] && command_exists startx && [ ! "${DISPLAY}" ]
+if ! am_i_root && [ "$(tty)" = "/dev/tty1" ] && command_exists startx && [ ! "${DISPLAY}" ]
 then
-    startx ~/.config/X11/xinitrc -- ~/.config/X11/xserverrc || echo "Failed to start the default X session"
+    startx "${HOME}/.config/X11/xinitrc" -- "${HOME}/.config/X11/xserverrc" || echo "Failed to start the default X session"
 fi
