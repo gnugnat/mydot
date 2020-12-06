@@ -424,6 +424,7 @@ a_k_a rcp 'rsync --stats --progress'
 a_k_a tf 'tail -fv --retry'
 
 # Git
+a_k_a G 'git'
 a_k_a Ga 'git add .'
 a_k_a Gc 'git commit'
 a_k_a Gcc 'git log --cc --show-signature'
