@@ -490,6 +490,7 @@
     (setq
      inferior-lisp-program "/usr/bin/sbcl"
      slime-contribs '(slime-fancy)
+     slime-repl-history-file "~/.emacs.d/slime-history.eld"
      )
     )
 #+END_SRC
