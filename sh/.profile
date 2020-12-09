@@ -165,6 +165,8 @@ source_file "/etc/profile"
 # Configure missing variables
 USER="${USER:-$(whoami)}"
 export USER
+UID="${UID:-$(id -u "${USER}")}"
+export UID
 
 # Auto-set the editor
 if command_exists emacs
@@ -272,28 +274,20 @@ XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export XDG_DATA_DIRS
 XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 export XDG_DATA_HOME
-if [ -z "${XDG_RUNTIME_DIR}" ]
+if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
 then
-    candidate_XDG_RUNTIME_DIR=/run/user/$(id -u "${USER}")
-    if [ -d "${candidate_XDG_RUNTIME_DIR}" ]
-    then
-        XDG_RUNTIME_DIR="${candidate_XDG_RUNTIME_DIR}"
-        export XDG_RUNTIME_DIR
-    else
-        # We're not going to create the XDG_RUNTIME_DIR on /run
-        # because it probably won't be cleaned, instead
-        # we'll go with /tmp since it is common for it to be tmpfs
-        candidate_XDG_RUNTIME_DIR="/tmp/user/$(id -u "${USER}")"
-        if nullwrap mkdir -p "${candidate_XDG_RUNTIME_DIR}"
+    for XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
+    do
+        if nullwrap mkdir -p "${XDG_CAND_BASE}/${UID}"
         then
-            XDG_RUNTIME_DIR="${candidate_XDG_RUNTIME_DIR}"
-            export XDG_RUNTIME_DIR
-            chmod 0700 "${XDG_RUNTIME_DIR}"
-            # else: we don't set XDG_RUNTIME_DIR
+            XDG_RUNTIME_DIR="${XDG_CAND_BASE}/${UID}"
+            break
         fi
-    fi
-    unset candidate_XDG_RUNTIME_DIR
+    done
+    unset XDG_CAND_BASE
 fi
+export XDG_RUNTIME_DIR
+nullwrap chmod 0700 "${XDG_RUNTIME_DIR}"
 
 # Xorg X11 Server
 # Why here? We use XDG_RUNTIME_DIR for Xauthority
