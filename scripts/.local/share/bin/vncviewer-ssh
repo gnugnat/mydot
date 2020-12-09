@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+trap 'exit 128' INT
+export PATH
+
+
+if [ -z "${2}" ]
+then
+    echo "Usage: ${0} HOST DISPLAY"
+    echo "I.e.: ${0} user@remotehost 1"
+else
+    vncviewer -Fullcolor -QualityLevel 9 -via "${1}" localhost:"${2}"
+fi

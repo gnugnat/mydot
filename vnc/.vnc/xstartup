@@ -1,0 +1,33 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+# __   ___ __   ___
+# \ \ / / '_ \ / __|
+#  \ V /| | | | (__
+#   \_/ |_| |_|\___|
+# ~/.vnc/xstartup
+
+# Ignore "Can't follow non-constant source."
+# We just don't care about that
+# shellcheck disable=1090
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+
+if [ -r "${HOME}/.Xresources" ] && command_exists xrdb
+then
+    xrdb "${HOME}/.Xresources"
+fi
+
+command_exists xsetroot && xsetroot -solid grey
+
+if [ -f "${HOME}/.config/X11/xinitrc" ]
+then
+    . "${HOME}/.config/X11/xinitrc"
+fi

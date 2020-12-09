@@ -64,8 +64,9 @@ cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
 # check needed directories
 req_dirs="
     ${HOME}/.config/mpd/playlists
-    ${HOME}/.local/share/racket
     ${HOME}/.emacs.d
+    ${HOME}/.local/share/racket
+    ${HOME}/.vnc
 "
 for dir in ${req_dirs}
 do
