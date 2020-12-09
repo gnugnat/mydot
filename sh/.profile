@@ -278,9 +278,9 @@ if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
 then
     for XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
     do
-        if nullwrap mkdir -p "${XDG_CAND_BASE}/${UID}"
+        if nullwrap mkdir -p "${XDG_CAND_BASE}/user/${UID}"
         then
-            XDG_RUNTIME_DIR="${XDG_CAND_BASE}/${UID}"
+            XDG_RUNTIME_DIR="${XDG_CAND_BASE}/user/${UID}"
             break
         fi
     done
