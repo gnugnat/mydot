@@ -7,6 +7,10 @@
 # shellcheck disable=1090
 
 
+nullwrap() {
+    "${@}" >/dev/null 2>&1
+}
+
 command_exists() {
     if nullwrap command -v "${1}"
     then
