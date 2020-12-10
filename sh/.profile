@@ -165,7 +165,10 @@ source_file "/etc/profile"
 # Configure missing variables
 USER="${USER:-$(whoami)}"
 export USER
-UID="${UID:-$(id -u "${USER}")}"
+if [ -z "${UID}" ] && command_exists id
+then
+    UID="$(id -u "${USER}")"
+fi
 export UID
 
 # Auto-set the editor
