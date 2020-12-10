@@ -8,7 +8,7 @@
 
 
 # set ZDOTDIR if it is not set
-ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
+ZDOTDIR=${ZDOTDIR:-${HOME}/.config/zsh}
 
 
 ask_for_download() {
@@ -28,13 +28,13 @@ ask_for_download() {
             echo "Not downloading ${plugin_name}"
             ;;
         *)
-            plugin_home="$ZDOTDIR/plugins/${plugin_name}"
-            if [ -d ${plugin_home} ]
+            plugin_home="${ZDOTDIR}/plugins/${plugin_name}"
+            if [ -d "${plugin_home}" ]
             then
-                cd ${plugin_home}
+                cd "${plugin_home}"
                 git pull -v
             else
-                git clone -v https://github.com/${1} ${plugin_home}
+                git clone -v "https://github.com/${1}" "${plugin_home}"
             fi
             ;;
     esac

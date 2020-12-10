@@ -21,9 +21,9 @@ profile="${HOME}/.profile"
 # >>> History
 
 # Necessary to save history
-HISTFILE=${ZCACHEDIR}/history
+HISTFILE="${ZCACHEDIR}/history"
 HISTSIZE=50000
-SAVEHIST=${HISTSIZE}
+SAVEHIST="${HISTSIZE}"
 
 # Ignore duplicates
 setopt hist_ignore_all_dups
@@ -42,7 +42,7 @@ setopt extendedglob
 
 # Load compinit
 autoload -U compinit
-compinit -d ${ZCACHEDIR}/compdump
+compinit -d "${ZCACHEDIR}/compdump"
 
 # Advanced tab-completion
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -85,7 +85,8 @@ autoload -U promptinit
 promptinit
 
 # Source appropriate theme
-if [ -z ${DISPLAY} ]; then
+if [ -z "${DISPLAY}" ]
+then
     # theme in tty
     source_file "${ZDOTDIR}/tty.zsh-theme"
 else
