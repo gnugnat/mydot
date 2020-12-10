@@ -16,9 +16,7 @@
 # $ startx ~/.xinitrc [session]
 
 
-# Autochoose a available session if none is given
-
-cmdex() {
+command_exists() {
     if command -v "${1}" >/dev/null 2>&1
     then
         return 0
@@ -27,56 +25,60 @@ cmdex() {
     fi
 }
 
+source_file () {
+    [ -f "${1}" ] && . "${1}"
+}
+
+
 if [ -n "${1}" ]
 then
     session="${1}"
-else
-    if cmdex gnome-session
+    if ! command_exists "${1}"
     then
-        session="gnome"
-    elif cmdex startxfce4
-    then
-        session="xfce"
-    elif cmdex mate-session
-    then
-        session="mate"
-    elif cmdex startplasma-x11
-    then
-        session="kde"
-    elif cmdex enlightenment_start
-    then
-        session="enlightenment"
-    elif cmdex lxqt-session
-    then
-        session="lxqt"
-    elif cmdex openbox
-    then
-        session="openbox"
-    elif cmdex bspwm
-    then
-        session="bspwm"
-    elif cmdex dwm
-    then
-        session="dwm"
-    elif cmdex emacs
-    then
-        session="exwm"
+        echo "WARNING: Command ${1} does not exist"
+        echo "WARNING: This may get overwritten by files sourced later"
     fi
+else
+    # Autochoose a available session if none is given
+    # This works because in last 'case'
+    # we execute the raw command (not a keyword)
+    echo "WARNING: No session chosen"
+    echo "WARNING: Chosing one from a predefined set"
+    echo "WARNING: This may get overwritten by files sourced later"
+    for s in \
+        bspwm \
+        dwm \
+        enlightenment_start \
+        gnome-session \
+        lxqt-session \
+        mate-session \
+        openbox \
+        startplasma-x11 \
+        startxfce4
+    do
+        if command_exists "${s}"
+        then
+            session="${s}"
+            break
+        fi
+    done
+    unset s
 fi
 
 
 # Source files
 
 # Xprofile
-[ -f "${HOME}/.xprofile" ] && . ~/.xprofile
-[ -f "${HOME}/.config/X11/xprofile" ] && . ~/.config/X11/xprofile
+source_file "${HOME}/.xprofile"
+source_file "${HOME}/.config/X11/xprofile"
 
 # Additional X scripts
 # ex.: xrandr settings or session choice
-[ -f "${HOME}/.xscripts" ] && . ~/.xscripts
+source_file "${HOME}/.xscripts"
 
 
 # Start the session
+# 'case' is for ease of executing startx from the console
 case ${session} in
     bsp | bspwm )
         exec bspwm
@@ -85,7 +87,7 @@ case ${session} in
         exec enlightenment_start
         ;;
     exwm | EXWM )
-        exec emacs --load ~/.emacs.d/exwm-config.el
+        exec emacs --load "${HOME}/.emacs.d/exwm-config.el"
         ;;
     gnome )
         exec gnome-session
@@ -104,6 +106,11 @@ case ${session} in
         ;;
     # Anything different is run as command
     * )
-        exec "${1}"
+        if command_exists "${session}"
+        then
+            exec "${session}"
+        else
+            echo "ERROR: Command ${session} does not exist"
+        fi
         ;;
 esac
