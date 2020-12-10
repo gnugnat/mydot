@@ -20,13 +20,6 @@ unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 
 
-if [ -r "${HOME}/.Xresources" ] && command_exists xrdb
-then
-    xrdb "${HOME}/.Xresources"
-fi
-
-command_exists xsetroot && xsetroot -solid grey
-
 if [ -f "${HOME}/.config/X11/xinitrc" ]
 then
     . "${HOME}/.config/X11/xinitrc"

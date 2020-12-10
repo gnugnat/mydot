@@ -7,44 +7,66 @@
 # shellcheck disable=1090
 
 
-# Run system's xinitrc.d scripts
+command_exists() {
+    if nullwrap command -v "${1}"
+    then
+        return 0
+    else
+        return 1
+    fi
+}
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-    for f in /etc/X11/xinit/xinitrc.d/?*; do
-        [ -x "${f}" ] && . "${f}"
+source_file() {
+    [ -f "${1}" ] && . "${1}"
+}
+
+
+# Run system's xinitrc.d scripts
+if [ -d /etc/X11/xinit/xinitrc.d ]
+then
+    for f in /etc/X11/xinit/xinitrc.d/?*
+    do
+        source_file "${f}"
     done
     unset f
 fi
 
-# Keyboard
-
-# Polish + holding Caps Lock acts as Control
-if command -v setxkbmap >/dev/null 2>&1; then
+# Polish keys + holding Caps Lock acts as Control
+if command_exists setxkbmap
+then
     setxkbmap pl -option "caps:ctrl_modifier" &
 fi
 
 # Use Caps Lock as Escape
-if command -v xcape >/dev/null 2>&1; then
+if command_exists xcape
+then
     xcape -e "Caps_Lock=Escape" &
 fi
 
-
 # Xset
-
-if command -v xset >/dev/null 2>&1; then
-
+if command_exists xset
+then
     # disable beeping
     xset b off
-
     # screensaver timeout
     xset s 1200 0
 fi
 
+# Xrdb
+if [ -r "${HOME}/.Xresources" ] && command_exists xrdb
+then
+    xrdb "${HOME}/.Xresources"
+fi
 
-# Qt in GTK desktops
+# Basic X root
+if command_exists xsetroot
+then
+    xsetroot -solid grey
+fi
 
 # Detect qt5ct
-if command -v qt5ct >/dev/null 2>&1; then
+if command_exists qt5ct
+then
     QT_QPA_PLATFORMTHEME="qt5ct"
     export QT_QPA_PLATFORMTHEME
 fi
