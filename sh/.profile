@@ -162,9 +162,11 @@ source_file "/etc/profile"
 
 # >>> Environment
 
-# Configure missing variables
+# User's name
 USER="${USER:-$(whoami)}"
 export USER
+
+# User's identification number
 if [ -z "${UID}" ] && command_exists id
 then
     UID="$(id -u "${USER}")"
