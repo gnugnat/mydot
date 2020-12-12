@@ -13,7 +13,7 @@
 # shellcheck disable=1090
 
 # Usage:
-# $ startx ~/.xinitrc [session]
+# $ startx ~/.config/X11/xinitrc [session]
 
 
 command_exists() {
@@ -33,11 +33,6 @@ source_file () {
 if [ -n "${1}" ]
 then
     session="${1}"
-    if ! command_exists "${1}"
-    then
-        echo "WARNING: Command ${1} does not exist"
-        echo "WARNING: This may get overwritten by files sourced later"
-    fi
 else
     # Autochoose a available session if none is given
     # This works because in last 'case'
