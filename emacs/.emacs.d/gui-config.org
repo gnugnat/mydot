@@ -47,12 +47,16 @@
 ** Spaceline
    The spaceline needs to be reloaded.
 #+BEGIN_SRC emacs-lisp
-  (spaceline-spacemacs-theme)
+  (if (package-installed-p 'spaceline)
+      (spaceline-spacemacs-theme)
+    )
 #+END_SRC
 ** Theme
    The theme needs to be reloaded.
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'spacemacs-dark t)
+  (if (package-installed-p 'spacemacs-theme)
+      (load-theme 'spacemacs-dark t)
+    )
 #+END_SRC
 ** Transparency
 #+BEGIN_SRC emacs-lisp
