@@ -264,6 +264,12 @@ export OCTAVE_HISTFILE
 PLTUSERHOME="${HOME}/.local/share/racket"
 export PLTUSERHOME
 
+# Ruby (Gem) directories
+GEM_HOME="${HOME}/.local/share/gem"
+export GEM_HOME
+GEM_SPEC_CACHE="${HOME}/.cache/gem"
+export GEM_SPEC_CACHE
+
 # Pylint directory
 PYLINTHOME="${HOME}/.cache/pylint"
 export PYLINTHOME
@@ -359,6 +365,9 @@ then
     done
     unset racket_bin_dir
 fi
+
+# Ruby
+add_to_path "${GEM_HOME}/bin"
 
 
 # >>> Aliases
