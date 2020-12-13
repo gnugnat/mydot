@@ -195,10 +195,6 @@ else
 fi
 export EDITOR
 
-# Cargo directory
-CARGO_HOME="${HOME}/.local/share/cargo"
-export CARGO_HOME
-
 # CCache directory
 # Exclude root user - breaks ccache in portage
 if ! am_i_root
@@ -260,6 +256,10 @@ export NPM_CONFIG_USERCONFIG
 OCTAVE_HISTFILE="${HOME}/.cache/octave_repl_history"
 export OCTAVE_HISTFILE
 
+# Pylint directory
+PYLINTHOME="${HOME}/.cache/pylint"
+export PYLINTHOME
+
 # Racket directory
 PLTUSERHOME="${HOME}/.local/share/racket"
 export PLTUSERHOME
@@ -270,9 +270,9 @@ export GEM_HOME
 GEM_SPEC_CACHE="${HOME}/.cache/gem"
 export GEM_SPEC_CACHE
 
-# Pylint directory
-PYLINTHOME="${HOME}/.cache/pylint"
-export PYLINTHOME
+# Rust (Cargo) directory
+CARGO_HOME="${HOME}/.local/share/cargo"
+export CARGO_HOME
 
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
@@ -342,7 +342,7 @@ add_to_path "${HOME}/.cabal/bin"
 
 # Cargo (Rust)
 add_to_path "${HOME}/.cargo/bin"
-add_to_path "${HOME}/.local/share/cargo/bin"
+add_to_path "${CARGO_HOME}/bin"
 
 # GO
 add_to_path "${GOPATH}/bin"
