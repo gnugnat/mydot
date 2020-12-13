@@ -43,10 +43,10 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
       '(
-        ("ELPA"  . "http://tromey.com/elpa/")
-        ("gnu"   . "http://elpa.gnu.org/packages/")
+        ("elpa"  . "https://tromey.com/elpa/")
+        ("gnu"   . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
-        ("ORG"   . "https://orgmode.org/elpa/")
+        ("org"   . "https://orgmode.org/elpa/")
         )
       )
 (package-initialize)
