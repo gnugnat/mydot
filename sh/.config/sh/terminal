@@ -1,0 +1,38 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+# shellcheck disable=2016
+
+
+if [ -z "${TERMINAL}" ]
+then
+    for t in \
+        alacritty \
+        aterm \
+        gnome-terminal \
+        kitty \
+        konsole \
+        mate-terminal \
+        roxterm \
+        sakura \
+        st \
+        terminator \
+        terminology \
+        tilix \
+        urxvt \
+        xfce4-terminal \
+        xst \
+        xterm
+    do
+        if command_exists "${t}"
+        then
+            TERMINAL="${t}"
+            break
+        fi
+    done
+fi
+
+a_k_a terminal '${TERMINAL}'
