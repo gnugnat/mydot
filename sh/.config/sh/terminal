@@ -33,6 +33,7 @@ then
             break
         fi
     done
+    unset t
 fi
 
 a_k_a terminal '${TERMINAL}'
