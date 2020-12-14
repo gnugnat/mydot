@@ -301,8 +301,12 @@ export XDG_RUNTIME_DIR
 nullwrap chmod 0700 "${XDG_RUNTIME_DIR}"
 
 # Xorg X11 Server
-# Why here? We use XDG_RUNTIME_DIR for Xauthority
-XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+# GDM uses /run/user/1000/gdm/Xauthority
+if [ -z "${GDMSESSION}" ]
+then
+    # Why here? We use XDG_RUNTIME_DIR for Xauthority
+    XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+fi
 export XAUTHORITY
 XINITRC="${HOME}/.config/X11/xinitrc"
 export XINITRC
