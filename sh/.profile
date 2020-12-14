@@ -301,12 +301,8 @@ export XDG_RUNTIME_DIR
 nullwrap chmod 0700 "${XDG_RUNTIME_DIR}"
 
 # Xorg X11 Server
-# GDM uses /run/user/1000/gdm/Xauthority
-if [ -z "${GDMSESSION}" ]
-then
-    # Why here? We use XDG_RUNTIME_DIR for Xauthority
-    XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
-fi
+# Why here? We use XDG_RUNTIME_DIR for Xauthority
+XAUTHORITY="${XAUTHORITY:-${XDG_RUNTIME_DIR}/Xauthority}"
 export XAUTHORITY
 XINITRC="${HOME}/.config/X11/xinitrc"
 export XINITRC
@@ -624,5 +620,5 @@ fi
 
 if ! am_i_root && [ "$(tty)" = "/dev/tty1" ] && command_exists startx && [ ! "${DISPLAY}" ]
 then
-    startx "${HOME}/.config/X11/xinitrc" -- "${HOME}/.config/X11/xserverrc" || echo "Failed to start the default X session"
+    startx "${XINITRC}" -- "${XSERVERRC}" || echo "Failed to start the default X session"
 fi
