@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+
+trap 'exit 128' INT
+export PATH
+
+
+cd /sys/devices/system/cpu || exit 1
+
+for c in cpu*
+do
+    govenor_file="./${c}/cpufreq/scaling_governor"
+    if [ -f "${govenor_file}" ]
+    then
+        printf "%s: " "${c}"
+        cat "${govenor_file}"
+    fi
+done
