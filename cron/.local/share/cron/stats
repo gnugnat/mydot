@@ -23,6 +23,8 @@ mkdir -p "${log_dir}" >/dev/null 2>&1
 
 
 (
+    run_command echo ">>> Uptime"
+    run_command uptime
     run_command echo ">>> Disk"
     run_command df
     run_command echo ">>> Memory"
