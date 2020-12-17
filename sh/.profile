@@ -490,9 +490,12 @@ then
 fi
 a_k_a diff-git 'git diff --no-index'
 a_k_a ff 'firefox'
+a_k_a hs 'ghci'
 a_k_a ipy 'ipython'
 a_k_a py 'python'
+a_k_a rb 'irb'
 a_k_a rkt 'racket'
+a_k_a tcl 'tclsh'
 a_k_a venv 'python -m venv'
 
 # Shell
