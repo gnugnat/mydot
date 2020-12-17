@@ -236,6 +236,10 @@ export JUPYTER_CONFIG_DIR
 LESSHISTFILE=-
 export LESSHISTFILE
 
+# LibDVDcss cache directory
+DVDCSS_CACHE="${HOME}/.cache/dvdcss"
+export DVDCSS_CACHE
+
 # Mednafen configuration directory
 MEDNAFEN_HOME="${HOME}/.config/mednafen"
 export MEDNAFEN_HOME
