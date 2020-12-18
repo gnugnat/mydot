@@ -54,7 +54,7 @@ main() {
     if command_exists haskell-updater
     then
         umsg "Rebuilding Haskell packages"
-        time haskell-updater
+        time haskell-updater -- --usepkg-exclude "*"
     fi
 
     umsg "Rebuilding preserved packages"
