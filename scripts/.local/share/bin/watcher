@@ -20,6 +20,7 @@ in
     -h | -help | --help )
         echo "Usage: watcher COMMAND"
         echo "watcher - simple watch(1) implementation"
+        exit 0
         ;;
 esac
 
