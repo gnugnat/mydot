@@ -1,0 +1,36 @@
+#!/bin/sh
+
+
+# Copyright (c) 2020, XGQT
+# Licensed under the ISC License
+
+# Simple GNU's watch implementation
+
+# Inspired by:
+# https://www.stevekamerman.com/2008/07/freebsd-watch-command-is-not-gnulinux-watch-command/
+
+
+# watch always exists successfully
+trap 'exit 0' INT
+export PATH
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        echo "Usage: watcher COMMAND"
+        echo "watcher - simple watch(1) implementation"
+        ;;
+esac
+
+while true
+do
+    clear
+    echo "Every 3.0s: ${*}        $(hostname): $(date)"
+    echo "------------------------------"
+    echo
+
+    eval "${@}"
+
+    sleep 3
+done
