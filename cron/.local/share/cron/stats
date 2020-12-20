@@ -23,6 +23,8 @@ mkdir -p "${log_dir}" >/dev/null 2>&1
 
 
 (
+    run_command echo ">>> Uname"
+    run_command uname -a
     run_command echo ">>> Uptime"
     run_command uptime
     run_command echo ">>> File systems"
