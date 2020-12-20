@@ -92,6 +92,7 @@ with open(WORLD_FILE) as world:
 
         read_category = line.split("/")[0]
         read_group = read_category.split("-")[0]
+        read_name = line.split("/")[1]
 
         if read_group != GROUP_TMP:
             print("\033[97m" + " \u25cb " + str.upper(read_group))
@@ -102,11 +103,11 @@ with open(WORLD_FILE) as world:
             CATEGORY_TMP = read_category
             CATEGORY_COUNT += 1
 
-        print(8 * " " + "\033[94m -", line.split("/")[1])
+        print("{}\033[94m - {}".format(8 * " ", read_name))
         PACKAGE_COUNT += 1
 
     # Reset color + newline
     print("\033[0m")
 
-    print(CATEGORY_COUNT, "categories")
-    print(PACKAGE_COUNT, "packages")
+    print("{} categories".format(CATEGORY_COUNT))
+    print("{} packages".format(PACKAGE_COUNT))
