@@ -70,8 +70,8 @@ mkdir -p "${log_dir}" >/dev/null 2>&1 || exit 1
 
 
 (
-    run_command eix-sync >/dev/null
-    run_command eix-update >/dev/null
-    run_command emerge --usepkg-exclude '*' -Duvp @world
-    run_command emerge --usepkg-exclude '*' -Dfu @world >/dev/null
+    run_command eix-sync ">/dev/null"
+    run_command eix-update ">/dev/null"
+    run_command emerge --usepkg-exclude "\*" -Duvp @world
+    run_command emerge --usepkg-exclude "\*" -Dfu @world ">/dev/null"
 ) | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_dir}/${log_file}" 2>&1
