@@ -42,6 +42,10 @@ run_command() {
     fi
 }
 
+log_command() {
+    run_command "${@}" | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_dir}/${log_file}" 2>&1
+}
+
 
 while [ -n "${1}" ]
 do
@@ -73,10 +77,8 @@ fi
 mkdir -p "${log_dir}" >/dev/null 2>&1 || exit 1
 
 
-(
-    run_command uname -a
-    run_command uptime
-    run_command df
-    run_command free
-    run_command sensors
-) | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_dir}/${log_file}" 2>&1
+log_command uname -a
+log_command uptime
+log_command df
+log_command free
+log_command sensors
