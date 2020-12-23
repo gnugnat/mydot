@@ -53,7 +53,7 @@ do
         -f | --log-file )
             log_file="${2}"
             ;;
-        * )
+        -* )
             usage
             exit 1
             ;;
