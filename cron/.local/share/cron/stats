@@ -7,30 +7,72 @@ export PATH
 
 prog_name=$(basename "${0}")
 log_dir="${HOME}/.cache/cron"
-log_file="${log_dir}/${prog_name}.log"
+log_file="${prog_name}.log"
 
+
+usage() {
+    cat << USAGE
+Usage: ${prog_name} [OPTION]
+simple script to be used with cron
+
+Options:
+    -d DIR  --log-dir DIR    specify the log directory
+    -f FILE --log-file FILE  specify the log file
+    -h      --help           show this help message and exit
+
+Copyright (c) 2020, XGQT
+Licensed under the ISC License
+USAGE
+}
 
 run_command() {
-    if ! "${@}" 2>&1
+    echo "[C] Command: ${1^}"
+    echo "[R] Running: ${*}"
+    if eval "${@}" 2>&1
     then
-        echo "ERROR: ${*} failed!"
-        exit 1
+        echo "[S] Success: ${*}"
+        return 0
+    else
+        echo "[F] Failed: ${*}"
+        return 1
     fi
 }
 
 
-mkdir -p "${log_dir}" >/dev/null 2>&1
+while [ -n "${1}" ]
+do
+    case "${1}"
+    in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+        -d | --log-dir )
+            log_dir="${2}"
+            ;;
+        -f | --log-file )
+            log_file="${2}"
+            ;;
+        * )
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+if [ -z "${log_dir}" ] || [ -z "${log_file}" ]
+then
+    exit 1
+fi
+
+mkdir -p "${log_dir}" >/dev/null 2>&1 || exit 1
 
 
 (
-    run_command echo ">>> Uname"
     run_command uname -a
-    run_command echo ">>> Uptime"
     run_command uptime
-    run_command echo ">>> File systems"
     run_command df
-    run_command echo ">>> Memory"
     run_command free
-    run_command echo ">>> Sensors"
     run_command sensors
-) | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_file}" 2>&1
+) | busybox ts '[%Y-%m-%d %H:%M:%S]' >> "${log_dir}/${log_file}" 2>&1
