@@ -842,7 +842,15 @@
     (add-to-list 'dashboard-items '(agenda) t)
     )
 #+END_SRC
-** Dired Sidebar
+** Dired
+   Dired configuration
+#+BEGIN_SRC emacs-lisp
+  (setq-default
+   dired-auto-revert-buffer t
+   dired-listing-switches "-alh"
+   dired-recursive-copies 'always
+   )
+#+END_SRC
    Sidebar for Emacs leveraging Dired
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sidebar
