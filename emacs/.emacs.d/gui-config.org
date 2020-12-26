@@ -35,10 +35,8 @@
    ;; List of fonts
    (font-candidate
     "JetBrains Mono"
-    "Dina"
-    "xos4 Terminus"
-    "Terminus"
     "Hack"
+    "DejaVu Sans Mono"
     "Monospace"
     "Consolas"
     )
