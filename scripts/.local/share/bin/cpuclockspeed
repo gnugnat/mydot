@@ -30,5 +30,5 @@ CPU=0
 for speed in ${speeds}
 do
     ((CPU++))
-    echo "CPU ${CPU}: ${speed}"
+    echo "CPU${CPU}: ${speed}"
 done

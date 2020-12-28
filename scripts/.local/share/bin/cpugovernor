@@ -31,7 +31,7 @@ do
     govenor_file="./${c}/cpufreq/scaling_governor"
     if [ -f "${govenor_file}" ]
     then
-        printf "%s: " "${c}"
+        printf "%s: " "${c^^}"
         cat "${govenor_file}"
     fi
 done
