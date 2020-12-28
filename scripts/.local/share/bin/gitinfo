@@ -33,6 +33,7 @@ bold=$(tput bold)
 reset=$(tput sgr0)
 yellow=$(tput setaf 3)
 
+directory=$(pwd)
 remote=$(git config --get remote.origin.url 2>/dev/null)
 commits=$(git rev-list --count HEAD 2>/dev/null)
 branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
@@ -44,10 +45,11 @@ changes=$(git status --porcelain 2>/dev/null)
 
 cd "${location}" || exit 1
 
-echo "${bold}${blue}Remote:  ${reset}${yellow}${remote}"
-echo "${bold}${blue}Commits: ${reset}${yellow}${commits}"
-echo "${bold}${blue}Branch:  ${reset}${yellow}${branch}"
-echo "${bold}${blue}Tag:     ${reset}${yellow}${latest_tag}"
-echo "${bold}${blue}First:   ${reset}${yellow}${first}"
-echo "${bold}${blue}Last:    ${reset}${yellow}${last}"
+echo "${bold}${blue}Directory: ${reset}${yellow}${directory}"
+echo "${bold}${blue}Remote:    ${reset}${yellow}${remote}"
+echo "${bold}${blue}Commits:   ${reset}${yellow}${commits}"
+echo "${bold}${blue}Branch:    ${reset}${yellow}${branch}"
+echo "${bold}${blue}Tag:       ${reset}${yellow}${latest_tag}"
+echo "${bold}${blue}First:     ${reset}${yellow}${first}"
+echo "${bold}${blue}Last:      ${reset}${yellow}${last}"
 echo "${bold}${blue}Changes:${reset}${yellow}${changes}${reset}"
