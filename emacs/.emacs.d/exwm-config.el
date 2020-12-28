@@ -1,15 +1,31 @@
 ;;; EXWM --- configuration
+
 ;;; Commentary:
-;;
+
+;; This file is part of mydot.
+
+;; mydot is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; mydot is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
 ;; Copyright (c) 2020, XGQT
-;; Licensed under the ISC License
-;;
+;; Licensed under the GNU GPL v3 License
+
 ;;  _______  ____        ____  __
 ;; | ____\ \/ /\ \      / /  \/  |
 ;; |  _|  \  /  \ \ /\ / /| |\/| |
 ;; | |___ /  \   \ V  V / | |  | |
 ;; |_____/_/\_\   \_/\_/  |_|  |_|
-;;
+
 ;; this file is loaded by .xinit
 ;; when executing
 ;;	"startx ~/.xinitrc exwm"
@@ -17,6 +33,8 @@
 ;;	"emacs --load ~/.emacs.d/exwm-config.el"
 
 ;;; Code:
+
+
 (use-package exwm
   :ensure t
   :config
@@ -200,4 +218,6 @@
   ;; enable
   (exwm-enable)
   )
+
+
 ;;; exwm-config.el ends here

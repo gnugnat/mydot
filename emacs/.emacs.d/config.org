@@ -4,10 +4,32 @@
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
 # Copyright (c) 2020, XGQT
-# Licensed under the ISC License
+# Licensed under the GNU GPL v3 License
+
+
 [[./assets/icons/steal_your_emacs_250x250.png]]
+
+
 * Environment
+
 ** Auto Update
 #+BEGIN_SRC emacs-lisp
   (use-package auto-package-update
@@ -20,6 +42,7 @@
     (auto-package-update-maybe)
     )
 #+END_SRC
+
 ** Edit/Reload configuration
 #+BEGIN_SRC emacs-lisp
   (defun config-visit ()
@@ -114,6 +137,8 @@
   ;; Control & Scroll Down - Decrease
   (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
+
+
 * Buffers & Windows
 ** Follow Splits
    Better window splitting
@@ -216,6 +241,8 @@
     ([remap other-window] . switch-window)
     )
 #+END_SRC
+
+
 * Look
 ** Spaceline
    Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
@@ -237,6 +264,8 @@
     )
   (load-theme 'spacemacs-dark t)
 #+END_SRC
+
+
 * File Editing
 ** Avy
    Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
@@ -348,6 +377,8 @@
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
+
+
 * Programming
 ** Company
    [[https://company-mode.github.io/][Completion]]
@@ -731,6 +762,8 @@
     (yas-reload-all)
     )
 #+END_SRC
+
+
 * Org
 ** Agenda
    My Org agenda
@@ -809,6 +842,8 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-startup-truncated nil)
 #+END_SRC
+
+
 * Misc Plugins
 ** Dash
    Modern list api for Emacs

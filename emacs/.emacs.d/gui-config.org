@@ -4,16 +4,41 @@
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
 # Copyright (c) 2020, XGQT
-# Licensed under the ISC License
+# Licensed under the GNU GPL v3 License
+
+
 [[./assets/icons/steal_your_emacs_250x250.png]]
+
+
 * Environment
+
 ** Minor
    Some small tweaks that don't require packages
 #+BEGIN_SRC emacs-lisp
   (global-prettify-symbols-mode t)
 #+END_SRC
+
+
 * Look
+
 ** Font
    Credits: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
@@ -112,7 +137,10 @@
 #+BEGIN_SRC emacs-lisp
   (set-frame-size (selected-frame) 88 36)
 #+END_SRC
+
+
 * Misc Plugins
+
 ** Vterm Terminal
    [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
    Installation of libvterm will be performed automatically if the prerequisites are met:

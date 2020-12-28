@@ -7,31 +7,49 @@
 #+REVEAL_THEME: black
 [[./mydot.png]]
 
-[[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]] [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:https://img.shields.io/badge/feed-atom-orange.svg]] [[./LICENSE][file:https://img.shields.io/badge/license-ISC-blue.svg]]
+[[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]] [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:https://img.shields.io/badge/feed-atom-orange.svg]] [[./LICENSE][file:https://img.shields.io/badge/license-GPLv3-blue.svg]]
+
+
 * Howto
+
 ** Installation
+
 - git clone the repo to ~/mydot
   =git clone https://gitlab.com/xgqt/mydot ~/mydot=
 - cd to mydot
 - run =./stowdot=
+
 ** Uninstallation
+
 - run =./stowdot remove=
+
 ** Selectivity
+
    You can install/delete configs selectivitely.
    First change directrory to mydot (=cd ~/mydot=).
    Remember to create needed directories to avoid conflicts:
    - =$HOME/.config= 	- for your users config files
    - =$HOME/.emacs.d= 	- for Emacs
+
 *** install one
+
     example: zsh
     - =stow -t ~ zsh=
+
 *** uninstall one
+
     example: zsh
     - =stow -t ~ -D zsh=
+
 ** ZSH
+
 - Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
+
+
 * Notice
+
 ** Installed by scripts / referenced
+
 - [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
 - [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
