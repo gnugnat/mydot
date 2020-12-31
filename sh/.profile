@@ -528,6 +528,7 @@ a_k_a so-shrc 'source ${HOME}/.profile'
 a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
 
 # System
+a_k_a cpuinfo 'cat /proc/cpuinfo'
 a_k_a kerr '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
 a_k_a root '${NEED_UID0} su -l'
 a_k_a rp 'sudo '
