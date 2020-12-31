@@ -329,7 +329,7 @@ XSERVERRC="${HOME}/.config/X11/xserverrc"
 export XSERVERRC
 
 # If we're root we don't need sudo in most cases (covered here)
-if [ "$(whoami)" = "root" ]
+if [ "$(whoami)" = "root" ] || [ -n "${EPREFIX}" ]
 then
     NEED_UID0=""
 else
