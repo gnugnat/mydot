@@ -633,7 +633,7 @@ fi
 # that are not critical to running the shell
 if [ -d "${HOME}/.config/sh" ]
 then
-    for shext in "${HOME}/.config/sh"/*
+    for shext in "${HOME}/.config/sh"/?*
     do
         source_file "${shext}"
     done

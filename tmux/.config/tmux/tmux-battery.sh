@@ -8,7 +8,7 @@
 batteries=/sys/class/power_supply
 
 
-for b in "${batteries}"/*
+for b in "${batteries}"/?*
 do
     battery=$(basename "${b}")
     if [ -e "/sys/class/power_supply/${battery}/energy_full" ]; then
