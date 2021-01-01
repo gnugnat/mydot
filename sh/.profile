@@ -629,6 +629,10 @@ fi
 
 
 # >>> Additional source
+
+# I guess that GPG and SSH agents
+# don't need to be in separate files
+
 # Source additional files
 # that are not critical to running the shell
 if [ -d "${HOME}/.config/sh" ]
@@ -638,15 +642,4 @@ then
         source_file "${shext}"
     done
     unset shext
-fi
-
-
-# >>> Autostart X11 if it is available
-
-# If you enable autologin on getty this can replace a Display Manager
-# c1:12345:respawn:/sbin/agetty --autologin <user> --noclear 38400 tty1 linux
-
-if ! am_i_root && [ "$(tty)" = "/dev/tty1" ] && command_exists startx && [ ! "${DISPLAY}" ]
-then
-    startx "${XINITRC}" -- "${XSERVERRC}" || echo "Failed to start the default X session"
 fi
