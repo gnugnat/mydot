@@ -357,10 +357,6 @@ add_to_path "/usr/local/bin"
 add_to_path "/usr/local/sbin"
 add_to_path "/usr/sbin"
 
-# User's programs
-add_to_path "${HOME}/.bin"
-add_to_path "${HOME}/.local/share/bin"
-
 # Cabal (Haskell)
 add_to_path "${HOME}/.cabal/bin"
 
@@ -392,6 +388,11 @@ fi
 
 # Ruby
 add_to_path "${GEM_HOME}/bin"
+
+# User's programs
+# Keep this last
+add_to_path "${HOME}/.bin"
+add_to_path "${HOME}/.local/share/bin"
 
 
 # >>> Aliases
