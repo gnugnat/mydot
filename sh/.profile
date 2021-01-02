@@ -532,7 +532,7 @@ a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
 a_k_a cpuinfo 'cat /proc/cpuinfo'
 a_k_a kerr '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
 a_k_a root '${NEED_UID0} su -l'
-a_k_a rp 'sudo '
+a_k_a rp '${NEED_UID0} '
 a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
 
 # Youtube-DL
