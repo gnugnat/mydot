@@ -21,18 +21,23 @@
 
 # Upgrade your Gentoo box
 
+# Used here:
+#   - bash *
+#   - busybox *
+#   - eclean *
+#   - eix
+#   - emerge *
+#   - genlica
+#   - haskell-updater
+#   - perl-cleaner
+#   - smart-live-rebuild
+#   * - mandatory
+
 
 trap 'exit 128' INT
+set -o pipefail
 export PATH
 
-
-STEP=0
-
-
-umsg() {
-    ((STEP++))
-    echo "$(tput bold)$(tput setaf 7) [$(tput setaf 2)${STEP}$(tput setaf 7)] ${1} $(tput sgr0)"
-}
 
 command_exists () {
     if command -v "${1}" >/dev/null 2>&1
@@ -43,47 +48,85 @@ command_exists () {
     fi
 }
 
-main() {
+step_01() {
     if command_exists update-genlica
     then
-        umsg "Updating Genlica"
-        time update-genlica
+        update-genlica
+    else
+        echo "Not found: genlica"
     fi
+}
 
-    umsg "Syncing the tree"
-    time eix-sync
-    time eix-remote update
+step_02() {
+    if command_exists eix
+    then
+        eix-sync
+        eix-remote update
+    else
+        echo "Not found: eix"
+        emerge --sync
+    fi
+}
 
-    umsg "Updating portage"
-    time emerge -1u sys-apps/portage
+step_03() {
+    emerge -1u sys-apps/portage
+}
 
-    umsg "Merging changes"
-    time emerge --changed-deps --changed-slot @world
+step_04() {
+    emerge --changed-deps --changed-slot @world
+}
 
-    umsg "Updating system"
-    time emerge -uNUD --with-bdeps=y @world
+step_05() {
+    emerge -uNUD --with-bdeps=y @world
+}
 
-    umsg "Rebuilding Perl packages"
-    time perl-cleaner --all
+step_06() {
+    if command_exists perl-cleaner
+    then
+        perl-cleaner --all
+    else
+        echo "Not found: perl-cleaner"
+    fi
+}
 
+step_07() {
     if command_exists haskell-updater
     then
-        umsg "Rebuilding Haskell packages"
-        time haskell-updater -- --usepkg-exclude "*"
+        haskell-updater -- --usepkg-exclude "*"
+    else
+        echo "Not found: haskell-updater"
     fi
+}
 
-    umsg "Rebuilding preserved packages"
-    time emerge -1v @preserved-rebuild
+step_08() {
+    emerge -1v @preserved-rebuild
+}
 
+step_09() {
     if command_exists smart-live-rebuild
     then
-        umsg "Updating git packages"
-        time smart-live-rebuild -j 2
+        smart-live-rebuild -j 2
+    else
+        echo "Not found: smart-live-rebuild"
     fi
+}
 
-    umsg "Cleaning"
-    time emerge -c
-    time eclean-dist --deep
+step_10() {
+    emerge -c
+    eclean-dist --deep
+}
+
+main() {
+    step_01 | busybox ts '[%Y-%m-%d %H:%M:%S] (01 upgen)'
+    step_02 | busybox ts '[%Y-%m-%d %H:%M:%S] (02 syncs)'
+    step_03 | busybox ts '[%Y-%m-%d %H:%M:%S] (03 prtge)'
+    step_04 | busybox ts '[%Y-%m-%d %H:%M:%S] (04 chngs)'
+    step_05 | busybox ts '[%Y-%m-%d %H:%M:%S] (05 updte)'
+    step_06 | busybox ts '[%Y-%m-%d %H:%M:%S] (06 perlc)'
+    step_07 | busybox ts '[%Y-%m-%d %H:%M:%S] (07 hskll)'
+    step_08 | busybox ts '[%Y-%m-%d %H:%M:%S] (08 presr)'
+    step_09 | busybox ts '[%Y-%m-%d %H:%M:%S] (09 smart)'
+    step_10 | busybox ts '[%Y-%m-%d %H:%M:%S] (10 clean)'
 }
 
 
