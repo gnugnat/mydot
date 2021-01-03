@@ -210,6 +210,21 @@ else
 fi
 export EDITOR
 
+# Auto-set the pager
+if [ -z "${PAGER}" ]
+then
+    for pager in less cat
+    do
+        if command_exists "${pager}"
+        then
+            PAGER="${pager}"
+            break
+        fi
+    done
+    unset pager
+fi
+export PAGER
+
 # CCache directory
 # Exclude root user - breaks ccache in portage
 if ! am_i_root
