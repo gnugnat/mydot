@@ -726,6 +726,11 @@
      ;; Saltstack
      ("\\.sls\\'" . yaml-mode)
      )
+    :hook
+    (
+     (yaml-mode . idle-highlight-mode)
+     (yaml-mode . company-mode)
+     )
     :config
     (add-hook
      'yaml-mode-hook
