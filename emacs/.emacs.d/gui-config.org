@@ -75,16 +75,25 @@
    All-The-Icons-Dired:
    - https://github.com/jtbm37/all-the-icons-dired
    - https://melpa.org/#/all-the-icons-dired
+   All-The-Icons-Ibuffer:
+   - https://github.com/seagle0128/all-the-icons-ibuffer
+   - https://melpa.org/#/all-the-icons-ibuffer
 #+BEGIN_SRC emacs-lisp
+  (setq
+   inhibit-compacting-font-caches t
+   )
   (use-package all-the-icons
     :ensure t
-    :config
-    (setq inhibit-compacting-font-caches t)
     )
   (use-package all-the-icons-dired
     :ensure t
     :hook
     ((dired-mode . all-the-icons-dired-mode))
+    )
+  (use-package all-the-icons-ibuffer
+    :ensure t
+    :init
+    (all-the-icons-ibuffer-mode 1)
     )
 #+END_SRC
 ** Spaceline
