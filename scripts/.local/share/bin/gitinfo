@@ -38,8 +38,8 @@ remote=$(git config --get remote.origin.url 2>/dev/null)
 commits=$(git rev-list --count HEAD 2>/dev/null)
 branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
 latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo 'N/A')
-first=$(git log --reverse --format=%cd | sed 1q 2>/dev/null)
-last=$(git log --reverse -1 --format=%cd 2>/dev/null)
+first=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse | head -1 2>/dev/null)
+last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/dev/null)
 changes=$(git status --porcelain 2>/dev/null)
 
 
