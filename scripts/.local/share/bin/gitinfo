@@ -26,12 +26,42 @@ trap 'exit 128' INT
 export PATH
 
 
-location=${1:-.}
+blue="$(tput setaf 4)"
+bold="$(tput bold)"
+reset="$(tput sgr0)"
+yellow="$(tput setaf 3)"
+header="${bold}${blue}"
+rest="${reset}${yellow}"
 
-blue=$(tput setaf 4)
-bold=$(tput bold)
-reset=$(tput sgr0)
-yellow=$(tput setaf 3)
+
+usage() {
+    cat << USAGE
+${header}Usage: ${rest}gitinfo [OPTION] [DIRECTORY]
+show git repository information
+
+${header}Options:${rest}
+    -h      --help           show this help message and exit
+
+Copyright (c) 2020, XGQT
+Licensed under the GNU GPL v3 License
+USAGE
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    * )
+        if [ -d "${1}" ]
+        then
+            cd "${1}" || exit 1
+        fi
+        ;;
+esac
+
 
 directory=$(pwd)
 remote=$(git config --get remote.origin.url 2>/dev/null)
@@ -43,13 +73,13 @@ last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/de
 changes=$(git status --porcelain 2>/dev/null)
 
 
-cd "${location}" || exit 1
-
-echo "${bold}${blue}Directory: ${reset}${yellow}${directory}"
-echo "${bold}${blue}Remote:    ${reset}${yellow}${remote}"
-echo "${bold}${blue}Commits:   ${reset}${yellow}${commits}"
-echo "${bold}${blue}Branch:    ${reset}${yellow}${branch}"
-echo "${bold}${blue}Tag:       ${reset}${yellow}${latest_tag}"
-echo "${bold}${blue}First:     ${reset}${yellow}${first}"
-echo "${bold}${blue}Last:      ${reset}${yellow}${last}"
-echo "${bold}${blue}Changes:  ${reset}${yellow}${changes}${reset}"
+cat << INFO
+${header}Directory: ${rest}${directory}
+${header}Remote:    ${rest}${remote}
+${header}Commits:   ${rest}${commits}
+${header}Branch:    ${rest}${branch}
+${header}Tag:       ${rest}${latest_tag}
+${header}First:     ${rest}${first}
+${header}Last:      ${rest}${last}
+${header}Changes:  ${rest}${changes}${reset}
+INFO
