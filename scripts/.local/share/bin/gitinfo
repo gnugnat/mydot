@@ -70,6 +70,8 @@ branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
 latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo 'N/A')
 first=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse | head -1 2>/dev/null)
 last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/dev/null)
+# We sed out the "  ." part (which contains a tab)
+dir_size=$(du -sh | sed 's/	\.//g')
 changes=$(git status --porcelain 2>/dev/null)
 
 
@@ -81,5 +83,6 @@ ${header}Branch:    ${rest}${branch}
 ${header}Tag:       ${rest}${latest_tag}
 ${header}First:     ${rest}${first}
 ${header}Last:      ${rest}${last}
+${header}Size:      ${rest}${dir_size}
 ${header}Changes:  ${rest}${changes}${reset}
 INFO
