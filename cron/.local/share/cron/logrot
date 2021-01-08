@@ -29,7 +29,7 @@ import os
 
 parser = argparse.ArgumentParser(
     description="Log file rotate script (meant to be run using cron)",
-    epilog="Copyright (c) 2020, XGQT (License: ISC)"
+    epilog="Copyright (c) 2020, XGQT (License: GNU GPL v3)"
 )
 parser.add_argument(
     "-o", "--out",
