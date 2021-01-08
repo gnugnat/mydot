@@ -469,6 +469,7 @@ then
     a_k_a ed-stop 'ec-kill'
 fi
 a_k_a ,, 'cd ../..'
+a_k_a codium 'codium-bin'
 a_k_a hl 'highlight -O truecolor'
 a_k_a nuke 'rm -fr'
 a_k_a open 'xdg-open'
