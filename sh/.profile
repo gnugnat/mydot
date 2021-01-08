@@ -240,6 +240,10 @@ export CONAN_COLOR_DARK
 CONAN_USER_HOME="${HOME}/.local/share/conan"
 export CONAN_USER_HOME
 
+# .NET don't spy on me! Can you at least do that?
+DOTNET_CLI_TELEMETRY_OPTOUT="1"
+export DOTNET_CLI_TELEMETRY_OPTOUT
+
 # Erlang (OTP) history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_AFLAGS
