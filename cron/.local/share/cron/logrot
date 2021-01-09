@@ -19,6 +19,9 @@ along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
 Copyright (c) 2020, XGQT
 Licensed under the GNU GPL v3 License
+
+CRON example:
+0  *  *  *  *  python3 /home/user/.local/share/cron/logrot /home/user/.cache/cron/*.log
 """
 
 
@@ -48,7 +51,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "files",
-    type=str, nargs="*"
+    type=str, nargs="+"
 )
 args = parser.parse_args()
 
