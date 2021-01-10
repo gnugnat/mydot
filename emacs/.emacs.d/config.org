@@ -348,7 +348,7 @@
     )
   (global-set-key (kbd "C-c d") 'insert-date)
 #+END_SRC
-** Undoo-tree
+** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
@@ -379,8 +379,8 @@
     ((prog-mode . rainbow-mode))
     )
 #+END_SRC
-** Rainbow delimeters
-   Colored delimeters
+** Rainbow delimiters
+   Colored delimiters
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
@@ -666,7 +666,7 @@
 #+BEGIN_SRC emacs-lisp
   (add-hook 'sh-mode-hook 'company-mode)
 #+END_SRC
-** Sr-Speedbar
+** Speedbar
    [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
 #+BEGIN_SRC emacs-lisp
   (use-package sr-speedbar
