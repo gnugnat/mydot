@@ -31,4 +31,4 @@ trap 'exit 128' INT
 export PATH
 
 
-echo "${*}" | sed -e 's/ /_/g' -e 's/[^ _a-zA-Z0-9]//g' -e 's/\(.*\)/\L\1/g'
+echo "${*}" | sed -e 's/ /_/g' -e 's/[^ -_a-zA-Z0-9]//g' -e 's/\(.*\)/\L\1/g'
