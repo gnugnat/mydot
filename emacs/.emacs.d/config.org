@@ -397,7 +397,15 @@
 
 * Programming
 ** Company
-   [[https://company-mode.github.io/][Completion]]
+   The company completion framework.
+   Keep this here, above, before adding company hooks.
+   Company:
+   - https://company-mode.github.io/
+   - https://github.com/company-mode/company-mode
+   - https://melpa.org/#/company
+   Company-Quickhelp:
+   - https://github.com/company-mode/company-quickhelp
+   - https://melpa.org/#/company-quickhelp
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
