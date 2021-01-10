@@ -536,9 +536,7 @@ a_k_a ipy 'ipython'
 a_k_a py 'python'
 a_k_a rb 'irb'
 a_k_a rkt 'racket'
-a_k_a server.py 'python -m http.server'
 a_k_a tcl 'tclsh'
-a_k_a venv 'python -m venv'
 
 # Shell
 a_k_a clear-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
