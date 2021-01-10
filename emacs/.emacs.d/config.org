@@ -294,6 +294,39 @@
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
 #+END_SRC
+** Git
+   Git management
+   Magit:
+   - https://github.com/magit/magit
+   - https://magit.vc/
+   - https://melpa.org/#/magit
+   Diff-Hl:
+   - https://github.com/dgutov/diff-hl
+   - https://melpa.org/#/diff-hl
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :config
+    (setq
+     git-commit-summary-max-length 80
+     magit-push-always-verify nil
+     )
+    :bind
+    (
+     ("C-c s" . magit-status)
+     ("C-c b" . magit-blame)
+     )
+    )
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package diff-hl
+    :ensure t
+    :hook
+    ((dired-mode . diff-hl-dired-mode))
+    :init
+    (global-diff-hl-mode)
+    )
+#+END_SRC
 ** Insert date
    In non-Org documents:
      - =C-c d= :         13.04.2004
@@ -314,23 +347,6 @@
       )
     )
   (global-set-key (kbd "C-c d") 'insert-date)
-#+END_SRC
-** Magit
-   Git management
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t
-    :config
-    (setq
-     git-commit-summary-max-length 80
-     magit-push-always-verify nil
-     )
-    :bind
-    (
-     ("C-c s" . magit-status)
-     ("C-c b" . magit-blame)
-     )
-    )
 #+END_SRC
 ** Undoo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
