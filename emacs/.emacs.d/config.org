@@ -622,13 +622,18 @@
 ** Python
    [[https://www.python.org/][Python]] IDE
    Remember to run elpy-config to install some necessary packages
+   Elpy:
+   - https://elpy.readthedocs.io
+   - https://github.com/jorgenschaefer/elpy
+   - https://melpa.org/#/elpy
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
     :ensure t
+    :defer t
     :init
-    (elpy-enable)
+    (advice-add 'python-mode :before 'elpy-enable)
     :config
-    (setq elpy-rpc-virtualenv-path "~/.local/")
+    (setq elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv")
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
       (add-hook 'elpy-mode-hook 'flycheck-mode)
