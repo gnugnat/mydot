@@ -21,7 +21,7 @@ Copyright (c) 2020, XGQT
 Licensed under the GNU GPL v3 License
 
 CRON example:
-0  *  *  *  *  python3 /home/user/.local/share/cron/logrot /home/user/.cache/cron/*.log
+0  *  *  *  *  python3 ~/.local/share/cron/logrot ~/.cache/cron/*.log
 """
 
 
@@ -56,28 +56,44 @@ parser.add_argument(
 args = parser.parse_args()
 
 
+def next_arch_name(an_dir, an_name, an_num):
+    """Return next available file (archive) name"""
+    comb_name = os.path.join(an_dir, "{}-{}.gz".format(an_name, an_num))
+
+    if os.path.exists(comb_name):
+        return next_arch_name(an_dir, an_name, an_num + 1)
+
+    return comb_name
+
+
 def main():
+    """Main"""
 
-    for f in args.files:
-        if os.path.isfile(f):
+    for i in args.files:
+        if os.path.isfile(i):
 
-            mb = os.path.getsize(f) / 1048576
-            if mb >= args.size:
+            size_mb = os.path.getsize(i) / 1048576
+            if size_mb >= args.size:
 
                 if args.out:
-                    ad = args.out
+                    arch_dir = args.out
                 else:
-                    ad = os.path.dirname(f)
+                    arch_dir = os.path.dirname(i)
 
-                an = os.path.basename(f)
-                b = bytearray(open(f, "rb").read())
-                with gzip.open(os.path.join(ad, an + ".gz"), "wb") as a:
-                    a.write(b)
+                arch_name = next_arch_name(
+                    arch_dir, os.path.basename(i), 0
+                )
+                file_byte = bytearray(open(i, "rb").read())
+
+                with gzip.open(
+                        os.path.join(arch_dir, arch_name), "wb"
+                ) as file_arch:
+                    file_arch.write(file_byte)
 
                 if not args.keep:
                     try:
-                        os.remove(f)
-                    except Exception:
+                        os.remove(i)
+                    except PermissionError:
                         pass
 
 
