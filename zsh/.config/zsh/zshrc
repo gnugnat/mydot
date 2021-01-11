@@ -52,8 +52,14 @@ setopt share_history
 
 # >>> Completion
 
+# Correction
+setopt correctall
+
 # Extendedglob
 setopt extendedglob
+
+# Glob hidden files
+setopt globdots
 
 # Load compinit
 autoload -U compinit
@@ -63,9 +69,6 @@ compinit -d "${ZCACHEDIR}/compdump"
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*' menu select
-
-# Correction
-setopt correctall
 
 # Racket completion
 source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
