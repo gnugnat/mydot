@@ -530,6 +530,7 @@ then
     a_k_a py2 'python2'
     a_k_a python 'python2'
 fi
+a_k_a builddir 'mkdir -p ./build && cd ./build'
 a_k_a diff-git 'git diff --no-index'
 a_k_a ff 'firefox'
 a_k_a hs 'ghci'
