@@ -266,6 +266,11 @@ export IPYTHONDIR
 JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
+# Java
+# Gradle TODO: maybe switch to ~/.local/share
+GRADLE_USER_HOME="${HOME}/.cache/gradle"
+export GRADLE_USER_HOME
+
 # Disable less history file
 LESSHISTFILE=-
 export LESSHISTFILE
