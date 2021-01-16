@@ -468,11 +468,14 @@
     (setq
      hl-todo-keyword-faces
      '(
-       ("DEBUG"  . "#A020F0")
-       ("FIXME"  . "#FF0000")
-       ("GOTCHA" . "#FF4500")
-       ("STUB"   . "#1E90FF")
-       ("TODO"   . "#FF0000")
+       ("BROKEN"     . "#FF0000")
+       ("BUG"        . "#FF0000")
+       ("DEBUG"      . "#A020F0")
+       ("FIXME"      . "#FF4500")
+       ("GOTCHA"     . "#FF4500")
+       ("STUB"       . "#1E90FF")
+       ("TODO"       . "#1E90FF")
+       ("WORKAROUND" . "#A020F0")
        )
      )
     )
