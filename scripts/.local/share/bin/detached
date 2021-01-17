@@ -1,0 +1,59 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, XGQT
+# Licensed under the GNU GPL v3 License
+
+
+trap 'exit 128' INT
+export PATH
+
+
+usage() {
+    cat <<EOF
+Usage: detached [OPTION] [COMMAND]
+detached - start a detached process
+
+Options:
+    -h  show this help message
+
+Copyright (c) 2021, XGQT
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+esac
+
+# If no second argument is given - pass
+# curret directory as the second argument
+if [ -z "${2}" ]
+then
+    dir="$(pwd)"
+else
+    dir=""
+fi
+
+
+eval "${@}" "${dir}" >/dev/null 2>&1 &
