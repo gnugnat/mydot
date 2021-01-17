@@ -581,7 +581,6 @@
 ** Erlang
    [[https://www.erlang.org/][Erlang]] language support
 #+BEGIN_SRC emacs-lisp
-  ;; (add-hook 'erlang-mode-hook 'company-mode)
   ;; Prevent annoying hang-on-compile
   ;; From https://www.lambdacat.com/post-modern-emacs-setup-for-erlang/
   (defvar inferior-erlang-prompt-timeout t)
@@ -752,14 +751,6 @@
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
     :ensure t
-    :config
-    ;; Rust style guide recommends spaces for indentation
-    (add-hook
-     'rust-mode-hook
-     (lambda ()
-       (setq indent-tabs-mode nil)
-       )
-     )
     )
 #+END_SRC
 ** Scheme
@@ -916,8 +907,7 @@
 #+END_SRC
    Create todo.org if it does not exist
 #+BEGIN_SRC emacs-lisp
-  (if (not
-       (file-exists-p "~/Documents/todo.org"))
+  (if (not (file-exists-p "~/Documents/todo.org"))
       (with-temp-buffer
         (write-file "~/Documents/todo.org")
         )
@@ -1094,7 +1084,7 @@
   (use-package ox-reveal
     :ensure t
     :config
-    ;; maybe add auto-installer in the future
+    ;; TODO: add auto-installer
     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
     )
 #+END_SRC
