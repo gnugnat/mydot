@@ -38,7 +38,6 @@
 
 
 * Look
-
 ** Font
    Credits: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
@@ -69,15 +68,15 @@
 #+END_SRC
 ** Icons
    Remember to tun =M-x all-the-icons-install-fonts= to install the required fonts.
-   All-The-Icons:
-   - https://github.com/domtronn/all-the-icons.el
-   - https://melpa.org/#/all-the-icons
-   All-The-Icons-Dired:
-   - https://github.com/jtbm37/all-the-icons-dired
-   - https://melpa.org/#/all-the-icons-dired
-   All-The-Icons-Ibuffer:
-   - https://github.com/seagle0128/all-the-icons-ibuffer
-   - https://melpa.org/#/all-the-icons-ibuffer
+   + All-The-Icons:
+     - https://github.com/domtronn/all-the-icons.el
+     - https://melpa.org/#/all-the-icons
+   + All-The-Icons-Dired:
+     - https://github.com/jtbm37/all-the-icons-dired
+     - https://melpa.org/#/all-the-icons-dired
+   + All-The-Icons-Ibuffer:
+     - https://github.com/seagle0128/all-the-icons-ibuffer
+     - https://melpa.org/#/all-the-icons-ibuffer
 #+BEGIN_SRC emacs-lisp
   (setq
    inhibit-compacting-font-caches t
@@ -149,19 +148,18 @@
 
 
 * Misc Plugins
-
 ** Vterm Terminal
-   [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]]
+   [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]].
    Installation of libvterm will be performed automatically if the prerequisites are met:
      - Emacs with module support
      - cmake
      - make
      - libtool
      - git
-   Load vterm only in GUI
-   Vterm:
-   - https://github.com/akermu/emacs-libvterm
-   - https://melpa.org/#/vterm
+   Load vterm only in GUI.
+   + Vterm:
+     - https://github.com/akermu/emacs-libvterm
+     - https://melpa.org/#/vterm
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'gnu/linux)
       (use-package vterm
