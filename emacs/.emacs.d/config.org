@@ -480,13 +480,39 @@
     (company-mode . company-quickhelp-mode)
     )
 #+END_SRC
-** C
+** LSP
+   Language Server Protocol support for Emacs
+   Keep this second, after company.
+   + Lsp-Mode:
+     - https://github.com/emacs-lsp/lsp-mode/
+     - https://melpa.org/#/lsp-mode
+   + Elgot:
+     - https://github.com/joaotavora/eglot
+     - https://melpa.org/#/eglot
 #+BEGIN_SRC emacs-lisp
-  ;; (add-hook 'c-mode-hook 'company-mode)
+  ;; LSP Server
+  (use-package lsp-mode
+    :ensure t
+    :hook
+    ((lsp-mode . company-mode))
+    )
+  ;; Eglot Client
+  ;; for packages that do not provide their own client
+  (use-package eglot
+    :ensure t
+    )
 #+END_SRC
-** C++
+** C & C++
+   C & C++ language support.
+   Use Eglot for the C/C+ LSP client.
 #+BEGIN_SRC emacs-lisp
-  ;; (add-hook 'c++-mode-hook 'company-mode)
+  ;; Utilize clangd from the LLVM project
+  ;; https://github.com/llvm/llvm-project/tree/master/clang-tools-extra/clangd
+  (when (executable-find "clangd")
+    (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+    (add-hook 'c-mode-hook 'eglot-ensure)
+    (add-hook 'c++-mode-hook 'eglot-ensure)
+    )
 #+END_SRC
 ** C#
    + Omnisharp:
@@ -605,6 +631,22 @@
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :ensure t
+    )
+#+END_SRC
+** Godot
+   [[https://godotengine.org/][Godot]]'s scripting language support.
+   + Gdscript-Mode
+     - https://github.com/godotengine/emacs-gdscript-mode
+     - https://melpa.org/#/gdscript-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package gdscript-mode
+    :ensure t
+    :config
+    ;; (setq gdscript-use-tab-indents t)
+    (setq
+     gdscript-indent-offset 4
+     gdscript-gdformat-save-and-format t
+     )
     )
 #+END_SRC
 ** Haskell
