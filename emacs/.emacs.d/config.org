@@ -739,8 +739,9 @@
   (add-hook 'cperl-mode-hook 'company-mode)
 #+END_SRC
 ** Python
-   [[https://www.python.org/][Python]] IDE
-   Remember to run elpy-config to install some necessary packages
+   [[https://www.python.org/][Python]] IDE.
+   WARNING: Remember to run =elpy-config= to install some necessary packages.
+   DEBUG: If =~/.emacs.d/elpy/rpc_venv= is empty remove it and run =elpy-config=.
    + Elpy:
      - https://elpy.readthedocs.io
      - https://github.com/jorgenschaefer/elpy
@@ -752,10 +753,12 @@
     :init
     (advice-add 'python-mode :before 'elpy-enable)
     :config
-    (setq elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv")
-    (when (load "flycheck" t t)
-      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode)
+    (progn
+      (setq elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv")
+      (when (load "flycheck" t t)
+        (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+        (add-hook 'elpy-mode-hook 'flycheck-mode)
+        )
       )
     )
 #+END_SRC
