@@ -31,6 +31,10 @@
 * Environment
 
 ** Auto Update
+   Periodical package updates.
+   Auto-Package-Update:
+   - https://github.com/rranelli/auto-package-update.el
+   - https://melpa.org/#/auto-package-update
 #+BEGIN_SRC emacs-lisp
   (use-package auto-package-update
     :ensure t
@@ -90,7 +94,10 @@
     )
 #+END_SRC
 ** Key bindings
-   Key binding hints
+   Key binding hints.
+   Which-Key:
+   - https://github.com/justbur/emacs-which-key
+   - https://melpa.org/#/which-key
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
     :ensure t
@@ -203,6 +210,9 @@
 #+END_SRC
 ** IDO vertically
    Better positioning
+   Ido-Vertical-Mode:
+   - https://github.com/creichert/ido-vertical-mode.el
+   - https://melpa.org/#/ido-vertical-mode
 #+BEGIN_SRC emacs-lisp
   (use-package ido-vertical-mode
     :ensure t
@@ -226,6 +236,9 @@
 #+END_SRC
 ** Smex
    Run known programs faster
+   Smex:
+   - https://github.com/nonsequitur/smex
+   - https://melpa.org/#/smex
 #+BEGIN_SRC emacs-lisp
   (use-package smex
     :ensure t
@@ -237,6 +250,9 @@
 #+END_SRC
 ** Switch window
    Faster window switching, when you press =C-x o= you choose a window
+   Switch-Window:
+   - https://github.com/dimitri/switch-window
+   - https://melpa.org/#/switch-window
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
     :ensure t
@@ -260,6 +276,9 @@
 * Look
 ** Spaceline
    Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
+   Spaceline:
+   - https://github.com/TheBB/spaceline
+   - https://melpa.org/#/spaceline
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline
     :ensure t
@@ -271,6 +290,9 @@
 #+END_SRC
 ** Theme
    Install spacemacs-theme if not installed
+   Spacemacs-Theme:
+   - https://github.com/nashamri/spacemacs-theme
+   - https://melpa.org/#/spacemacs-theme
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'spacemacs-theme)
     (package-refresh-contents)
@@ -283,6 +305,9 @@
 * File Editing
 ** Avy
    Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
+   Avy:
+   - https://github.com/abo-abo/avy
+   - https://melpa.org/#/avy
 #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
@@ -292,6 +317,9 @@
 #+END_SRC
 ** Beacon
    Line highlight when switching
+   Beacon:
+   - https://github.com/Malabarba/beacon
+   - https://melpa.org/#/beacon
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
     :ensure t
@@ -368,6 +396,9 @@
 #+END_SRC
 ** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
+   Undo-Tree:
+   - http://www.dr-qubit.org/undo-tree/undo-tree.el
+   - https://elpa.gnu.org/packages/undo-tree.html
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
     :ensure t
@@ -379,6 +410,9 @@
 #+END_SRC
 ** Projectile
    Project management
+   Projectile:
+   - https://github.com/bbatsov/projectile
+   - https://melpa.org/#/projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
@@ -390,6 +424,9 @@
 #+END_SRC
 ** Rainbow color
    Colorize hexadecimal values
+   Rainbow-Mode:
+   - https://elpa.gnu.org/packages/rainbow-mode-1.0.5.el
+   - https://elpa.gnu.org/packages/rainbow-mode.html
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t
@@ -399,6 +436,9 @@
 #+END_SRC
 ** Rainbow delimiters
    Colored delimiters
+   Rainbow-Delimiters:
+   - https://github.com/Fanael/rainbow-delimiters
+   - https://melpa.org/#/rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
@@ -520,6 +560,9 @@
 #+END_SRC
 ** Elixir
    [[https://elixir-lang.org/][Elixir]] language support
+   Alchemist:
+   - https://github.com/tonini/alchemist.el
+   - https://melpa.org/#/alchemist
 #+BEGIN_SRC emacs-lisp
   (use-package alchemist
     :ensure t
@@ -540,6 +583,9 @@
 #+END_SRC
 ** Flycheck
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
+   Flycheck:
+   - https://github.com/flycheck/flycheck
+   - https://melpa.org/#/flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :ensure t
@@ -549,6 +595,9 @@
 #+END_SRC
 ** Go
    [[https://golang.org/][Go]] language support
+   Go-Mode:
+   - https://github.com/dominikh/go-mode.el
+   - https://melpa.org/#/go-mode
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :ensure t
@@ -556,6 +605,9 @@
 #+END_SRC
 ** Haskell
    [[https://www.haskell.org/][Haskell]] language support
+   Haskell-Mode:
+   - https://github.com/haskell/haskell-mode
+   - https://melpa.org/#/haskell-mode
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
     :ensure t
@@ -572,6 +624,9 @@
 #+END_SRC
 ** Lisp
    [[https://common-lisp.net/project/slime/][Lisp]] language support
+   Slime:
+   - https://github.com/slime/slime
+   - https://melpa.org/#/slime
 #+BEGIN_SRC emacs-lisp
   ;; TODO: autostart slime
   (use-package slime
@@ -586,6 +641,9 @@
 #+END_SRC
 ** Lua
    [[http://www.lua.org/][Lua]] language support with [[http://luajit.org/][LuaJIT]]
+   Lua-Mode:
+   - https://github.com/immerrr/lua-mode
+   - https://melpa.org/#/lua-mode
 #+BEGIN_SRC emacs-lisp
   (use-package lua-mode
     :ensure t
@@ -595,6 +653,9 @@
 #+END_SRC
 ** Markdown
    [[https://daringfireball.net/projects/markdown][Markdown]] language support
+   Markdown-Mode:
+   - https://github.com/jrblevin/markdown-mode
+   - https://melpa.org/#/markdown-mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
@@ -610,6 +671,9 @@
 #+END_SRC
 ** Match words
    Highlight the same words
+   Idle-Highlight-Mode:
+   - https://github.com/nonsequitur/idle-highlight-mode
+   - https://melpa.org/#/idle-highlight-mode
 #+BEGIN_SRC emacs-lisp
   (use-package idle-highlight-mode
     :ensure t
@@ -651,6 +715,9 @@
 #+END_SRC
 ** R
    [[https://www.r-project.org/][R]] language support
+   Ess:
+   - https://github.com/emacs-ess/ESS
+   - https://melpa.org/#/ess
 #+BEGIN_SRC emacs-lisp
   (use-package ess
     :ensure t
@@ -660,6 +727,9 @@
 #+END_SRC
 ** Racket
    [[https://racket-lang.org/][Racket]] language support
+   Racket-Mode:
+   - https://github.com/greghendershott/racket-mode
+   - https://melpa.org/#/racket-mode
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :ensure t
@@ -671,6 +741,9 @@
 #+END_SRC
 ** Rust
    [[https://www.rust-lang.org/][Rust]] language support
+   Rust-Mode:
+   - https://github.com/rust-lang/rust-mode
+   - https://melpa.org/#/rust-mode
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
     :ensure t
@@ -685,6 +758,10 @@
     )
 #+END_SRC
 ** Scheme
+   [[https://schemers.org/Documents/Standards/][Scheme]] language support
+   Geiser:
+   - https://gitlab.com/jaor/geiser
+   - https://melpa.org/#/geiser
 #+BEGIN_SRC emacs-lisp
   (use-package geiser
     :ensure t
@@ -703,6 +780,9 @@
 #+END_SRC
 ** Speedbar
    [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
+   Sr-Speedbar:
+   - https://github.com/emacsorphanage/sr-speedbar
+   - https://melpa.org/#/sr-speedbar
 #+BEGIN_SRC emacs-lisp
   (use-package sr-speedbar
     :ensure t
@@ -726,6 +806,9 @@
    - [[https://whatwg.org/][HTML]]
    - [[https://www.php.net/][PHP]]
    - [[https://www.w3.org/TR/xml11/][XML]]
+   Web-Mode:
+   - https://github.com/fxbois/web-mode
+   - https://melpa.org/#/web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
@@ -767,6 +850,9 @@
 #+END_SRC
 ** Yaml
    [[https://yaml.org][Yaml]] language support
+   Yaml-Mode:
+   - https://github.com/yoshiki/yaml-mode
+   - https://melpa.org/#/yaml-mode
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
     :ensure t
@@ -791,6 +877,12 @@
 #+END_SRC
 ** Yasnippet
    [[https://github.com/AndreaCrotti/yasnippet-snippets][Code snippets]]
+   Yasnippet:
+   - https://github.com/joaotavora/yasnippet
+   - https://melpa.org/#/yasnippet
+   Yasnippet-Snippets:
+   - https://github.com/AndreaCrotti/yasnippet-snippets
+   - https://melpa.org/#/yasnippet-snippets
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
@@ -841,6 +933,9 @@
 #+END_SRC
 ** Bullets
    Make Org look prettier
+   Org-Bullets:
+   - https://github.com/integral-dw/org-bullets
+   - https://melpa.org/#/org-bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -856,6 +951,9 @@
 #+END_SRC
 ** Deft
    My deft setup
+   Deft:
+   - https://github.com/jrblevin/deft
+   - https://melpa.org/#/deft
 #+BEGIN_SRC emacs-lisp
   (use-package deft
     :ensure t
@@ -902,12 +1000,18 @@
 ** Dash
    Modern list api for Emacs
    Should be required by other packages, but I make sure it is installed.
+   Dash:
+   - https://github.com/magnars/dash.el
+   - https://melpa.org/#/dash
 #+BEGIN_SRC emacs-lisp
   (use-package dash
     :ensure t
     )
 #+END_SRC
 ** Dashboard
+   Dashboard:
+   - https://github.com/emacs-dashboard/emacs-dashboard
+   - https://melpa.org/#/dashboard
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard
     :ensure t
@@ -941,6 +1045,9 @@
    )
 #+END_SRC
    Sidebar for Emacs leveraging Dired
+   Dired-Sidebar:
+   - https://github.com/jojojames/dired-sidebar
+   - https://melpa.org/#/dired-sidebar
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sidebar
     :ensure t
@@ -978,6 +1085,12 @@
 #+END_SRC
 ** Reveal.js
    Export ORG mode contents to Reveal.js HTML presentations
+   Htmlize:
+   - https://github.com/hniksic/emacs-htmlize
+   - https://melpa.org/#/htmlize
+   Ox-Reveal:
+   - https://github.com/yjwen/org-reveal
+   - https://melpa.org/#/ox-reveal
 #+BEGIN_SRC emacs-lisp
   ;; reveal dependency
   (use-package htmlize

@@ -159,6 +159,9 @@
      - libtool
      - git
    Load vterm only in GUI
+   Vterm:
+   - https://github.com/akermu/emacs-libvterm
+   - https://melpa.org/#/vterm
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'gnu/linux)
       (use-package vterm
