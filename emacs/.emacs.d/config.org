@@ -42,15 +42,21 @@
     (auto-package-update-maybe)
     )
 #+END_SRC
-
-** Edit/Reload configuration
+** Configuration
+   Special prefix for my bindings
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-="))
+  (define-prefix-command 'my-keymap)
+  (global-set-key (kbd "C-=") my-keymap)
+#+END_SRC
+   Edit / Reload configuration files
 #+BEGIN_SRC emacs-lisp
   (defun config-visit ()
     "Edit config.org."
     (interactive)
     (find-file "~/.emacs.d/config.org" )
     )
-  (global-set-key (kbd "C-c e") 'config-visit)
+  (global-set-key (kbd "C-= C-e c") 'config-visit)
 
   (defun config-reload ()
     "Reload config.org at runtime."
@@ -59,7 +65,7 @@
       (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" ))
       )
     )
-  (global-set-key (kbd "C-c r") 'config-reload)
+  (global-set-key (kbd "C-= C-r c") 'config-reload)
 
   (defun gui-reload ()
     "Reload gui-config.org at runtime."
@@ -68,14 +74,22 @@
       (org-babel-load-file (expand-file-name "~/.emacs.d/gui-config.org"))
       )
     )
-  (global-set-key (kbd "C-c g") 'gui-reload)
+  (global-set-key (kbd "C-= C-r g") 'gui-reload)
 
-  ;; Try to load the GUI config
+  (defun gui-visit ()
+    "Edit gui-config.org."
+    (interactive)
+    (find-file "~/.emacs.d/gui-config.el" )
+    )
+  (global-set-key (kbd "C-= C-e g") 'gui-visit)
+#+END_SRC
+   Try to load the GUI configuration
+#+BEGIN_SRC emacs-lisp
   (when window-system
     (gui-reload)
     )
 #+END_SRC
-** Keybinding Help
+** Key bindings
    Key binding hints
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
@@ -313,8 +327,9 @@
      )
     :bind
     (
-     ("C-c s" . magit-status)
-     ("C-c b" . magit-blame)
+     ("C-= M-b" . magit-blame)
+     ("C-= M-d" . magit-diff)
+     ("C-= M-s" . magit-status)
      )
     )
 #+END_SRC
@@ -329,24 +344,27 @@
 #+END_SRC
 ** Insert date
    In non-Org documents:
-     - =C-c d= :         13.04.2004
-     - =C-u C-c d= :     2004-04-13
-     - =C-u C-u C-c d= : Dienstag, 13. April 2004
+     - =C-= t= :         13.04.2004
+     - =C-u C-= t= :     2004-04-13
+     - =C-u C-u C-= t= : Dienstag, 13. April 2004
 #+BEGIN_SRC emacs-lisp
   (defun insert-date (prefix)
     (interactive "P")
-    (let ((format (cond
-                   ((not prefix) "%d.%m.%Y")
-                   ((equal prefix '(4)) "%Y-%m-%d")
-                   ((equal prefix '(16)) "%A, %d. %B %Y")
-                   )
-                  )
-          (system-time-locale "pl_PL")
+    (let
+        (
+         (format
+          (cond
+           ((not prefix) "%d.%m.%Y")
+           ((equal prefix '(4)) "%Y-%m-%d")
+           ((equal prefix '(16)) "%A, %d. %B %Y")
+           )
           )
+         (system-time-locale "pl_PL")
+         )
       (insert (format-time-string format))
       )
     )
-  (global-set-key (kbd "C-c d") 'insert-date)
+  (global-set-key (kbd "C-= t") 'insert-date)
 #+END_SRC
 ** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
@@ -710,7 +728,7 @@
   (use-package sr-speedbar
     :ensure t
     :bind
-    (("s-s" . sr-speedbar-toggle))
+    (("C-= s" . sr-speedbar-toggle))
     )
 #+END_SRC
 ** Tabs
@@ -789,7 +807,7 @@
     (add-hook
      'yaml-mode-hook
      (lambda ()
-       (define-key yaml-mode-map "\C-m" 'newline-and-indent)
+       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
        )
      )
     )
@@ -827,7 +845,7 @@
 ** Agenda
    My Org agenda
 #+BEGIN_SRC emacs-lisp
-  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key (kbd "C-= a") 'org-agenda)
   (setq
    org-agenda-files
    (list
@@ -895,7 +913,7 @@
 #+END_SRC
 ** Template
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c i") 'org-insert-structure-template)
+  (global-set-key (kbd "C-= i") 'org-insert-structure-template)
 #+END_SRC
 ** Word wrap
 #+BEGIN_SRC emacs-lisp
@@ -952,7 +970,7 @@
     :commands
     (dired-sidebar-toggle-sidebar)
     :bind
-    (("C-x C-n" . dired-sidebar-toggle-sidebar))
+    (("C-= d" . dired-sidebar-toggle-sidebar))
     )
 #+END_SRC
 ** Eshell
