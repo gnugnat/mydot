@@ -326,6 +326,18 @@
     (beacon-mode 1)
     )
 #+END_SRC
+** EditorConfig
+   Support for =.editorconfig=
+   + Editorconfig:
+     - https://github.com/editorconfig/editorconfig-emacs
+     - https://melpa.org/#/editorconfig
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :ensure t
+    :init
+    (editorconfig-mode 1)
+    )
+#+END_SRC
 ** Encoding
    Set encoding to UTF-8
 #+BEGIN_SRC emacs-lisp
