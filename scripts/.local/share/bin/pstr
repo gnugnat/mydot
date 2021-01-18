@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env perl
 
 
 # This file is part of mydot.
@@ -19,16 +19,21 @@
 # Copyright (c) 2020, XGQT
 # Licensed under the GNU GPL v3 License
 
-# Create a portable string:
-# - replace space with underscore
-# - remove not alphanumerical, space or underscore
-# - lowercase
-
-# TODO: awk instead of sh?
+# Create a portable string
 
 
-trap 'exit 128' INT
-export PATH
+foreach $argument (0 .. $#ARGV) {
+  $string = "$ARGV[$argument]";
 
+  # Leave: alphanumerical, space, underscore, dash, newline
+  $string =~ s/[^[:alnum:] \_\-\.\n]//g;
+  # Replace: space with underscore
+  $string =~ s/ /_/g;
+  # Lowercase
+  $string =~ s/(.*)/\L$1/g;
 
-echo "${*}" | sed -e 's/ /_/g' -e 's/[^[:alnum:] \_\-\.]//g' -e 's/\(.*\)/\L\1/g'
+  print "$string";
+}
+
+# Add newline
+print "\n";
