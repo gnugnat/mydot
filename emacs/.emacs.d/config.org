@@ -46,7 +46,23 @@
     )
 #+END_SRC
 ** Configuration
-   Special prefix for my bindings
+   Special prefix for my bindings.
+   | Key Combination | Command                       |
+   |-----------------+-------------------------------|
+   | C-= C-e c       | config-visit                  |
+   | C-= C-e g       | gui-visit                     |
+   | C-= C-r c       | config-reload                 |
+   | C-= C-r g       | gui-reload                    |
+   | C-= M-b         | magit-blame                   |
+   | C-= M-d         | magit-diff                    |
+   | C-= M-s         | magit-status                  |
+   | C-= a           | org-agenda                    |
+   | C-= d           | dired-sidebar-toggle-sidebar  |
+   | C-= i           | org-insert-structure-template |
+   | C-= r           | toggle-transparency           |
+   | C-= s           | sr-speedbar-toggle            |
+   | C-= t           | insert-date                   |
+   Update this periodically with output from =C-h b=.
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-="))
   (define-prefix-command 'my-keymap)
@@ -82,7 +98,7 @@
   (defun gui-visit ()
     "Edit gui-config.org."
     (interactive)
-    (find-file "~/.emacs.d/gui-config.el" )
+    (find-file "~/.emacs.d/gui-config.org" )
     )
   (global-set-key (kbd "C-= C-e g") 'gui-visit)
 #+END_SRC

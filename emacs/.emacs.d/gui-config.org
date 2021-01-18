@@ -138,7 +138,7 @@
       )
     )
 
-  (global-set-key (kbd "C-c t") 'toggle-transparency)
+  (global-set-key (kbd "C-= r") 'toggle-transparency)
 #+END_SRC
 ** Window Size
    Should work well with 88 x 36
