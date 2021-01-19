@@ -16,7 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Original author: Maciej Barć (xgqt@protonmail.com)
+# Copyright (c) 2020-2021, XGQT
 # Licensed under the GNU GPL v3 License
 
 #      _
@@ -29,6 +30,10 @@
 #   | |_| | |/ _ \/ __|
 #  _|  _| | |  __/\__ \
 # (_)_| |_|_|\___||___/
+
+
+trap 'exit 128' INT
+export PATH
 
 
 msg() {
