@@ -29,6 +29,7 @@ if sh stowdot remove
 then
     git reset --hard
     git pull
+    git submodule update --init
     sh stowdot
 fi
 
