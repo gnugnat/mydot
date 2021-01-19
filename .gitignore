@@ -41,6 +41,7 @@
 __pycache__/
 _build/
 zsh/.config/zsh/emu.zsh-theme
-zsh/.config/zsh/plugins
+zsh/.config/zsh/plugins/zsh-autosuggestions
+zsh/.config/zsh/plugins/zsh-syntax-highlighting
 zsh/.config/zsh/tty.zsh-theme
 zsh/.config/zsh/zsh-greeter

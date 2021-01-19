@@ -116,10 +116,10 @@ fi
 # >>> Plugins
 
 # Syntax coloring
-source_file "${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_file "${ZDOTDIR}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Autosuggestions
-source_file "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source_file "${ZDOTDIR}/plugins/autosuggestions/zsh-autosuggestions.zsh"
 
 # Autosuggestions highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"

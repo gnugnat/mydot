@@ -33,24 +33,6 @@
 # Create ZSH cache directory
 [ ! -d "${ZCACHEDIR}" ] && mkdir -p ${ZCACHEDIR}
 
-# Get the plugins if there is no plugins directory
-if [ ! -e "${ZDOTDIR}/plugins" ]
-then
-    echo "Download plugins? [Y/n]"
-    read -r dow_ans
-    case ${dow_ans} in
-	    [nN][oO]|[nN])
-	        echo "Not downloading plugins"
-	        mkdir "${ZDOTDIR}/plugins"
-	        ;;
-	    *)
-	        echo "Downloading plugins..."
-	        zsh "${ZDOTDIR}/zsh-get-plugins.sh"
-	        source "${ZDOTDIR}/.zshrc"
-	        ;;
-    esac
-fi
-
 # Choose a theme if it's not set
 if [ ! -e "${ZDOTDIR}/tty.zsh-theme" ] || [ ! -e "${ZDOTDIR}/emu.zsh-theme" ]
 then
