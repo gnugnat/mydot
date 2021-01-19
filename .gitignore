@@ -1,3 +1,6 @@
+# -*- conf -*-
+
+
 # This file is part of mydot.
 
 # mydot is free software: you can redistribute it and/or modify
@@ -17,8 +20,7 @@
 # Licensed under the GNU GPL v3 License
 
 
-**/*.rs.bk
-*.beam
+# Some general stuff
 *.dump
 *.egg-info/
 *.ez
@@ -34,14 +36,16 @@
 /.idea/
 /.vscode/
 /build/
-/cover/
-/deps/
 /dist/
 /target/
 __pycache__/
 _build/
+
+# ZSH modal configuration
 zsh/.config/zsh/emu.zsh-theme
-zsh/.config/zsh/plugins/zsh-autosuggestions
-zsh/.config/zsh/plugins/zsh-syntax-highlighting
 zsh/.config/zsh/tty.zsh-theme
 zsh/.config/zsh/zsh-greeter
+
+# Legacy
+zsh/.config/zsh/plugins/zsh-autosuggestions
+zsh/.config/zsh/plugins/zsh-syntax-highlighting
