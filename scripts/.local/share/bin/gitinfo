@@ -16,7 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Original author: Maciej Barć (xgqt@protonmail.com)
+# Copyright (c) 2020-2021, XGQT
 # Licensed under the GNU GPL v3 License
 
 # Get info about current git repo
@@ -47,6 +48,31 @@ Licensed under the GNU GPL v3 License
 USAGE
 }
 
+repo_info() {
+    directory=$(pwd)
+    remote=$(git config --get remote.origin.url 2>/dev/null)
+    commits=$(git rev-list --count HEAD 2>/dev/null)
+    branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
+    latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo 'N/A')
+    first=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse | head -1 2>/dev/null)
+    last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/dev/null)
+    # We sed out the "  ." part (which contains a tab)
+    dir_size=$(du -sh | sed 's/	\.//g')
+    changes=$(git status --porcelain 2>/dev/null)
+
+    cat << INFO
+${header}Directory: ${rest}${directory}${reset}
+${header}Remote:    ${rest}${remote}${reset}
+${header}Commits:   ${rest}${commits}${reset}
+${header}Branch:    ${rest}${branch}${reset}
+${header}Tag:       ${rest}${latest_tag}${reset}
+${header}First:     ${rest}${first}${reset}
+${header}Last:      ${rest}${last}${reset}
+${header}Size:      ${rest}${dir_size}${reset}
+${header}Changes:  ${rest}${changes}${reset}
+INFO
+}
+
 
 case "${1}"
 in
@@ -62,27 +88,5 @@ in
         ;;
 esac
 
-
-directory=$(pwd)
-remote=$(git config --get remote.origin.url 2>/dev/null)
-commits=$(git rev-list --count HEAD 2>/dev/null)
-branch=$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')
-latest_tag=$(git describe --abbrev=0 --tags 2>/dev/null || echo 'N/A')
-first=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse | head -1 2>/dev/null)
-last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/dev/null)
-# We sed out the "  ." part (which contains a tab)
-dir_size=$(du -sh | sed 's/	\.//g')
-changes=$(git status --porcelain 2>/dev/null)
-
-
-cat << INFO
-${header}Directory: ${rest}${directory}
-${header}Remote:    ${rest}${remote}
-${header}Commits:   ${rest}${commits}
-${header}Branch:    ${rest}${branch}
-${header}Tag:       ${rest}${latest_tag}
-${header}First:     ${rest}${first}
-${header}Last:      ${rest}${last}
-${header}Size:      ${rest}${dir_size}
-${header}Changes:  ${rest}${changes}${reset}
-INFO
+repo_info
+git submodule foreach "${0}" | busybox ts "${yellow}>${reset}"
