@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 
 # This file is part of mydot.
@@ -25,5 +25,3 @@
 killall -v -w plasmashell
 
 plasmashell >/dev/null 2>&1 &
-
-disown plasmashell
