@@ -160,6 +160,12 @@ PATH="${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}"
 source_file "/etc/profile"
 
 
+# >>> Terminal features
+
+# Disable terminal scroll lock
+stty -ixon
+
+
 # >>> Environment
 
 # User's name
