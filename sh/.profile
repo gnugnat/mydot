@@ -163,7 +163,7 @@ source_file "/etc/profile"
 # >>> Terminal features
 
 # Disable terminal scroll lock
-stty -ixon
+command_exists stty && stty -ixon
 
 
 # >>> Environment
