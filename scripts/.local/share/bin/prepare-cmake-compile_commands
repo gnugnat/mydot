@@ -1,0 +1,53 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+# Licensed under the GNU GPL v3 License
+
+# Prepare compile_commands.json for
+# developemnt when using clangd
+# Thanks to:
+# https://releases.llvm.org/9.0.0/tools/clang/tools/extra/docs/clangd/Installation.html
+
+
+trap 'exit 128' INT
+export PATH
+set -e
+
+
+if [ ! -f CMakeLists.txt ]
+then
+    echo "No such file: CMakeLists.txt"
+    exit 1
+fi
+
+
+c_c="compile_commands.json"
+b_d="${1:-build}"
+
+
+[ -d "./${b_d}" ] && rm -r "./${b_d}"
+[ -f "./${c_c}" ] || [ -h "./${c_c}" ] && rm "./${c_c}"
+
+mkdir "./${b_d}"
+cd "./${b_d}"
+
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+
+cd ..
+ln -s "./${b_d}/${c_c}" .
