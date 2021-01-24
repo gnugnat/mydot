@@ -41,8 +41,8 @@ c_c="compile_commands.json"
 b_d="${1:-build}"
 
 
-[ -d "./${b_d}" ] && rm -r "./${b_d}"
-[ -f "./${c_c}" ] || [ -h "./${c_c}" ] && rm "./${c_c}"
+[ -e "./${c_c}" ] && rm -r "./${c_c}"
+[ -e "./${b_d}" ] && rm -r "./${b_d}"
 
 mkdir "./${b_d}"
 cd "./${b_d}"
