@@ -342,6 +342,11 @@
     (beacon-mode 1)
     )
 #+END_SRC
+** Cleanup
+   Just before saving remove whitespaces.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
 ** EditorConfig
    Support for =.editorconfig=
    + Editorconfig:
