@@ -49,6 +49,7 @@ USAGE
 }
 
 repo_info() {
+    cd "$(git rev-parse --show-toplevel)" || exit 1
     directory=$(pwd)
     remote=$(git config --get remote.origin.url 2>/dev/null)
     commits=$(git rev-list --count HEAD 2>/dev/null)
@@ -58,7 +59,7 @@ repo_info() {
     last=$(git log --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd --reverse -1 2>/dev/null)
     # We sed out the "  ." part (which contains a tab)
     dir_size=$(du -sh | sed 's/	\.//g')
-    changes=$(git status --porcelain 2>/dev/null)
+    changes=$(git status -s 2>/dev/null | wc -l)
 
     cat << INFO
 ${header}Directory: ${rest}${directory}${reset}
@@ -69,7 +70,7 @@ ${header}Tag:       ${rest}${latest_tag}${reset}
 ${header}First:     ${rest}${first}${reset}
 ${header}Last:      ${rest}${last}${reset}
 ${header}Size:      ${rest}${dir_size}${reset}
-${header}Changes:  ${rest}${changes}${reset}
+${header}Changes:   ${rest}${changes}${reset}
 INFO
 }
 
