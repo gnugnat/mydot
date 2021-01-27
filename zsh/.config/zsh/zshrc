@@ -58,7 +58,7 @@ autoload -U compinit
 compinit -d "${ZCACHEDIR}/compdump"
 
 # Advanced tab-completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+[ -n "${LS_COLORS}" ] && zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
