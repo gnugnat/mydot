@@ -52,16 +52,8 @@ setopt share_history
 
 # >>> Completion
 
-# Correction
-setopt correctall
-
-# Extendedglob
-setopt extendedglob
-
-# Glob hidden files
-setopt globdots
-
 # Load compinit
+# keep this first
 autoload -U compinit
 compinit -d "${ZCACHEDIR}/compdump"
 
@@ -71,6 +63,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
+# Correction
+setopt correctall
+
+# Extended globbing
+setopt extendedglob
+
+# Glob hidden files
+setopt globdots
+
 # Racket completion
 source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
 
@@ -79,6 +80,7 @@ source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
 
 # Kill & Yank
 # for this set Emacs key bindings
+# keep this first
 bindkey -e
 
 # Ctrl-left and Ctrl-right
@@ -87,14 +89,14 @@ bindkey "^[[1;5C" forward-word
 
 # Del, Home and End
 bindkey "^[[3~" delete-char
-bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
-
-# Reverse search
-bindkey "^R" history-incremental-search-backward
+bindkey "^[[H" beginning-of-line
 
 # Remove C-d binding (list-choices/delete-char-or-list)
 bindkey -r "^D"
+
+# Reverse search
+bindkey "^R" history-incremental-search-backward
 
 
 # >>> Prompt theme
@@ -116,6 +118,10 @@ fi
 
 # >>> Plugins
 
+# Autosuggestions
+source_file "${ZDOTDIR}/plugins/autosuggestions/zsh-autosuggestions.zsh"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
+
 # Calculator
 autoload -U zcalc
 ZCALCPROMPT="(ZCALC)[%1v]> "
@@ -125,30 +131,30 @@ zc() {
 }
 alias zc='noglob zc'
 
-# Syntax coloring
-source_file "${ZDOTDIR}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# Autosuggestions
-source_file "${ZDOTDIR}/plugins/autosuggestions/zsh-autosuggestions.zsh"
-
-# Autosuggestions highlight style
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
-
 # Completion for kitty
 if command_exists kitty
 then
     kitty + complete setup zsh | source /dev/stdin
 fi
 
+# Syntax highlighting
+source_file "${ZDOTDIR}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 
 # >>> ZSH tweaks
 
-# Prompt Substring
-# used by git_check
-setopt PROMPT_SUBST
+# After changing directory: execute 'ls'
+chpwd() {
+    ls
+}
 
 # Color
 use_color=true
+
+# Command Editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 # Directory name to change dir
 setopt autocd
@@ -156,12 +162,9 @@ setopt autocd
 # Do not beep
 unsetopt beep
 
-# Command Editor
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
-
-case ${TERM} in
+# Settings for appropriate terminal
+case "${TERM}"
+in
     xterm* )
         # Change the window title of X terminals
         precmd() {
@@ -179,5 +182,6 @@ case ${TERM} in
         ;;
 esac
 
-# ls after changing directory
-chpwd() ls
+# Prompt Substring
+# used by git_check
+setopt PROMPT_SUBST
