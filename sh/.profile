@@ -95,7 +95,7 @@ a_k_a() {
 contains_string() {
     _string="${1}"
     _substring="${2}"
-    if [ "${string#*${substring}}" != "${string}" ]
+    if [ "${_string#*${_substring}}" != "${_string}" ]
     then
         # $substring is in $string
         return 0
