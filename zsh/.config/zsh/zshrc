@@ -126,6 +126,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 autoload -U zcalc
 ZCALCPROMPT="(ZCALC)[%1v]> "
 alias zc >/dev/null && unalias zc
+alias zcalc >/dev/null && unalias zcalc
+# WORKAROUND: History hack
+#             set HOME and ZDOTDIR to ZCACHEDIR while invoking zcalc
+# https://github.com/zsh-users/zsh/blob/a7d5d239e6ab729515083a88cfaf955e078c1685/Functions/Misc/zcalc#L128
+alias zcalc='HOME=${ZCACHEDIR} ZDOTDIR=${ZCACHEDIR} zcalc'
 zc() {
     [[ -n "${@}" ]] && zcalc -e "${@}" || zcalc
 }
