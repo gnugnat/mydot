@@ -25,6 +25,8 @@ if [ -z "${ZDOTDIR}" ]; then echo "No ZDOTDIR set, exiting..."; exit 1 ; fi
 ls "${ZDOTDIR}/greeters" | nl
 
 echo "choose a greeter"
-read greeter
+read _greeter
 
-ln -sf $(echo "${ZDOTDIR}/greeters"/* | cut -d" " -f"${greeter}") "${ZDOTDIR}/zsh-greeter"
+ln -sf $(echo "${ZDOTDIR}/greeters"/* | cut -d" " -f"${_greeter}") "${ZDOTDIR}/zsh-greeter"
+
+unset _greeter
