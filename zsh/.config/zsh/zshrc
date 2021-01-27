@@ -153,6 +153,16 @@ chpwd() {
     ls
 }
 
+# Chmod ZSH cache
+if [ -d "${ZCACHEDIR}" ]
+then
+    for _cache_file in $(find "${ZCACHEDIR}" -type f 2>/dev/null)
+    do
+        chmod 600 "${_cache_file}"
+    done
+    unset _cache_file
+fi
+
 # Color
 use_color=true
 
