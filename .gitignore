@@ -30,7 +30,9 @@
 *_archive
 *~
 ,*
+.zcalc_history
 .zcompdump
+.zhistory
 .~lock.*
 /.fetch/
 /.idea/
