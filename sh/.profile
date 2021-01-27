@@ -131,15 +131,6 @@ am_i_root() {
     fi
 }
 
-# Check Git branch
-pre_git_check=""
-post_git_check=""
-git_check() {
-    _branch="$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')"
-    [ -n "${_branch}" ] && echo "${pre_git_check}${_branch}${post_git_check}"
-    unset _branch
-}
-
 # Make a directory and cd into it
 mkcd() {
     mkdir -p "${*}"

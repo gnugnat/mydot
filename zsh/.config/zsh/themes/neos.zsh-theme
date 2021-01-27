@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
-pre_git_check=" git:$branch"
+zstyle ':vcs_info:git:*' formats ' git:%b'
 
-PROMPT=$'%F{yellow}\u250C%F{white}%n%F{yellow}::%F{white}%m%F{yellow} %F{red}%~%F{white}$(git_check)%F{yellow}
+PROMPT=$'%F{yellow}\u250C%F{white}%n%F{yellow}::%F{white}%m%F{yellow} %F{red}%~%F{white}${vcs_info_msg_0_}%F{yellow}
 \u2514\u2500%(?.%F{white}\u00BB.%F{red}\u00BB)%f '
 
 RPROMPT=$'%F{yellow}[%*─%W]%f'

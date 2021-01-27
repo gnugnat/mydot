@@ -23,43 +23,41 @@
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/jonathan.zsh-theme
 
 
+_PR_FILLBAR=""
+_PR_PWDLEN=""
+_PR_HBAR="─"
+_PR_ULCORNER="┌"
+_PR_LLCORNER="└"
+_PR_LRCORNER="┘"
+_PR_URCORNER="┐"
+
+
 theme_precmd() {
-    local TERMWIDTH
-    (( TERMWIDTH = ${COLUMNS} - 1 ))
+    local _termwidth
+    (( _termwidth = ${COLUMNS} - 1 ))
 
-    PR_FILLBAR=""
-    PR_PWDLEN=""
+    local _promptsize=${#${(%):---(%n@%m:%l)---()--}}
+    local _pwdsize=${#${(%):-%~}}
 
-    local promptsize=${#${(%):---(%n@%m:%l)---()--}}
-    local pwdsize=${#${(%):-%~}}
-
-    if [[ "${promptsize} + ${pwdsize}" -gt ${TERMWIDTH} ]]
+    if [[ "${_promptsize} + ${_pwdsize}" -gt ${_termwidth} ]]
     then
-        (( PR_PWDLEN=${TERMWIDTH} - ${promptsize} ))
+        (( _PR_PWDLEN=${_termwidth} - ${_promptsize} ))
     else
-        PR_FILLBAR="\${(l.((${TERMWIDTH} - (${promptsize} + ${pwdsize})))..${PR_HBAR}.)}"
+        _PR_FILLBAR="\${(l.((${_termwidth} - (${_promptsize} + ${_pwdsize})))..${_PR_HBAR}.)}"
     fi
-
 }
 
 
-pre_git_check="("
-post_git_check=")"
+PROMPT='${_PR_ULCORNER}${_PR_HBAR}(%${_PR_PWDLEN}<...<%~%<<\
+)${_PR_HBAR}${_PR_HBAR}${(e)_PR_FILLBAR}${_PR_HBAR}(%(!.%SROOT%s.%n)@%m:%l)${_PR_HBAR}${_PR_URCORNER}
+${_PR_LLCORNER}${_PR_HBAR}(%D{%H:%M:%S})${_PR_HBAR}${vcs_info_msg_0_}${_PR_HBAR}> '
 
-PR_HBAR="─"
-PR_ULCORNER="┌"
-PR_LLCORNER="└"
-PR_LRCORNER="┘"
-PR_URCORNER="┐"
+_return_code="%(?..%?)"
+RPROMPT=' ${_return_code}${_PR_HBAR}(%D{%a,%b%d})${_PR_HBAR}${_PR_LRCORNER}'
 
-PROMPT='${PR_ULCORNER}${PR_HBAR}(%${PR_PWDLEN}<...<%~%<<\
-)${PR_HBAR}${PR_HBAR}${(e)PR_FILLBAR}${PR_HBAR}(%(!.%SROOT%s.%n)@%m:%l)${PR_HBAR}${PR_URCORNER}
-${PR_LLCORNER}${PR_HBAR}(%D{%H:%M:%S})${PR_HBAR}$(git_check)${PR_HBAR}> '
 
-return_code="%(?..%?)"
-RPROMPT=' ${return_code}${PR_HBAR}(%D{%a,%b%d})${PR_HBAR}${PR_LRCORNER}'
-
+zstyle ':vcs_info:git:*' formats '(%b)'
 
 autoload -U add-zsh-hook
 
-add-zsh-hook precmd  theme_precmd
+add-zsh-hook precmd theme_precmd

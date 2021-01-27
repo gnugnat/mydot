@@ -101,6 +101,13 @@ bindkey "^R" history-incremental-search-backward
 
 # >>> Prompt theme
 
+# VCS (git) support in prompt
+setopt prompt_subst
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:git:*' formats "%b"
+
 # Prompt init
 autoload -U promptinit
 promptinit
@@ -196,7 +203,3 @@ in
         PS1='$ '
         ;;
 esac
-
-# Prompt Substring
-# used by git_check
-setopt PROMPT_SUBST
