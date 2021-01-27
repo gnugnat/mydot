@@ -20,7 +20,7 @@
 # Licensed under the GNU GPL v3 License
 
 
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' formats ' %b'
 
 PROMPT=$'%B%F{yellow}%M %F{cyan}%n %F{blue}%~%f${vcs_info_msg_0_}
 %F{green}%(?..%F{red})> %f%b'
