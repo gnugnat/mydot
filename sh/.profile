@@ -262,6 +262,12 @@ export JUPYTER_CONFIG_DIR
 GRADLE_USER_HOME="${HOME}/.cache/gradle"
 export GRADLE_USER_HOME
 
+# ls colors
+if command_exists dircolors && [ -z "${LS_COLORS}" ]
+then
+    eval "$(dircolors -b)"
+fi
+
 # Disable less history file
 LESSHISTFILE=-
 export LESSHISTFILE
