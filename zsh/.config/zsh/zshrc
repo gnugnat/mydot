@@ -66,10 +66,10 @@ autoload -U compinit
 compinit -d "${ZCACHEDIR}/compdump"
 
 # Advanced tab-completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
 
 # Racket completion
 source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
