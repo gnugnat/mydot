@@ -26,7 +26,7 @@
 
 if [ -z "${TERMINAL}" ]
 then
-    for t in \
+    for _t in \
         alacritty \
         aterm \
         gnome-terminal \
@@ -44,13 +44,13 @@ then
         xst \
         xterm
     do
-        if command_exists "${t}"
+        if command_exists "${_t}"
         then
-            TERMINAL="${t}"
+            TERMINAL="${_t}"
             break
         fi
     done
-    unset t
+    unset _t
 fi
 
 a_k_a terminal '${TERMINAL}'

@@ -321,15 +321,15 @@ XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 export XDG_DATA_HOME
 if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
 then
-    for XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
+    for _XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
     do
-        if nullwrap mkdir -p "${XDG_CAND_BASE}/user/${UID}"
+        if nullwrap mkdir -p "${_XDG_CAND_BASE}/user/${UID}"
         then
-            XDG_RUNTIME_DIR="${XDG_CAND_BASE}/user/${UID}"
+            XDG_RUNTIME_DIR="${_XDG_CAND_BASE}/user/${UID}"
             break
         fi
     done
-    unset XDG_CAND_BASE
+    unset _XDG_CAND_BASE
 fi
 export XDG_RUNTIME_DIR
 nullwrap chmod 0700 "${XDG_RUNTIME_DIR}"
@@ -570,11 +570,11 @@ a_k_a ytd-webm 'youtube-dl -i --format webm -o "%(title)s.%(ext)s"'
 # !!! Keep this last !!!
 if command_exists busybox
 then
-    for bb_impl in $(busybox --list)
+    for _bb_impl in $(busybox --list)
     do
-        a_k_a "${bb_impl}" "busybox ${bb_impl}"
+        a_k_a "${_bb_impl}" "busybox ${_bb_impl}"
     done
-    unset bb_impl
+    unset _bb_impl
 fi
 
 
@@ -623,9 +623,9 @@ fi
 # that are not critical to running the shell
 if [ -d "${HOME}/.config/sh" ]
 then
-    for shext in "${HOME}/.config/sh"/?*
+    for _shext in "${HOME}/.config/sh"/?*
     do
-        source_file "${shext}"
+        source_file "${_shext}"
     done
-    unset shext
+    unset _shext
 fi

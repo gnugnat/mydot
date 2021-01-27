@@ -26,7 +26,7 @@
 
 a_k_a http.server 'python -m http.server'
 
-for m in \
+for _m in \
     appdirs \
     ast \
     asyncio \
@@ -78,5 +78,6 @@ for m in \
     zipapp \
     zipfile
 do
-    a_k_a "${m}" "python -m ${m}"
+    a_k_a "${_m}" "python -m ${_m}"
 done
+unset _m
