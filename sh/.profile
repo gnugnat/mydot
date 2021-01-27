@@ -93,9 +93,8 @@ a_k_a() {
 
 # Check if 1st string contains the 2nd
 contains_string() {
-    string="${1}"
-    substring="${2}"
-
+    _string="${1}"
+    _substring="${2}"
     if [ "${string#*${substring}}" != "${string}" ]
     then
         # $substring is in $string
@@ -104,6 +103,8 @@ contains_string() {
         # $substring is not in $string
         return 1
     fi
+    unset _string
+    unset _substring
 }
 
 # Add a directory to PATH
@@ -134,9 +135,9 @@ am_i_root() {
 pre_git_check=""
 post_git_check=""
 git_check() {
-    branch="$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')"
-    [ -n "${branch}" ] && echo "${pre_git_check}${branch}${post_git_check}"
-    unset branch
+    _branch="$(git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/\1/p')"
+    [ -n "${_branch}" ] && echo "${pre_git_check}${_branch}${post_git_check}"
+    unset _branch
 }
 
 # Make a directory and cd into it
