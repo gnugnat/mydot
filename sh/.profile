@@ -97,10 +97,10 @@ contains_string() {
     _substring="${2}"
     if [ "${_string#*${_substring}}" != "${_string}" ]
     then
-        # $substring is in $string
+        # $_substring is in $_string
         return 0
     else
-        # $substring is not in $string
+        # $_substring is not in $_string
         return 1
     fi
     unset _string
@@ -116,7 +116,7 @@ add_to_path() {
     then
         if [ -d "${1}" ]
         then
-            export PATH=${PATH}:${1}
+            export PATH="${PATH}:${1}"
         fi
     fi
 }
