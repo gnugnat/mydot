@@ -125,8 +125,15 @@ fi
 
 # >>> Plugins
 
+# ZSH plugins directory
+if [ -d "${ZDOTDIR}" ]
+then
+    ZPLUGDIR="${ZDOTDIR}/plugins"
+    mkdir -p "${ZPLUGDIR}"
+fi
+
 # Autosuggestions
-source_file "${ZDOTDIR}/plugins/autosuggestions/zsh-autosuggestions.zsh"
+source_file "${ZPLUGDIR}/autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
 # Calculator
@@ -150,7 +157,7 @@ then
 fi
 
 # Syntax highlighting
-source_file "${ZDOTDIR}/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
 # >>> ZSH tweaks
