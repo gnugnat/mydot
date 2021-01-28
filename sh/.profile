@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 #      _
@@ -341,20 +341,6 @@ export XINITRC
 XSERVERRC="${HOME}/.config/X11/xserverrc"
 export XSERVERRC
 
-# If we're root we don't need sudo in most cases (covered here)
-if [ "$(whoami)" = "root" ] || [ -n "${EPREFIX}" ]
-then
-    NEED_UID0=""
-else
-    if command_exists doas
-    then
-        NEED_UID0="doas"
-    else
-        NEED_UID0="sudo"
-    fi
-fi
-export NEED_UID0
-
 
 # >>> PATH setup
 
@@ -409,6 +395,25 @@ add_to_path "${HOME}/.local/share/bin"
 
 
 # >>> Aliases
+
+# NEED_UID0 is used in the following aliases
+# Keep this after adding itens to PATH
+# If we're root we don't need sudo in most cases (covered here)
+if [ "$(whoami)" = "root" ] || [ -n "${EPREFIX}" ]
+then
+    NEED_UID0=""
+else
+    for _NEED_UID0 in doas sudo odus
+    do
+        if command_exists "${_NEED_UID0}"
+        then
+            NEED_UID0="${_NEED_UID0}"
+            break
+        fi
+    done
+    unset _NEED_UID0
+fi
+export NEED_UID0
 
 # Operating System specific
 # !!! Keep this first !!!
@@ -547,7 +552,7 @@ a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
 # System
 a_k_a cpuinfo 'cat /proc/cpuinfo'
 a_k_a kerr '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
-a_k_a root '${NEED_UID0} su -l'
+a_k_a root 'su -l root'
 a_k_a rp '${NEED_UID0} '
 a_k_a running '(env | sort ; alias) | ${PAGER}'
 a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
