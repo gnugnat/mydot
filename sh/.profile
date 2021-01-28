@@ -408,6 +408,7 @@ else
         if command_exists "${_NEED_UID0}"
         then
             NEED_UID0="${_NEED_UID0}"
+            a_k_a sudo "${_NEED_UID0}"
             break
         fi
     done
