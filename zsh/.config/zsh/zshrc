@@ -132,6 +132,12 @@ then
     mkdir -p "${ZPLUGDIR}"
 fi
 
+# K - Directory listings for zsh with git features
+if ! command_exists k && ! alias k
+then
+    source_file "${ZPLUGDIR}/k/k.sh" && alias k='k -Ah'
+fi
+
 # Autosuggestions
 source_file "${ZPLUGDIR}/autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
