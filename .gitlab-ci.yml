@@ -28,8 +28,6 @@ variables:
    GIT_SUBMODULE_STRATEGY: recursive
    MAKEOPTS: "--jobs=10"
    PORTAGE_BINHOST: "https://xgqt.gitlab.io/gentoo-mini-mirror/binpkgs"
-   STAGE_INSTALL_PKGS: "dev-vcs/git"
-   STAGE_SHCHECK_PKGS: "dev-util/shellcheck-bin"
    USE: "-perl"
 
 
@@ -44,14 +42,14 @@ before_script:
   - time emerge-webrsync
 
 
-test:
-
+shcheck:
   stage: shcheck
   script:
-    - emerge -1nq "${STAGE_SHCHECK_PKGS}"
+    - emerge -1nq "dev-util/shellcheck-bin"
     - make test
 
+install:
   stage: install
   script:
-    - emerge -1nq "${STAGE_INSTAll_PKGS}"
+    - emerge -1nq "dev-vcs/git"
     - make install
