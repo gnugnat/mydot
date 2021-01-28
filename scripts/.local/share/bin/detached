@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2021, XGQT
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -26,13 +26,13 @@ export PATH
 
 usage() {
     cat <<EOF
-Usage: detached [OPTION] [COMMAND]
+Usage: detached [OPTION] COMMAND
 detached - start a detached process
 
 Options:
     -h  show this help message
 
-Copyright (c) 2021, XGQT
+Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 EOF
 }
@@ -40,6 +40,11 @@ EOF
 
 case "${1}"
 in
+    "" )
+        echo "ERROR: No command provided"
+        usage
+        exit 1
+        ;;
     -h | -help | --help )
         usage
         exit 0
