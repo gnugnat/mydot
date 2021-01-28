@@ -17,20 +17,24 @@
 # Licensed under the GNU GPL v3 License
 
 
-.PHONY: all install uninstall test
+.PHONY: all dependencies install uninstall test
 
 
 all:
 	@echo Try: install, uninstall or test
 
 
-install:
-	bash ./stowdot
+dependencies:
+	sh -c "command -v stow || command -v xstow || command -v pyystow || sh ./install_pystow.sh"
+
+
+install:	dependencies
+	sh ./stowdot
 
 
 uninstall:
-	bash ./stowdot remove
+	sh ./stowdot remove
 
 
 test:
-	bash ./test.sh
+	sh ./test.sh

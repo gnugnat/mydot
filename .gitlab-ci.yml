@@ -1,3 +1,6 @@
+---
+
+
 # This file is part of mydot.
 
 # mydot is free software: you can redistribute it and/or modify
@@ -13,21 +16,42 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
 image: gentoo/stage3-amd64:latest
 
+
+variables:
+   FEATURES: "getbinpkg"
+   GIT_SUBMODULE_STRATEGY: recursive
+   MAKEOPTS: "--jobs=10"
+   PORTAGE_BINHOST: "https://xgqt.gitlab.io/gentoo-mini-mirror/binpkgs"
+   STAGE_INSTALL_PKGS: "dev-vcs/git"
+   STAGE_SHCHECK_PKGS: "dev-util/shellcheck-bin"
+   USE: "-perl"
+
+
 stages:
-  - test
+  - shcheck
+  - install
+
 
 before_script:
-  - mkdir /var/db/repos/gentoo
-  - emerge-webrsync
+  - mkdir -p /var/cache/distfiles
+  - mkdir -p /var/db/repos/gentoo
+  - time emerge-webrsync
+
 
 test:
-  stage: test
+
+  stage: shcheck
   script:
-    - emerge -q dev-util/shellcheck-bin
-    - bash test.sh
+    - emerge -1nq "${STAGE_SHCHECK_PKGS}"
+    - make test
+
+  stage: install
+  script:
+    - emerge -1nq "${STAGE_INSTAll_PKGS}"
+    - make install
