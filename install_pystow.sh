@@ -30,6 +30,7 @@ do
     if ! command -v "${c}"
     then
         echo "ERROR: No ${c} found"
+        exit 1
     fi
 done
 
