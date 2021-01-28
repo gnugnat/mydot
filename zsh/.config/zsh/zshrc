@@ -132,13 +132,8 @@ then
     mkdir -p "${ZPLUGDIR}"
 fi
 
-# K - Directory listings for zsh with git features
-if ! command_exists k && ! alias k
-then
-    source_file "${ZPLUGDIR}/k/k.sh" && alias k='k -Ah'
-fi
-
 # Autosuggestions
+# https://github.com/zsh-users/zsh-autosuggestions
 source_file "${ZPLUGDIR}/autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 
@@ -157,12 +152,21 @@ zc() {
 alias zc='noglob zc'
 
 # Completion for kitty
+# https://github.com/kovidgoyal/kitty/blob/3ce04c3e4bb9a7d783f309958706a87102ab641a/kitty/complete.py#L83
 if command_exists kitty
 then
     kitty + complete setup zsh | source /dev/stdin
 fi
 
+# K - Directory listings for zsh with git features
+# https://github.com/supercrabtree/k
+if ! command_exists k && ! alias k >/dev/null
+then
+    source_file "${ZPLUGDIR}/k/k.sh" && alias k='k -Ah'
+fi
+
 # Syntax highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting
 source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 
