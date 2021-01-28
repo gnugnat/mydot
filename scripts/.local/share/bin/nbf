@@ -46,31 +46,36 @@ EOF
 directory="."
 
 
-while [ -n "${1}" ]; do
-    case "${1}" in
-    -h | --help)
-        usage
-        exit 0
-        ;;
-    -d | --directory )
-        directory="$2"
-        ;;
-    -f | --file )
-        file="${2}"
-        ;;
-    -* )
-        usage
-        exit 1
-        ;;
-    * )
-        file="${1}"
-        ;;
+while [ -n "${1}" ]
+do
+    case "${1}"
+    in
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        -d | --directory )
+            directory="${2}"
+            shift
+            ;;
+        -f | --file )
+            file="${2}"
+            shift
+            ;;
+        -* )
+            usage
+            exit 1
+            ;;
+        * )
+            file="${1}"
+            ;;
     esac
     shift
 done
+
 
 (
     find -L "${directory}" 2>/dev/null \
         | grep -i --color=always "${file}" \
         || echo "Nothing found"
-) | less
+) | less -Kir
