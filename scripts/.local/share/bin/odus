@@ -36,7 +36,7 @@ Options:
     -u  specify the user
     -v  be verbose
 
-Copyright (c) 2020, XGQT
+Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 EOF
 }
