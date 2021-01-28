@@ -421,19 +421,19 @@ export NEED_UID0
 case "$(uname)"
 in
     *Linux* )
-        alias tree='tree -C -F'
-        a_k_a t 'tree -a -L 2 -I ".git"'
-        a_k_a ta 'tree -a -I ".git"'
+        a_k_a t 'tree -I ".git" -L 2 -a'
+        a_k_a ta 'tree -I ".git" -a'
         alias l='ls -A'
-        alias ll='ls -lahF --color=always'
+        alias ll='ls --color=always -Fahl'
         alias ls='ls --color=auto'
+        alias tree='tree -CF'
         ;;
     * )
-        alias tree='tree -F'
-        a_k_a t 'tree -a -L 2'
+        a_k_a t 'tree -L 2 -a'
         a_k_a ta 'tree -a'
         alias l='ls -A'
-        alias ll='ls -lahF'
+        alias ll='ls -Fahl'
+        alias tree='tree -F'
         ;;
 esac
 
