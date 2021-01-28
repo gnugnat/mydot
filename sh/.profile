@@ -437,7 +437,7 @@ in
         ;;
 esac
 
-# Files
+# Editor
 if command_exists emacs
 then
     a_k_a e 'emacs -nw'
@@ -456,6 +456,8 @@ then
 else
     a_k_a v '${EDITOR}'
 fi
+
+# Emacsclient
 if command_exists emacsclient
 then
     a_k_a ec 'emacsclient -a ""'
@@ -468,6 +470,8 @@ then
     a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
     a_k_a ed-stop 'ec-kill'
 fi
+
+# Files
 a_k_a ,, 'cd ../..'
 a_k_a codium 'codium-bin'
 a_k_a hl 'highlight -O truecolor'
