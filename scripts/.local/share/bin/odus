@@ -1,0 +1,104 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+# Licensed under the GNU GPL v3 License
+
+
+shell=0
+user="root"
+verbose=0
+
+
+usage() {
+    cat <<EOF
+Usage: odus [OPTIONS]... [COMMAND]
+odus - odus is kinda like sudo
+
+Options:
+    -h  show avalible options
+    -s  run a shell
+    -u  specify the user
+    -v  be verbose
+
+Copyright (c) 2020, XGQT
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+while [ -n "${1}" ]
+do
+    case "${1}"
+    in
+        -h | -help | --help )
+            usage
+            exit 0
+            ;;
+        -s )
+            shell=1
+            ;;
+        -u )
+            if [ -n "${2}" ]
+            then
+                user="${2}"
+            else
+                echo "ERROR: Specify the user"
+                usage
+                exit 1
+            fi
+            shift
+            ;;
+        -v )
+            verbose=1
+            ;;
+        "" )
+            echo "ERROR: Provide at lest one argument/option"
+            usage
+            exit 1
+            ;;
+        * )
+            command="${*}"
+            break
+            ;;
+    esac
+    shift
+done
+
+
+if [ ${verbose} -gt 0 ]
+then
+    echo "Runing with:"
+    echo " - As user:   ${user}"
+    echo " - Run shell: ${shell}"
+    echo " - Command:   ${command}"
+fi
+
+if [ ${shell} -gt 0 ]
+then
+    su -l "${user}"
+else
+    if [ -z "${command}" ]
+    then
+        echo "ERROR: Provide a command to execute"
+        usage
+        exit 1
+    else
+        eval "su" "-c" '"' "${command}" '"'
+    fi
+fi
