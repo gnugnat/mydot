@@ -306,6 +306,13 @@ export GEM_SPEC_CACHE
 CARGO_HOME="${HOME}/.local/share/cargo"
 export CARGO_HOME
 
+# Shell history
+mkdir -p "${HOME}/.cache/sh"
+HISTFILE="${HOME}/.cache/sh/history"
+export HISTFILE
+HISTSIZE=50000
+export HISTSIZE
+
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_CACHE_HOME
