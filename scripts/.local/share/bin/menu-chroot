@@ -38,121 +38,117 @@
 # and chroot into it
 
 
-mount_dpst () {
+mount_dpst() {
+    # dev
+    echo "Mounting dev on ${target_dir}/dev..."; sleep 1
+    mount --rbind /dev "${target_dir}"/dev
+    mount --make-rslave "${target_dir}"/dev
 
-	# dev
-	echo "Mounting dev on $target_dir/dev..."; sleep 1
-	mount --rbind /dev "${target_dir}"/dev
-	mount --make-rslave "${target_dir}"/dev
+    # proc
+    echo "Mounting proc on ${target_dir}/proc..."; sleep 1
+    mount -t proc /proc "${target_dir}"/proc
 
-	# proc
-	echo "Mounting proc on $target_dir/proc..."; sleep 1
-	mount -t proc /proc "${target_dir}"/proc
+    # sys
+    echo "Mounting sys ${target_dir}/sys..."; sleep 1
+    mount --rbind /sys "${target_dir}"/sys
+    mount --make-rslave "${target_dir}"/sys
 
-	# sys
-	echo "Mounting sys $target_dir/sys..."; sleep 1
-	mount --rbind /sys "${target_dir}"/sys
-	mount --make-rslave "${target_dir}"/sys
-
-	# tmp
-	echo "Mounting tmp $target_dir/tmp..."; sleep 1
-	mount --rbind /tmp "${target_dir}"/tmp
+    # tmp
+    echo "Mounting tmp ${target_dir}/tmp..."; sleep 1
+    mount --rbind /tmp "${target_dir}"/tmp
 }
 
-unmount_dpst () {
+unmount_dpst() {
+    # dev
+    echo "Unmounting dev from ${target_dir}/dev..."; sleep 1
+    umount -l "${target_dir}"/dev
 
-	# dev
-	echo "Unmounting dev from $target_dir/dev..."; sleep 1
-	umount -l "${target_dir}"/dev
+    # proc
+    echo "Unmounting proc from ${target_dir}/proc..."; sleep 1
+    umount -l "${target_dir}"/proc
 
-	# proc
-	echo "Unmounting proc from $target_dir/proc..."; sleep 1
-	umount -l "${target_dir}"/proc
+    # sys
+    echo "Unmounting sys from ${target_dir}/sys..."; sleep 1
+    umount -l "${target_dir}"/sys
 
-	# sys
-	echo "Unmounting sys from $target_dir/sys..."; sleep 1
-	umount -l "${target_dir}"/sys
-
-	# tmp
-	echo "Unmounting tmp from $target_dir/tmp..."; sleep 1
-	umount -l "${target_dir}"/tmp
+    # tmp
+    echo "Unmounting tmp from ${target_dir}/tmp..."; sleep 1
+    umount -l "${target_dir}"/tmp
 }
 
-target_chroot () {
-	# chroot
-	echo "Chrooting to $target_dir..."; sleep 3
-	chroot "${target_dir}" /bin/bash
+target_chroot() {
+    # chroot
+    echo "Chrooting to ${target_dir}..."; sleep 3
+    chroot "${target_dir}" /bin/bash
 }
 
-cleanup () {
-	echo "Removing $target_dir..."; sleep 1
-	rm -d "${target_dir}"
+cleanup() {
+    echo "Removing ${target_dir}..."; sleep 1
+    rm -d "${target_dir}"
 }
 
-main () {
+main() {
+    # Show devices and their mountpoints
+    lsblk
 
-	# Show devices and their mountpoints
-	lsblk
+    # Chroot to device or directory
+    echo "Chroot to:"
+    echo "[1] Device"
+    echo "[2] Directory"
+    echo "[3] Exit"
+    read -r d_or_d
 
-	# Chroot to device or directory
-	echo "Chroot to:"
-	echo "[1] Device"
-	echo "[2] Directory"
-	echo "[3] Exit"
-	read -r d_or_d
+    case "${d_or_d}"
+    in
+        1)
+            # Device option
 
-	case $d_or_d in
+            echo "Select Device (type path)"
 
-	1)
-		# Device option
+            # Example: /dev/sdb1
 
-		echo "Select Device (type path)"
+            read -r device
+            target_dir="/mnt/mychroot-$(basename "${device}")"
 
-		# Example: /dev/sdb1
+            mkdir "${target_dir}"
+            echo "Mounting device $device on $target_dir..."; sleep 1
+            mount "${device}" "${target_dir}" || { echo "Mount failed"; cleanup; exit 1; }
 
-		read -r device
-		target_dir=/mnt/mychroot-$(basename "${device}")
+            mount_dpst
+            target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst; cleanup; exit 1; }
 
-		mkdir "${target_dir}"
-		echo "Mounting device $device on $target_dir..."; sleep 1
-		mount "${device}" "${target_dir}" || { echo "Mount failed"; cleanup; exit 1; }
+            echo "You exited the chroot"; sleep 1
+            unmount_dpst
+            echo "Unmounting $device from $target_dir..."; sleep 1
+            umount -l "${target_dir}" || { echo "Unmount of $target_dir failed"; exit 1; }
+            cleanup
+            ;;
+        2)
+            # Directory option
 
-		mount_dpst
-		target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst; cleanup; exit 1; }
+            echo "Type directory path"
+            read -r target_dir
 
-		echo "You exited the chroot"; sleep 1
-		unmount_dpst
-		echo "Unmounting $device from $target_dir..."; sleep 1
-		umount -l "${target_dir}" || { echo "Unmount of $target_dir failed"; exit 1; }
-		cleanup
-		;;
-	2)
-		# Directory option
+            mount_dpst
+            target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst;  exit 1; }
 
-		echo "Type directory path"
-		read -r target_dir
+            echo "You exited the chroot"; sleep 1
+            unmount_dpst
+            ;;
+        3)
+            # Exit option
 
-		mount_dpst
-		target_chroot || { echo "Chroot failed! Exiting!"; unmount_dpst;  exit 1; }
+            echo "Exiting"
+            ;;
+        *)
+            # In a different case
+            # Re-run main
 
-		echo "You exited the chroot"; sleep 1
-		unmount_dpst
-		;;
-	3)
-		# Exit option
+            echo "Unknown option. Choose 1 (device) or 2 (directory) or 3 (exit)"
+            main
+            ;;
 
-		echo "Exiting"
-		;;
-	*)
-		# In a different case
-		# Re-run main
-
-		echo "Unknown option. Choose 1 (device) or 2 (directory) or 3 (exit)"
-		main
-		;;
-
-	esac
-
+    esac
 }
 
 
