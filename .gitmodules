@@ -30,3 +30,6 @@
 [submodule "zsh/.config/zsh/plugins/k"]
 	path = zsh/.config/zsh/plugins/k
 	url = https://github.com/supercrabtree/k
+[submodule "zsh/.config/zsh/plugins/z"]
+	path = zsh/.config/zsh/plugins/z
+	url = https://github.com/agkozak/zsh-z

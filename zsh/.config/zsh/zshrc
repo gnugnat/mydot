@@ -169,6 +169,10 @@ fi
 # https://github.com/zsh-users/zsh-syntax-highlighting
 source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# Z - Quick directory navigation
+source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
+_Z_DATA="${ZCACHEDIR}/z"
+
 
 # >>> ZSH tweaks
 
