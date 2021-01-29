@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -25,12 +25,12 @@ export PATH
 
 
 sv="
-	NetworkManager
-	netmount
-	libvirtd
-	libvirt-guests
-	ntp-client
-	uptimed
+    NetworkManager
+    netmount
+    libvirtd
+    libvirt-guests
+    ntp-client
+    uptimed
 "
 
 warning() {
@@ -47,20 +47,22 @@ restart_delayed() {
 main() {
     for s in ${sv}
     do
-	if [ -x "${EPREFIX}"/etc/init.d/"${s}" ]
-	then
-	    restart_delayed "${s}"
-	else
-	    warning "service ${s} does not exist!"
-	fi
+        if [ -x "${EPREFIX}"/etc/init.d/"${s}" ]
+        then
+            restart_delayed "${s}"
+        else
+            warning "service ${s} does not exist!"
+        fi
     done
 }
 
 
 # TODO: wait for NM
-if [ "$(whoami)" != root ] && [ -z "${EPREFIX}" ]
+
+if [ "$(whoami)" != root ]
 then
-    sudo "${0}"
+    echo "Switching to the root user account"
+    su root -c "${0} ${*}"
 else
-    main
+    main "${@}"
 fi

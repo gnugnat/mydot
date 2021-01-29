@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 # Test read and write speed
@@ -26,29 +26,34 @@ trap 'exit 128' INT
 export PATH
 
 
-tmpfile=disktest.img
+tmpfile=./disktest.img
 
 
 write_drop_val() {
-    if [ "$(whoami)" = root ]
+    sysctl -wq vm.drop_caches="${1}"
+}
+
+main() {
+    echo "Writes:"
+    sync
+    dd if=/dev/zero of="${tmpfile}" bs=64M count=1 oflag=dsync
+    sync
+
+    echo "Reads:"
+    write_drop_val "3"
+    dd if="${tmpfile}" of=/dev/null bs=64M count=1
+
+    if [ -f "${tmpfile}" ]
     then
-        sysctl -wq vm.drop_caches="${1}"
-    else
-        sudo sysctl -wq vm.drop_caches="${1}"
+        rm "${tmpfile}"
     fi
 }
 
 
-echo "Writes:"
-sync
-dd if=/dev/zero of=${tmpfile} bs=64M count=1 oflag=dsync
-sync
-
-echo "Reads:"
-write_drop_val "3"
-dd if=${tmpfile} of=/dev/null bs=64M count=1
-
-if [ -f ${tmpfile} ]
+if [ "$(whoami)" != root ]
 then
-    rm ${tmpfile}
+    echo "Switching to the root user account"
+    su root -c "${0} ${*}"
+else
+    main "${@}"
 fi

@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -69,7 +69,8 @@ esac
 
 if [ "$(whoami)" != root ]
 then
-    sudo "${0}" "${1}"
+    echo "Switching to the root user account"
+    su root -c "${0} ${*}"
 else
-    main "${1}"
+    main "${@}"
 fi

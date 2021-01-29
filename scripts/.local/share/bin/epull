@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -25,7 +25,8 @@ export PATH
 
 
 main() {
-    if command -v eix; then
+    if command -v eix
+    then
         eix-sync
         eix-remote update
     else
@@ -33,8 +34,11 @@ main() {
     fi
 }
 
-if [ "$(whoami)" != root ]; then
-    sudo "$0"
+
+if [ "$(whoami)" != root ]
+then
+    echo "Switching to the root user account"
+    su root -c "${0} ${*}"
 else
-    main
+    main "${@}"
 fi
