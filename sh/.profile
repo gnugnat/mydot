@@ -161,10 +161,12 @@ command_exists stty && stty -ixon
 # >>> Environment
 
 # User's name
+# Keep this first
 USER="${USER:-$(whoami)}"
 export USER
 
 # User's identification number
+# Keep this second
 if [ -z "${UID}" ] && command_exists id
 then
     UID="$(id -u "${USER}")"
