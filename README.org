@@ -45,11 +45,3 @@
 
 - Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
-
-
-* Notice
-
-** Installed by scripts / referenced
-
-- [[https://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
-- [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
