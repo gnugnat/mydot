@@ -475,7 +475,10 @@
   (use-package rainbow-delimiters
     :ensure t
     :hook
-    ((prog-mode . rainbow-delimiters-mode))
+    (
+     (prog-mode . rainbow-delimiters-mode)
+     (gerbil-mode . rainbow-delimiters-mode)
+     )
     )
 #+END_SRC
 ** Spaces
@@ -500,7 +503,10 @@
   (use-package company
     :ensure t
     :hook
-    ((prog-mode . company-mode))
+    (
+     (prog-mode . company-mode)
+     (gerbil-mode . company-mode)
+     )
     :config
     (setq
      company-idle-delay 0
