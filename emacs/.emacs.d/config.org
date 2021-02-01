@@ -838,7 +838,8 @@
     )
 #+END_SRC
 ** Scheme
-   [[https://schemers.org/Documents/Standards/][Scheme]] language support
+   [[https://schemers.org/Documents/Standards/][Scheme]] language support.
+   WARNING: For me works reliably only with [[https://www.gnu.org/software/guile/][guile]].
    + Geiser:
      - https://gitlab.com/jaor/geiser
      - https://melpa.org/#/geiser
@@ -846,12 +847,7 @@
   (use-package geiser
     :ensure t
     :init
-    (setq
-     geiser-active-implementations
-     '(
-       guile
-       )
-     )
+    (setq geiser-active-implementations '(guile))
     )
 #+END_SRC
 ** Shell
