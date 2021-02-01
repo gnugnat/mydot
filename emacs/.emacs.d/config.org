@@ -794,7 +794,11 @@
     (advice-add 'python-mode :before 'elpy-enable)
     :config
     (progn
-      (setq elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv")
+      (setq
+       elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv"
+       python-shell-interpreter "ipython3"
+       python-shell-interpreter-args "-i --simple-prompt"
+       )
       (when (load "flycheck" t t)
         (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
         (add-hook 'elpy-mode-hook 'flycheck-mode)
