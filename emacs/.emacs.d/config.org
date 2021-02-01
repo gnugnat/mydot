@@ -46,29 +46,30 @@
     )
 #+END_SRC
 ** Configuration
-   Special prefix for my bindings.
-   | Key Combination | Command                       |
-   |-----------------+-------------------------------|
-   | C-= C-e c       | config-visit                  |
-   | C-= C-e g       | gui-visit                     |
-   | C-= C-r c       | config-reload                 |
-   | C-= C-r g       | gui-reload                    |
-   | C-= M-b         | magit-blame                   |
-   | C-= M-d         | magit-diff                    |
-   | C-= M-s         | magit-status                  |
-   | C-= a           | org-agenda                    |
-   | C-= d           | dired-sidebar-toggle-sidebar  |
-   | C-= i           | org-insert-structure-template |
-   | C-= r           | toggle-transparency           |
-   | C-= s           | sr-speedbar-toggle            |
-   | C-= t           | insert-date                   |
-   Update this periodically with output from =C-h b=.
+*** Prefix Key
+    Special prefix for my bindings.
+    | Key Combination | Command                       |
+    |-----------------+-------------------------------|
+    | C-= C-e c       | config-visit                  |
+    | C-= C-e g       | gui-visit                     |
+    | C-= C-r c       | config-reload                 |
+    | C-= C-r g       | gui-reload                    |
+    | C-= M-b         | magit-blame                   |
+    | C-= M-d         | magit-diff                    |
+    | C-= M-s         | magit-status                  |
+    | C-= a           | org-agenda                    |
+    | C-= d           | dired-sidebar-toggle-sidebar  |
+    | C-= i           | org-insert-structure-template |
+    | C-= r           | toggle-transparency           |
+    | C-= s           | sr-speedbar-toggle            |
+    | C-= t           | insert-date                   |
+    Update this periodically with output from =C-h b=.
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-="))
   (define-prefix-command 'my-keymap)
   (global-set-key (kbd "C-=") my-keymap)
 #+END_SRC
-   Edit / Reload configuration files
+*** Edit / Reload
 #+BEGIN_SRC emacs-lisp
   (defun config-visit ()
     "Edit config.org."
@@ -102,7 +103,7 @@
     )
   (global-set-key (kbd "C-= C-e g") 'gui-visit)
 #+END_SRC
-   Try to load the GUI configuration
+    Try to load the GUI configuration
 #+BEGIN_SRC emacs-lisp
   (when window-system
     (gui-reload)
