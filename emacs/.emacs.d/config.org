@@ -402,6 +402,18 @@
     (global-diff-hl-mode)
     )
 #+END_SRC
+** Hex colors
+   Colorize hexadecimal values
+   + Rainbow-Mode:
+     - https://elpa.gnu.org/packages/rainbow-mode-1.0.5.el
+     - https://elpa.gnu.org/packages/rainbow-mode.html
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :hook
+    ((prog-mode . rainbow-mode))
+    )
+#+END_SRC
 ** Insert date
    In non-Org documents:
    - =C-= t= :         13.04.2004
@@ -452,18 +464,6 @@
     (projectile-mode 1)
     :bind
     ("<f5>" . 'projectile-compile-project)
-    )
-#+END_SRC
-** Rainbow color
-   Colorize hexadecimal values
-   + Rainbow-Mode:
-     - https://elpa.gnu.org/packages/rainbow-mode-1.0.5.el
-     - https://elpa.gnu.org/packages/rainbow-mode.html
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-mode
-    :ensure t
-    :hook
-    ((prog-mode . rainbow-mode))
     )
 #+END_SRC
 ** Rainbow delimiters
