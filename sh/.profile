@@ -552,6 +552,7 @@ a_k_a ipy 'ipython'
 a_k_a py 'python'
 a_k_a rb 'irb'
 a_k_a rkt 'racket'
+a_k_a scm 'scheme'
 a_k_a tcl 'tclsh'
 
 # Shell
