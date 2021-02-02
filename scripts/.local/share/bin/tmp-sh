@@ -25,6 +25,6 @@ _tempdir="$(mktemp -d)"
 
 cd "${_tempdir}" || exit 1
 
-${SHELL}
+${SHELL} || sh
 
 rm -r "${_tempdir}"
