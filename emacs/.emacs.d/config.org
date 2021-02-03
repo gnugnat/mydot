@@ -45,31 +45,31 @@
     (auto-package-update-maybe)
     )
 #+END_SRC
-** Configuration
-*** Prefix Key
-    Special prefix for my bindings.
-    | Key Combination | Command                       |
-    |-----------------+-------------------------------|
-    | C-= C-e c       | config-visit                  |
-    | C-= C-e g       | gui-visit                     |
-    | C-= C-r c       | config-reload                 |
-    | C-= C-r g       | gui-reload                    |
-    | C-= M-b         | magit-blame                   |
-    | C-= M-d         | magit-diff                    |
-    | C-= M-s         | magit-status                  |
-    | C-= a           | org-agenda                    |
-    | C-= d           | dired-sidebar-toggle-sidebar  |
-    | C-= i           | org-insert-structure-template |
-    | C-= r           | toggle-transparency           |
-    | C-= s           | sr-speedbar-toggle            |
-    | C-= t           | insert-date                   |
-    Update this periodically with output from =C-h b=.
+** Prefix Key
+   Special prefix for my bindings.
+   | Key Combination | Command                       |
+   |-----------------+-------------------------------|
+   | C-= C-e c       | config-visit                  |
+   | C-= C-e g       | gui-visit                     |
+   | C-= C-r c       | config-reload                 |
+   | C-= C-r g       | gui-reload                    |
+   | C-= M-b         | magit-blame                   |
+   | C-= M-d         | magit-diff                    |
+   | C-= M-s         | magit-status                  |
+   | C-= a           | org-agenda                    |
+   | C-= d           | dired-sidebar-toggle-sidebar  |
+   | C-= i           | org-insert-structure-template |
+   | C-= r           | toggle-transparency           |
+   | C-= s           | sr-speedbar-toggle            |
+   | C-= t           | insert-date                   |
+   Update this periodically with output from =C-h b=.
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-="))
   (define-prefix-command 'my-keymap)
   (global-set-key (kbd "C-=") my-keymap)
 #+END_SRC
-*** Edit / Reload
+** Edit / Reload
+   Edit or Reload the configuration
 #+BEGIN_SRC emacs-lisp
   (defun config-visit ()
     "Edit config.org."
@@ -103,7 +103,7 @@
     )
   (global-set-key (kbd "C-= C-e g") 'gui-visit)
 #+END_SRC
-    Try to load the GUI configuration
+   Try to load the GUI configuration
 #+BEGIN_SRC emacs-lisp
   (when window-system
     (gui-reload)
@@ -663,6 +663,13 @@
     (global-flycheck-mode t)
     )
 #+END_SRC
+** Gambit
+   [[https://github.com/gambit/gambit][Gambit]] language support.
+#+BEGIN_SRC emacs-lisp
+  (if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
+      (load-file "/usr/share/emacs/site-lisp/gambit.el")
+    )
+#+END_SRC
 ** Go
    [[https://golang.org/][Go]] language support
    + Go-Mode:
@@ -844,23 +851,15 @@
 #+END_SRC
 ** Scheme
    [[https://schemers.org/Documents/Standards/][Scheme]] language support.
-*** Guile
-    For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
-    + Geiser:
-      - https://gitlab.com/jaor/geiser
-      - https://melpa.org/#/geiser
+   For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
+   + Geiser:
+     - https://gitlab.com/jaor/geiser
+     - https://melpa.org/#/geiser
 #+BEGIN_SRC emacs-lisp
   (use-package geiser
     :ensure t
     :init
     (setq geiser-active-implementations '(guile))
-    )
-#+END_SRC
-*** Gambit
-    [[https://github.com/gambit/gambit][Gambit]] language support.
-#+BEGIN_SRC emacs-lisp
-  (if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
-      (load-file "/usr/share/emacs/site-lisp/gambit.el")
     )
 #+END_SRC
 ** Shell
