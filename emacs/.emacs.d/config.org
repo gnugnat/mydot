@@ -715,6 +715,16 @@
 #+BEGIN_SRC emacs-lisp
   ;; (add-hook 'js-mode-hook 'company-mode)
 #+END_SRC
+** LFE
+   [[https://github.com/rvirding/lfe/][LFE]] language support.
+#+BEGIN_SRC emacs-lisp
+  (when (executable-find "lfe")
+    (progn
+      (add-hook 'lfe-mode-hook 'company-mode)
+      (add-hook 'lfe-mode-hook 'rainbow-delimiters-mode)
+      )
+    )
+#+END_SRC
 ** Lisp
    [[https://common-lisp.net/project/slime/][Lisp]] language support
    + Slime:
