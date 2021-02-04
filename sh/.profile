@@ -91,6 +91,16 @@ a_k_a() {
     fi
 }
 
+# Re-bind - unsafe alias
+# if given command exists ($1) alais it to
+# the given string ($2)
+rbind() {
+    if command_exists "${1}"
+    then
+        alias "${1}"="${2}"
+    fi
+}
+
 # Check if 1st string contains the 2nd
 contains_string() {
     _string="${1}"
@@ -434,15 +444,15 @@ in
         a_k_a ta 'tree -I ".git" -a'
         alias l='ls -A'
         alias ll='ls --color=always -Fahl'
-        alias ls='ls --color=auto'
-        alias tree='tree -CF'
+        rbind ls 'ls --color=auto'
+        rbind tree 'tree -CF'
         ;;
     * )
         a_k_a t 'tree -L 2 -a'
         a_k_a ta 'tree -a'
         alias l='ls -A'
         alias ll='ls -Fahl'
-        alias tree='tree -F'
+        rbind tree 'tree -F'
         ;;
 esac
 
@@ -487,8 +497,8 @@ a_k_a hl 'highlight -O truecolor'
 a_k_a nuke 'rm -fr'
 a_k_a open 'xdg-open'
 a_k_a rcp 'rsync --stats --progress'
-a_k_a shell '${SHELL}'
 a_k_a tf 'tail -fv --retry'
+rbind ncdu 'ncdu --color=dark'
 
 # Git
 a_k_a G 'git'
@@ -512,7 +522,7 @@ a_k_a ffsound 'ffplay -nodisp -hide_banner'
 a_k_a no-net-sh 'unshare -r -n ${SH}'
 a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
-alias mtr='mtr --show-ips --curses'
+rbind mtr 'mtr --show-ips --curses'
 
 # Other PKG managers
 a_k_a fpk 'flatpak --user'
@@ -560,6 +570,7 @@ a_k_a cl-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
 a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
 a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
 a_k_a ed-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
+a_k_a shell '${SHELL}'
 a_k_a so-bashrc 'source ${HOME}/.bashrc'
 a_k_a so-shrc 'source ${HOME}/.profile'
 a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
