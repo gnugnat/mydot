@@ -25,6 +25,11 @@ _tempdir="$(mktemp -d)"
 
 cd "${_tempdir}" || exit 1
 
-${SHELL} || sh
+if command -v "${SHELL}" >/dev/null 2>&1
+then
+    ${SHELL}
+else
+    sh
+fi
 
-rm -r "${_tempdir}"
+rm -fr "${_tempdir}"
