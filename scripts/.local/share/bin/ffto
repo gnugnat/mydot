@@ -1,0 +1,68 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+# Licensed under the GNU GPL v3 License
+
+
+usage() {
+    cat <<EOF
+Usage: ffto FILE FORMAT_EXTENSION
+ffto - convert a given file to the same
+       base name but different extension
+
+Options:
+    -h  show avalible options
+
+Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    "" )
+        echo "ERROR: No arguments passed"
+        usage
+        exit 1
+        ;;
+esac
+
+if [ -z "${2}" ]
+then
+    echo "ERROR: Arguments passed: ${2}"
+    echo "ERROR: Two required"
+    usage
+    exit 1
+fi
+
+if [ ! -f "${1}" ]
+then
+    echo "ERROR: No such file: ${1}"
+    exit 1
+fi
+
+
+file_base="${1%.*}"
+
+ffmpeg -hide_banner -i "${1}" "${file_base}.${2}"
