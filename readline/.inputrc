@@ -37,6 +37,7 @@ set output-meta on
 set bell-style none
 
 # Colored completions (LS_COLORS)
+set colored-completion-prefix on
 set colored-stats on
 
 # File type indication
