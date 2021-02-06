@@ -43,6 +43,9 @@
 __pycache__/
 _build/
 
+# Octave
+octave-workspace
+
 # ZSH modal configuration
 zsh/.config/zsh/emu.zsh-theme
 zsh/.config/zsh/tty.zsh-theme
