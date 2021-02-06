@@ -842,6 +842,29 @@
     (setq imaxima-use-maxima-mode-flag t)
     )
 #+END_SRC
+** Octave
+   [[https://www.gnu.org/software/octave/index][Octave]] support.
+   Start the Octave REPL (Inferior Octave) with =run-octave=
+   + Inferior Octave:
+     - included with GNU Emacs
+#+BEGIN_SRC emacs-lisp
+  (use-package inferior-octave-mode
+    :ensure nil
+    :hook
+    (
+     (inferior-octave-mode . company-mode)
+     (inferior-octave-mode . rainbow-delimiters-mode)
+     )
+    :bind
+    (
+     :map inferior-octave-mode-map
+     ;; C-up    - previous history item
+     ("up" . comint-previous-input)
+     ;; C-down  - next history item
+     ("down" . comint-next-input)
+     )
+    )
+#+END_SRC
 ** Perl
 #+BEGIN_SRC emacs-lisp
   (defalias 'perl-mode 'cperl-mode)
