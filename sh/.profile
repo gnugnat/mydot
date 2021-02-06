@@ -578,6 +578,7 @@ a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
 # System
 a_k_a cpuinfo 'cat /proc/cpuinfo'
 a_k_a kerr '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
+a_k_a man-pl 'LANG="pl_PL.UTF-8" man'
 a_k_a root 'su -l root'
 a_k_a rp '${NEED_UID0} '
 a_k_a running '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
