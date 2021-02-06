@@ -28,8 +28,8 @@
    You can install/delete configs selectivitely.
    First change directrory to mydot (=cd ~/mydot=).
    Remember to create needed directories to avoid conflicts:
-   - =$HOME/.config= 	- for your users config files
-   - =$HOME/.emacs.d= 	- for Emacs
+   - =$HOME/.config=    - for your users config files
+   - =$HOME/.emacs.d=   - for Emacs
 
 *** install one
 
@@ -45,3 +45,26 @@
 
 - Run zsh as login shell: =zsh -l=
 - You will be asked which features to enable
+
+
+* License
+
+** Unless otherwise stated contents here are under the GNU GPL v3 license
+
+   This file is part of secret_service.
+
+   secret_service is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   secret_service is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with secret_service.  If not, see <https://www.gnu.org/licenses/>.
+
+   Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+   Licensed under the GNU GPL v3 License
