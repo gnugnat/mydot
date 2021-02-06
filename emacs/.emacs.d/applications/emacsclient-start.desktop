@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -21,7 +21,7 @@
 Categories=Development;
 Comment=Start Emacs Daemon and open a GUI frame
 Comment[en_US]=Start Emacs Daemon and open a GUI frame
-Exec=emacsclient -a "" -n -c --eval "(gui-reload)"
+Exec=emacsclient -a "" -n -c --eval "(gui-load)"
 GenericName=Start Emacsclient
 GenericName[en_US]=Start Emacsclient
 Icon=emacs
