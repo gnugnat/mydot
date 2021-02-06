@@ -32,4 +32,4 @@ terminal:
     - apk add alpine-sdk bash make python3 zsh
 
   script:
-    sleep 60
+    - sleep 60
