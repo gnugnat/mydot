@@ -1027,12 +1027,10 @@
      (yaml-mode . idle-highlight-mode)
      (yaml-mode . company-mode)
      )
-    :config
-    (add-hook
-     'yaml-mode-hook
-     (lambda ()
-       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
-       )
+    :bind
+    (
+     :map yaml-mode-map
+     ("C-m" . newline-and-indent)
      )
     )
 #+END_SRC
