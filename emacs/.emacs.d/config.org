@@ -821,6 +821,27 @@
      )
     )
 #+END_SRC
+** Maxima
+   [[https://github.com/andrejv/maxima][Maxima]] language support.
+   + Imath-Mode, Imaxima, Maxima-Mode
+     - /usr/share/emacs/site-lisp/maxima
+#+BEGIN_SRC emacs-lisp
+  (use-package maxima-mode
+    :ensure nil
+    :hook
+    (
+     (imaxima . maxima-mode)
+     (maxima . maxima-mode)
+     (maxima-mode . company-mode)
+     (maxima-mode . imath-mode)
+     (maxima-mode . rainbow-delimiters-mode)
+     )
+    :mode
+    (("\\.ma[cx]\\'" . maxima-mode))
+    :config
+    (setq imaxima-use-maxima-mode-flag t)
+    )
+#+END_SRC
 ** Perl
 #+BEGIN_SRC emacs-lisp
   (defalias 'perl-mode 'cperl-mode)
