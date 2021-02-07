@@ -1208,7 +1208,6 @@
 ** Eshell
    Emacs Shell
 #+BEGIN_SRC emacs-lisp
-  ;; Bind
   (defun split-and-start-eshell ()
     "Split and start the Emacs shell."
     (interactive)
@@ -1217,14 +1216,26 @@
     (other-window 1)
     (eshell)
     )
-  (global-set-key (kbd "<f7>") 'split-and-start-eshell)
-  ;; Add modes
-  (add-hook 'eshell-mode-hook 'company-mode)
-  ;; Prompt
-  (setq eshell-highlight-prompt t)
-  ;; Aliases
-  (defalias 'open 'find-file-other-window)
-  (defalias 'clean 'eshell/clear-scrollback)
+
+  (use-package eshell
+    :ensure nil
+    :hook
+    (
+     (eshell-mode . company-mode)
+     (eshell-mode . idle-highlight-mode)
+     (eshell-mode . rainbow-delimiters-mode)
+     )
+    :bind
+    (
+     ("<f7>" . split-and-start-eshell)
+     )
+    :config
+    ;; Prompt
+    (setq eshell-highlight-prompt t)
+    ;; Aliases
+    (defalias 'open 'find-file-other-window)
+    (defalias 'clean 'eshell/clear-scrollback)
+    )
 #+END_SRC
 ** Uppercase
    =C-x C-u= to convert a region to uppercase
