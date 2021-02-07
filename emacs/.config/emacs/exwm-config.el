@@ -30,7 +30,7 @@
 ;; when executing
 ;;	"startx ~/.xinitrc exwm"
 ;; load it with
-;;	"emacs --load ~/.emacs.d/exwm-config.el"
+;;	"emacs --load ~/.config/emacs/exwm-config.el"
 
 ;;; Code:
 

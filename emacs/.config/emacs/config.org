@@ -74,14 +74,14 @@
   (defun config-visit ()
     "Edit config.org."
     (interactive)
-    (find-file "~/.emacs.d/config.org")
+    (find-file (w-u-e-d "config.org"))
     )
   (global-set-key (kbd "C-= C-c c") 'config-visit)
 
   (defun gui-visit ()
     "Edit gui-config.org."
     (interactive)
-    (find-file "~/.emacs.d/gui-config.org")
+    (find-file (w-u-e-d "gui-config.org"))
     )
   (global-set-key (kbd "C-= C-e g") 'gui-visit)
 #+END_SRC
@@ -90,12 +90,12 @@
   (defun config-load ()
     "Load config.org at runtime."
     (interactive)
-    (when (file-readable-p "~/.emacs.d/config.org")
+    (when (file-readable-p (w-u-e-d "config.org"))
       (progn
-        (if (file-exists-p "~/.emacs.d/config.el")
-            (delete-file "~/.emacs.d/config.el")
+        (if (file-exists-p (w-u-e-d "config.el"))
+            (delete-file (w-u-e-d "config.el"))
           )
-        (org-babel-load-file (expand-file-name "~/.emacs.d/config.org" ))
+        (org-babel-load-file (expand-file-name (w-u-e-d "config.org" )))
         )
       )
     )
@@ -104,8 +104,8 @@
     "Reload config.org at runtime."
     (interactive)
     (progn
-      (if (file-exists-p "~/.emacs.d/config.el")
-          (delete-file "~/.emacs.d/config.el")
+      (if (file-exists-p (w-u-e-d "config.el"))
+          (delete-file (w-u-e-d "config.el"))
         )
       (config-load)
       )
@@ -117,8 +117,8 @@
   (defun gui-load ()
     "Load gui-config.org at runtime."
     (interactive)
-    (when (file-readable-p "~/.emacs.d/gui-config.org")
-      (org-babel-load-file (expand-file-name "~/.emacs.d/gui-config.org"))
+    (when (file-readable-p (w-u-e-d "gui-config.org"))
+      (org-babel-load-file (expand-file-name (w-u-e-d "gui-config.org")))
       )
     )
 
@@ -126,8 +126,8 @@
     "Reload gui-config.org at runtime."
     (interactive)
     (progn
-      (if (file-exists-p "~/.emacs.d/gui-config.el")
-          (delete-file "~/.emacs.d/gui-config.el")
+      (if (file-exists-p (w-u-e-d "gui-config.el"))
+          (delete-file (w-u-e-d "gui-config.el"))
         )
       (gui-load)
       )
@@ -184,7 +184,7 @@
   ;; disable backups:
   (setq make-backup-files nil)
   ;; backups directory:
-  ;;(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+  ;;(setq backup-directory-alist '(("" . (w-u-e-d "backup"))))
   ;; Pass "y or n" instead of "yes or no"
   (defalias 'yes-or-no-p 'y-or-n-p)
   ;; Disable clipboard
@@ -761,7 +761,7 @@
     (setq
      inferior-lisp-program "/usr/bin/sbcl"
      slime-contribs '(slime-fancy)
-     slime-repl-history-file "~/.emacs.d/slime-history.eld"
+     slime-repl-history-file (w-u-e-d "slime-history.eld")
      )
     )
 #+END_SRC
@@ -865,7 +865,7 @@
 ** Python
    [[https://www.python.org/][Python]] IDE.
    WARNING: Remember to run =elpy-config= to install some necessary packages.
-   DEBUG: If =~/.emacs.d/elpy/rpc_venv= is empty remove it and run =elpy-config=.
+   DEBUG: If =~/.config/emacs/elpy/rpc_venv= is empty remove it and run =elpy-config=.
    + Elpy:
      - https://elpy.readthedocs.io
      - https://github.com/jorgenschaefer/elpy
@@ -879,7 +879,7 @@
     :config
     (progn
       (setq
-       elpy-rpc-virtualenv-path "~/.emacs.d/elpy/rpc_venv"
+       elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
        python-shell-interpreter "ipython3"
        python-shell-interpreter-args "-i --simple-prompt"
        )

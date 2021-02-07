@@ -26,10 +26,10 @@
 ** Selectivity
 
    You can install/delete configs selectivitely.
-   First change directrory to mydot (=cd ~/mydot=).
+   First change directory to mydot (=cd ~/mydot=).
    Remember to create needed directories to avoid conflicts:
-   - =$HOME/.config=    - for your users config files
-   - =$HOME/.emacs.d=   - for Emacs
+   - =$HOME/.config=        - for your users config files
+   - =$HOME/.config/emacs=  - for Emacs
 
 *** install one
 

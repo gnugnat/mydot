@@ -44,7 +44,7 @@ msg() {
 }
 
 err_msg() {
-    msg "${*}"
+    msg "ERROR: ${*}"
     exit 1
 }
 
@@ -86,8 +86,8 @@ cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
 
 # check needed directories
 req_dirs="
+    ${HOME}/.config/emacs
     ${HOME}/.config/mpd/playlists
-    ${HOME}/.emacs.d
     ${HOME}/.local/share/racket
     ${HOME}/.vnc
 "
@@ -101,6 +101,13 @@ do
         echo "${dir} created"
     fi
 done
+
+# Use ~/.emacs.d if version of Emacs < 27.1
+if exists emacs
+then
+    emacs -Q --batch --eval='(if (version< emacs-version "27.1") (error ""))' \
+        || ln -s "${HOME}/.config/emacs" "${HOME}/.emacs.d"
+fi
 
 
 # >>> Perform desired Stow action

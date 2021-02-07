@@ -20,14 +20,14 @@
 ;; Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 ;; Licensed under the GNU GPL v3 License
 
-;;  delete ~/.emacs file
+;;  delete ~/.emacs and ~/.emacs.d
 ;;  place this file in
-;;  ~/.emacs.d directory
+;;  ~/.config/emacs directory
 
 ;;; Code:
 
 
-;; Fix garbage collection (makes Emacs start up faster)
+;;; Fix garbage collection (makes Emacs start up faster)
 
 (setq
  gc-cons-threshold 402653184
@@ -52,7 +52,7 @@
 (add-hook 'emacs-startup-hook 'startup/reset-gc)
 
 
-;; Packages
+;;; Packages
 
 ;; package archives
 (require 'package)
@@ -74,15 +74,27 @@
   )
 
 
-;; Load other custom components
+;;; User's Emacs directory
+
+(defun with-user-emacs-directory (file)
+  "Return a path to FILE prepended with 'user-emacs-directory'."
+  (concat user-emacs-directory file)
+  )
+(defalias 'w-u-e-d 'with-user-emacs-directory)
+
+
+;;; Load other custom components
 
 ;; This is the actual config file. It is omitted if it doesn't exist so emacs won't refuse to launch.
-(when (file-readable-p "~/.emacs.d/config.org")
-  (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+(when (file-readable-p (w-u-e-d "config.org"))
+  (org-babel-load-file
+   (expand-file-name (w-u-e-d "config.org"))
+   )
   )
 
 ;; Set path to store "custom-set"
-(setq custom-file "~/.emacs.d/emacs-custom.el")
+
+(setq custom-file (w-u-e-d "emacs-custom.el"))
 
 
 ;;; init.el ends here
