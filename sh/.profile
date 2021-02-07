@@ -329,6 +329,14 @@ export HISTFILE
 HISTSIZE=50000
 export HISTSIZE
 
+# TeX
+TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
+export TEXMFCONFIG
+TEXMFHOME="${HOME}/.local/share/texlive/texmf"
+export TEXMFHOME
+TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
+export TEXMFVAR
+
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_CACHE_HOME
