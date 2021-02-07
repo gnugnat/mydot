@@ -22,15 +22,20 @@
 # "Aggresively" update mydot
 
 
-# Go to mydot source
-cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
+trap 'exit 128' INT
+export PATH
+set -e
 
-if sh stowdot remove
-then
-    git reset --hard
-    git pull
-    git submodule update --init
-    sh stowdot
-fi
+
+# Go to mydot source
+cd "$(dirname "${0}")"
+
+sh ./stowdot remove
+
+git reset --hard
+git pull
+git submodule update --init
+
+sh ./stowdot
 
 echo "mydot updated"
