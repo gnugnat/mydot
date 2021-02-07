@@ -239,6 +239,10 @@ export CONAN_USER_HOME
 DOTNET_CLI_TELEMETRY_OPTOUT="1"
 export DOTNET_CLI_TELEMETRY_OPTOUT
 
+# Emacs (for now used only by the shell)
+USER_EMACS_DIRECTORY="${HOME}/.config/emacs"
+export USER_EMACS_DIRECTORY
+
 # Erlang (OTP) history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_AFLAGS
@@ -474,20 +478,6 @@ then
     a_k_a v 'vim'
 else
     a_k_a v '${EDITOR}'
-fi
-
-# Emacsclient
-if command_exists emacsclient
-then
-    a_k_a ec 'emacsclient -a ""'
-    a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
-    a_k_a ecf 'emacsclient -a "" -n -c'
-    a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
-    a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
-    a_k_a ed-remove-generated 'rm -v ~/.emacs.d/gui-config.el ~/.emacs.d/config.el'
-    a_k_a ed-restart 'ed-stop ; ed-start'
-    a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
-    a_k_a ed-stop 'ec-kill'
 fi
 
 # Files

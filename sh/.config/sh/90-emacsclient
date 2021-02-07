@@ -1,0 +1,38 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+# Licensed under the GNU GPL v3 License
+
+# Emacsclient
+
+# shellcheck disable=2016
+
+
+if command_exists emacsclient
+then
+    a_k_a ec 'emacsclient -a ""'
+    a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
+    a_k_a ecf 'emacsclient -a "" -n -c'
+    a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
+    a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
+    a_k_a ed-remove-generated 'rm -v ${USER_EMACS_DIRECTORY}/gui-config.el ${USER_EMACS_DIRECTORY}/config.el'
+    a_k_a ed-restart 'ed-stop ; ed-start'
+    a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
+    a_k_a ed-stop 'ec-kill'
+fi
