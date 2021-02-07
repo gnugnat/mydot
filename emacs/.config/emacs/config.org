@@ -153,6 +153,26 @@
     (which-key-mode)
     )
 #+END_SRC
+   Disable suspending Emacs with =C-z= and bind it to undo.
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-z"))
+  (global-set-key (kbd "C-z") 'undo)
+#+END_SRC
+   Zoom with Scroll.
+#+BEGIN_SRC emacs-lisp
+  ;; Control & Scroll Up - Increase
+  (global-set-key [C-mouse-4] 'text-scale-increase)
+  ;; Control & Scroll Down - Decrease
+  (global-set-key [C-mouse-5] 'text-scale-decrease)
+#+END_SRC
+   Some terminals (or connections, ie. mosh) set <end> as <select>.
+   So, if <select> is not bound - bind it to move-end-of-line.
+#+BEGIN_SRC emacs-lisp
+  (if (not (global-key-binding (kbd "<select>")))
+      (global-set-key (kbd "<select>") 'move-end-of-line)
+    )
+#+END_SRC
 ** Minor
    Some small tweaks that don't require packages
 #+BEGIN_SRC emacs-lisp
@@ -191,20 +211,6 @@
   (setq x-select-enable-clipboard-manager nil)
   ;; Highlight parens
   (show-paren-mode t)
-#+END_SRC
-** No suspend key
-   Disable suspending Emacs with =C-z= and bind it to undo
-#+BEGIN_SRC emacs-lisp
-  (global-unset-key (kbd "C-z"))
-  (global-unset-key (kbd "C-x C-z"))
-  (global-set-key (kbd "C-z") 'undo)
-#+END_SRC
-** Zoom with Scroll
-#+BEGIN_SRC emacs-lisp
-  ;; Control & Scroll Up - Increase
-  (global-set-key [C-mouse-4] 'text-scale-increase)
-  ;; Control & Scroll Down - Decrease
-  (global-set-key [C-mouse-5] 'text-scale-decrease)
 #+END_SRC
 
 
