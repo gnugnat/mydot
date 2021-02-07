@@ -29,7 +29,6 @@
 
 
 * Environment
-
 ** Minor
    Some small tweaks that don't require packages
 #+BEGIN_SRC emacs-lisp
