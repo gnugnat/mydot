@@ -76,7 +76,7 @@
     (interactive)
     (find-file (w-u-e-d "config.org"))
     )
-  (global-set-key (kbd "C-= C-c c") 'config-visit)
+  (global-set-key (kbd "C-= C-e c") 'config-visit)
 
   (defun gui-visit ()
     "Edit gui-config.org."
