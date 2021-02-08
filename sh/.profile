@@ -337,6 +337,13 @@ export TEXMFHOME
 TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFVAR
 
+# Wget
+WGETRC="${HOME}/.config/wget/wgetrc"
+[ -f "${WGETRC}" ] && export WGETRC
+mkdir -p "${HOME}/.cache/wget"
+[ -f "${HOME}/.cache/wget/wget-hsts" ] || touch "${HOME}/.cache/wget/wget-hsts"
+chmod 644 "${HOME}/.cache/wget/wget-hsts"
+
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 export XDG_CACHE_HOME
@@ -521,6 +528,7 @@ a_k_a no-net-sh 'unshare -r -n ${SH}'
 a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
 rbind mtr 'mtr --show-ips --curses'
+rbind wget 'wget --hsts-file="${HOME}/.cache/wget/wget-hsts"'
 
 # Other PKG managers
 a_k_a fpk 'flatpak --user'
