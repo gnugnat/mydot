@@ -91,14 +91,10 @@
     "Load config.org at runtime."
     (interactive)
     (when (file-readable-p (w-u-e-d "config.org"))
-      (progn
-        (if (file-exists-p (w-u-e-d "config.el"))
-            (delete-file (w-u-e-d "config.el"))
-          )
-        (org-babel-load-file (expand-file-name (w-u-e-d "config.org" )))
-        )
+      (org-babel-load-file (expand-file-name (w-u-e-d "config.org" )))
       )
     )
+
 
   (defun config-reload ()
     "Reload config.org at runtime."
