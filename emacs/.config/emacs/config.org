@@ -859,10 +859,15 @@
     )
 #+END_SRC
 ** Perl
+   [[https://www.perl.org/][Perl]] language support.
+   + Cperl-Mode:
+     - included with GNU Emacs
 #+BEGIN_SRC emacs-lisp
-  (defalias 'perl-mode 'cperl-mode)
-  (add-hook 'perl-mode-hook 'company-mode)
-  (add-hook 'cperl-mode-hook 'company-mode)
+  (use-package cperl-mode
+    :ensure nil
+    :init
+    (defalias 'perl-mode 'cperl-mode)
+    )
 #+END_SRC
 ** Powershell
    [[https://docs.microsoft.com/en-us/powershell/][Powershell]] language support.
