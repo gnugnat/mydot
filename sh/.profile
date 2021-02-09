@@ -294,6 +294,10 @@ export TERMINFO
 TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
 export TERMINFO_DIRS
 
+# Maxima
+MAXIMA_USERDIR="${HOME}/.config/maxima"
+export MAXIMA_USERDIR
+
 # Node
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
