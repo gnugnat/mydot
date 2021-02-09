@@ -14,14 +14,14 @@
 
 ** Installation
 
-- git clone the repo to ~/mydot
-  =git clone https://gitlab.com/xgqt/mydot ~/mydot=
-- cd to mydot
-- run =./stowdot=
+   - git clone the repo to ~/mydot
+   =git clone https://gitlab.com/xgqt/mydot ~/mydot=
+   - cd to mydot
+   - run =./stowdot=
 
 ** Uninstallation
 
-- run =./stowdot remove=
+   - run =./stowdot remove=
 
 ** Selectivity
 
@@ -43,8 +43,8 @@
 
 ** ZSH
 
-- Run zsh as login shell: =zsh -l=
-- You will be asked which features to enable
+    - Run zsh as login shell: =zsh -l=
+    - You will be asked which features to enable
 
 
 * License
