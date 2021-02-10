@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 
@@ -33,7 +33,7 @@ create new research paper environment
 Options:
     -h  show this help message
 
-Copyright (c) 2021, XGQT
+Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 USAGE
 }
