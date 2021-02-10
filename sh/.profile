@@ -350,15 +350,15 @@ chmod 644 "${HOME}/.cache/wget/wget-hsts"
 
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
-export XDG_CACHE_HOME
+nullwrap mkdir -p "${XDG_CACHE_HOME}" && export XDG_CACHE_HOME
 XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
-export XDG_CONFIG_DIRS
+nullwrap mkdir -p "${XDG_CONFIG_DIRS}" && export XDG_CONFIG_DIRS
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-export XDG_CONFIG_HOME
+nullwrap mkdir -p "${XDG_CONFIG_HOME}" && export XDG_CONFIG_HOME
 XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export XDG_DATA_DIRS
 XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
-export XDG_DATA_HOME
+nullwrap mkdir -p "${XDG_DATA_HOME}" && export XDG_DATA_HOME
 if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
 then
     for _XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
