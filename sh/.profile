@@ -423,7 +423,7 @@ if [ -d "${PLTUSERHOME}/.racket" ]
 then
     # We loop to include all different Racket implementation directories
     # ~/.local/share/racket/.racket/7.0/bin or ~/.local/share/racket/.racket/7.7/bin
-    for racket_bin_dir in $(find "${PLTUSERHOME}/.racket" -name bin -type d)
+    for racket_bin_dir in $(find "${PLTUSERHOME}/.racket" -maxdepth 2 -name bin -type d)
     do
         add_to_path "${racket_bin_dir}"
     done
