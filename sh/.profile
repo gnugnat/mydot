@@ -541,6 +541,7 @@ rbind wget 'wget --hsts-file="${HOME}/.cache/wget/wget-hsts"'
 # Other PKG managers
 a_k_a fpk 'flatpak --user'
 a_k_a fpkup 'flatpak --user update && flatpak --user uninstall --unused'
+a_k_a raco-install 'raco pkg install --jobs $(nproc) --auto --user'
 
 # Portage
 a_k_a B 'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
