@@ -38,9 +38,26 @@ trap 'exit 128' INT
 PATH="${PATH}:${HOME}/.local/bin"
 export PATH
 
+remove=0
+
 
 msg() {
     echo "$(tput bold)${*}$(tput sgr0)"
+}
+
+usage() {
+    cat <<EOF
+Usage: stowdot [OPTION]
+stowdot - stow dotfiles
+
+Options:
+    -h  show avalible options
+    -i  install
+    -r  remove
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
 }
 
 err_msg() {
@@ -58,7 +75,30 @@ exists() {
 }
 
 
-# >>> Needed checks
+# Commandline options
+
+case "${1}"
+in
+    -h | -help | --help | help )
+        usage
+        exit 0
+        ;;
+    -i | --install | -install | install | "" )
+        remove=0
+        msg "Choosing the installation option"
+        ;;
+    -r | --remove | -remove | remove )
+        remove=1
+        msg "Choosing the removal option"
+        ;;
+    * )
+        usage
+        err_msg "Wrong argument: ${1}"
+        ;;
+esac
+
+
+# Needed checks
 
 # check for stow
 if exists stow
@@ -114,7 +154,7 @@ then
 fi
 
 
-# >>> Perform desired Stow action
+# Perform desired Stow action
 
 # then we iterate through everything there
 for target in *
@@ -123,7 +163,7 @@ do
     if [ -d "${target}" ]
     then
         # finally do some work
-        if [ "${1}" = "remove" ]
+        if [ ${remove} -gt 0 ]
         then
             msg "Removing $(tput bold)$target$(tput sgr0)"
             ${stow_impl} -v -t "${HOME}" -D "${target}"
