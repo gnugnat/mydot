@@ -470,7 +470,7 @@ in
         a_k_a ta 'tree -I ".git" -a'
         alias l='ls -A'
         alias ll='ls --color=always -Fahl'
-        rbind ls 'ls --color=auto'
+        rbind ls 'LC_ALL="C" ls --color=auto --group-directories-first'
         rbind tree 'tree -CF'
         ;;
     * )
