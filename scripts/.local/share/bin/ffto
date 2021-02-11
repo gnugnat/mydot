@@ -22,7 +22,7 @@
 
 usage() {
     cat <<EOF
-Usage: ffto FILE FORMAT_EXTENSION
+Usage: ffto FORMAT_EXTENSION FILE
 ffto - convert a given file to the same
        base name but different extension
 
@@ -43,6 +43,7 @@ in
         ;;
     "" )
         echo "ERROR: No arguments passed"
+        echo
         usage
         exit 1
         ;;
@@ -50,19 +51,26 @@ esac
 
 if [ -z "${2}" ]
 then
-    echo "ERROR: Arguments passed: ${2}"
+    echo "ERROR: Arguments passed: ${*}"
     echo "ERROR: Two required"
+    echo
     usage
     exit 1
 fi
 
-if [ ! -f "${1}" ]
-then
-    echo "ERROR: No such file: ${1}"
-    exit 1
-fi
+for file in $(echo "${@}" | sed "s/${1}//")
+do
+    if [ ! -f "${file}" ]
+    then
+        echo "ERROR: No such file: ${file}"
+        exit 1
+    fi
+done
 
 
-file_base="${1%.*}"
+for file in $(echo "${@}" | sed "s/${1}//")
+do
+    file_base="${file%.*}"
 
-ffmpeg -hide_banner -i "${1}" "${file_base}.${2}"
+    ffmpeg -hide_banner -i "${file}" "${file_base}.${1}"
+done
