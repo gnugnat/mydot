@@ -20,6 +20,10 @@
 # Licensed under the GNU GPL v3 License
 
 
+trap 'exit 128' INT
+export PATH
+
+
 usage() {
     cat <<EOF
 Usage: ffto FORMAT_EXTENSION FILE
