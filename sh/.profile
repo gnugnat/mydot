@@ -133,7 +133,7 @@ add_to_path() {
 
 # Are you root?
 am_i_root() {
-    if [ "$(whoami)" = root ]
+    if [ "$(whoami)" = "root" ]
     then
         return 0
     else
@@ -448,7 +448,7 @@ add_to_path "${HOME}/.local/share/bin"
 # NEED_UID0 is used in the following aliases
 # Keep this after adding itens to PATH
 # If we're root we don't need sudo in most cases (covered here)
-if [ "$(whoami)" = "root" ] || [ -n "${EPREFIX}" ]
+if am_i_root || [ -n "${EPREFIX}" ]
 then
     NEED_UID0=""
 else
