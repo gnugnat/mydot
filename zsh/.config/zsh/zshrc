@@ -151,13 +151,6 @@ zc() {
 }
 rbind zc 'noglob zc'
 
-# Completion for kitty
-# https://github.com/kovidgoyal/kitty/blob/3ce04c3e4bb9a7d783f309958706a87102ab641a/kitty/complete.py#L83
-if command_exists kitty
-then
-    kitty + complete setup zsh | source /dev/stdin
-fi
-
 # K - Directory listings for zsh with git features
 # https://github.com/supercrabtree/k
 if ! command_exists k && ! alias k >/dev/null
@@ -172,6 +165,18 @@ source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Z - Quick directory navigation
 source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
 _Z_DATA="${ZCACHEDIR}/z"
+
+
+# >>> Completions
+
+if [ -d "${ZDOTDIR}/completions" ]
+then
+    for _completion in "${ZDOTDIR}/completions"/?*
+    do
+        source_file "${_completion}"
+    done
+    unset _completion
+fi
 
 
 # >>> ZSH tweaks
