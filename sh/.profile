@@ -222,8 +222,10 @@ export PAGER
 
 # CCache directory
 # Exclude root user - breaks ccache in portage
-if ! am_i_root
+if am_i_root
 then
+    unset CCACHE_DIR
+else
     # primary config is then ~/.cache/ccache/ccache.conf
     CCACHE_DIR="${HOME}/.cache/ccache"
     export CCACHE_DIR
@@ -342,8 +344,10 @@ TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFVAR
 
 # Wget settings
-if ! am_i_root
+if am_i_root
 then
+    unset WGETRC
+else
     WGETRC="${HOME}/.config/wget/wgetrc"
     [ -f "${WGETRC}" ] && export WGETRC
     mkdir -p "${HOME}/.cache/wget"
