@@ -105,7 +105,7 @@ step_08() {
 step_09() {
     if command_exists smart-live-rebuild
     then
-        smart-live-rebuild --jobs=2 -- --usepkg-exclude "*"
+        FEATURES="-getbinpkg" PORTAGE_BINHOST="" smart-live-rebuild --jobs=2
     else
         echo "Not found: smart-live-rebuild"
     fi
