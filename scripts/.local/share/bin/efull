@@ -105,7 +105,7 @@ step_08() {
 step_09() {
     if command_exists smart-live-rebuild
     then
-        smart-live-rebuild -j 2
+        smart-live-rebuild --jobs=2 -- --usepkg-exclude "*"
     else
         echo "Not found: smart-live-rebuild"
     fi
