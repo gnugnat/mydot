@@ -128,7 +128,7 @@ cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
 req_dirs="
     ${HOME}/.config/emacs
     ${HOME}/.config/mpd/playlists
-    ${HOME}/.local/share/racket
+    ${HOME}/.local/share/racket/.racket
     ${HOME}/.vnc
 "
 for dir in ${req_dirs}
