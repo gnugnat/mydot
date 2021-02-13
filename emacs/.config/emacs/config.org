@@ -835,6 +835,35 @@
     (setq imaxima-use-maxima-mode-flag t)
     )
 #+END_SRC
+** OCaml
+   [[https://ocaml.org/][OCaml]] language support.
+   + Tuareg:
+     - https://github.com/ocaml/tuareg
+     - https://melpa.org/#/tuareg
+   + Merlin:
+     - https://github.com/ocaml/merlin
+     - https://melpa.org/#/merlin
+#+BEGIN_SRC emacs-lisp
+  (use-package tuareg
+    :ensure t
+    :mode
+    (
+     ("\\.ml\\'" . tuareg-mode)
+     ("\\.mli\\'" . tuareg-mode)
+     ("\\.mlp\\'" . tuareg-mode)
+     )
+    :hook
+    ((caml-mode . tuareg-mode))
+    :config
+    (setq tuareg-match-patterns-aligned t)
+    )
+  ;; FIXME: Not tested
+  (use-package merlin
+    :ensure t
+    :hook
+    ((tuareg-mode . merlin-mode))
+    )
+#+END_SRC
 ** Octave
    [[https://www.gnu.org/software/octave/index][Octave]] support.
    Start the Octave REPL (Inferior Octave) with =run-octave=.
