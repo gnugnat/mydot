@@ -19,9 +19,24 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# KDE Plasma hangs sometimes :(
+
+trap 'exit 128' INT
+export PATH
 
 
-killall -v -w plasmashell
-
-plasmashell >/dev/null 2>&1 &
+for i in "${@}"
+do
+    if pgrep -ax "${i}"
+    then
+        echo ">>> Stopping: ${i}"
+        if killall -vw "${i}"
+        then
+            echo ">>> Starting: ${i}"
+            eval "${i}" >/dev/null 2>&1 &
+        else
+            echo "* ERROR: failed to kill ${i}"
+        fi
+    else
+        echo "* ERROR: ${i} not found"
+    fi
+done
