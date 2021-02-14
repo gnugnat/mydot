@@ -210,15 +210,38 @@ setopt autocd
 # Do not beep
 unsetopt beep
 
+# Hooks
+autoload -U add-zsh-hook
+
+# Change the window title of X terminals
+_term_title() {
+    emulate -L zsh
+    setopt prompt_subst
+
+    local title_string="%n@%m: %~"
+
+    case "${TERM}"
+    in
+        dumb )
+            return
+            ;;
+        ansi | cygwin | putty* | rxvt* | xterm* )
+            # window name
+            print -Pn "\e]2;${title_string}\a"
+            # tab name
+            print -Pn "\e]1;${title_string}\a"
+            ;;
+        tmux* | screen* )
+            # hardstatus
+            print -Pn "\ek${title_string}\e\\"
+            ;;
+    esac
+}
+add-zsh-hook precmd _term_title
+
 # Settings for appropriate terminal
 case "${TERM}"
 in
-    xterm* )
-        # Change the window title of X terminals
-        precmd() {
-            print -Pn "\e]0;${USER}@${HOST}:${PWD/#$HOME/\~}\a"
-        }
-        ;;
     dumb )
         # For some SSH sessions (Emacs)
         unsetopt zle
