@@ -29,8 +29,15 @@
 
 # >>> Common settings
 
+# Source necessary functions
 profile="${HOME}/.profile"
 [ -e "${profile}" ] && source "${profile}"
+
+# Color
+use_color=true
+
+# Hooks
+autoload -U add-zsh-hook
 
 
 # >>> History
@@ -186,33 +193,6 @@ chpwd() {
     ls
 }
 
-# Chmod ZSH cache
-if [ -d "${ZCACHEDIR}" ]
-then
-    for _cache_file in $(find "${ZCACHEDIR}" -type f 2>/dev/null)
-    do
-        chmod 600 "${_cache_file}"
-    done
-    unset _cache_file
-fi
-
-# Color
-use_color=true
-
-# Command Editor
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
-
-# Directory name to change dir
-setopt autocd
-
-# Do not beep
-unsetopt beep
-
-# Hooks
-autoload -U add-zsh-hook
-
 # Change the window title of X terminals
 _term_title() {
     emulate -L zsh
@@ -238,6 +218,27 @@ _term_title() {
     esac
 }
 add-zsh-hook precmd _term_title
+
+# Chmod ZSH cache
+if [ -d "${ZCACHEDIR}" ]
+then
+    for _cache_file in $(find "${ZCACHEDIR}" -type f 2>/dev/null)
+    do
+        chmod 600 "${_cache_file}"
+    done
+    unset _cache_file
+fi
+
+# Command Editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# Directory name to change dir
+setopt autocd
+
+# Do not beep
+unsetopt beep
 
 # Settings for appropriate terminal
 case "${TERM}"
