@@ -22,7 +22,7 @@ python
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
 # Copyright (c) 2015-2020 Andrea Cardaci <cyrus.and@gmail.com>
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
 # Imports ----------------------------------------------------------------------

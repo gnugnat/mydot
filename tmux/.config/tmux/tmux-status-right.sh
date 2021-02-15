@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-# Copyright (c) 2020, XGQT
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the ISC License
 
 # This script doesn't really execute anything else
