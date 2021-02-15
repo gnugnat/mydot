@@ -5,7 +5,9 @@
 #+STARTUP: showall inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
+
 [[./mydot.png]]
+
 
 [[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]] [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:https://img.shields.io/badge/feed-atom-orange.svg]] [[./LICENSE][file:https://img.shields.io/badge/license-GPLv3-blue.svg]]
 
@@ -14,10 +16,22 @@
 
 ** Installation
 
-   - git clone the repo to ~/mydot
-   =git clone https://gitlab.com/xgqt/mydot ~/mydot=
-   - cd to mydot
-   - run =./stowdot=
+*** Manual
+
+#+BEGIN_SRC bash
+  mkdir -p ~/source/public/gitlab.com/xgqt
+  cd ~/source/public/gitlab.com/xgqt
+  git clone --recursive --verbose "https://gitlab.com/xgqt/mydot"
+  cd mydot
+  bash ./stowdot
+#+END_SRC
+
+*** Bootstrap from network
+
+#+BEGIN_SRC bash
+  curl "https://gitlab.com/xgqt/mydot/-/raw/master/bootstrap.sh" | bash
+#+END_SRC
+
 
 ** Uninstallation
 
@@ -25,8 +39,8 @@
 
 ** Selectivity
 
-   You can install/delete configs selectivitely.
-   First change directory to mydot (=cd ~/mydot=).
+   You can install/delete configs selectively.
+   First change directory to =mydot=.
    Remember to create needed directories to avoid conflicts:
    - =$HOME/.config=        - for your users config files
    - =$HOME/.config/emacs=  - for Emacs
@@ -53,20 +67,22 @@
 
 ** Unless otherwise stated contents here are under the GNU GPL v3 license
 
-   This file is part of mydot.
+#+BEGIN_QUOTE
+  This file is part of mydot.
 
-   mydot is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  mydot is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-   mydot is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  mydot is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-   Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
-   Licensed under the GNU GPL v3 License
+  Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+  Licensed under the GNU GPL v3 License
+#+END_QUOTE
