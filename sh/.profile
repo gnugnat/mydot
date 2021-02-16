@@ -253,6 +253,10 @@ export ERL_AFLAGS
 GOPATH="${HOME}/.local/share/go"
 export GOPATH
 
+# GTK settings
+GTK_USE_PORTAL=1
+export GTK_USE_PORTAL
+
 # Guile history file
 GUILE_HISTORY="${HOME}/.cache/guile/history"
 export GUILE_HISTORY
