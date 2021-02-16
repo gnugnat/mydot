@@ -231,14 +231,15 @@ else
     export CCACHE_DIR
 fi
 
-# Conan
-CONAN_COLOR_DARK="1"
+# Conan settings
+CONAN_COLOR_DARK=1
 export CONAN_COLOR_DARK
 CONAN_USER_HOME="${HOME}/.local/share/conan"
 export CONAN_USER_HOME
 
-# .NET don't spy on me! Can you at least do that?
-DOTNET_CLI_TELEMETRY_OPTOUT="1"
+# .NET settings
+# don't spy on me! Can you at least do that?
+DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_CLI_TELEMETRY_OPTOUT
 
 # Emacs (for now used only by the shell)
@@ -271,7 +272,7 @@ export IPYTHONDIR
 JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
-# Java
+# Java (miscellaneous tools settings)
 # Gradle TODO: maybe switch to ~/.local/share
 GRADLE_USER_HOME="${HOME}/.cache/gradle"
 export GRADLE_USER_HOME
@@ -294,17 +295,17 @@ export DVDCSS_CACHE
 MEDNAFEN_HOME="${HOME}/.config/mednafen"
 export MEDNAFEN_HOME
 
-# NCurses
+# NCurses directories
 TERMINFO="${HOME}/.local/share/terminfo"
 export TERMINFO
 TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
 export TERMINFO_DIRS
 
-# Maxima
+# Maxima directory
 MAXIMA_USERDIR="${HOME}/.config/maxima"
 export MAXIMA_USERDIR
 
-# Node
+# Node files
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
@@ -339,7 +340,7 @@ export HISTFILE
 HISTSIZE=50000
 export HISTSIZE
 
-# TeX
+# TeX directories
 TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
 export TEXMFCONFIG
 TEXMFHOME="${HOME}/.local/share/texlive/texmf"
