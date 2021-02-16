@@ -14,6 +14,21 @@
 
 * Howto
 
+** Dependencies
+
+   You will need:
+#+BEGIN_SRC bash
+  bash
+  busybox
+  git
+  make
+#+END_SRC
+
+   Optionally you will need a stow implementation, any of:
+   - [[https://www.gnu.org/software/stow/][stow]]
+   - [[http://xstow.sourceforge.net/][xstow]]
+   - [[https://gitlab.com/xgqt/pystow/][pystow]] or python3 (pystow will be installed by =make= if no other stow implementation is found)
+
 ** Installation
 
 *** Manual
