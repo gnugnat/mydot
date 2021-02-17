@@ -255,8 +255,11 @@ GOPATH="${HOME}/.local/share/go"
 export GOPATH
 
 # GTK settings
-GTK_USE_PORTAL=1
-export GTK_USE_PORTAL
+if [ -f "${EPREFIX}/usr/libexec/xdg-desktop-portal" ]
+then
+    GTK_USE_PORTAL=1
+    export GTK_USE_PORTAL
+fi
 
 # Guile history file
 GUILE_HISTORY="${HOME}/.cache/guile/history"
