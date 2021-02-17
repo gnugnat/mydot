@@ -938,7 +938,8 @@
     )
 #+END_SRC
 ** R
-   [[https://www.r-project.org/][R]] language support
+   [[https://www.r-project.org/][R]] language support.
+   Run ESS's R lang REPL with =run-ess-r=.
    + Ess:
      - https://github.com/emacs-ess/ESS
      - https://melpa.org/#/ess
