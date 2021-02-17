@@ -58,6 +58,7 @@
    | C-= M-s         | magit-status                  |
    | C-= a           | org-agenda                    |
    | C-= d           | dired-sidebar-toggle-sidebar  |
+   | C-= e           | prefix for treemacs commands  |
    | C-= i           | org-insert-structure-template |
    | C-= r           | toggle-transparency           |
    | C-= s           | sr-speedbar-toggle            |
@@ -1324,5 +1325,41 @@
     :config
     ;; TODO: add auto-installer
     (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+    )
+#+END_SRC
+** Treemacs
+   File tree project explorer.
+   + Treemacs:
+     - https://github.com/Alexander-Miller/treemacs
+     - https://melpa.org/#/treemacs
+#+BEGIN_SRC emacs-lisp
+  (use-package treemacs
+    :ensure t
+    :bind
+    (:map
+     my-keymap
+     ("e 1"   . treemacs-delete-other-windows)
+     ("e B"   . treemacs-bookmark)
+     ("e C-t" . treemacs-find-file)
+     ("e M-t" . treemacs-find-tag)
+     ("e e"   . treemacs)
+     )
+    :config
+    (progn
+      (setq
+       treemacs-follow-after-init t
+       treemacs-no-png-images t
+       treemacs-position 'left
+       )
+      (treemacs-follow-mode t)
+      )
+    )
+  (use-package treemacs-projectile
+    :after (treemacs projectile)
+    :ensure t
+    )
+  (use-package treemacs-magit
+    :after (treemacs magit)
+    :ensure t
     )
 #+END_SRC
