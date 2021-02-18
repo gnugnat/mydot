@@ -20,6 +20,9 @@
 # Licensed under the GNU GPL v3 License
 
 
+image: alpine:latest
+
+
 variables:
    GIT_SUBMODULE_STRATEGY: "recursive"
    TERM: "dumb"
@@ -37,7 +40,6 @@ stages:
 # Alpine repository now.
 
 test:
-  image: debian:stable-slim
   stage: test
 
   before_script:
@@ -53,7 +55,6 @@ test:
 # FIXME: Do we need to install mydot in this stage?
 
 emacs:
-  image: alpine:latest
   stage: emacs
 
   before_script:
