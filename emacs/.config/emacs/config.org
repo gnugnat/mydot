@@ -1359,3 +1359,64 @@
     :ensure t
     )
 #+END_SRC
+
+
+* Games
+** Built-in
+   [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Amusements.html][47 Games and Other Amusements]]
+** 2048
+   + 2048-Game:
+     - https://github.com/emacsmirror/2048-game
+     - https://hg.sr.ht/~zck/game-2048
+     - https://melpa.org/#/2048-game
+#+BEGIN_SRC emacs-lisp
+  (use-package 2048-game
+    :ensure t
+    :defer t
+    :commands (2048-game)
+    )
+#+END_SRC
+** Jumblr
+   + Jumblr:
+     - https://github.com/mkmcc/jumblr
+     - https://melpa.org/#/jumblr
+#+BEGIN_SRC emacs-lisp
+  (use-package jumblr
+    :ensure t
+    :defer t
+    :commands (jumblr)
+    )
+#+END_SRC
+** Minesweeper
+   + Minesweeper:
+     - https://melpa.org/#/minesweeper
+     - https://hg.sr.ht/~zck/minesweeper
+#+BEGIN_SRC emacs-lisp
+  (use-package minesweeper
+    :ensure t
+    :defer t
+    :commands (minesweeper)
+    )
+#+END_SRC
+** Sudoku
+   + Sudoku:
+     - https://github.com/zevlg/sudoku.el
+     - https://melpa.org/#/sudoku
+#+BEGIN_SRC emacs-lisp
+  (use-package sudoku
+    :ensure t
+    :defer t
+    :commands (sudoku)
+    )
+#+END_SRC
+** The Typing of Emacs
+   + Typing:
+     - https://github.com/kensanata/typing
+     - https://melpa.org/#/typing
+     - https://www.emacswiki.org/emacs/TypingOfEmacs
+#+BEGIN_SRC emacs-lisp
+  (use-package typing
+    :ensure t
+    :defer t
+    )
+#+END_SRC
