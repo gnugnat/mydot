@@ -37,10 +37,7 @@ in
 esac
 
 
-# Go to mydot source
-mydot_source="$(dirname "$(realpath "${0}")")"
-cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
-
+cd "$(dirname "$(realpath "${0}")")" || exit 1
 
 for dir in *
 do
