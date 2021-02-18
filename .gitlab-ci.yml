@@ -21,12 +21,8 @@
 
 
 variables:
-   FEATURES: "getbinpkg"
    GIT_SUBMODULE_STRATEGY: "recursive"
-   MAKEOPTS: "--jobs=10"
-   PORTAGE_BINHOST: "https://xgqt.gitlab.io/gentoo-mini-mirror/binpkgs"
    TERM: "dumb"
-   USE: "-perl"
 
 
 stages:
