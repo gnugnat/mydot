@@ -45,7 +45,10 @@ test-guile:
 	mkdir -p ~/.cache/guile/ccache
 	find ./guile -type f -exec guile {} \;
 
+test-racket:
+	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
+
 test-shellcheck:
 	sh ./shellcheck.sh
 
-test:	test-emacs	test-guile	test-shellcheck
+test:	test-emacs	test-guile	test-racket	test-shellcheck
