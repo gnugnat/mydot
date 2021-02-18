@@ -37,7 +37,10 @@ in
 esac
 
 
-cd "$(basename "${0}")" || exit 1
+# Go to mydot source
+mydot_source="$(dirname "$(realpath "${0}")")"
+cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
+
 
 for dir in *
 do
