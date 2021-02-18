@@ -85,11 +85,20 @@
 
 ;;; Load other custom components
 
-;; This is the actual config file. It is omitted if it doesn't exist so emacs won't refuse to launch.
-(when (file-readable-p (w-u-e-d "config.org"))
-  (org-babel-load-file
-   (expand-file-name (w-u-e-d "config.org"))
-   )
+;; This is the actual config file.
+;; It is omitted if it doesn't exist so emacs won't refuse to launch.
+(if (file-readable-p (w-u-e-d "config.org"))
+    (org-babel-load-file
+     (expand-file-name (w-u-e-d "config.org"))
+     )
+  ;; If not in user-emacs-directory, then
+  ;; try to laod it from current directory.
+  ;; I added this for GitLab CI.
+  (if (file-readable-p "config.org")
+      (org-babel-load-file
+       (expand-file-name "config.org")
+       )
+    )
   )
 
 ;; Set path to store "custom-set"
