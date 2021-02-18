@@ -57,7 +57,7 @@ bootstrap:
 
   before_script:
     - apk update
-    - apk add git make stow
+    - apk add git make ncurses stow
 
   script:
     - sh ./bootstrap.sh
