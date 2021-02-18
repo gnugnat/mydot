@@ -31,11 +31,10 @@ variables:
 stages:
   - test
   - emacs
-  - bootstrap
   - install
 
 
-# Shellcheck Stage - Debian
+# Test - Debian
 # We use Debian because 'shellcheck' is not in the main
 # Alpine repository now.
 
@@ -51,7 +50,7 @@ test:
     - make test
 
 
-# Emacs Stage - Alpine
+# Emacs - Alpine
 # This stage loads the Emacs configuration files.
 
 emacs:
@@ -69,13 +68,14 @@ emacs:
     - emacs --batch --no-init --load ./init.el
 
 
-# Bootstrap Stage - Alpine
+# Bootstrap - Alpine
 # This stage is primarily for checking if the 'bootstrap.sh'
 # script works. We do not use curl here (as README suggests)
 # because the repository where the script is may change.
 
 bootstrap:
-  stage: bootstrap
+  stage: install
+  needs: ["test"]
 
   before_script:
     - apk update
@@ -85,7 +85,7 @@ bootstrap:
     - sh ./bootstrap.sh
 
 
-# Install Stage - Gentoo
+# Make-Install - Gentoo
 # We test if we can run 'make install' on default Gentoo
 # image (made from stage3).
 # We do not install 'stow' - 'pystow' will be automatically
@@ -96,9 +96,10 @@ bootstrap:
 # repository initialized (by the GitLab CI) and we can
 # use the preinstalled 'wget' to install pystow.
 
-install:
+make-install:
   image: gentoo/stage3-amd64:latest
   stage: install
+  needs: ["test"]
 
   script:
     - make install
