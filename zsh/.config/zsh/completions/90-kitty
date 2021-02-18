@@ -22,6 +22,8 @@
 # Completions for kitty
 # https://github.com/kovidgoyal/kitty/blob/3ce04c3e4bb9a7d783f309958706a87102ab641a/kitty/complete.py#L83
 
+# shellcheck disable=1091
+
 
 if command_exists kitty
 then

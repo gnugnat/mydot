@@ -19,24 +19,39 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
+# shellcheck disable=2086
+
 
 exit_result=0
-files="$(grep -R --exclude-dir='.git' --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
+
+# Standard shell / bash files
+s_files="$(grep -R --exclude-dir='.git' --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
+
+# ZSH files
+z_files="$(grep -R --exclude-dir='.git' --exclude-dir='plugins' --exclude="*.zsh-theme" '^#!/.*zsh$' 2>/dev/null | cut -d ':' -f 1)"
 
 
-for i in ${files}
-do
-    echo "File ${i}... checking"
-    if shellcheck "${i}"
-    then
-        echo "    file is correct"
-    else
-        echo "    there were errors found in the file"
-        exit_result=1
-    fi
-    echo "File ${i}... done"
-    echo
-done
+check_files() {
+    for i in "${@}"
+    do
+        echo "File ${i}... checking"
+        if ${command} "${i}"
+        then
+            echo "    file is correct"
+        else
+            echo "    there were errors found in the file"
+            exit_result=1
+        fi
+        echo "File ${i}... done"
+        echo
+    done
+}
+
+command="shellcheck"
+check_files ${s_files}
+
+command="shellcheck --shell=bash"
+check_files ${z_files}
 
 if [ ${exit_result} = 0 ]
 then

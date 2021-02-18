@@ -26,6 +26,8 @@
 # /___|_|\___/ \__, |_|_| |_|
 #              |___/
 
+# shellcheck disable=1090
+
 
 # ZDOTDIR Warning
 [ ! -d "${ZDOTDIR}" ] && echo "!!!Warning!!! No ${ZDOTDIR} found!!!"

@@ -22,6 +22,8 @@
 # Based on:
 # https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete
 
+# shellcheck disable=2034
+
 
 _dotnet_zsh_complete() {
     local completions=( "$(dotnet complete "${words}")" )

@@ -20,4 +20,5 @@
 # Licensed under the GNU GPL v3 License
 
 
-(fortune 2>/dev/null || zsh --version) | cowsay -f $ZDOTDIR/extra/larry.cow 2>/dev/null
+( fortune 2>/dev/null || zsh --version ) \
+    | cowsay -f "${ZDOTDIR}/extra/larry.cow" 2>/dev/null

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 
 # This file is part of mydot.
@@ -22,15 +22,16 @@
 
 if [ -z "${ZDOTDIR}" ]; then echo "No ZDOTDIR set, exiting..."; exit 1 ; fi
 
-ls "${ZDOTDIR}/themes" | nl
 
-echo "choose a tty theme"
-read _tty_zsh_theme
-echo "choose a emulator theme"
-read _emu_zsh_tmeme
+( cd "${ZDOTDIR}/themes" && ls ) | nl
 
-ln -sf $(echo "${ZDOTDIR}/themes"/* | cut -d" " -f"${_tty_zsh_theme}") "${ZDOTDIR}/tty.zsh-theme"
-ln -sf $(echo "${ZDOTDIR}/themes"/* | cut -d" " -f"${_emu_zsh_tmeme}") "${ZDOTDIR}/emu.zsh-theme"
+printf "Choose a tty theme ... "
+read -r _tty_zsh_theme
+printf "Choose a emulator theme ... "
+read -r _emu_zsh_tmeme
+
+ln -sf "$(echo "${ZDOTDIR}/themes"/* | cut -d" " -f"${_tty_zsh_theme}")" "${ZDOTDIR}/tty.zsh-theme"
+ln -sf "$(echo "${ZDOTDIR}/themes"/* | cut -d" " -f"${_emu_zsh_tmeme}")" "${ZDOTDIR}/emu.zsh-theme"
 
 unset _tty_zsh_theme
 unset _emu_zsh_tmeme

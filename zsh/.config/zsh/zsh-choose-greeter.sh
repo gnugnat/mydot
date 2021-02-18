@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 
 # This file is part of mydot.
@@ -22,11 +22,12 @@
 
 if [ -z "${ZDOTDIR}" ]; then echo "No ZDOTDIR set, exiting..."; exit 1 ; fi
 
-ls "${ZDOTDIR}/greeters" | nl
 
-echo "choose a greeter"
-read _greeter
+( cd "${ZDOTDIR}/greeters" && ls ) | nl
 
-ln -sf $(echo "${ZDOTDIR}/greeters"/* | cut -d" " -f"${_greeter}") "${ZDOTDIR}/zsh-greeter"
+printf "Choose a greeter ... "
+read -r _greeter
+
+ln -sf "$(echo "${ZDOTDIR}/greeters"/* | cut -d" " -f"${_greeter}")" "${ZDOTDIR}/zsh-greeter"
 
 unset _greeter
