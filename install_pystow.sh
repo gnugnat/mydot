@@ -25,11 +25,21 @@ export PATH
 set -e
 
 
-for c in git make mktemp python3
-do
-    if ! command -v "${c}"
+command_exists() {
+    if command -v "${1}" >/dev/null 2>&1
     then
-        echo "ERROR: No ${c} found"
+        return 0
+    else
+        return 1
+    fi
+}
+
+
+for i in make mktemp python3
+do
+    if ! command_exists "${i}"
+    then
+        echo "ERROR: No ${i} found"
         exit 1
     fi
 done
@@ -37,7 +47,19 @@ done
 
 cd "$(mktemp -d)"
 
-git clone --verbose --recursive https://gitlab.com/xgqt/pystow
-cd ./pystow
 
+if command_exists git
+then
+    git clone --verbose --recursive "https://gitlab.com/xgqt/pystow"
+elif command_exists wget
+then
+    wget "https://gitlab.com/xgqt/pystow/-/archive/master/pystow-master.tar.gz"
+    tar fx ./*.tar.gz
+    mv ./pystow-master ./pystow
+else
+    echo "ERROR: No git and/or wget found"
+    exit 1
+fi
+
+cd ./pystow
 make install

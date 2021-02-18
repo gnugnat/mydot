@@ -69,11 +69,5 @@ install:
   image: gentoo/stage3-amd64:latest
   stage: install
 
-  before_script:
-    - mkdir -p /var/cache/distfiles
-    - mkdir -p /var/db/repos/gentoo
-    - time emerge-webrsync
-
   script:
-    - emerge -1nq "dev-vcs/git"
     - make install
