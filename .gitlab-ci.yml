@@ -53,21 +53,20 @@ test:
 
 # Emacs Stage - Alpine
 # This stage loads the Emacs configuration files.
-# FIXME: Do we need to install mydot in this stage?
 
 emacs:
   stage: emacs
 
   before_script:
     - apk update
-    - apk add emacs make ncurses stow
+    - apk add emacs
     - mkdir -p ~/.config/emacs
     - mkdir -p ~/Documents
     - touch ~/Documents/todo.org
-    - make install
 
   script:
-    - emacs --batch --load ~/.config/emacs/init.el
+    - cd ./emacs/.config/emacs
+    - emacs --batch --no-init --load ./init.el
 
 
 # Bootstrap Stage - Alpine
