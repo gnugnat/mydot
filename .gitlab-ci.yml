@@ -27,6 +27,7 @@ variables:
 
 stages:
   - shellcheck
+  - emacs
   - bootstrap
   - install
 
@@ -45,6 +46,24 @@ shellcheck:
 
   script:
     - make test
+
+
+# Emacs Stage - Alpine
+# This stage loads the Emacs configuration files.
+# FIXME: Do we need to install mydot in this stage?
+
+emacs:
+  image: alpine:latest
+  stage: emacs
+
+  before_script:
+    - apk update
+    - apk add emacs ncurses stow
+    - mkdir -p ~/.config/emacs
+    - make install
+
+  script:
+    - emacs --batch --load ~/.config/emacs/init.el
 
 
 # Bootstrap Stage - Alpine
