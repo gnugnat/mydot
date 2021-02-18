@@ -487,6 +487,7 @@ esac
 if command_exists emacs
 then
     a_k_a e 'emacs -nw'
+    a_k_a em 'emacs'
 else
     a_k_a e '${EDITOR}'
 fi
