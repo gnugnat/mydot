@@ -20,9 +20,6 @@
 # Licensed under the GNU GPL v3 License
 
 
-image: gentoo/stage3-amd64:latest
-
-
 variables:
    FEATURES: "getbinpkg"
    GIT_SUBMODULE_STRATEGY: recursive
@@ -33,24 +30,50 @@ variables:
 
 
 stages:
-  - shcheck
+  - shellcheck
+  - bootstrap
   - install
 
 
-before_script:
-  - mkdir -p /var/cache/distfiles
-  - mkdir -p /var/db/repos/gentoo
-  - time emerge-webrsync
+# Shellcheck Stage - Debian
 
+shellcheck:
+  image: debian:stable-slim
+  stage: shellcheck
 
-shcheck:
-  stage: shcheck
+  before_script:
+    - apt-get update
+    - apt-get install -y make shellcheck
+
   script:
-    - emerge -1nq "dev-util/shellcheck-bin"
     - make test
 
+
+# Bootstrap Stage - Alpine
+
+bootstrap:
+  image: alpine:latest
+  stage: bootstrap
+
+  before_script:
+    - apk update
+    - apk insatll git make stow
+
+  script:
+    - sh ./bootstrap.sh
+
+
+# Install Stage - Gentoo
+
 install:
+  image: gentoo/stage3-amd64:latest
   stage: install
+
+  before_script:
+    - mkdir -p /var/cache/distfiles
+    - mkdir -p /var/db/repos/gentoo
+    - time emerge-webrsync
+
   script:
     - emerge -1nq "dev-vcs/git"
     - make install
