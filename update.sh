@@ -28,7 +28,7 @@ set -e
 
 
 # Go to mydot source
-cd "$(dirname "${0}")"
+cd "$(dirname "$(realpath "${0}")")"
 
 sh ./stowdot remove
 
@@ -38,4 +38,4 @@ git submodule update --init
 
 sh ./stowdot
 
-echo "mydot updated"
+echo ">>> mydot updated"
