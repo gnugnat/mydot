@@ -24,17 +24,19 @@ Upgrade python packages installed with pip under the active user.
 """
 
 
+import importlib
 import subprocess
 
 
 try:
-    import pip
+    importlib.import_module("pip")
 except ImportError:
     import sys
     sys.exit("No pip on the system!")
 
 
 def main():
+    """Main function."""
 
     pkgs = eval(str(subprocess.run(
         "pip list --user --outdated --format=json",
@@ -42,7 +44,7 @@ def main():
         stdout=subprocess.PIPE).stdout, encoding='utf-8'))
 
     for pkg in pkgs:
-        print("upgrading", pkg['name'])
+        print(">>> Upgrading", pkg['name'])
         subprocess.run(
             "pip install --user --upgrade " + pkg['name'],
             shell=True, check=True)
