@@ -58,7 +58,7 @@ emacs:
 
   before_script:
     - apk update
-    - apk add emacs ncurses stow
+    - apk add emacs make ncurses stow
     - mkdir -p ~/.config/emacs
     - make install
 
