@@ -19,6 +19,8 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
+# shellcheck disable=1117
+
 
 trap 'exit 128' INT
 export PATH

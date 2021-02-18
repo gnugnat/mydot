@@ -45,9 +45,8 @@ b_d="${1:-build}"
 [ -e "./${b_d}" ] && rm -r "./${b_d}"
 
 mkdir "./${b_d}"
-cd "./${b_d}"
-
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
-
-cd ..
+(
+    cd "./${b_d}"
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+)
 ln -s "./${b_d}/${c_c}" .

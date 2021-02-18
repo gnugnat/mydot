@@ -21,7 +21,7 @@
 
 # Space Invaders in terminal colors
 
-# shellcheck disable=2034,2086,2154
+# shellcheck disable=1117,2034,2086,2154
 
 
 bold=$'\e[1m'

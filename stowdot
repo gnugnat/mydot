@@ -30,6 +30,8 @@
 #  _|  _| | |  __/\__ \
 # (_)_| |_|_|\___||___/
 
+# shellcheck disable=2039
+
 
 trap 'exit 128' INT
 
