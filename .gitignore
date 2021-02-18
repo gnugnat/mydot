@@ -30,21 +30,25 @@
 *_archive
 *~
 ,*
-.zcalc_history
-.zcompdump
-.zhistory
 .~lock.*
 /.fetch/
 /.idea/
 /.vscode/
-/build/
-/dist/
-/target/
 __pycache__/
 _build/
+build/
+
+# Emacs
+emacs/.config/emacs/config.el
+emacs/.config/emacs/gui-config.el
 
 # Octave
 octave-workspace
+
+# ZSH
+.zcalc_history
+.zcompdump
+.zhistory
 
 # ZSH modal configuration
 zsh/.config/zsh/emu.zsh-theme
