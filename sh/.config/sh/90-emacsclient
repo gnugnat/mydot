@@ -26,13 +26,47 @@
 
 if command_exists emacsclient
 then
-    a_k_a ec 'emacsclient -a ""'
-    a_k_a ec-kill 'pkill -u "${USER}" -e emacsclient ; emacsclient -n --eval "(kill-emacs)"'
-    a_k_a ecf 'emacsclient -a "" -n -c'
-    a_k_a ecg 'emacsclient -a "" -n -c --eval "(gui-reload)"'
-    a_k_a ed-reload 'ed-remove-generated ; emacsclient --eval "(config-reload)"'
-    a_k_a ed-remove-generated 'rm -v ${USER_EMACS_DIRECTORY}/gui-config.el ${USER_EMACS_DIRECTORY}/config.el'
-    a_k_a ed-restart 'ed-stop ; ed-start'
-    a_k_a ed-start 'ed-remove-generated ; emacs --daemon'
-    a_k_a ed-stop 'ec-kill'
+    unalias emd >/dev/null 2>&1
+
+    # TUI
+    alias emc='emacsclient -a ""'
+    a_k_a emct 'emc -nw'
+
+    # GUI
+    a_k_a emcf 'emc -n -c'
+    a_k_a emcg 'emc -n -c --eval "(gui-load)"'
+
+    emd() {
+        case "${1}"
+        in
+            rmel | remove-el | remove-generated )
+                echo "Removing generated configuration files..."
+                rm "${USER_EMACS_DIRECTORY}/gui-config.el"
+                rm "${USER_EMACS_DIRECTORY}/config.el"
+                ;;
+            reload )
+                echo "Relaoding..."
+                emd rmel
+                emacsclient -n --eval "(config-load)"
+                ;;
+            "" | start )
+                echo "Starting..."
+                emd rmel
+                emacs --daemon
+                ;;
+            stop )
+                echo "Stopping..."
+                emacsclient -n --eval "(kill-emacs)"
+                ;;
+            restart )
+                echo "Restarting..."
+                emd stop
+                emd start
+                ;;
+            * )
+                echo "Use: rmel | relaod | start | stop | restart"
+                return 1
+                ;;
+        esac
+    }
 fi
