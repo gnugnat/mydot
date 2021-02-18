@@ -40,6 +40,7 @@ stages:
 # Alpine repository now.
 
 test:
+  image: debian:stable-slim
   stage: test
 
   before_script:
@@ -75,7 +76,6 @@ emacs:
 # because the repository where the script is may change.
 
 bootstrap:
-  image: alpine:latest
   stage: bootstrap
 
   before_script:
