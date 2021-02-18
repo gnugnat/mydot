@@ -65,6 +65,22 @@ emacs:
     - emacs --batch --no-init --load ./init.el
 
 
+# Guile - Alpine
+# Test the loading of Guile configuration files.
+# TODO: Maybe use a GuixSD image?
+
+guile:
+  stage: test
+
+  before_script:
+    - apk update
+    - apk add guile
+    - mkdir -p ~/.cache/guile/ccache
+
+  script:
+    - find ./guile -type f -exec guile {} \;
+
+
 # Bootstrap - Alpine
 # This stage is primarily for checking if the 'bootstrap.sh'
 # script works. We do not use curl here (as README suggests)
