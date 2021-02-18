@@ -121,7 +121,8 @@ fi
 msg "Stow implementation: ${stow_impl}"
 
 # Go to mydot source
-cd "$(dirname "${0}")" || err_msg "Can't cd into $(basename "${0}")"
+mydot_source="$(dirname "$(realpath "${0}")")"
+cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
 
 # check needed directories
 req_dirs="
