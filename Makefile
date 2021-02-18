@@ -27,7 +27,6 @@ all:
 dependencies:
 	sh -c "command -v stow || command -v xstow || command -v pyystow || sh ./install_pystow.sh"
 
-
 install:	dependencies
 	sh ./stowdot
 
@@ -36,5 +35,17 @@ uninstall:
 	sh ./stowdot remove
 
 
-test:
-	sh ./test.sh
+test-emacs:
+	mkdir -p ~/.config/emacs
+	mkdir -p ~/Documents
+	touch ~/Documents/todo.org
+	cd ./emacs/.config/emacs && emacs --batch --no-init --load ./init.el
+
+test-guile:
+	mkdir -p ~/.cache/guile/ccache
+	find ./guile -type f -exec guile {} \;
+
+test-shellcheck:
+	sh ./shellcheck.sh
+
+test:	test-emacs	test-guile	test-shellcheck

@@ -33,18 +33,9 @@ stages:
   - install
 
 
-# Make-Test - Alpine
-# Run tests from the 'Makefile'.
-
-make-test:
-  stage: test
-
-  before_script:
-    - apk update
-    - apk add make shellcheck
-
-  script:
-    - make test
+before_script:
+  - apk update
+  - apk add make
 
 
 # Emacs - Alpine
@@ -53,16 +44,9 @@ make-test:
 emacs:
   stage: test
 
-  before_script:
-    - apk update
-    - apk add emacs
-    - mkdir -p ~/.config/emacs
-    - mkdir -p ~/Documents
-    - touch ~/Documents/todo.org
-
   script:
-    - cd ./emacs/.config/emacs
-    - emacs --batch --no-init --load ./init.el
+    - apk add emacs
+    - make test-emacs
 
 
 # Guile - Alpine
@@ -72,13 +56,20 @@ emacs:
 guile:
   stage: test
 
-  before_script:
-    - apk update
+  script:
     - apk add guile
-    - mkdir -p ~/.cache/guile/ccache
+    - make test-guile
+
+
+# Shellcheck - Alpine
+# Check shell scripts with 'shellcheck'.
+
+shellcheck:
+  stage: test
 
   script:
-    - find ./guile -type f -exec guile {} \;
+    - apk add shellcheck
+    - make test-shellcheck
 
 
 # Bootstrap - Alpine
@@ -88,13 +79,10 @@ guile:
 
 bootstrap:
   stage: install
-  needs: ["make-test"]
-
-  before_script:
-    - apk update
-    - apk add git make ncurses stow
+  needs: ["shellcheck"]
 
   script:
+    - apk add git ncurses stow
     - sh ./bootstrap.sh
 
 
@@ -112,7 +100,10 @@ bootstrap:
 make-install:
   image: gentoo/stage3-amd64:latest
   stage: install
-  needs: ["make-test"]
+  needs: ["shellcheck"]
+
+  before_script:
+    - sh ./remove_blockers.sh
 
   script:
     - make install
