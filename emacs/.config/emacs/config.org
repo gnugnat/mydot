@@ -91,11 +91,8 @@
   (defun config-load ()
     "Load config.org at runtime."
     (interactive)
-    (when (file-readable-p (w-u-e-d "config.org"))
-      (org-babel-load-file (expand-file-name (w-u-e-d "config.org" )))
-      )
+    (load-user-or-current "config.org")
     )
-
 
   (defun config-reload ()
     "Reload config.org at runtime."
@@ -114,9 +111,7 @@
   (defun gui-load ()
     "Load gui-config.org at runtime."
     (interactive)
-    (when (file-readable-p (w-u-e-d "gui-config.org"))
-      (org-babel-load-file (expand-file-name (w-u-e-d "gui-config.org")))
-      )
+    (load-user-or-current "gui-config.org")
     )
 
   (defun gui-reload ()

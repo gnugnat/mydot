@@ -74,7 +74,12 @@
   )
 
 
-;;; User's Emacs directory
+;;; Functions for loading components
+
+(defun load-org-file (file)
+  "Load a org FILE into the running Emacs."
+  (org-babel-load-file (expand-file-name file))
+  )
 
 (defun with-user-emacs-directory (file)
   "Return a path to FILE prepended with 'user-emacs-directory'."
@@ -82,27 +87,24 @@
   )
 (defalias 'w-u-e-d 'with-user-emacs-directory)
 
+(defun load-user-or-current (file)
+  "Load FILE that is found in 'user-emacs-directory' or current directory."
+  (if (file-readable-p (w-u-e-d file))
+      (load-org-file (w-u-e-d file))
+    (if (file-readable-p file)
+      (load-org-file file)
+      )
+    )
+  )
+
 
 ;;; Load other custom components
 
 ;; This is the actual config file.
 ;; It is omitted if it doesn't exist so emacs won't refuse to launch.
-(if (file-readable-p (w-u-e-d "config.org"))
-    (org-babel-load-file
-     (expand-file-name (w-u-e-d "config.org"))
-     )
-  ;; If not in user-emacs-directory, then
-  ;; try to laod it from current directory.
-  ;; I added this for GitLab CI.
-  (if (file-readable-p "config.org")
-      (org-babel-load-file
-       (expand-file-name "config.org")
-       )
-    )
-  )
+(load-user-or-current "config.org")
 
 ;; Set path to store "custom-set"
-
 (setq custom-file (w-u-e-d "emacs-custom.el"))
 
 
