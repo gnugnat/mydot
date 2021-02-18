@@ -22,7 +22,7 @@
 
 variables:
    FEATURES: "getbinpkg"
-   GIT_SUBMODULE_STRATEGY: recursive
+   GIT_SUBMODULE_STRATEGY: "recursive"
    MAKEOPTS: "--jobs=10"
    PORTAGE_BINHOST: "https://xgqt.gitlab.io/gentoo-mini-mirror/binpkgs"
    TERM: "dumb"
@@ -36,6 +36,8 @@ stages:
 
 
 # Shellcheck Stage - Debian
+# We use Debian because 'shellcheck' is not in the main
+# Alpine repository now.
 
 shellcheck:
   image: debian:stable-slim
@@ -50,6 +52,9 @@ shellcheck:
 
 
 # Bootstrap Stage - Alpine
+# This stage is primarily for checking if the 'bootstrap.sh'
+# script works. We do not use curl here (as README suggests)
+# because the repository where the script is may change.
 
 bootstrap:
   image: alpine:latest
@@ -64,6 +69,15 @@ bootstrap:
 
 
 # Install Stage - Gentoo
+# We test if we can run 'make install' on default Gentoo
+# image (made from stage3).
+# We do not install 'stow' - 'pystow' will be automatically
+# installed by 'install_pystow.sh' script that is executed
+# by the 'Makefile' (when no other 'stow' implementation
+# is available).
+# We do not install git because we already have the
+# repository initialized (by the GitLab CI) and we can
+# use the preinstalled 'wget' to install pystow.
 
 install:
   image: gentoo/stage3-amd64:latest
