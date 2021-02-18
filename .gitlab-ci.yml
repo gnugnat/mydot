@@ -26,7 +26,7 @@ variables:
 
 
 stages:
-  - shellcheck
+  - test
   - emacs
   - bootstrap
   - install
@@ -36,9 +36,9 @@ stages:
 # We use Debian because 'shellcheck' is not in the main
 # Alpine repository now.
 
-shellcheck:
+test:
   image: debian:stable-slim
-  stage: shellcheck
+  stage: test
 
   before_script:
     - apt-get update
