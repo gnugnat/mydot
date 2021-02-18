@@ -31,7 +31,7 @@
 [ ! -d "${ZDOTDIR}" ] && echo "!!!Warning!!! No ${ZDOTDIR} found!!!"
 
 # Create ZSH cache directory
-[ ! -d "${ZCACHEDIR}" ] && mkdir -p ${ZCACHEDIR}
+[ ! -d "${ZCACHEDIR}" ] && mkdir -p "${ZCACHEDIR}"
 
 # Choose a theme if it's not set
 if [ ! -e "${ZDOTDIR}/tty.zsh-theme" ] || [ ! -e "${ZDOTDIR}/emu.zsh-theme" ]
