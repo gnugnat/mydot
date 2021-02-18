@@ -30,31 +30,28 @@ variables:
 
 stages:
   - test
-  - emacs
   - install
 
 
-# Test - Debian
-# We use Debian because 'shellcheck' is not in the main
-# Alpine repository now.
+# Make-Test - Alpine
+# Run tests from the 'Makefile'.
 
-test:
-  image: debian:stable-slim
+make-test:
   stage: test
 
   before_script:
-    - apt-get update
-    - apt-get install -y make shellcheck
+    - apk update
+    - apk add make shellcheck
 
   script:
     - make test
 
 
 # Emacs - Alpine
-# This stage loads the Emacs configuration files.
+# Test the loading of Emacs configuration files.
 
 emacs:
-  stage: emacs
+  stage: test
 
   before_script:
     - apk update
@@ -75,7 +72,7 @@ emacs:
 
 bootstrap:
   stage: install
-  needs: ["test"]
+  needs: ["make-test"]
 
   before_script:
     - apk update
@@ -99,7 +96,7 @@ bootstrap:
 make-install:
   image: gentoo/stage3-amd64:latest
   stage: install
-  needs: ["test"]
+  needs: ["make-test"]
 
   script:
     - make install
