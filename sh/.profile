@@ -351,18 +351,6 @@ export TEXMFHOME
 TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFVAR
 
-# Wget settings
-if am_i_root
-then
-    unset WGETRC
-else
-    WGETRC="${HOME}/.config/wget/wgetrc"
-    [ -f "${WGETRC}" ] && export WGETRC
-    mkdir -p "${HOME}/.cache/wget"
-    [ -f "${HOME}/.cache/wget/wget-hsts" ] || touch "${HOME}/.cache/wget/wget-hsts"
-    chmod 644 "${HOME}/.cache/wget/wget-hsts"
-fi
-
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 nullwrap mkdir -p "${XDG_CACHE_HOME}" && export XDG_CACHE_HOME
