@@ -1,5 +1,5 @@
 #+TITLE: My GUI Emacs Config in Org
-#+AUTHOR: XGQT
+#+AUTHOR: Maciej Barć
 #+LANGUAGE: en
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
