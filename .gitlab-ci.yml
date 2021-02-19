@@ -64,11 +64,6 @@ guile:
     - apk add guile
     - make test-guile
 
-  rules:
-    - changes:
-        - guile/*
-        - guile/.guile
-
 
 # Shellcheck - Alpine
 # Check shell scripts with 'shellcheck'.
