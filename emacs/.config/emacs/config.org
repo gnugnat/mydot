@@ -47,22 +47,32 @@
 #+END_SRC
 ** Prefix Key
    Special prefix for my bindings.
-   | Key Combination | Command                       |
-   |-----------------+-------------------------------|
-   | C-= C-e c       | config-visit                  |
-   | C-= C-e g       | gui-visit                     |
-   | C-= C-r c       | config-reload                 |
-   | C-= C-r g       | gui-reload                    |
-   | C-= M-b         | magit-blame                   |
-   | C-= M-d         | magit-diff                    |
-   | C-= M-s         | magit-status                  |
-   | C-= a           | org-agenda                    |
-   | C-= d           | dired-sidebar-toggle-sidebar  |
-   | C-= e           | prefix for treemacs commands  |
-   | C-= i           | org-insert-structure-template |
-   | C-= r           | toggle-transparency           |
-   | C-= s           | sr-speedbar-toggle            |
-   | C-= t           | insert-date                   |
+   | Key Combination | Command                             |
+   |-----------------+-------------------------------------|
+   | C-= C-e c       | config-visit                        |
+   | C-= C-e g       | gui-visit                           |
+   | C-= C-r c       | config-reload                       |
+   | C-= C-r g       | gui-reload                          |
+   |-----------------+-------------------------------------|
+   | C-= t           | treemacs                            |
+   | C-= m           | magit                               |
+   |-----------------+-------------------------------------|
+   | C-= a           | org-agenda                          |
+   | C-= d           | dired-sidebar-toggle-sidebar        |
+   | C-= r           | toggle-transparency                 |
+   | C-= s           | sr-speedbar-toggle                  |
+   |-----------------+-------------------------------------|
+   | C-x C-u         | upcase-region                       |
+   | C-z             | undo                                |
+   | M-s             | avy-goto-char                       |
+   |-----------------+-------------------------------------|
+   | f2              | vterm                               |
+   | f5              | projectile-compile-project          |
+   | f7              | split-and-start-eshell              |
+   | f8              | deft                                |
+   |-----------------+-------------------------------------|
+   | C-c i           | [org] org-insert-structure-template |
+   | C-m             | [yaml] newline-and-indent           |
    Update this periodically with output from =C-h b=.
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-="))
@@ -417,10 +427,11 @@
      magit-push-always-verify nil
      )
     :bind
-    (
-     ("C-= M-b" . magit-blame)
-     ("C-= M-d" . magit-diff)
-     ("C-= M-s" . magit-status)
+    (:map
+     my-keymap
+     ("m b" . magit-blame)
+     ("m d" . magit-diff)
+     ("m s" . magit-status)
      )
     )
 #+END_SRC
@@ -444,30 +455,6 @@
     :hook
     ((prog-mode . rainbow-mode))
     )
-#+END_SRC
-** Insert date
-   In non-Org documents:
-   - =C-= t= :         13.04.2004
-   - =C-u C-= t= :     2004-04-13
-   - =C-u C-u C-= t= : Dienstag, 13. April 2004
-#+BEGIN_SRC emacs-lisp
-  (defun insert-date (prefix)
-    (interactive "P")
-    (let
-        (
-         (format
-          (cond
-           ((not prefix) "%d.%m.%Y")
-           ((equal prefix '(4)) "%Y-%m-%d")
-           ((equal prefix '(16)) "%A, %d. %B %Y")
-           )
-          )
-         (system-time-locale "pl_PL")
-         )
-      (insert (format-time-string format))
-      )
-    )
-  (global-set-key (kbd "C-= t") 'insert-date)
 #+END_SRC
 ** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
@@ -494,7 +481,7 @@
     :init
     (projectile-mode 1)
     :bind
-    ("<f5>" . 'projectile-compile-project)
+    ("<f5>" . projectile-compile-project)
     )
 #+END_SRC
 ** Rainbow delimiters
@@ -1023,7 +1010,10 @@
   (use-package sr-speedbar
     :ensure t
     :bind
-    (("C-= s" . sr-speedbar-toggle))
+    (:map
+     my-keymap
+     ("s" . sr-speedbar-toggle)
+     )
     )
 #+END_SRC
 ** Tabs
@@ -1279,7 +1269,10 @@
     :commands
     (dired-sidebar-toggle-sidebar)
     :bind
-    (("C-= d" . dired-sidebar-toggle-sidebar))
+    (:map
+     my-keymap
+     ("d" . dired-sidebar-toggle-sidebar)
+     )
     )
 #+END_SRC
 ** Eshell
@@ -1350,11 +1343,11 @@
     :bind
     (:map
      my-keymap
-     ("e 1"   . treemacs-delete-other-windows)
-     ("e B"   . treemacs-bookmark)
-     ("e C-t" . treemacs-find-file)
-     ("e M-t" . treemacs-find-tag)
-     ("e e"   . treemacs)
+     ("t 1"   . treemacs-delete-other-windows)
+     ("t b"   . treemacs-bookmark)
+     ("t f" . treemacs-find-file)
+     ("t g" . treemacs-find-tag)
+     ("t t"   . treemacs)
      )
     :config
     (progn
