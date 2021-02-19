@@ -595,11 +595,7 @@
   (use-package omnisharp
     :ensure t
     :hook
-    (
-     (csharp-mode . omnisharp-mode)
-     (omnisharp-mode . company-mode)
-     (omnisharp-mode . flycheck-mode)
-     )
+    ((csharp-mode . omnisharp-mode))
     :config
     (add-to-list 'company-backends 'company-omnisharp)
     (setq
@@ -678,10 +674,7 @@
   (use-package alchemist
     :ensure t
     :hook
-    (
-     (elixir-mode . alchemist-mode)
-     (alchemist-mode . flycheck-mode)
-     )
+    ((elixir-mode . alchemist-mode))
     )
 #+END_SRC
 ** Erlang
@@ -929,21 +922,17 @@
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
     :ensure t
+    :after (flycheck)
     :defer t
     :init
     (advice-add 'python-mode :before 'elpy-enable)
     :config
-    (progn
-      (setq
-       elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
-       python-shell-interpreter "ipython3"
-       python-shell-interpreter-args "-i --simple-prompt"
-       )
-      (when (load "flycheck" t t)
-        (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-        (add-hook 'elpy-mode-hook 'flycheck-mode)
-        )
-      )
+    (setq
+     elpy-modules (delq 'elpy-module-flymake elpy-modules)
+     elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
+     python-shell-interpreter "ipython3"
+     python-shell-interpreter-args "-i --simple-prompt"
+     )
     )
 #+END_SRC
 ** R
