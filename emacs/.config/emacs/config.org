@@ -1138,7 +1138,7 @@
     )
 #+END_SRC
 ** Bullets
-   Make Org look prettier
+   Make Org look prettier.
    + Org-Bullets:
      - https://github.com/integral-dw/org-bullets
      - https://melpa.org/#/org-bullets
@@ -1159,7 +1159,7 @@
     )
 #+END_SRC
 ** Deft
-   My deft setup
+   My deft setup.
    + Deft:
      - https://github.com/jrblevin/deft
      - https://melpa.org/#/deft
@@ -1167,9 +1167,8 @@
   (use-package deft
     :ensure t
     :bind
-    ("<f8>" . deft)
-    :commands
-    (deft)
+    (("<f8>" . deft))
+    :commands (deft)
     :config
     (setq
      deft-directory "~/Documents/Diary"
@@ -1177,7 +1176,7 @@
      )
     )
 #+END_SRC
-   Create Diary if it does not exist
+   Create Diary if it does not exist.
 #+BEGIN_SRC emacs-lisp
   (if (not (file-exists-p "~/Documents/Diary"))
       (with-temp-buffer
@@ -1186,16 +1185,17 @@
     )
 #+END_SRC
 ** Edit window
-   With =C-c '= replace the original .org file with editor
+   With =C-c '= replace the original .org file with editor.
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 ** Spelling
-   Spell checking
+   Spell checking.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook 'turn-on-flyspell)
 #+END_SRC
 ** Template
+   With =C-c i= insert structure template.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c i") 'org-insert-structure-template)
 #+END_SRC
