@@ -538,7 +538,6 @@ a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
 rbind mtr 'mtr --show-ips --curses'
 rbind w3m 'HOME="${HOME}/.cache" w3m'
-rbind wget 'wget --hsts-file="${HOME}/.cache/wget/wget-hsts"'
 
 # Other PKG managers
 a_k_a fpk 'flatpak --user'
