@@ -504,6 +504,19 @@
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
 #+END_SRC
+** Spelling
+   Spell checking.
+#+BEGIN_SRC emacs-lisp
+  (use-package flyspell-mode
+    :ensure nil
+    :hook
+    (
+     (org-mode . turn-on-flyspell)
+     (prog-mode . flyspell-prog-mode)
+     (tex-mode . flyspell-mode)
+     )
+    )
+#+END_SRC
 
 
 * Programming
@@ -1192,11 +1205,6 @@
    With =C-c '= replace the original .org file with editor.
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
-#+END_SRC
-** Spelling
-   Spell checking.
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
 #+END_SRC
 ** Template
    With =C-c i= insert structure template.
