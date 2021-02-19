@@ -655,6 +655,20 @@
    )
   (electric-pair-mode t)
 #+END_SRC
+** Elisp
+   Emacs Lisp interaction configuration.
+#+BEGIN_SRC emacs-lisp
+  (use-package inferior-emacs-lisp-mode
+    :ensure nil
+    :hook
+    (
+     (ielm-mode . company-mode)
+     (ielm-mode . rainbow-delimiters-mode)
+     (ielm-mode . eldoc-mode)
+     )
+    :commands (ielm)
+    )
+#+END_SRC
 ** Elixir
    [[https://elixir-lang.org/][Elixir]] language support
    + Alchemist:
