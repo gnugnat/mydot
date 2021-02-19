@@ -80,7 +80,9 @@
       (let
           reading ((chars '()))
         (let
-            ((char (read-char)))
+            (
+             (char (read-char))
+             )
           (if (eof-object? char)
               (reverse chars)
               (reading (cons char chars))
@@ -115,6 +117,7 @@
  )
 
 ;; Colorized REPL
+;; https://gitlab.com/NalaGinrut/guile-colorized
 (cond
  ((false-if-exception (resolve-interface '(ice-9 colorized)))
   =>

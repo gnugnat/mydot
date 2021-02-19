@@ -48,6 +48,10 @@ emacs:
     - apk add emacs
     - make test-emacs
 
+  rules:
+    - changes:
+        - emacs/.config/emacs/*
+
 
 # Guile - Alpine
 # Test the loading of Guile configuration files.
@@ -59,6 +63,11 @@ guile:
   script:
     - apk add guile
     - make test-guile
+
+  rules:
+    - changes:
+        - guile/*
+        - guile/.guile
 
 
 # Shellcheck - Alpine
