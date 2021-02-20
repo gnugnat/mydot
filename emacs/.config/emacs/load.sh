@@ -19,7 +19,7 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# "Aggresively" update mydot
+# Load init.el from this script's directory
 
 
 trap 'exit 128' INT
