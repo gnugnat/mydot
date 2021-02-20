@@ -156,17 +156,17 @@ alias zcalc >/dev/null && unalias zcalc
 # WORKAROUND: History hack
 #             set HOME and ZDOTDIR to ZCACHEDIR while invoking zcalc
 # https://github.com/zsh-users/zsh/blob/a7d5d239e6ab729515083a88cfaf955e078c1685/Functions/Misc/zcalc#L128
-rbind zcalc 'HOME=${ZCACHEDIR} ZDOTDIR=${ZCACHEDIR} zcalc'
+rbind zcalc zcalc 'HOME=${ZCACHEDIR} ZDOTDIR=${ZCACHEDIR} zcalc'
 zc() {
     ( [ -n "${1}" ] && zcalc -e "${@}" ) || zcalc
 }
-rbind zc 'noglob zc'
+rbind zc zc 'noglob zc'
 
 # K - Directory listings for zsh with git features
 # https://github.com/supercrabtree/k
 if ! command_exists k && ! alias k >/dev/null
 then
-    source_file "${ZPLUGDIR}/k/k.sh" && rbind k 'k -Ah'
+    source_file "${ZPLUGDIR}/k/k.sh" && rbind k k 'k -Ah'
 fi
 
 # Syntax highlighting

@@ -91,13 +91,23 @@ a_k_a() {
     fi
 }
 
-# Re-bind - unsafe alias
-# if given command exists ($1) alais it to
-# the given string ($2)
+# Re-bind
+# If a given command exists ($1):
+# alias 2nd command ($2) to a given string ($2).
+# For bigger cases just use if statement,
+# see python below.
 rbind() {
-    if command_exists "${1}"
+    if command_exists "${1}" && [ -n "${3}" ]
     then
-        alias "${1}"="${2}"
+        case "${4}"
+        in
+            "" | -u | -unsafe | --unsafe )
+                alias "${2}"="${3}"
+                ;;
+            -s | -safe | --safe )
+                a_k_a "${2}" "${3}"
+                ;;
+        esac
     fi
 }
 
@@ -471,8 +481,8 @@ in
         a_k_a ta 'tree -I ".git" -a'
         alias l='ls -A'
         alias ll='ls --color=always -Fahl'
-        rbind ls 'ls --color=auto --group-directories-first'
-        rbind tree 'tree -CF'
+        rbind ls ls 'ls --color=auto --group-directories-first'
+        rbind tree tree 'tree -CF'
         ;;
     * )
         a_k_a t 'tree -L 2 -a'
@@ -484,35 +494,26 @@ in
 esac
 
 # Editor
-if command_exists emacs
-then
-    a_k_a e 'emacs -nw'
-    a_k_a em 'emacs'
-else
-    a_k_a e '${EDITOR}'
-fi
-if command_exists nano
-then
-    a_k_a n 'nano'
-else
-    a_k_a n '${EDITOR}'
-fi
-if command_exists vim
-then
-    a_k_a v 'vim'
-else
-    a_k_a v '${EDITOR}'
-fi
+rbind emacs e 'emacs -nw' -s
+rbind emacs em 'emacs' -s
+a_k_a e '${EDITOR}'
+rbind nano n 'nano' -s
+a_k_a n '${EDITOR}'
+rbind vim v 'vim' -s
+a_k_a v '${EDITOR}'
+rbind nvim vim 'nvim'
+rbind vim vi 'vim'
+rbind codium-bin codium 'codium-bin' -s
+rbind codium code 'codium' -s
 
 # Files
 a_k_a ,, 'cd ../..'
-a_k_a codium 'codium-bin'
-a_k_a hl 'highlight -O truecolor'
 a_k_a nuke 'rm -fr'
-a_k_a open 'xdg-open'
-a_k_a rcp 'rsync --stats --progress'
 a_k_a tf 'tail -fv --retry'
-rbind ncdu 'ncdu --color=dark'
+rbind highlight hl 'highlight -O truecolor' -s
+rbind ncdu ncdu 'ncdu --color=dark'
+rbind rsync rcp 'rsync --stats --progress' -s
+rbind xdg-open open 'xdg-open' -s
 
 # Git
 a_k_a G 'git'
@@ -536,8 +537,8 @@ a_k_a ffsound 'ffplay -nodisp -hide_banner'
 a_k_a no-net-sh 'unshare -r -n ${SH}'
 a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
 a_k_a seeo '${NEED_UID0} netstat -acnptu'
-rbind mtr 'mtr --show-ips --curses'
-rbind w3m 'HOME="${HOME}/.cache" w3m'
+rbind mtr mtr 'mtr --show-ips --curses'
+rbind w3m w3m 'HOME="${HOME}/.cache" w3m'
 
 # Other PKG managers
 a_k_a fpk 'flatpak --user'
