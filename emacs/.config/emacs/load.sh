@@ -1,3 +1,6 @@
+#!/bin/sh
+
+
 # This file is part of mydot.
 
 # mydot is free software: you can redistribute it and/or modify
@@ -16,36 +19,19 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-
-.PHONY: all dependencies install uninstall test
-
-
-all:
-	@echo Try: install, uninstall or test
+# "Aggresively" update mydot
 
 
-dependencies:
-	sh -c "command -v stow || command -v xstow || command -v pyystow || sh ./install_pystow.sh"
-
-install:	dependencies
-	sh ./stowdot
+trap 'exit 128' INT
+export PATH
+set -e
 
 
-uninstall:
-	sh ./stowdot remove
+cd "$(dirname "$(realpath "${0}")")"
 
+mkdir -p ~/.config/emacs
+mkdir -p ~/Documents
+touch ~/Documents/todo.org
 
-test-emacs:
-	sh ./emacs/.config/emacs/load.sh --batch
-
-test-guile:
-	mkdir -p ~/.cache/guile/ccache
-	find ./guile -type f -exec guile {} \;
-
-test-racket:
-	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
-
-test-shellcheck:
-	sh ./shellcheck.sh
-
-test:	test-emacs	test-guile	test-racket	test-shellcheck
+[ -n "${1}" ] && echo "Additional options: ${*}"
+emacs "${@}" --no-init --load ./init.el
