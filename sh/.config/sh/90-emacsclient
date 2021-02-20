@@ -41,7 +41,6 @@ then
         in
             rmel | remove-el | remove-generated )
                 echo "Removing generated configuration files..."
-                rm "${USER_EMACS_DIRECTORY}/gui-config.el"
                 rm "${USER_EMACS_DIRECTORY}/config.el"
                 ;;
             reload )
