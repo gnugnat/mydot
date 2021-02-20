@@ -539,6 +539,7 @@
     :hook
     (
      (prog-mode . company-mode)
+     (company-mode . eldoc-mode)
      (gerbil-mode . company-mode)
      )
     :config
