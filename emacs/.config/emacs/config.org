@@ -49,15 +49,15 @@
    Special prefix for my bindings.
    | Key Combination | Command                             |
    |-----------------+-------------------------------------|
-   | C-= t           | treemacs                            |
-   | C-= m           | magit                               |
+   | C-l t           | treemacs                            |
+   | C-l m           | magit                               |
    |-----------------+-------------------------------------|
-   | C-= a           | org-agenda                          |
-   | C-= d           | dired-sidebar-toggle-sidebar        |
-   | C-= l           | config-reload                       |
-   | C-= r           | toggle-transparency                 |
-   | C-= s           | sr-speedbar-toggle                  |
-   | C-= v           | config-visit                        |
+   | C-l a           | org-agenda                          |
+   | C-l d           | dired-sidebar-toggle-sidebar        |
+   | C-l l           | config-reload                       |
+   | C-l r           | toggle-transparency                 |
+   | C-l s           | sr-speedbar-toggle                  |
+   | C-l v           | config-visit                        |
    |-----------------+-------------------------------------|
    | C-x C-u         | upcase-region                       |
    | C-z             | undo                                |
@@ -72,9 +72,9 @@
    | C-m             | [yaml] newline-and-indent           |
    Update this periodically with output from =C-h b=.
 #+BEGIN_SRC emacs-lisp
-  (global-unset-key (kbd "C-="))
+  (global-unset-key (kbd "C-l"))
   (define-prefix-command 'my-keymap)
-  (global-set-key (kbd "C-=") my-keymap)
+  (global-set-key (kbd "C-l") my-keymap)
 #+END_SRC
 ** Edit / Reload
    Edit the configuration.
@@ -84,7 +84,7 @@
     (interactive)
     (find-file (w-u-e-d "config.org"))
     )
-  (global-set-key (kbd "C-= v") 'config-visit)
+  (global-set-key (kbd "C-l v") 'config-visit)
 #+END_SRC
    Reload the configuration.
 #+BEGIN_SRC emacs-lisp
@@ -105,7 +105,7 @@
       )
     )
 
-  (global-set-key (kbd "C-= l") 'config-reload)
+  (global-set-key (kbd "C-l l") 'config-reload)
 #+END_SRC
 ** Key bindings
    Key binding hints.
@@ -414,7 +414,7 @@
       )
     )
 
-  (global-set-key (kbd "C-= r") 'toggle-transparency)
+  (global-set-key (kbd "C-l r") 'toggle-transparency)
 #+END_SRC
 
 
@@ -1191,7 +1191,7 @@
 ** Agenda
    My Org agenda
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-= a") 'org-agenda)
+  (global-set-key (kbd "C-l a") 'org-agenda)
   (setq
    org-agenda-files
    (list
