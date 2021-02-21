@@ -492,6 +492,7 @@
      ("m b" . magit-blame)
      ("m c" . magit-commit)
      ("m d" . magit-diff)
+     ("m m" . magit)
      ("m p" . magit-push)
      ("m r" . magit-reset)
      ("m s" . magit-status)
