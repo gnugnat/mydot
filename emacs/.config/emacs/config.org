@@ -1307,7 +1307,7 @@
 #+BEGIN_SRC emacs-lisp
   (setq-default
    dired-auto-revert-buffer t
-   dired-listing-switches "-ahl --group-directories-first"
+   dired-listing-switches "-ahl"
    dired-recursive-copies 'always
    )
 #+END_SRC
