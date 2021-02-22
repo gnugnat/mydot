@@ -55,6 +55,7 @@
    | C-l a           | org-agenda                          |
    | C-l d           | dired-sidebar-toggle-sidebar        |
    | C-l l           | config-reload                       |
+   | C-l n           | ranger                              |
    | C-l r           | toggle-transparency                 |
    | C-l s           | sr-speedbar-toggle                  |
    | C-l v           | config-visit                        |
@@ -1362,6 +1363,28 @@
    =C-x C-u= to convert a region to uppercase
 #+BEGIN_SRC emacs-lisp
   (put 'upcase-region 'disabled nil)
+#+END_SRC
+** Ranger
+   + Ranger:
+     - https://github.com/ralesi/ranger.el
+     - https://melpa.org/#/ranger
+#+BEGIN_SRC emacs-lisp
+  (use-package ranger
+    :ensure t
+    :defer t
+    :commands (ranger ranger-go)
+    :bind
+    (:map
+     my-keymap
+     ("n" . ranger)
+     )
+    :config
+    (setq
+     ranger-cleanup-eagerly t
+     ranger-cleanup-on-disable t
+     ranger-show-hidden t
+     )
+    )
 #+END_SRC
 ** Reveal.js
    Export ORG mode contents to Reveal.js HTML presentations
