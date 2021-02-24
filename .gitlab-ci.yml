@@ -107,7 +107,7 @@ make-install:
   needs: ["shellcheck"]
 
   before_script:
-    - sh ./.helpers/remove_blockers.sh
+    - make dependencies
 
   script:
     - make install
