@@ -29,7 +29,7 @@ all:
 # Install commands
 
 dependencies:
-	sh -c "command -v stow || command -v xstow || command -v pyystow || sh ./install_pystow.sh"
+	sh -c "command -v stow || command -v xstow || command -v pystow || sh ./install_pystow.sh"
 
 install:	dependencies
 	sh ./stowdot
