@@ -254,8 +254,8 @@ fi
 # Chez directory (used by aliases)
 if nullwrap mkdir -p "${HOME}/.config/chez"
 then
-    CHEZHISTORY="${HOME}/.config/chez/history"
-    export CHEZHISTORY
+    CHEZ_HISTORY="${HOME}/.config/chez/history"
+    export CHEZ_HISTORY
 fi
 
 # Conan settings
@@ -589,7 +589,7 @@ then
     a_k_a python 'python2'
 fi
 a_k_a builddir 'mkdir -p ./build && cd ./build'
-a_k_a chez 'chezscheme --eehistory "${CHEZHISTORY}"'
+a_k_a chez 'chezscheme --eehistory "${CHEZ_HISTORY}"'
 a_k_a diff-git 'git diff --no-index'
 a_k_a ff 'firefox'
 a_k_a hs 'ghci'
@@ -599,9 +599,9 @@ a_k_a rb 'irb'
 a_k_a rkt 'racket'
 a_k_a scm 'scheme'
 a_k_a tcl 'tclsh'
-rbind chez chez 'chez --eehistory "${CHEZHISTORY}"'
-rbind chezscheme chezscheme 'chezscheme --eehistory "${CHEZHISTORY}"'
-rbind petite petite 'petite --eehistory "${CHEZHISTORY}"'
+rbind chez chez 'chez --eehistory "${CHEZ_HISTORY}"'
+rbind chezscheme chezscheme 'chezscheme --eehistory "${CHEZ_HISTORY}"'
+rbind petite petite 'petite --eehistory "${CHEZ_HISTORY}"'
 
 # Shell
 a_k_a cl-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
