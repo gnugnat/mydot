@@ -31,13 +31,13 @@ all:
 dependencies:
 	sh -c "command -v stow || command -v xstow || command -v pystow || sh ./install_pystow.sh"
 
-install:	dependencies
+install:			dependencies
 	sh ./stowdot
 
 
 # Uninstall commands
 
-uninstall:	dependencies
+uninstall:			dependencies
 	sh ./stowdot remove
 
 
@@ -46,18 +46,18 @@ uninstall:	dependencies
 have-git:
 	@command -v git >/dev/null
 
-git-reset:	have-git
+git-reset:			have-git
 	git reset --hard
 
-git-pull:	have-git
+git-pull:			have-git
 	git pull
 
-git-modules:	have-git
+git-modules:		have-git
 	git submodule update --init
 
-git-update:	git-reset	git-pull	git-modules
+git-update:			git-reset	git-pull	git-modules
 
-update-mydot:	have-git	uninstall	git-update	install
+update-mydot:		have-git	uninstall	git-update	install
 
 
 # Tests
@@ -74,14 +74,14 @@ have-racket:
 have-shellcheck:
 	@command -v shellcheck >/dev/null
 
-test-emacs:	have-emacs
+test-emacs:			have-emacs
 	sh ./emacs/.config/emacs/load.sh --batch
 
-test-guile:	have-guile
+test-guile:			have-guile
 	mkdir -p ~/.cache/guile/ccache
 	find ./guile -type f -exec guile {} \;
 
-test-racket:	have-racket
+test-racket:		have-racket
 	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
 
 test-shellcheck:	have-shellcheck
