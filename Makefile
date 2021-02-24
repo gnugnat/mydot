@@ -29,10 +29,10 @@ all:
 # Install commands
 
 dependencies:
-	sh -c "command -v stow || command -v xstow || command -v pystow || sh ./install_pystow.sh"
+	command -v stow || command -v xstow || command -v pystow || sh ./.helpers/install_pystow.sh
 
 clean:				git-update
-	sh ./remove_blockers.sh
+	sh ./.helpers/remove_blockers.sh
 
 install:			dependencies
 	sh ./stowdot
@@ -91,7 +91,7 @@ test-racket:		have-racket
 	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
 
 test-shellcheck:	have-shellcheck
-	sh ./shellcheck.sh
+	sh ./.helpers/shellcheck.sh
 
 test:	test-emacs	test-guile	test-racket	test-shellcheck
 	@echo ">>> Tests finished succesfully"

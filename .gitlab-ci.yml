@@ -87,7 +87,7 @@ bootstrap:
 
   script:
     - apk add git ncurses stow
-    - sh ./bootstrap.sh
+    - sh ./.helpers/bootstrap.sh
 
 
 # Make-Install - Gentoo
@@ -107,7 +107,7 @@ make-install:
   needs: ["shellcheck"]
 
   before_script:
-    - sh ./remove_blockers.sh
+    - sh ./.helpers/remove_blockers.sh
 
   script:
     - make install

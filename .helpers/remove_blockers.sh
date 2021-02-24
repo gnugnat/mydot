@@ -38,6 +38,7 @@ esac
 
 
 cd "$(dirname "$(realpath "${0}")")" || exit 1
+cd "$(git rev-parse --show-toplevel)" || exit 1
 
 for dir in *
 do
