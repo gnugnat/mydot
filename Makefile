@@ -20,9 +20,13 @@
 .PHONY: all dependencies install uninstall test
 
 
+# 'all' placeholder
+
 all:
 	@echo Try: install, uninstall or test
 
+
+# Install commands
 
 dependencies:
 	sh -c "command -v stow || command -v xstow || command -v pyystow || sh ./install_pystow.sh"
@@ -31,9 +35,29 @@ install:	dependencies
 	sh ./stowdot
 
 
+# Uninstall commands
+
 uninstall:
 	sh ./stowdot remove
 
+
+# Updating mydot
+
+git-reset:
+	git reset --hard
+
+git-pull:
+	git pull
+
+git-modules:
+	git submodule update --init
+
+git-update:	git-reset	git-pull	git-modules
+
+update:	uninstall	git-update	install
+
+
+# Tests
 
 test-emacs:
 	sh ./emacs/.config/emacs/load.sh --batch
