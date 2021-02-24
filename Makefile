@@ -54,7 +54,7 @@ git-modules:
 
 git-update:	git-reset	git-pull	git-modules
 
-update:	uninstall	git-update	install
+update-mydot:	uninstall	git-update	install
 
 
 # Tests
