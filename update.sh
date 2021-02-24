@@ -38,12 +38,6 @@ fi
 # Go to mydot source
 cd "$(dirname "$(realpath "${0}")")"
 
-sh ./stowdot remove
-
-git reset --hard
-git pull
-git submodule update --init
-
-sh ./stowdot
+make update-mydot
 
 echo ">>> mydot updated"
