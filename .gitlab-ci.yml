@@ -107,6 +107,7 @@ make-install:
   needs: ["shellcheck"]
 
   before_script:
+    - export PATH="${PATH}:${HOME}/.local/bin"
     - make dependencies
 
   script:
