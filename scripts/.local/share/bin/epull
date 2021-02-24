@@ -25,7 +25,7 @@ export PATH
 
 
 main() {
-    if command -v eix
+    if type eix
     then
         eix-sync
         eix-remote update

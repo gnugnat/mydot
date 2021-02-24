@@ -100,7 +100,8 @@ fi
 
 # Color Definitions
 
-if [ -x "$(command -v tput)" ]; then
+if type tput >/dev/null 2>&1
+then
     bold="$(tput bold)"
     # black="$(tput setaf 0)"
     # red="$(tput setaf 1)"

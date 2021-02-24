@@ -34,13 +34,13 @@ header_msg() {
 for arg in "${@}"
 do
 
-    if command -v "${arg}" > /dev/null 2>&1
+    if type "${arg}" >/dev/null 2>&1
     then
         header_msg "Found ${arg} in:"
         whereis "${arg}"
 
         header_msg "Executing ${arg} from:"
-        command -v "${arg}"
+        type "${arg}"
 
         header_msg "About ${arg}:"
         command "${arg}" --help 2>/dev/null | head

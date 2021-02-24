@@ -27,8 +27,8 @@ trap 'exit 128' INT
 export PATH
 
 
-cmdex() {
-    if command -v "${1}" >/dev/null 2>&1; then
+command_exists() {
+    if type "${1}" >/dev/null 2>&1; then
         return 0
     else
         return 1
@@ -44,25 +44,25 @@ fi
 # Setup
 pbak="portage-$(date +'%Y-%m-%d')"
 mkdir "${pbak}"
-cmdex emerge || echo "Are you sure you are using Portage?"
+command_exists emerge || echo "Are you sure you are using Portage?"
 
 # Portage tree
 rsync --exclude=".git" -Lr /etc/portage "${pbak}"/
 rm -rfd "${pbak}"/portage/make.profile
-cmdex tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
+command_exists tree && tree -a -L 2 /etc/portage > "${pbak}"/layout.txt
 
 # Installed packages
 cp /var/lib/portage/world "${pbak}"/
 cp /var/lib/portage/world_sets "${pbak}"/
-if cmdex qlist; then
+if command_exists qlist; then
     qlist --installed --nocolor --umap > "${pbak}"/qlist-use.txt
     qlist --installed --nocolor --verbose > "${pbak}"/qlist-ver.txt
 fi
 
 # System info
-cmdex emerge && emerge --info > "${pbak}"/info.txt
-cmdex update-genlica && update-genlica -v > "${pbak}"/genlica-version.txt
-cmdex gfetch && gfetch > "${pbak}"/gfetch.txt
+command_exists emerge && emerge --info > "${pbak}"/info.txt
+command_exists update-genlica && update-genlica -v > "${pbak}"/genlica-version.txt
+command_exists gfetch && gfetch > "${pbak}"/gfetch.txt
 
 # Back up package (ebuild) database
 if [ -d /var/db/pkg ]; then

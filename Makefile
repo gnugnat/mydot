@@ -29,7 +29,7 @@ all:
 # Install commands
 
 dependencies:
-	command -v stow || command -v xstow || command -v pystow || sh ./.helpers/install_pystow.sh
+	type stow || type xstow || type pystow || sh ./.helpers/install_pystow.sh
 
 clean:				git-update
 	sh ./.helpers/remove_blockers.sh
@@ -49,7 +49,7 @@ uninstall:			dependencies
 # Updating mydot
 
 have-git:
-	@command -v git >/dev/null
+	@type git >/dev/null
 
 git-reset:			have-git
 	git reset --hard
@@ -69,16 +69,16 @@ update-mydot:		have-git	uninstall	git-update	install
 # Tests
 
 have-emacs:
-	@command -v emacs >/dev/null
+	@type emacs >/dev/null
 
 have-guile:
-	@command -v guile >/dev/null
+	@type guile >/dev/null
 
 have-racket:
-	@command -v racket >/dev/null
+	@type racket >/dev/null
 
 have-shellcheck:
-	@command -v shellcheck >/dev/null
+	@type shellcheck >/dev/null
 
 test-emacs:			have-emacs
 	sh ./emacs/.config/emacs/load.sh --batch

@@ -73,7 +73,7 @@ nullwrap() {
 
 # Check if a command exists (without redirecting each time)
 command_exists() {
-    if nullwrap command -v "${1}"
+    if nullwrap type "${1}"
     then
         return 0
     else
