@@ -33,12 +33,14 @@ dependencies:
 
 install:			dependencies
 	sh ./stowdot
+	@echo ">>> Install finished succesfully"
 
 
 # Uninstall commands
 
 uninstall:			dependencies
 	sh ./stowdot remove
+	@echo ">>> Uninstall finished succesfully"
 
 
 # Updating mydot
@@ -58,6 +60,7 @@ git-modules:		have-git
 git-update:			git-reset	git-pull	git-modules
 
 update-mydot:		have-git	uninstall	git-update	install
+	@echo ">>> Update finished succesfully"
 
 
 # Tests
