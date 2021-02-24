@@ -235,7 +235,7 @@ _aspell_dir="${HOME}/.config/aspell"
 if nullwrap mkdir -p "${_aspell_dir}"
 then
     # has to be one line like this
-    ASPELL_CONF="per-conf ${_aspell_dir}/aspell/aspell.conf; personal ${_aspell_dir}/aspell/en.pws; repl ${_aspell_dir}/aspell/en.prepl"
+    ASPELL_CONF="per-conf ${_aspell_dir}/aspell.conf; personal ${_aspell_dir}/en.pws; repl ${_aspell_dir}/en.prepl"
     export ASPELL_CONF
 fi
 unset _aspell_dir
