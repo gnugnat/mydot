@@ -27,6 +27,14 @@ export PATH
 set -e
 
 
+# First check if we have net
+# so ping the main mydot hosting
+if ! ping -c 1 gitlab.com >/dev/null 2>&1
+then
+    echo "ERROR: Seems like we can not connect to the Internet"
+    exit 1
+fi
+
 # Go to mydot source
 cd "$(dirname "$(realpath "${0}")")"
 
