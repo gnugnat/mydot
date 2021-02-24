@@ -230,6 +230,16 @@ then
 fi
 export PAGER
 
+# Aspell settings
+_aspell_dir="${HOME}/.config/aspell"
+if nullwrap mkdir -p "${_aspell_dir}"
+then
+    # has to be one line like this
+    ASPELL_CONF="per-conf ${_aspell_dir}/aspell/aspell.conf; personal ${_aspell_dir}/aspell/en.pws; repl ${_aspell_dir}/aspell/en.prepl"
+    export ASPELL_CONF
+fi
+unset _aspell_dir
+
 # CCache directory
 # Exclude root user - breaks ccache in portage
 if am_i_root
