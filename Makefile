@@ -31,6 +31,9 @@ all:
 dependencies:
 	sh -c "command -v stow || command -v xstow || command -v pystow || sh ./install_pystow.sh"
 
+clean:				git-update
+	sh ./remove_blockers.sh
+
 install:			dependencies
 	sh ./stowdot
 	@echo ">>> Install finished succesfully"
