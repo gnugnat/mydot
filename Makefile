@@ -23,7 +23,7 @@
 # 'all' placeholder
 
 all:
-	@echo Try: install, uninstall or test
+	@echo "Try: install, uninstall or test"
 
 
 # Install commands
@@ -37,39 +37,55 @@ install:	dependencies
 
 # Uninstall commands
 
-uninstall:
+uninstall:	dependencies
 	sh ./stowdot remove
 
 
 # Updating mydot
 
-git-reset:
+have-git:
+	@command -v git >/dev/null
+
+git-reset:	have-git
 	git reset --hard
 
-git-pull:
+git-pull:	have-git
 	git pull
 
-git-modules:
+git-modules:	have-git
 	git submodule update --init
 
 git-update:	git-reset	git-pull	git-modules
 
-update-mydot:	uninstall	git-update	install
+update-mydot:	have-git	uninstall	git-update	install
 
 
 # Tests
 
-test-emacs:
+have-emacs:
+	@command -v emacs >/dev/null
+
+have-guile:
+	@command -v guile >/dev/null
+
+have-racket:
+	@command -v racket >/dev/null
+
+have-shellcheck:
+	@command -v shellcheck >/dev/null
+
+test-emacs:	have-emacs
 	sh ./emacs/.config/emacs/load.sh --batch
 
-test-guile:
+test-guile:	have-guile
 	mkdir -p ~/.cache/guile/ccache
 	find ./guile -type f -exec guile {} \;
 
-test-racket:
+test-racket:	have-racket
 	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
 
-test-shellcheck:
+test-shellcheck:	have-shellcheck
 	sh ./shellcheck.sh
 
 test:	test-emacs	test-guile	test-racket	test-shellcheck
+	@echo ">>> Tests finished succesfully"
