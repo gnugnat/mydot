@@ -26,24 +26,37 @@ trap 'exit 128' INT
 export PATH
 
 
-prog_name=$(basename "${0}")
 log_dir="${HOME}/.cache/cron"
 log_file="${prog_name}.log"
+
+prog_name="$(basename "${0}")"
+prog_desc="simple script to be used with cron"
+prog_args=""
 
 
 usage() {
     cat << USAGE
-Usage: ${prog_name} [OPTION]
-simple script to be used with cron
+Usage: ${prog_name} [OPTION] ${prog_args}
+${prog_name} - ${prog_desc}
 
 Options:
-    -d DIR  --log-dir DIR    specify the log directory
-    -f FILE --log-file FILE  specify the log file
-    -h      --help           show this help message and exit
+    -V,      --version        show program version
+    -d DIR,  --log-dir DIR    specify the log directory
+    -f FILE, --log-file FILE  specify the log file
+    -h,      --help           show avalible options
 
 Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 USAGE
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
 }
 
 run_command() {
@@ -68,8 +81,12 @@ while [ -n "${1}" ]
 do
     case "${1}"
     in
-        -h | --help )
+        -h | -help | --help )
             usage
+            exit 0
+            ;;
+        -V | -version | --version )
+            version
             exit 0
             ;;
         -d | --log-dir )
@@ -79,6 +96,8 @@ do
             log_file="${2}"
             ;;
         -* )
+            version
+            echo
             usage
             exit 1
             ;;
