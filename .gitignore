@@ -38,6 +38,9 @@ __pycache__/
 _build/
 build/
 
+# Docs
+/.docs/
+
 # Emacs
 emacs/.config/emacs/config.el
 emacs/.config/emacs/gui-config.el

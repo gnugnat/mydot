@@ -66,6 +66,20 @@ update-mydot:		have-git	uninstall	git-update	install
 	@echo ">>> Update finished succesfully"
 
 
+# Documentation
+
+have-help2man:
+	@type help2man >/dev/null
+
+have-pandoc:
+	@type pandoc >/dev/null
+
+man:				have-help2man	have-pandoc
+	sh ./.helpers/manpages.sh
+
+docs:				man
+
+
 # Tests
 
 have-emacs:
