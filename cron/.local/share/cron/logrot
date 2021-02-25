@@ -31,8 +31,14 @@ import os
 
 
 parser = argparse.ArgumentParser(
-    description="Log file rotate script (meant to be run using cron)",
-    epilog="Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com> (License: GNU GPL v3)"
+    description="%(prog)s - log rotate script (meant to be run using cron)",
+    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+    Licensed under the GNU GPL v3 License'''
+)
+parser.add_argument(
+    "-V", "--version",
+    action="version",
+    version="%(prog)s 9999"
 )
 parser.add_argument(
     "-o", "--out",
