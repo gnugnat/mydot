@@ -1223,17 +1223,8 @@
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
-    :config
-    (setq
-     org-bullets-bullet-list
-     '("⦿")
-     )
-    (add-hook
-     'org-mode-hook
-     (lambda ()
-       (org-bullets-mode)
-       )
-     )
+    :hook
+    ((org-mode . org-bullets-mode))
     )
 #+END_SRC
 ** Deft
