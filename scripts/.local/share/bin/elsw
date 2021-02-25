@@ -24,6 +24,20 @@ A nice way to view Portage's world file
 """
 
 
+import argparse
+
+
+parser = argparse.ArgumentParser(
+    description="%(prog)s - view Portage's world file"
+)
+parser.add_argument(
+    "-V", "--version",
+    action="version",
+    version="%(prog)s 9999"
+)
+args = parser.parse_args()
+
+
 try:
     import portage
     WORLD_FILE = portage.root + portage.WORLD_FILE
@@ -33,10 +47,7 @@ except ImportError:
 
 
 def choose_color(category):
-
-    """
-    Colorize
-    """
+    """Colorize"""
 
     color_good = "\033[92m"
     color_warn = "\033[93m"
@@ -85,7 +96,6 @@ def choose_color(category):
 
 
 def parse_category(category):
-
     """
     Parse categories
     Add special characters
@@ -96,33 +106,40 @@ def parse_category(category):
     return 4 * " " + choose_color(category) + indicator + category
 
 
-with open(WORLD_FILE) as world:
+def main():
+    """Main"""
 
-    CATEGORY_TMP = ""
-    GROUP_TMP = ""
-    CATEGORY_COUNT = 0
-    PACKAGE_COUNT = 0
+    with open(WORLD_FILE) as world:
 
-    for line in sorted(world.read().splitlines()):
+        category_tmp = ""
+        group_tmp = ""
+        category_count = 0
+        package_count = 0
 
-        read_category = line.split("/")[0]
-        read_group = read_category.split("-")[0]
-        read_name = line.split("/")[1]
+        for line in sorted(world.read().splitlines()):
 
-        if read_group != GROUP_TMP:
-            print("\033[97m" + " \u25cb " + str.upper(read_group))
-            GROUP_TMP = read_group
+            read_category = line.split("/")[0]
+            read_group = read_category.split("-")[0]
+            read_name = line.split("/")[1]
 
-        if read_category != CATEGORY_TMP:
-            print(parse_category(read_category))
-            CATEGORY_TMP = read_category
-            CATEGORY_COUNT += 1
+            if read_group != group_tmp:
+                print("\033[97m" + " \u25cb " + str.upper(read_group))
+                group_tmp = read_group
 
-        print("{}\033[94m - {}".format(8 * " ", read_name))
-        PACKAGE_COUNT += 1
+            if read_category != category_tmp:
+                print(parse_category(read_category))
+                category_tmp = read_category
+                category_count += 1
 
-    # Reset color + newline
-    print("\033[0m")
+            print("{}\033[94m - {}".format(8 * " ", read_name))
+            package_count += 1
 
-    print("{} categories".format(CATEGORY_COUNT))
-    print("{} packages".format(PACKAGE_COUNT))
+        # Reset color + newline
+        print("\033[0m")
+
+        print("{} categories".format(category_count))
+        print("{} packages".format(package_count))
+
+
+if __name__ == "__main__":
+    main()
