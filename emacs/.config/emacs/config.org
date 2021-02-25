@@ -820,19 +820,25 @@
     )
 #+END_SRC
 ** Lisp
-   [[https://common-lisp.net/project/slime/][Lisp]] language support
-   + Slime:
-     - https://github.com/slime/slime
-     - https://melpa.org/#/slime
+   [[https://common-lisp.net/][Lisp]] language support
+   + Sly:
+     - http://joaotavora.github.io/sly/
+     - https://github.com/joaotavora/sly
+     - https://melpa.org/#/sly
 #+BEGIN_SRC emacs-lisp
   ;; TODO: autostart slime
-  (use-package slime
+  (use-package sly
     :ensure t
+    :hook
+    (
+     (sly-mrepl-mode . company-mode)
+     (sly-mrepl-mode . rainbow-delimiters-mode)
+     )
     :config
     (setq
-     inferior-lisp-program "/usr/bin/sbcl"
-     slime-contribs '(slime-fancy)
-     slime-repl-history-file (w-u-e-d "slime-history.eld")
+     inferior-lisp-program "sbcl"
+     sly-mrepl-history-file-name (w-u-e-d "sly-history")
+     sly-net-coding-system 'utf-8-unix
      )
     )
 #+END_SRC
