@@ -28,7 +28,9 @@ import argparse
 
 
 parser = argparse.ArgumentParser(
-    description="%(prog)s - view Portage's world file"
+    description="%(prog)s - view Portage's world file",
+    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+    Licensed under the GNU GPL v3 License'''
 )
 parser.add_argument(
     "-V", "--version",
