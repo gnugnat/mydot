@@ -32,7 +32,6 @@ top_dir="$(pwd)"
 doc_dir="${top_dir}/.docs"
 
 
-[ -d "${doc_dir}" ] && rm -r "${doc_dir}"
 mkdir -p "${doc_dir}"
 
 
@@ -56,5 +55,8 @@ cd "${doc_dir}" || exit 1
 
 for i in *
 do
-    pandoc "${i}" -o "$(echo "${i}" | sed 's/.1//g').pdf"
+    nice_name="$(echo "${i}" | sed 's/.1//g')"
+
+    pandoc "${i}" -o "${nice_name}.html"
+    pandoc "${i}" -o "${nice_name}.pdf"
 done
