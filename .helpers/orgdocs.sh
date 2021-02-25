@@ -41,7 +41,7 @@ for i in $(find . -name "*.org")
 do
     file_dir="$(dirname "${i}")"
     file_name="$(basename "${i}")"
-    nice_name=$(echo "${i}" | sed -e 's|\.org||g' -e 's|\./||g' -e 's|/|_|g')
+    nice_name=$(echo "${i}" | sed -e 's|\.org||g' -e 's|\./||g' -e 's|\.||g' -e 's|/|_|g')
 
     echo "[DEBUG]: file_dir  = ${file_dir}"
     echo "[DEBUG]: file_name = ${file_name}"
@@ -49,8 +49,8 @@ do
 
     cd "${file_dir}" >/dev/null || continue
 
-    pandoc "${file_name}" -o "${doc_dir}/${nice_name}.pdf"
     pandoc "${file_name}" -o "${doc_dir}/${nice_name}.html"
+    pandoc "${file_name}" -o "${doc_dir}/${nice_name}.pdf"
 
     cd - >/dev/null || exit 1
 done
