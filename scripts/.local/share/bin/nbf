@@ -35,6 +35,12 @@ Options:
     -d  specify search directory
     -f  specify search target
     -h  show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+$(basename "${0}") 9999
 
 Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
@@ -50,19 +56,25 @@ while [ -n "${1}" ]
 do
     case "${1}"
     in
-        -h | --help)
+        -h | -help | --help )
             usage
             exit 0
             ;;
-        -d | --directory )
+        -V | -version | --version )
+            version
+            exit 0
+            ;;
+        -d | -directory | --directory )
             directory="${2}"
             shift
             ;;
-        -f | --file )
+        -f | -file | --file )
             file="${2}"
             shift
             ;;
         -* )
+            version
+            echo
             usage
             exit 1
             ;;
