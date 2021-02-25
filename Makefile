@@ -74,10 +74,16 @@ have-help2man:
 have-pandoc:
 	@type pandoc >/dev/null
 
-man:				have-help2man	have-pandoc
+clean-docs:
+	[ -d ./.docs ] && rm -r ./.docs
+
+docs-man:			have-help2man	have-pandoc
 	sh ./.helpers/manpages.sh
 
-docs:				man
+docs-org:
+	sh  ./.helpers/orgdocs.sh
+
+docs:				docs-man	docs-org
 
 
 # Tests
