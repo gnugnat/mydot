@@ -24,8 +24,22 @@ Upgrade python packages installed with pip under the active user.
 """
 
 
+import argparse
 import importlib
 import subprocess
+
+
+parser = argparse.ArgumentParser(
+    description="%(prog)s - update packages installed with pip",
+    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+    Licensed under the GNU GPL v3 License'''
+)
+parser.add_argument(
+    "-V", "--version",
+    action="version",
+    version="%(prog)s 9999"
+)
+args = parser.parse_args()
 
 
 try:
