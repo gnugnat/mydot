@@ -53,7 +53,7 @@ done
 
 cd "${doc_dir}" || exit 1
 
-for i in *
+for i in *.1
 do
     nice_name="$(echo "${i}" | sed 's/.1//g')"
 
