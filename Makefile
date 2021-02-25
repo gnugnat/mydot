@@ -84,6 +84,7 @@ docs-org:
 	sh  ./.helpers/orgdocs.sh
 
 docs:				docs-man	docs-org
+	@echo ">>> Documentation build finished succesfully"
 
 
 # Tests
