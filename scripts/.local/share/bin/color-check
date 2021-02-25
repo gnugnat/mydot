@@ -22,11 +22,59 @@
 # shellcheck disable=1117
 
 
+prog_name="$(basename "${0}")"
+prog_desc="show colors"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    * )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
+
+
 for x in {0..8}
-do for i in {30..37}
-   do for a in {40..47}
-      do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "
-      done
-      echo
-   done
+do
+    for i in {30..37}
+    do
+        for a in {40..47}
+        do
+            echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "
+        done
+        echo
+    done
 done

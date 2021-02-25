@@ -25,17 +25,29 @@ set -e
 export PATH
 
 
+prog_name="$(basename "${0}")"
+prog_desc="create new research paper environment"
+prog_args="NAME"
+
+
 usage() {
-    cat << USAGE
-Usage: new-ppr NAME
-create new research paper environment
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
 
 Options:
-    -h  show this help message
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
 
-Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
-USAGE
+EOF
 }
 
 main() {
@@ -173,12 +185,17 @@ in
     -h | -help | --help )
         usage
         exit 0
-    ;;
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
     "" )
-        echo "Provide at least 1 argument."
+        version
+        echo
         usage
         exit 1
-    ;;
+        ;;
 esac
 
 

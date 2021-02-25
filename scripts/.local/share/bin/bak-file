@@ -23,4 +23,49 @@
 # as FILE-name_of_machine-year-mounth-day-hour-minute
 
 
+prog_name="$(basename "${0}")"
+prog_desc="create a backup copy of a file"
+prog_args="FILE"
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
+
+
 cp "${1}" "$(basename "${1}")-$(uname -n)-$(date +"%Y-%m-%d-%H-%M")"

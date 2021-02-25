@@ -19,8 +19,6 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# Test read and write speed
-
 
 trap 'exit 128' INT
 export PATH
@@ -28,6 +26,30 @@ export PATH
 
 tmpfile=./disktest.img
 
+prog_name="$(basename "${0}")"
+prog_desc="test read and write speed"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
 
 write_drop_val() {
     sysctl -wq vm.drop_caches="${1}"
@@ -48,6 +70,25 @@ main() {
         rm "${tmpfile}"
     fi
 }
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
 
 
 if [ "$(whoami)" != root ]

@@ -30,28 +30,38 @@ do_winecfg="NO"
 do_kill="NO"
 do_tricks="NO"
 
+prog_name="$(basename "${0}")"
+prog_desc="wrapper for WINE"
+prog_args="[FILE]"
 
-# Help info
+
 usage() {
-    cat << USAGE
-Usage: winewrapper [OPTION]... FILE
-winewrapper - wrapper for WINE
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
 
 Options:
-    -a --arch       select the architecture
-    -c --config     configure WINE
-    -h --help       show this help information
-    -k --kill       kill all running WINE processes
-    -l --log        select the log directory
-    -p --prefix     select the WINE prefix
-    -t --tricks     open Winetricks
+    -V, --version    show program version
+    -a, --arch       select the architecture
+    -c, --config     configure WINE
+    -h , --help      show avalible options
+    -k, --kill       kill all running WINE processes
+    -l, --log        select the log directory
+    -p, --prefix     select the WINE prefix
+    -t, --tricks     open Winetricks
 
 Examples:
-    -a 32           wine32 architecture
+    -a 32            wine32 architecture
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
 
 Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
-Licensed under the ISC License
-USAGE
+Licensed under the GNU GPL v3 License
+EOF
 }
 
 
@@ -61,6 +71,10 @@ do
     in
         -h | --help )
             usage
+            exit 0
+            ;;
+        -V | -version | --version )
+            version
             exit 0
             ;;
         -a | --arch )
@@ -80,6 +94,12 @@ do
             ;;
         -p | --prefix )
             WINEPREFIX="${2}"
+            ;;
+        -* )
+            version
+            echo
+            usage
+            exit 1
             ;;
         * )
             program="${1}"

@@ -19,12 +19,55 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# "Aggresively" update mydot
-
 
 trap 'exit 128' INT
 export PATH
 set -e
+
+
+prog_name="$(basename "${0}")"
+prog_desc="aggressively update mydot"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
 
 
 # First check if we have net

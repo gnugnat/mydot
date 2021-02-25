@@ -33,6 +33,31 @@ sv="
     uptimed
 "
 
+prog_name="$(basename "${0}")"
+prog_desc="restart network services (in OpenRC)"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
 warning() {
     echo "$(tput bold)$(tput setaf 1)WARNING: $(tput setaf 7)${*}$(tput sgr0)"
     return 1
@@ -55,6 +80,25 @@ main() {
         fi
     done
 }
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
 
 
 # TODO: wait for NM

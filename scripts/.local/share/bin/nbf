@@ -32,9 +32,10 @@ Usage: nbf [OPTION]... FILE
 nbf - no-bullshit-find
 
 Options:
-    -d  specify search directory
-    -f  specify search target
-    -h  show avalible options
+    -V, --version    show program version
+    -d, --directory  specify search directory
+    -f, --file       specify search target
+    -h, --help       show avalible options
 EOF
 }
 

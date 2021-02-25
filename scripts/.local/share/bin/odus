@@ -24,30 +24,34 @@ shell=0
 user="root"
 verbose=0
 
+prog_name="$(basename "${0}")"
+prog_desc="odus is kinda like sudo"
+prog_args="[COMMAND]"
+
 
 usage() {
     cat <<EOF
-Usage: odus [OPTIONS]... [COMMAND]
-odus - odus is kinda like sudo
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
 
 Options:
-    -h  show avalible options
-    -s  run a shell
-    -u  specify the user
-    -v  be verbose
+    -V, --version  show program version
+    -h, --help     show avalible options
+    -s, --shell    run a shell
+    -u, --user     specify the user
+    -v, --verbose  be verbose
+EOF
+}
 
-Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 EOF
 }
 
-
-if [ -z "${1}" ]
-then
-    echo "ERROR: Provide at lest one argument/option"
-    usage
-    exit 1
-fi
 
 while [ -n "${1}" ]
 do
@@ -57,10 +61,14 @@ do
             usage
             exit 0
             ;;
-        -s )
+        -V | -version | --version )
+            version
+            exit 0
+            ;;
+        -s | --shell )
             shell=1
             ;;
-        -u )
+        -u | --user )
             if [ -n "${2}" ]
             then
                 user="${2}"
@@ -71,8 +79,19 @@ do
                 exit 1
             fi
             ;;
-        -v )
+        -v | --verbose )
             verbose=1
+            ;;
+        "" )
+            echo "ERROR: Provide at lest one argument/option"
+            usage
+            exit 1
+            ;;
+        -* )
+            version
+            echo
+            usage
+            exit 1
             ;;
         * )
             command="${*}"

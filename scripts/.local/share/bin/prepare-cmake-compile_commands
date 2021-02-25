@@ -19,8 +19,6 @@
 # Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# Prepare compile_commands.json for
-# developemnt when using clangd
 # Thanks to:
 # https://releases.llvm.org/9.0.0/tools/clang/tools/extra/docs/clangd/Installation.html
 
@@ -28,6 +26,51 @@
 trap 'exit 128' INT
 export PATH
 set -e
+
+
+prog_name="$(basename "${0}")"
+prog_desc="prepare compile_commands.json for clangd"
+prog_args="[DIRECTORY]"
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
 
 
 if [ ! -f CMakeLists.txt ]

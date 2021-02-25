@@ -33,18 +33,29 @@ yellow="$(tput setaf 3)"
 header="${bold}${blue}"
 rest="${reset}${yellow}"
 
+prog_name="$(basename "${0}")"
+prog_desc="show git repository information"
+prog_args="[DIRECTORY]"
+
 
 usage() {
-    cat << USAGE
-${header}Usage: ${rest}gitinfo [OPTION] [DIRECTORY]
-show git repository information
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
 
-${header}Options:${rest}
-    -h      --help           show this help message and exit
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
 
 Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
-USAGE
+EOF
 }
 
 repo_info() {
@@ -80,6 +91,16 @@ in
         usage
         exit 0
         ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
     * )
         if [ -d "${1}" ]
         then
@@ -87,6 +108,7 @@ in
         fi
         ;;
 esac
+
 
 repo_info
 git submodule foreach "${0}" | busybox ts "${yellow}>${reset}"

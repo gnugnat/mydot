@@ -26,8 +26,55 @@ trap 'exit 128' INT
 export PATH
 
 
-if [ -f "${1}" ]; then
-    case ${1} in
+prog_name="$(basename "${0}")"
+prog_desc="extract a archive file"
+prog_args="FILE"
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
+
+
+if [ -f "${1}" ]
+then
+    case "${1}"
+    in
         *.7z)        bsdtar xf "${1}"                ;;
         *.Z)         uncompress "${1}"               ;;
         *.deb)       ar x "${1}"                     ;;
@@ -45,5 +92,5 @@ if [ -f "${1}" ]; then
         *)           echo "${1} cannot be extracted" ;;
     esac
 else
-    echo "${1} is not a valid file"
+    echo "ERROR: ${1} is not a valid file"
 fi

@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
 
 
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
-# Licensed under the ISC License
+# Licensed under the GNU GPL v3 License
 
 # Fetch all branches
 # https://stackoverflow.com/questions/10312521/how-to-fetch-all-git-branches
@@ -12,9 +27,54 @@ trap 'exit 128' INT
 export PATH
 
 
+prog_name="$(basename "${0}")"
+prog_desc="fetch everything"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
+
+
 git branch -r | grep -v '\->' | while read -r remote
 do
-    git branch --track "${remote#origin/}" "$remote"
+    git branch --track "${remote#origin/}" "${remote}"
 done
 
 git fetch --all

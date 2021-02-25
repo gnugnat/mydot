@@ -30,14 +30,50 @@ trap 'exit 0' INT
 export PATH
 
 
+prog_name="$(basename "${0}")"
+prog_desc="simple watch(1) implementation"
+prog_args="COMMAND"
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
 case "${1}"
 in
     -h | -help | --help )
-        echo "Usage: watcher COMMAND"
-        echo "watcher - simple watch(1) implementation"
+        usage
         exit 0
         ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    -* )
+        version
+        echo
+        usage
+        exit 1
+        ;;
 esac
+
 
 while true
 do

@@ -24,16 +24,27 @@ trap 'exit 128' INT
 export PATH
 
 
+prog_name="$(basename "${0}")"
+prog_desc="convert a file (guess format from given extension)"
+prog_args="FORMAT_EXTENSION FILE"
+
+
 usage() {
     cat <<EOF
-Usage: ffto FORMAT_EXTENSION FILE
-ffto - convert a given file to the same
-       base name but different extension
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
 
 Options:
-    -h  show avalible options
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
 
-Copyright (c) 2021, Maciej Barć <xgqt@protonmail.com>
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 Licensed under the GNU GPL v3 License
 EOF
 }
@@ -45,8 +56,12 @@ in
         usage
         exit 0
         ;;
-    "" )
-        echo "ERROR: No arguments passed"
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    "" | -* )
+        version
         echo
         usage
         exit 1

@@ -19,8 +19,6 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
 # Licensed under the GNU GPL v3 License
 
-# Upgrade your Gentoo box
-
 # Used here:
 #   - bash *
 #   - busybox *
@@ -38,6 +36,31 @@ trap 'exit 128' INT
 set -o pipefail
 export PATH
 
+
+prog_name="$(basename "${0}")"
+prog_desc="upgrade your Gentoo box"
+prog_args=""
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Licensed under the GNU GPL v3 License
+EOF
+}
 
 command_exists () {
     if type "${1}" >/dev/null 2>&1
@@ -128,6 +151,25 @@ main() {
     step_09 | busybox ts '[%Y-%m-%d %H:%M:%S] (09 smart)'
     step_10 | busybox ts '[%Y-%m-%d %H:%M:%S] (10 clean)'
 }
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+    * )
+        version
+        echo
+        usage
+        exit 1
+        ;;
+esac
 
 
 if [ "$(whoami)" != root ]
