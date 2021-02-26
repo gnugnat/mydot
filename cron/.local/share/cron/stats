@@ -24,10 +24,11 @@ trap 'exit 128' INT
 export PATH
 
 
+prog_name="$(basename "${0}")"
+
 log_dir="${HOME}/.cache/cron"
 log_file="${prog_name}.log"
 
-prog_name="$(basename "${0}")"
 prog_desc="simple script to be used with cron"
 prog_args=""
 
