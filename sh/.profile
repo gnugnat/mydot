@@ -252,11 +252,13 @@ else
 fi
 
 # Chez directory (used by aliases)
-if nullwrap mkdir -p "${HOME}/.config/chez"
+_chez_history="${HOME}/.config/chez/history"
+if nullwrap mkdir -p "${_chez_history}"
 then
-    CHEZ_HISTORY="${HOME}/.config/chez/history"
+    CHEZ_HISTORY="${_chez_history}"
     export CHEZ_HISTORY
 fi
+unset _chez_history
 
 # Conan settings
 CONAN_COLOR_DARK=1
