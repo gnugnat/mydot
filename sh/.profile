@@ -436,6 +436,9 @@ add_to_path "/usr/local/bin"
 add_to_path "/usr/local/sbin"
 add_to_path "/usr/sbin"
 
+# Selected OPTional programs
+add_to_path "/opt/src_prepare-scripts"
+
 # Cabal (Haskell)
 add_to_path "${HOME}/.cabal/bin"
 
