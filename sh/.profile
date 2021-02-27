@@ -332,8 +332,13 @@ TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS
 export TERMINFO_DIRS
 
 # Maxima directory
-MAXIMA_USERDIR="${HOME}/.config/maxima"
-export MAXIMA_USERDIR
+_maxima_userdir="${HOME}/.config/maxima"
+if nullwrap mkdir -p "${_maxima_userdir}/.maxima"
+then
+    MAXIMA_USERDIR="${_maxima_userdir}"
+    export MAXIMA_USERDIR
+fi
+unset _maxima_userdir
 
 # Node files
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
