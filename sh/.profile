@@ -323,6 +323,15 @@ export LESSHISTFILE
 DVDCSS_CACHE="${HOME}/.cache/dvdcss"
 export DVDCSS_CACHE
 
+# Maxima directory
+_maxima_userdir="${HOME}/.config/maxima"
+if nullwrap mkdir -p "${_maxima_userdir}/.maxima"
+then
+    MAXIMA_USERDIR="${_maxima_userdir}"
+    export MAXIMA_USERDIR
+fi
+unset _maxima_userdir
+
 # Mednafen configuration directory
 MEDNAFEN_HOME="${HOME}/.config/mednafen"
 export MEDNAFEN_HOME
@@ -332,15 +341,6 @@ TERMINFO="${HOME}/.local/share/terminfo"
 export TERMINFO
 TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
 export TERMINFO_DIRS
-
-# Maxima directory
-_maxima_userdir="${HOME}/.config/maxima"
-if nullwrap mkdir -p "${_maxima_userdir}/.maxima"
-then
-    MAXIMA_USERDIR="${_maxima_userdir}"
-    export MAXIMA_USERDIR
-fi
-unset _maxima_userdir
 
 # Node files
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
