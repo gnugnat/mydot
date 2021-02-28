@@ -635,9 +635,10 @@
     :ensure t
     :hook
     (
-     (prog-mode . company-mode)
      (company-mode . eldoc-mode)
+     (conf-mode . company-mode)
      (gerbil-mode . company-mode)
+     (prog-mode . company-mode)
      )
     :config
     (setq
