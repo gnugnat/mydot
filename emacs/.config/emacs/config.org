@@ -152,8 +152,6 @@
   (if (fboundp 'scroll-bar-mode)
       (scroll-bar-mode -1)
     )
-  ;; line numbers:
-  (global-display-line-numbers-mode 1)
   ;; specal symbols
   (when window-system (global-prettify-symbols-mode t))
   ;; scrolling:
@@ -520,6 +518,43 @@
     :hook
     ((prog-mode . rainbow-mode))
     )
+#+END_SRC
+** Line numbers
+   Redefine =display-line-numbers--turn-on= so we can exclude some modes from it.
+   Thanks to: https://www.emacswiki.org/emacs/LineNumbers#h5o-1
+#+BEGIN_SRC emacs-lisp
+  (require 'display-line-numbers)
+
+  (defcustom display-line-numbers-exempt-modes
+    '(
+      ansi-term-mode
+      dashboard-mode
+      dired-mode
+      dired-sidebar-mode
+      eshell-mode
+      ranger-mode
+      shell-mode
+      term-mode
+      treemacs-mode
+      vterm-mode
+      )
+    "Major modes on which to disable the linum mode, exempts them from global requirement."
+    :group 'display-line-numbers
+    :type 'list
+    :version "green"
+    )
+
+  (defun display-line-numbers--turn-on ()
+    "Turn on line numbers but excempting certain major modes defined in `display-line-numbers-exempt-modes'."
+    (if (and
+         (not (member major-mode display-line-numbers-exempt-modes))
+         (not (minibufferp))
+         )
+        (display-line-numbers-mode)
+      )
+    )
+
+  (global-display-line-numbers-mode)
 #+END_SRC
 ** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
