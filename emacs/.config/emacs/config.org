@@ -1070,7 +1070,11 @@
      ("\\.scrbl\\'" . racket-mode)
      )
     :hook
-    ((racket-mode . racket-xp-mode))
+    (
+     (racket-mode . racket-xp-mode)
+     (racket-repl-mode . company-mode)
+     (racket-repl-mode . rainbow-delimiters-mode)
+     )
     )
 #+END_SRC
    Basic support for Racket's =.rktd= preference files.
