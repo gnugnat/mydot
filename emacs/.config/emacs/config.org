@@ -1071,8 +1071,10 @@
      )
     :hook
     (
+     (racket-mode . racket-unicode-input-method-enable)
      (racket-mode . racket-xp-mode)
      (racket-repl-mode . company-mode)
+     (racket-repl-mode . racket-unicode-input-method-enable)
      (racket-repl-mode . rainbow-delimiters-mode)
      )
     )
@@ -1114,6 +1116,10 @@
     :init
     (setq geiser-active-implementations '(guile))
     )
+#+END_SRC
+   Don't use scheme-mode in Racket files.
+#+BEGIN_SRC emacs-lisp
+  (setq auto-mode-alist (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist))
 #+END_SRC
 ** Speedbar
    [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
