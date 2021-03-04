@@ -1066,31 +1066,19 @@
     :ensure t
     :mode
     (
-     ("\\.rkt\\'" . racket-mode)
+     ("\\.rkt[dl]?\\'" . racket-mode)
      ("\\.scrbl\\'" . racket-mode)
      )
     :hook
     (
+     (racket-mode . company-mode)
+     (racket-mode . idle-highlight-mode)
      (racket-mode . racket-unicode-input-method-enable)
      (racket-mode . racket-xp-mode)
      (racket-repl-mode . company-mode)
+     (racket-repl-mode . idle-highlight-mode)
      (racket-repl-mode . racket-unicode-input-method-enable)
      (racket-repl-mode . rainbow-delimiters-mode)
-     )
-    )
-#+END_SRC
-   Basic support for Racket's =.rktd= preference files.
-#+BEGIN_SRC emacs-lisp
-  (define-minor-mode rktd-mode nil)
-  (use-package rktd-mode
-    :ensure nil
-    :mode
-    (("\\.rktd\\'" . rktd-mode))
-    :hook
-    (
-     (rktd-mode . company-mode)
-     (rktd-mode . idle-highlight-mode)
-     (rktd-mode . rainbow-delimiters-mode)
      )
     )
 #+END_SRC
