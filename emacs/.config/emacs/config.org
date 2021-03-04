@@ -1071,15 +1071,17 @@
      )
     :hook
     (
-     (racket-mode . company-mode)
-     (racket-mode . idle-highlight-mode)
-     (racket-mode . racket-unicode-input-method-enable)
-     (racket-mode . racket-xp-mode)
+     (racket-mode      . company-mode)
+     (racket-mode      . idle-highlight-mode)
+     (racket-mode      . racket-unicode-input-method-enable)
+     (racket-mode      . racket-xp-mode)
      (racket-repl-mode . company-mode)
      (racket-repl-mode . idle-highlight-mode)
      (racket-repl-mode . racket-unicode-input-method-enable)
      (racket-repl-mode . rainbow-delimiters-mode)
      )
+    :config
+    (setq racket-show-functions '(racket-show-echo-area))
     )
 #+END_SRC
 ** Rust
