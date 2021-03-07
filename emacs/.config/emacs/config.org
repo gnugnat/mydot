@@ -532,6 +532,8 @@
       dired-mode
       dired-sidebar-mode
       eshell-mode
+      inferior-ess-r-mode
+      racket-repl-mode
       ranger-mode
       shell-mode
       term-mode
