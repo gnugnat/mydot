@@ -83,35 +83,36 @@ source_file "${HOME}/.xprofile"
 source_file "${HOME}/.config/X11/xprofile"
 
 # Additional X scripts
-# ex.: xrandr settings or session choice
+# ie.: xrandr settings or session choice
 source_file "${HOME}/.xscripts"
 
 
 # Start the session
 # 'case' is for ease of executing startx from the console
-case ${session} in
-    bsp | bspwm )
+case "${session}"
+in
+    [Bb][Ss][Pp] | [Bb][Ss][Pp][Ww][Mm] )
         exec bspwm
         ;;
-    E | e | enlightenment )
+    E | e | [Ee][Nn][Ll][Ii][Gg][Hh][Tt][Ee][Nn][Mm][Ee][Nn][Tt] )
         exec enlightenment_start
         ;;
-    exwm | EXWM )
+    [Ee][Xx][Ww][Mm] )
         exec emacs --load "${USER_EMACS_DIRECTORY}/exwm-config.el"
         ;;
-    gnome )
+    [Gg][Nn][Oo][Mm][Ee] )
         exec gnome-session
         ;;
-    lxqt | LXQt )
+    [Ll][Xx][Qq][Tt] )
         exec startlxqt
         ;;
-    kde )
+    [Kk][Dd][Ee] )
         exec startplasma-x11
         ;;
-    mate )
+    [Mm][Aa][Tt][Ee] )
         exec mate-session
         ;;
-    xfce | xfce4 )
+    [Xx][Ff][Cc][Ee]* )
         exec startxfce4
         ;;
     # Anything different is run as command
