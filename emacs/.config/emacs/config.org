@@ -1241,6 +1241,25 @@
 
 
 * Org
+** Main
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :ensure nil
+    :bind
+    (:map
+     org-mode-map
+     ;; with =C-c i= insert structure template
+     ("C-c i" . org-insert-structure-template)
+     )
+    :config
+    (setq
+     ;; wth =C-c '= replace the original .org file with editor.
+     org-src-window-setup 'current-window
+     ;; word wrap
+     org-startup-truncated nil
+     )
+    )
+#+END_SRC
 ** Agenda
    My Org agenda
 #+BEGIN_SRC emacs-lisp
@@ -1297,20 +1316,6 @@
         (make-directory "~/Documents/Diary")
         )
     )
-#+END_SRC
-** Edit window
-   With =C-c '= replace the original .org file with editor.
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-window-setup 'current-window)
-#+END_SRC
-** Template
-   With =C-c i= insert structure template.
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c i") 'org-insert-structure-template)
-#+END_SRC
-** Word wrap
-#+BEGIN_SRC emacs-lisp
-  (setq org-startup-truncated nil)
 #+END_SRC
 
 
