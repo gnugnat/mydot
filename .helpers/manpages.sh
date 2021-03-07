@@ -43,11 +43,16 @@ cd "${top_dir}/scripts/.local/share/bin" || exit 1
 
 for i in *
 do
+    output="${doc_dir}/${i}.1"
+
+    echo "[DEBUG]: i         = ${i}"
+    echo "[DEBUG]: output    = ${output}"
+
     help2man "${i}" \
              --locale="en_US.utf8" \
              --no-discard-stderr \
              --no-info \
-             --output="${doc_dir}/${i}.1"
+             --output="${output}"
 done
 
 
@@ -58,6 +63,9 @@ cd "${doc_dir}" || exit 1
 for i in *.1
 do
     nice_name="$(echo "${i}" | sed 's/.1//g')"
+
+    echo "[DEBUG]: i         = ${i}"
+    echo "[DEBUG]: nice_name = ${nice_name}"
 
     pandoc "${i}" -o "${nice_name}.html"
     pandoc "${i}" -o "${nice_name}.pdf"
