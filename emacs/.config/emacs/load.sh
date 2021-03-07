@@ -27,7 +27,7 @@ export PATH
 set -e
 
 
-cd "$(dirname "$(realpath "${0}")")"
+cd "$(dirname "${0}")"
 
 mkdir -p ~/.config/emacs
 mkdir -p ~/Documents
