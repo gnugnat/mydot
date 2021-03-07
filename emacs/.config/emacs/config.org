@@ -1048,6 +1048,7 @@
 ** R
    [[https://www.r-project.org/][R]] language support.
    Run ESS's R lang REPL with =run-ess-r=.
+   Quickly run current line with =C-return=.
    + Ess:
      - https://github.com/emacs-ess/ESS
      - https://melpa.org/#/ess
