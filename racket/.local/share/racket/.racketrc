@@ -46,12 +46,10 @@
   )
 
 ;; Load the RC file
-(define reload
-  (lambda ()
-    (load
-     (string-append (path->string (find-system-path 'home-dir)) ".racketrc")
-     )
-    )
+(define (reload)
+  (load
+   (string-append (path->string (find-system-path 'home-dir)) ".racketrc")
+   )
   )
 
 ;; Get a random element of a list
