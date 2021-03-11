@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
 # This file is sourced when a login shell terminates.

@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+# Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
 
@@ -44,7 +44,7 @@ Options:
     -f FILE, --log-file FILE  specify the log file
     -h,      --help           show avalible options
 
-Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 Licensed under the GNU GPL v3 License
 USAGE
 }
@@ -53,7 +53,7 @@ version() {
     cat <<EOF
 ${prog_name} 9999
 
-Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 Licensed under the GNU GPL v3 License
 EOF
 }

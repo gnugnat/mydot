@@ -17,7 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 Licensed under the GNU GPL v3 License
 
 CRON example:
@@ -32,7 +32,7 @@ import os
 
 parser = argparse.ArgumentParser(
     description="%(prog)s - log rotate script (meant to be run using cron)",
-    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
     Licensed under the GNU GPL v3 License'''
 )
 parser.add_argument(

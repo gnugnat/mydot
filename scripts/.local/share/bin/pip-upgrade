@@ -17,7 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 Licensed under the GNU GPL v3 License
 
 Upgrade python packages installed with pip under the active user.
@@ -31,7 +31,7 @@ import subprocess
 
 parser = argparse.ArgumentParser(
     description="%(prog)s - update packages installed with pip",
-    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@protonmail.com>
+    epilog='''Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
     Licensed under the GNU GPL v3 License'''
 )
 parser.add_argument(
