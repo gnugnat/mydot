@@ -42,6 +42,8 @@ cd "$(dirname "${0}")" || exit 1
 type git || exit 1
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
+cd ./src || exit 1
+
 for dir in *
 do
     [ ! -d "${dir}" ] && continue
