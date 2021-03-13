@@ -29,7 +29,7 @@ all:
 # Install commands
 
 dependencies:
-	type stow || type xstow || type pystow || sh ./.helpers/install_pystow.sh
+	type stow || type xstow || type pystow || sh ./scripts/install_pystow.sh
 
 clean:				git-update
 	sh ./scripts/remove_blockers.sh
