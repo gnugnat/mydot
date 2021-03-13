@@ -6,10 +6,19 @@
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
 
+
 [[./mydot.png]]
 
 
+* About
+
 [[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]] [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:https://img.shields.io/badge/feed-atom-orange.svg]] [[./LICENSE][file:https://img.shields.io/badge/license-GPLv3-blue.svg]]
+
+** Legacy
+
+   Legacy branches/repositories:
+   - [[https://github.com/xgqt/mydot-legacy][before GitLab switch]]
+   - [[https://gitlab.com/xgqt/mydot/-/tree/legacy-pre-src][before "src" directory]]
 
 
 * Howto
