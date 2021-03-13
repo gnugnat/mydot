@@ -37,13 +37,14 @@
 __pycache__/
 _build/
 build/
+compiled/
 
 # Docs
 /docs/
 
 # Emacs
-src/emacs/.config/emacs/config.el
-src/emacs/.config/emacs/gui-config.el
+/src/emacs/.config/emacs/config.el
+/src/emacs/.config/emacs/gui-config.el
 
 # Octave
 octave-workspace
@@ -54,10 +55,12 @@ octave-workspace
 .zhistory
 
 # ZSH modal configuration
-src/zsh/.config/zsh/emu.zsh-theme
-src/zsh/.config/zsh/tty.zsh-theme
-src/zsh/.config/zsh/zsh-greeter
+/src/zsh/.config/zsh/emu.zsh-theme
+/src/zsh/.config/zsh/tty.zsh-theme
+/src/zsh/.config/zsh/zsh-greeter
 
 # Legacy
-src/zsh/.config/zsh/plugins/zsh-autosuggestions
-src/zsh/.config/zsh/plugins/zsh-syntax-highlighting
+/.docs/
+/src/zsh/.config/zsh/plugins/zsh-autosuggestions
+/src/zsh/.config/zsh/plugins/zsh-syntax-highlighting
+/zsh/
