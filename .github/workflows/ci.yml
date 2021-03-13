@@ -42,6 +42,36 @@ jobs:
           make test-emacs
 
 
+  test-guile:
+    name: "Test-Guile"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Install dependencies"
+        run: |
+          sudo apt-get install -y make guile-3.0
+
+      - name: "Run tests"
+        run: |
+          make test-guile
+
+
+  test-racket:
+    name: "Test-Racket"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Install dependencies"
+        run: |
+          sudo apt-get install -y make racket
+
+      - name: "Run tests"
+        run: |
+          make test-racket
+
+
   test-shellcheck:
     name: "Test-Shellcheck"
     runs-on: ubuntu-latest
@@ -57,18 +87,36 @@ jobs:
           make test-shellcheck
 
 
-  make-install:
-    name: "Make-Install"
+  bootstrap:
+    name: "Bootstrap"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        env:
+          TERM: "dumb"
 
       - name: "Install dependencies"
         run: |
-          sudo apt-get install -y make stow
+          sudo apt-get install -y make git stow
 
       - name: "Run tests"
+        run: |
+          sh ./scripts/bootstrap.sh
+
+
+  install:
+    name: "Install"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
         env:
           TERM: "dumb"
+
+      - name: "Install dependencies"
         run: |
+          sudo apt-get install -y make git stow
+
+      - name: "Run tests"
+        run: |
+          make clean
           make install
