@@ -79,7 +79,7 @@ then
 fi
 
 # Go to mydot root
-cd "$(dirname "${0}")"
+cd "$(dirname "$(realpath "${0}")")"
 
 make update-mydot
 
