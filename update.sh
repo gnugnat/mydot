@@ -78,7 +78,7 @@ then
     exit 1
 fi
 
-# Go to mydot source
+# Go to mydot root
 cd "$(dirname "${0}")"
 
 make update-mydot

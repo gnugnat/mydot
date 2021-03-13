@@ -123,7 +123,7 @@ fi
 msg "Stow implementation: ${stow_impl}"
 
 # Go to mydot source
-mydot_source="$(dirname "${0}")"
+mydot_source="$(dirname "${0}")/src"
 cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
 
 # check needed directories

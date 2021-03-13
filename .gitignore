@@ -39,11 +39,11 @@ _build/
 build/
 
 # Docs
-/.docs/
+/docs/
 
 # Emacs
-emacs/.config/emacs/config.el
-emacs/.config/emacs/gui-config.el
+src/emacs/.config/emacs/config.el
+src/emacs/.config/emacs/gui-config.el
 
 # Octave
 octave-workspace
@@ -54,10 +54,10 @@ octave-workspace
 .zhistory
 
 # ZSH modal configuration
-zsh/.config/zsh/emu.zsh-theme
-zsh/.config/zsh/tty.zsh-theme
-zsh/.config/zsh/zsh-greeter
+src/zsh/.config/zsh/emu.zsh-theme
+src/zsh/.config/zsh/tty.zsh-theme
+src/zsh/.config/zsh/zsh-greeter
 
 # Legacy
-zsh/.config/zsh/plugins/zsh-autosuggestions
-zsh/.config/zsh/plugins/zsh-syntax-highlighting
+src/zsh/.config/zsh/plugins/zsh-autosuggestions
+src/zsh/.config/zsh/plugins/zsh-syntax-highlighting

@@ -19,6 +19,8 @@
 # Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
+# shellcheck disable=2044
+
 
 trap 'exit 128' INT
 export PATH
@@ -31,42 +33,26 @@ cd "$(git rev-parse --show-toplevel)" || exit 1
 
 
 top_dir="$(pwd)"
-doc_dir="${top_dir}/.docs"
+doc_dir="${top_dir}/docs"
 
 
 mkdir -p "${doc_dir}"
 
 
-# Generate MANpages from scripts using help2man
-
-cd "${top_dir}/scripts/.local/share/bin" || exit 1
-
-for i in *
+for i in $(find . -name "*.org")
 do
-    output="${doc_dir}/${i}.1"
+    file_dir="$(dirname "${i}")"
+    file_name="$(basename "${i}")"
+    nice_name=$(echo "${i}" | sed -e 's|\.org||g' -e 's|\./||g' -e 's|\.||g' -e 's|/|_|g')
 
-    echo "[DEBUG]: i         = ${i}"
-    echo "[DEBUG]: output    = ${output}"
-
-    help2man "${i}" \
-             --locale="en_US.utf8" \
-             --no-discard-stderr \
-             --no-info \
-             --output="${output}"
-done
-
-
-# Generate PDFs from MANpages
-
-cd "${doc_dir}" || exit 1
-
-for i in *.1
-do
-    nice_name="$(echo "${i}" | sed 's/.1//g')"
-
-    echo "[DEBUG]: i         = ${i}"
+    echo "[DEBUG]: file_dir  = ${file_dir}"
+    echo "[DEBUG]: file_name = ${file_name}"
     echo "[DEBUG]: nice_name = ${nice_name}"
 
-    pandoc "${i}" -o "${nice_name}.html"
-    pandoc "${i}" -o "${nice_name}.pdf"
+    cd "${file_dir}" >/dev/null || continue
+
+    pandoc "${file_name}" -o "${doc_dir}/${nice_name}.html"
+    pandoc "${file_name}" -o "${doc_dir}/${nice_name}.pdf"
+
+    cd - >/dev/null || exit 1
 done

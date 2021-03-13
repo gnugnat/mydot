@@ -32,7 +32,7 @@ dependencies:
 	type stow || type xstow || type pystow || sh ./.helpers/install_pystow.sh
 
 clean:				git-update
-	sh ./.helpers/remove_blockers.sh
+	sh ./scripts/remove_blockers.sh
 
 install:			dependencies
 	sh ./stowdot
@@ -75,13 +75,13 @@ have-pandoc:
 	@type pandoc >/dev/null
 
 clean-docs:
-	[ -d ./.docs ] && rm -r ./.docs
+	[ -d ./docs ] && rm -r ./docs
 
 docs-man:			have-help2man	have-pandoc
-	sh ./.helpers/manpages.sh
+	sh ./scripts/manpages.sh
 
 docs-org:
-	sh  ./.helpers/orgdocs.sh
+	sh ./scripts/orgdocs.sh
 
 docs:				docs-man	docs-org
 	@echo ">>> Documentation build finished succesfully"
@@ -102,17 +102,17 @@ have-shellcheck:
 	@type shellcheck >/dev/null
 
 test-emacs:			have-emacs
-	sh ./emacs/.config/emacs/load.sh --batch
+	sh ./src/emacs/.config/emacs/load.sh --batch
 
 test-guile:			have-guile
 	mkdir -p ~/.cache/guile/ccache
-	find ./guile -type f -exec guile {} \;
+	find ./src/guile -type f -exec guile {} \;
 
 test-racket:		have-racket
-	racket --load ./racket/.local/share/racket/.racketrc --no-init-file
+	racket --load ./src/racket/.local/share/racket/.racketrc --no-init-file
 
 test-shellcheck:	have-shellcheck
-	sh ./.helpers/shellcheck.sh
+	sh ./scripts/shellcheck.sh
 
 test:	test-emacs	test-guile	test-racket	test-shellcheck
 	@echo ">>> Tests finished succesfully"

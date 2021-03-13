@@ -50,7 +50,7 @@ emacs:
 
   rules:
     - changes:
-        - emacs/.config/emacs/*
+        - src/emacs/.config/emacs/*
 
 
 # Guile - Alpine
@@ -87,7 +87,7 @@ bootstrap:
 
   script:
     - apk add git ncurses stow
-    - sh ./.helpers/bootstrap.sh
+    - sh ./scripts/bootstrap.sh
 
 
 # Make-Install - Gentoo

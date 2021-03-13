@@ -63,12 +63,12 @@
 *** install one
 
     example: zsh
-    - =stow -t ~ zsh=
+    - =stow -t ~ ./src/zsh=
 
 *** uninstall one
 
     example: zsh
-    - =stow -t ~ -D zsh=
+    - =stow -t ~ -D ./src/zsh=
 
 ** ZSH
 
