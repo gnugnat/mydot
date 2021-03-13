@@ -92,14 +92,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        env:
-          TERM: "dumb"
 
       - name: "Install dependencies"
         run: |
           sudo apt-get install -y make git stow
 
       - name: "Run tests"
+        env:
+          TERM: "dumb"
         run: |
           sh ./scripts/bootstrap.sh
 
@@ -109,14 +109,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        env:
-          TERM: "dumb"
 
       - name: "Install dependencies"
         run: |
           sudo apt-get install -y make git stow
 
       - name: "Run tests"
+        env:
+          TERM: "dumb"
         run: |
           make clean
           make install
