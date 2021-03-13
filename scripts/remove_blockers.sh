@@ -50,7 +50,7 @@ do
 
     for file in $(git ls-files --full-name "${dir}")
     do
-        hf="${HOME}$(echo "${file}" | sed "s/${dir}//")"
+        hf="${HOME}$(echo "${file}" | sed "s|src/${dir}||")"
 
         echo "${dir} - ${hf}"
 
