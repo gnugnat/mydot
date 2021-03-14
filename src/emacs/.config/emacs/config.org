@@ -1069,6 +1069,7 @@
      - =C-c C-.= - racket-xp-describe            (documentation in Emacs)
      - =C-c C-d= - racket-xp-documentation       (documentation in a browser)
      - =C-c C-l= - racket-logger                 (open a logger split)
+     - =C-c C-r= - racket-send-region            (evaluate selected region in the REPL)
      - =M-.=     - xref-find-definitions         (from xref)
    + Racket-Mode:
      - https://github.com/greghendershott/racket-mode
