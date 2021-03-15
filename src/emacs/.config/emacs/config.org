@@ -28,6 +28,16 @@
 [[./assets/icons/steal_your_emacs_250x250.png]]
 
 
+* History
+
+  The original version of this configuration was based on a Emacs series
+  by "Uncle Dave" (no relation ;P).
+
+  The playlist on =YouTube= can be found [[https://www.youtube.com/playlist?list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][--> here <--]].
+
+  The =repository= for Dave's configuration can be found [[https://github.com/daedreth/UncleDavesEmacs][--> here <--]].
+
+
 * Environment
 ** Auto Update
    Periodical package updates.
