@@ -1084,6 +1084,7 @@
    + Racket-Mode:
      - https://github.com/greghendershott/racket-mode
      - https://melpa.org/#/racket-mode
+     - https://racket-mode.com
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :ensure t
@@ -1096,7 +1097,6 @@
     (
      (racket-mode      . company-mode)
      (racket-mode      . idle-highlight-mode)
-     (racket-mode      . racket-unicode-input-method-enable)
      (racket-mode      . racket-xp-mode)
      (racket-repl-mode . company-mode)
      (racket-repl-mode . idle-highlight-mode)
