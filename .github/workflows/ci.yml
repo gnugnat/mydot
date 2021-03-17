@@ -95,7 +95,7 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          sudo apt-get install -y make git pandoc
+          sudo apt-get install -y make git librsvg2-bin pandoc
 
       - name: "Run tests"
         run: |
