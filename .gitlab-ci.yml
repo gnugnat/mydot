@@ -27,6 +27,12 @@ variables:
    GIT_SUBMODULE_STRATEGY: "recursive"
    TERM: "dumb"
 
+   EMERGE_DEFAULT_OPTS: "--jobs=10 --noreplace --oneshot --quiet-build=y"
+   FEATURES: "getbinpkg"
+   MAKEOPTS: "--jobs=10"
+   PORTAGE_BINHOST: "https://xgqt.gitlab.io/gentoo-mini-mirror/binpkgs"
+   USE: "-perl"
+
 
 stages:
   - test
@@ -90,25 +96,23 @@ bootstrap:
     - sh ./scripts/bootstrap.sh
 
 
-# Make-Install - Gentoo
+# Install - Gentoo
 # We test if we can run 'make install' on default Gentoo
 # image (made from stage3).
 # We do not install 'stow' - 'pystow' will be automatically
 # installed by 'install_pystow.sh' script that is executed
 # by the 'Makefile' (when no other 'stow' implementation
 # is available).
-# We do not install git because we already have the
-# repository initialized (by the GitLab CI) and we can
-# use the preinstalled 'wget' to install pystow.
 
-make-install:
+install:
   image: gentoo/stage3-amd64:latest
   stage: install
   needs: ["shellcheck"]
 
   before_script:
-    - export PATH="${PATH}:${HOME}/.local/bin"
-    - make dependencies
+    - emerge-webrsync
+    - emerge dev-vcs/git
 
   script:
+    - make remove-blockers
     - make install

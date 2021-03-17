@@ -135,5 +135,5 @@ jobs:
         env:
           TERM: "dumb"
         run: |
-          make clean
+          make remove-blockers
           make install

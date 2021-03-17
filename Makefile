@@ -31,7 +31,7 @@ all:
 dependencies:
 	type stow || type xstow || type pystow || sh ./scripts/install_pystow.sh
 
-clean:				git-update
+remove-blockers:
 	sh ./scripts/remove_blockers.sh
 
 install:			dependencies
@@ -43,6 +43,8 @@ reinstall:			uninstall	install
 
 
 # Uninstall commands
+
+clean:				clean-docs
 
 uninstall:			dependencies
 	sh ./stowdot remove
