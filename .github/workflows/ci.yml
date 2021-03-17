@@ -95,7 +95,9 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          sudo apt-get install -y make git librsvg2-bin pandoc
+          sudo apt-get install -y make git librsvg2-bin pandoc \
+          texlive-fonts-extra texlive-fonts-recommended \
+          texlive-latex-base texlive-latex-extra
 
       - name: "Run tests"
         run: |
