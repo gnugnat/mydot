@@ -38,6 +38,9 @@ install:			dependencies
 	sh ./stowdot
 	@echo ">>> Install finished succesfully"
 
+reinstall:			uninstall	install
+	@echo ">>> Reinstall finished succesfully"
+
 
 # Uninstall commands
 
@@ -75,12 +78,12 @@ have-pandoc:
 	@type pandoc >/dev/null
 
 clean-docs:
-	[ -d ./docs ] && rm -r ./docs
+	if [ -d ./docs ] ; then rm -r ./docs ; fi
 
 docs-man:			have-help2man	have-pandoc
 	sh ./scripts/manpages.sh
 
-docs-org:
+docs-org:			have-pandoc
 	sh ./scripts/orgdocs.sh
 
 docs:				docs-man	docs-org
