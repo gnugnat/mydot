@@ -87,6 +87,22 @@ jobs:
           make test-shellcheck
 
 
+  docs:
+    name: "Docs"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Install dependencies"
+        run: |
+          sudo apt-get install -y make git help2man pandoc
+
+      - name: "Run tests"
+        run: |
+          make clean-docs
+          make docs
+
+
   bootstrap:
     name: "Bootstrap"
     runs-on: ubuntu-latest
