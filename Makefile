@@ -20,6 +20,10 @@
 .PHONY: all dependencies install uninstall test
 
 
+have-%:
+	@type $(@:have-%=%) >/dev/null
+
+
 # 'all' placeholder
 
 all:
@@ -53,9 +57,6 @@ uninstall:			dependencies
 
 # Updating mydot
 
-have-git:
-	@type git >/dev/null
-
 git-reset:			have-git
 	git reset --hard
 
@@ -73,12 +74,6 @@ update-mydot:		have-git	uninstall	git-update	install
 
 # Documentation
 
-have-help2man:
-	@type help2man >/dev/null
-
-have-pandoc:
-	@type pandoc >/dev/null
-
 clean-docs:
 	if [ -d ./docs ] ; then rm -r ./docs ; fi
 
@@ -93,18 +88,6 @@ docs:				docs-man	docs-org
 
 
 # Tests
-
-have-emacs:
-	@type emacs >/dev/null
-
-have-guile:
-	@type guile >/dev/null
-
-have-racket:
-	@type racket >/dev/null
-
-have-shellcheck:
-	@type shellcheck >/dev/null
 
 test-emacs:			have-emacs
 	sh ./src/emacs/.config/emacs/load.sh --batch
