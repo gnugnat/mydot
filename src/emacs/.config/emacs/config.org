@@ -1163,6 +1163,21 @@
    sh-basic-offset 4
    )
 #+END_SRC
+** Vala
+   [[https://wiki.gnome.org/Projects/Vala][Vala]] language support
+   + Rust-Mode:
+     - https://github.com/rrthomas/vala-mode
+     - https://melpa.org/#/vala-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package vala-mode
+    :ensure t
+    :hook
+    (
+     (vala-mode . rainbow-delimiters-mode)
+     (vala-mode . idle-highlight-mode)
+     )
+    )
+#+END_SRC
 ** Web Development
    Enable Web Mode for:
    - [[https://whatwg.org/][HTML]]
