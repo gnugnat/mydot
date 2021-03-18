@@ -250,8 +250,10 @@
   (use-package ido-vertical-mode
     :ensure t
     :init
-    (ido-vertical-mode 1)
-    (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+    (progn
+      (ido-vertical-mode 1)
+      (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+      )
     )
 #+END_SRC
 ** Kill and remove split
@@ -275,10 +277,10 @@
 #+BEGIN_SRC emacs-lisp
   (use-package smex
     :ensure t
-    :init
-    (smex-initialize)
     :bind
     ("M-x" . smex)
+    :init
+    (smex-initialize)
     )
 #+END_SRC
 ** Switch window
@@ -289,19 +291,16 @@
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
     :ensure t
+    :bind
+    ([remap other-window] . switch-window)
     :config
     (setq
      switch-window-increase 4
      switch-window-input-style 'minibuffer
+     switch-window-qwerty-shortcuts '( "a" "s" "d" "f" "g" "h" "j" "k" "l")
      switch-window-shortcut-style 'qwerty
      switch-window-threshold 2
      )
-    (setq
-     switch-window-qwerty-shortcuts
-     '( "a" "s" "d" "f" "g" "h" "j" "k" "l")
-     )
-    :bind
-    ([remap other-window] . switch-window)
     )
 #+END_SRC
 
@@ -377,9 +376,11 @@
   (use-package spaceline
     :ensure t
     :config
-    (require 'spaceline-config)
-    (setq powerline-default-separator 'wave)
-    (spaceline-spacemacs-theme)
+    (progn
+      (require 'spaceline-config)
+      (setq powerline-default-separator 'wave)
+      (spaceline-spacemacs-theme)
+      )
     )
 #+END_SRC
 ** Theme
@@ -490,11 +491,6 @@
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
-    :config
-    (setq
-     git-commit-summary-max-length 80
-     magit-push-always-verify nil
-     )
     :bind
     (:map
      my-keymap
@@ -505,6 +501,11 @@
      ("m p" . magit-push)
      ("m r" . magit-reset)
      ("m s" . magit-status)
+     )
+    :config
+    (setq
+     git-commit-summary-max-length 80
+     magit-push-always-verify nil
      )
     )
 #+END_SRC
@@ -590,10 +591,10 @@
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
-    :init
-    (projectile-mode 1)
     :bind
     ("<f5>" . projectile-compile-project)
+    :init
+    (projectile-mode 1)
     )
 #+END_SRC
 ** Rainbow delimiters
@@ -714,11 +715,13 @@
     :hook
     ((csharp-mode . omnisharp-mode))
     :config
-    (add-to-list 'company-backends 'company-omnisharp)
-    (setq
-     c-syntactic-indentation t
-     truncate-lines t
-     )
+    (progn
+      (add-to-list 'company-backends 'company-omnisharp)
+      (setq
+       c-syntactic-indentation t
+       truncate-lines t
+       )
+      )
     )
   (use-package dotnet
     :ensure t
@@ -1413,11 +1416,13 @@
      ("<f7>" . split-and-start-eshell)
      )
     :config
-    ;; Prompt
-    (setq eshell-highlight-prompt t)
-    ;; Aliases
-    (defalias 'open 'find-file-other-window)
-    (defalias 'clean 'eshell/clear-scrollback)
+    (progn
+      ;; Prompt
+      (setq eshell-highlight-prompt t)
+      ;; Aliases
+      (defalias 'open 'find-file-other-window)
+      (defalias 'clean 'eshell/clear-scrollback)
+      )
     )
 #+END_SRC
 ** Uppercase
@@ -1503,7 +1508,6 @@
     :ensure t
     )
 #+END_SRC
-
 ** Vterm Terminal
    [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]].
    Installation of libvterm will be performed automatically if the prerequisites are met:
@@ -1520,10 +1524,10 @@
   (use-package vterm
     :if (and window-system (eq system-type 'gnu/linux))
     :ensure t
-    :config
-    (setq vterm-shell '"${SHELL} -l")
     :bind
     ("<f2>" . 'vterm)
+    :config
+    (setq vterm-shell '"${SHELL} -l")
     )
 #+END_SRC
 
