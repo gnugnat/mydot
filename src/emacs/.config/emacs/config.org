@@ -1165,7 +1165,7 @@
 #+END_SRC
 ** Vala
    [[https://wiki.gnome.org/Projects/Vala][Vala]] language support
-   + Rust-Mode:
+   + Vala-Mode:
      - https://github.com/rrthomas/vala-mode
      - https://melpa.org/#/vala-mode
 #+BEGIN_SRC emacs-lisp
