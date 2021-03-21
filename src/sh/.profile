@@ -450,6 +450,9 @@ add_to_path "${CARGO_HOME}/bin"
 # GO
 add_to_path "${GOPATH}/bin"
 
+# Nimble (Nim)
+add_to_path "${HOME}/.local/share/nimble/bin"
+
 # NPM (Node)
 add_to_path "${HOME}/.npm/bin"
 add_to_path "${HOME}/.local/share/npm/bin"
