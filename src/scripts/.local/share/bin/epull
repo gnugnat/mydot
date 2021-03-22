@@ -26,7 +26,7 @@ export PATH
 
 prog_name="$(basename "${0}")"
 prog_desc="synchronize your Gentoo repositories"
-prog_args=""
+prog_args="[OVERLAY]..."
 
 
 usage() {
@@ -50,12 +50,23 @@ EOF
 }
 
 main() {
-    if type eix
+    if [ -n "${1}" ]
     then
-        eix-sync
-        eix-remote update
+        for overlay in "${@}"
+        do
+            echo "Syncing ${overlay}"
+            emaint sync -r "${overlay}"
+        done
+        type eix && eix-update
     else
-        emerge --sync
+        echo "Syncing all"
+        if type eix
+        then
+            eix-sync
+            eix-remote update
+        else
+            emerge --sync
+        fi
     fi
 }
 
