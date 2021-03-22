@@ -1539,11 +1539,17 @@
     (progn
       (setq
        treemacs-follow-after-init t
-       treemacs-no-png-images t
        treemacs-position 'left
        )
       (treemacs-follow-mode t)
+      (treemacs-resize-icons 18)
       )
+    )
+  (use-package treemacs-all-the-icons
+    :after (treemacs)
+    :ensure t
+    :config
+    (treemacs-load-theme "all-the-icons")
     )
   (use-package treemacs-projectile
     :after (treemacs projectile)
