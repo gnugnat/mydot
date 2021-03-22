@@ -1440,6 +1440,37 @@
       )
     )
 #+END_SRC
+** IRC
+   [[https://freenode.net/][IRC]] with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
+#+BEGIN_SRC emacs-lisp
+  ;; Channels to autojoin
+  (setq
+   erc-autojoin-channels-alist
+   '(
+     ("freenode.net"
+      "#NetBSD"
+      "#emacs"
+      "#gentoo"
+      "#gentoo-chat"
+      "#gentoo-dev"
+      "#gentoo-guru"
+      "#gentoo-laptop"
+      "#gentoo-ml"
+      "#gentoo-openbsd"
+      "#gentoo-prefix"
+      "#gentoo-proxy-maint"
+      "#gentoo-qt"
+      "#gentoo-server"
+      "#guix"
+      "#kde"
+      "#lisp"
+      )
+     ("irc.rizon.net"
+      "#cloveros"
+      )
+     )
+   )
+#+END_SRC
 ** Uppercase
    =C-x C-u= to convert a region to uppercase
 #+BEGIN_SRC emacs-lisp
