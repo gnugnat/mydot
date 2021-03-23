@@ -1526,14 +1526,15 @@
 #+BEGIN_SRC emacs-lisp
   (use-package treemacs
     :ensure t
+    :defer t
     :bind
     (:map
      my-keymap
-     ("t 1"   . treemacs-delete-other-windows)
-     ("t b"   . treemacs-bookmark)
+     ("t 1" . treemacs-delete-other-windows)
+     ("t b" . treemacs-bookmark)
      ("t f" . treemacs-find-file)
      ("t g" . treemacs-find-tag)
-     ("t t"   . treemacs)
+     ("t t" . treemacs)
      )
     :config
     (progn
@@ -1546,7 +1547,7 @@
       )
     )
   (use-package treemacs-all-the-icons
-    :after (treemacs)
+    :after (all-the-icons treemacs)
     :ensure t
     :config
     (treemacs-load-theme "all-the-icons")
