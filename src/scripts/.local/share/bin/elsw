@@ -60,6 +60,7 @@ def choose_color(category):
         "app-crypt",
         "app-dicts",
         "app-i18n",
+        "dev-libs",
         "dev-texlive",
         "gui-wm",
         "media-plugins",
