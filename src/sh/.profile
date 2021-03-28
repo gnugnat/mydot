@@ -449,6 +449,9 @@ add_to_path "${CARGO_HOME}/bin"
 # GO
 add_to_path "${GOPATH}/bin"
 
+# Ros(well) (Lisp)
+add_to_path "${HOME}/.roswell/bin"
+
 # Nimble (Nim)
 add_to_path "${HOME}/.local/share/nimble/bin"
 
