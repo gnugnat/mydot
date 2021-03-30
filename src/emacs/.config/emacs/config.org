@@ -793,6 +793,7 @@
      - https://melpa.org/#/alchemist
 #+BEGIN_SRC emacs-lisp
   (use-package alchemist
+    :if (executable-find "elixir")
     :ensure t
     :hook
     ((elixir-mode . alchemist-mode))
@@ -812,6 +813,7 @@
      - https://melpa.org/#/flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
+    :if (executable-find "ispell")
     :ensure t
     :init
     (global-flycheck-mode t)
@@ -831,6 +833,7 @@
      - https://melpa.org/#/go-mode
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
+    :if (executable-find "go")
     :ensure t
     )
 #+END_SRC
@@ -841,6 +844,7 @@
      - https://melpa.org/#/gdscript-mode
 #+BEGIN_SRC emacs-lisp
   (use-package gdscript-mode
+    :if (executable-find "godot")
     :ensure t
     :config
     ;; (setq gdscript-use-tab-indents t)
@@ -857,6 +861,7 @@
      - https://melpa.org/#/haskell-mode
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
+    :if (executable-find "ghc")
     :ensure t
     :mode
     (("\\.ghci\\'" . haskell-mode))
@@ -883,6 +888,7 @@
 #+BEGIN_SRC emacs-lisp
   ;; TODO: autostart slime
   (use-package sly
+    :if (executable-find "sbcl")
     :ensure t
     :hook
     (
@@ -904,6 +910,7 @@
      - https://melpa.org/#/lua-mode
 #+BEGIN_SRC emacs-lisp
   (use-package lua-mode
+    :if (executable-find "luajit")
     :ensure t
     :config
     (setq lua-default-application "luajit")
@@ -950,6 +957,7 @@
      - /usr/share/emacs/site-lisp/maxima
 #+BEGIN_SRC emacs-lisp
   (use-package maxima-mode
+    :if (executable-find "maxima")
     :ensure nil
     :hook
     (
@@ -975,6 +983,7 @@
      - https://melpa.org/#/merlin
 #+BEGIN_SRC emacs-lisp
   (use-package tuareg
+    :if (executable-find "ocaml")
     :ensure t
     :mode
     (
@@ -989,6 +998,7 @@
     )
   ;; FIXME: Not tested
   (use-package merlin
+    :if (executable-find "ocamlmerlin")
     :ensure t
     :hook
     ((tuareg-mode . merlin-mode))
@@ -1001,6 +1011,7 @@
      - included with GNU Emacs
 #+BEGIN_SRC emacs-lisp
   (use-package inferior-octave-mode
+    :if (executable-find "octave")
     :ensure nil
     :hook
     (
@@ -1071,6 +1082,7 @@
      - https://melpa.org/#/ess
 #+BEGIN_SRC emacs-lisp
   (use-package ess
+    :if (executable-find "R")
     :ensure t
     :mode
     (("\\.R\\'" . ess-r-mode))
@@ -1091,6 +1103,7 @@
      - https://racket-mode.com
 #+BEGIN_SRC emacs-lisp
   (use-package racket-mode
+    :if (executable-find "racket")
     :ensure t
     :mode
     (
@@ -1118,6 +1131,7 @@
      - https://melpa.org/#/rust-mode
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
+    :if (executable-find "rustc")
     :ensure t
     )
 #+END_SRC
@@ -1129,6 +1143,7 @@
      - https://melpa.org/#/geiser
 #+BEGIN_SRC emacs-lisp
   (use-package geiser
+    :if (executable-find "guile")
     :ensure t
     :init
     (setq geiser-active-implementations '(guile))
