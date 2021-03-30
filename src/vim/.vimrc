@@ -15,36 +15,52 @@
 " Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 " Licensed under the GNU GPL v3 License
 
-"	 _                    
-" __   _(_)_ __ ___  _ __ ___ 
+"        _
+" __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__ 
+"  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
 
 " encoding
-	set encoding=utf-8
+set encoding=utf-8
+
 " numbers
-	set number relativenumber
+set number relativenumber
+
 " position number, document label
-	set ruler
+set ruler
+
 " syntax color
-	syntax on
+syntax on
+
 " autocompletion
-	set wildmode=longest,list,full
+set wildmode=longest,list,full
+
 " dark background
-	set background=dark
+set background=dark
+
 " auto indenting
-	set autoindent
+set autoindent
+
 " search highlighting
-	set hlsearch
+set hlsearch
+
 " incremental search
-	set incsearch
+set incsearch
+
 " copy to system clipboard
-	set clipboard=unnamedplus
+set clipboard=unnamedplus
+
 " show tabs as dots
-	set list
-	set listchars=tab:..
+set list
+set listchars=tab:..
+
 " custom bindings
-	nmap q :q<CR>
+nmap q :q<CR>
+
+" Neovim specific commands
+if has('nvim')
+    source $HOME/.config/nvim/neo.vim
+endif
