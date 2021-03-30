@@ -1059,8 +1059,8 @@
      - https://melpa.org/#/elpy
 #+BEGIN_SRC emacs-lisp
   (use-package elpy
+    :if (executable-find "python")
     :ensure t
-    :after (flycheck)
     :defer t
     :init
     (advice-add 'python-mode :before 'elpy-enable)
