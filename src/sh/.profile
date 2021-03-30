@@ -459,6 +459,9 @@ add_to_path "${HOME}/.local/share/nimble/bin"
 add_to_path "${HOME}/.npm/bin"
 add_to_path "${HOME}/.local/share/npm/bin"
 
+# Opam (OCaml)
+add_to_path "${HOME}/.opam/default/bin"
+
 # Python
 add_to_path "${HOME}/.local/bin"
 
