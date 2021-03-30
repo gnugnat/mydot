@@ -1,8 +1,17 @@
-python
+#!/usr/bin/env python
+
 
 # GDB dashboard - Modular visual interface for GDB in Python.
-#
 # https://github.com/cyrus-and/gdb-dashboard
+
+
+# File variables ---------------------------------------------------------------
+
+# vim: filetype=python
+# Local Variables:
+# mode: python
+# End:
+
 
 # License ----------------------------------------------------------------------
 
@@ -24,6 +33,7 @@ python
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
+
 # Imports ----------------------------------------------------------------------
 
 import ast
@@ -32,6 +42,7 @@ import os
 import re
 import struct
 import traceback
+
 
 # Common attributes ------------------------------------------------------------
 
@@ -385,6 +396,7 @@ def fetch_breakpoints(watchpoints=False, pending=False):
         breakpoints.append(breakpoint)
     return breakpoints
 
+
 # Dashboard --------------------------------------------------------------------
 
 class Dashboard(gdb.Command):
@@ -563,6 +575,7 @@ class Dashboard(gdb.Command):
                 if fs and fs is not gdb:
                     fs.close()
 
+
 # Utility methods --------------------------------------------------------------
 
     @staticmethod
@@ -683,6 +696,7 @@ class Dashboard(gdb.Command):
         # ANSI: disable alternative screen buffer and show cursor
         return '\x1b[?1049l\x1b[?25h'
 
+
 # Module descriptor ------------------------------------------------------------
 
     class ModuleInfo:
@@ -745,6 +759,7 @@ class Dashboard(gdb.Command):
                     Dashboard.err('Module disabled')
             prefix = '{} {}'.format(self.prefix, name)
             Dashboard.create_command(prefix, invoke, doc, False, complete)
+
 
 # GDB commands -----------------------------------------------------------------
 
@@ -1050,6 +1065,7 @@ literals and converted to the proper type. '''
                 attr_name = attribute.get('name', name)
                 value = getattr(self.obj, attr_name)
                 print('{} = {!r}'.format(name, value))
+
 
 # Base module ------------------------------------------------------------------
 
@@ -2259,6 +2275,7 @@ class Breakpoints(Dashboard.Module):
 # XXX traceback line numbers in this Python block must be increased by 1
 end
 
+
 # Better GDB defaults ----------------------------------------------------------
 
 #set history save
@@ -2268,13 +2285,7 @@ set print array off
 set print array-indexes on
 set python print-stack full
 
+
 # Start ------------------------------------------------------------------------
 
 python Dashboard.start()
-
-# File variables ---------------------------------------------------------------
-
-# vim: filetype=python
-# Local Variables:
-# mode: python
-# End:
