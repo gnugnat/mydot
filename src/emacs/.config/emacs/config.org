@@ -306,7 +306,7 @@
 #+END_SRC
 
 
-* Look
+* Appearance
 ** Font
    Credits: https://www.emacswiki.org/emacs/SetFonts
 #+BEGIN_SRC emacs-lisp
