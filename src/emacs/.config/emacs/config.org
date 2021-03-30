@@ -355,12 +355,14 @@
     )
   (use-package all-the-icons-dired
     :if window-system
+    :after all-the-icons
     :ensure t
     :hook
     ((dired-mode . all-the-icons-dired-mode))
     )
   (use-package all-the-icons-ibuffer
     :if window-system
+    :after all-the-icons
     :ensure t
     :init
     (all-the-icons-ibuffer-mode 1)
@@ -1317,6 +1319,7 @@
      - https://melpa.org/#/org-bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
+    :if window-system
     :ensure t
     :hook
     ((org-mode . org-bullets-mode))
@@ -1546,6 +1549,7 @@
       )
     )
   (use-package treemacs-all-the-icons
+    :if window-system
     :after (all-the-icons treemacs)
     :ensure t
     :config
