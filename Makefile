@@ -47,7 +47,10 @@ reinstall:			uninstall	install
 
 # Uninstall commands
 
-clean:				clean-docs
+remove-nvim-plugins:
+	sh ./scripts/nvim_remove_plugins.sh
+
+clean:				clean-docs	remove-nvim-plugins
 
 uninstall:			dependencies
 	sh ./stowdot remove
