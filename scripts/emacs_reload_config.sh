@@ -26,5 +26,6 @@ set -e
 
 cd "${USER_EMACS_DIRECTORY:-${HOME}/.config/emacs}"
 
-rm ./config.el
+[ -f ./config.el ] && rm ./config.el
+
 sh ./load.sh --batch
