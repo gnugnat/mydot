@@ -1,6 +1,8 @@
 #+TITLE: My Primary Emacs Config in Org
+
 #+AUTHOR: Maciej Barć
 #+LANGUAGE: en
+
 #+STARTUP: content inlineimages
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: black
