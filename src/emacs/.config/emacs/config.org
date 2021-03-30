@@ -868,7 +868,10 @@
     :mode
     (("\\.ghci\\'" . haskell-mode))
     :hook
-    ((haskell-mode . interactive-haskell-mode))
+    (
+     (haskell-mode . interactive-haskell-mode)
+     (haskell-mode . flycheck-mode)
+     )
     )
 #+END_SRC
 ** LFE
