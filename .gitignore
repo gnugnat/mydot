@@ -58,6 +58,10 @@ octave-workspace
 /src/zsh/.config/zsh/tty.zsh-theme
 /src/zsh/.config/zsh/zsh-greeter
 
+# NeoVim plugins
+/src/neovim/.config/nvim/autoload/
+/src/neovim/.config/nvim/plugged/
+
 # Legacy
 /.docs/
 /src/zsh/.config/zsh/plugins/zsh-autosuggestions
