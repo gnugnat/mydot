@@ -1486,7 +1486,6 @@
    '(
      ("freenode.net"
       "#NetBSD"
-      "#emacs"
       "#gentoo"
       "#gentoo-chat"
       "#gentoo-dev"
@@ -1501,6 +1500,7 @@
       "#guix"
       "#kde"
       "#lisp"
+      "#termux"
       )
      ("irc.rizon.net"
       "#cloveros"
