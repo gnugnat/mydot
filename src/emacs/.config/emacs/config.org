@@ -624,7 +624,6 @@
    Spell checking.
 #+BEGIN_SRC emacs-lisp
   (use-package flyspell-mode
-    :if (executable-find "ispell")
     :ensure nil
     :hook
     (
