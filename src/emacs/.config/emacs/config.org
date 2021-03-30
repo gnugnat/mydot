@@ -624,12 +624,13 @@
    Spell checking.
 #+BEGIN_SRC emacs-lisp
   (use-package flyspell-mode
+    :if (executable-find "ispell")
     :ensure nil
     :hook
     (
-     (org-mode . turn-on-flyspell)
+     (org-mode  . turn-on-flyspell)
      (prog-mode . flyspell-prog-mode)
-     (tex-mode . flyspell-mode)
+     (tex-mode  . flyspell-mode)
      )
     )
 #+END_SRC
@@ -815,7 +816,6 @@
      - https://melpa.org/#/flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
-    :if (executable-find "ispell")
     :ensure t
     :init
     (global-flycheck-mode t)
