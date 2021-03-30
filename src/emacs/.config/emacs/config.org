@@ -1064,6 +1064,8 @@
     :if (executable-find "python")
     :ensure t
     :defer t
+    :hook
+    ((elpy-mode . flycheck-mode))
     :init
     (advice-add 'python-mode :before 'elpy-enable)
     :config
