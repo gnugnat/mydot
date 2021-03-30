@@ -39,8 +39,19 @@
   The =repository= for Dave's configuration can be found [[https://github.com/daedreth/UncleDavesEmacs][--> here <--]].
 
 
-* Environment
-** Auto Update
+* Startup
+** Defer
+   Defer package loading to speed up the startup time.
+#+BEGIN_SRC emacs-lisp
+  (use-package autorevert :defer 2)
+  (use-package paren      :defer 2)
+  (use-package projectile :defer 2)
+  (use-package recentf    :defer 2)
+  (use-package saveplace  :defer 2)
+  (use-package server     :defer 2)
+  (use-package whitespace :defer 2)
+#+END_SRC
+** Update
    Periodical package updates.
    + Auto-Package-Update:
      - https://github.com/rranelli/auto-package-update.el
@@ -56,6 +67,9 @@
     (auto-package-update-maybe)
     )
 #+END_SRC
+
+
+* Environment
 ** Prefix Key
    Special prefix for my bindings.
    | Key Combination | Command                             |
