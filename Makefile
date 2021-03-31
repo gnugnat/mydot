@@ -98,6 +98,9 @@ test-guile:			have-guile
 	mkdir -p ~/.cache/guile/ccache
 	find ./src/guile -type f -exec guile {} \;
 
+test-hyperlinks:	docs-org
+	linkchecker --ignore-url='^mailto:' --ignore-url='^file:' --check-extern ./*/*/*.html
+
 test-racket:		have-racket
 	racket --load ./src/racket/.local/share/racket/.racketrc --no-init-file
 
