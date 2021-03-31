@@ -1178,7 +1178,7 @@
     )
 #+END_SRC
 ** Scheme
-   [[https://schemers.org/Documents/Standards/][Scheme]] language support.
+   [[http://www.scheme-reports.org/][Scheme]] language support.
    For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
    + Geiser:
      - https://gitlab.com/jaor/geiser
