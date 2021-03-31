@@ -141,6 +141,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
     :ensure t
+    :diminish
     :init
     (which-key-mode)
     )
@@ -375,6 +376,7 @@
     :ensure t
     :hook
     ((dired-mode . all-the-icons-dired-mode))
+    :diminish
     )
   (use-package all-the-icons-ibuffer
     :if window-system
@@ -466,6 +468,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
     :ensure t
+    :diminish
     :config
     (beacon-mode 1)
     )
@@ -483,6 +486,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
     :ensure t
+    :diminish
     :init
     (editorconfig-mode 1)
     )
@@ -545,6 +549,7 @@
     :ensure t
     :hook
     ((prog-mode . rainbow-mode))
+    :diminish
     )
 #+END_SRC
 ** Line numbers
@@ -596,6 +601,7 @@
     :ensure t
     :bind
     ("C-x C-z" . 'undo-tree-visualize)
+    :diminish
     :init
     (global-undo-tree-mode)
     )
@@ -671,6 +677,7 @@
     (
      (company-mode . eldoc-mode)
      )
+    :diminish
     :init
     (global-company-mode t)
     :config
