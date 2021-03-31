@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+python
 
 
 # GDB dashboard - Modular visual interface for GDB in Python.
