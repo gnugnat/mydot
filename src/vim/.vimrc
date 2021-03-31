@@ -57,6 +57,9 @@ set clipboard=unnamedplus
 set list
 set listchars=tab:..
 
+" wrap line movement
+set whichwrap+=<,>,h,l,[,]
+
 " custom bindings
 nmap q :q<CR>
 
