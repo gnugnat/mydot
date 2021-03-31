@@ -1,6 +1,8 @@
 #+TITLE: My dotfiles
+
 #+AUTHOR: Maciej Barć
 #+LANGUAGE: en
+
 #+ATTR_HTML: style margin-left: auto; margin-right: auto;
 #+STARTUP: showall inlineimages
 #+OPTIONS: toc:nil num:nil
@@ -18,6 +20,7 @@
   [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:./img/feed-atom-orange.svg]]
   [[./LICENSE][file:./img/license-GPLv3-blue.svg]]
 
+
 ** Legacy
 
    Legacy branches/repositories:
@@ -27,15 +30,16 @@
 
 * Howto
 
+
 ** Dependencies
 
    You will need:
-#+BEGIN_SRC bash
-  bash
-  busybox
-  git
-  make
-#+END_SRC
+   #+BEGIN_SRC bash
+     bash
+     busybox
+     git
+     make
+   #+END_SRC
 
    Optionally you will need a stow implementation, any of:
    - [[https://www.gnu.org/software/stow/][stow]]
@@ -52,24 +56,25 @@
 
 *** Manual
 
-#+BEGIN_SRC bash
-  mkdir -p ~/source/public/gitlab.com/xgqt
-  cd ~/source/public/gitlab.com/xgqt
-  git clone --recursive --verbose "https://gitlab.com/xgqt/mydot"
-  cd mydot
-  bash ./stowdot
-#+END_SRC
+    #+BEGIN_SRC bash
+      mkdir -p ~/source/public/gitlab.com/xgqt
+      cd ~/source/public/gitlab.com/xgqt
+      git clone --recursive --verbose "https://gitlab.com/xgqt/mydot"
+      cd mydot
+      bash ./stowdot
+    #+END_SRC
 
 *** Bootstrap from network
 
-#+BEGIN_SRC bash
-  curl "https://gitlab.com/xgqt/mydot/-/blob/master/scripts/bootstrap.sh" | sh
-#+END_SRC
+    #+BEGIN_SRC bash
+      curl "https://gitlab.com/xgqt/mydot/-/blob/master/scripts/bootstrap.sh" | sh
+    #+END_SRC
 
 
 ** Uninstallation
 
    - run =./stowdot remove=
+
 
 ** Selectivity
 
@@ -89,33 +94,35 @@
     example: zsh
     - =stow -t ~ -D ./src/zsh=
 
+
 ** ZSH
 
-    - Run zsh as login shell: =zsh -l=
-    - You will be asked which features to enable
+   - Run zsh as login shell: =zsh -l=
+   - You will be asked which features to enable
 
 
 * License
 
   SPDX-License-Identifier: GPL-3.0-only
 
+
 ** Unless otherwise stated contents here are under the GNU GPL v3 license
 
-#+BEGIN_QUOTE
-  This file is part of mydot.
+   #+BEGIN_QUOTE
+     This file is part of mydot.
 
-  mydot is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, version 3.
+     mydot is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, version 3.
 
-  mydot is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+     mydot is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+     You should have received a copy of the GNU General Public License
+     along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-  Copyright (c) 2019-2021, Maciej Barć <xgqt@riseup.net>
-  Licensed under the GNU GPL v3 License
-#+END_QUOTE
+     Copyright (c) 2019-2021, Maciej Barć <xgqt@riseup.net>
+     Licensed under the GNU GPL v3 License
+   #+END_QUOTE
