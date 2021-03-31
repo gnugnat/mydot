@@ -1558,7 +1558,8 @@
     )
 #+END_SRC
 ** Reveal.js
-   Export ORG mode contents to Reveal.js HTML presentations
+   Export ORG mode contents to Reveal.js HTML presentations.
+   Use =C-c C-e R R= to export to HTML file.
    + Htmlize:
      - https://github.com/hniksic/emacs-htmlize
      - https://melpa.org/#/htmlize
@@ -1571,6 +1572,7 @@
     :ensure t
     )
   (use-package ox-reveal
+    :after htmlize
     :ensure t
     :config
     ;; TODO: add auto-installer
