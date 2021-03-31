@@ -837,8 +837,23 @@
 ** Gambit
    [[https://github.com/gambit/gambit][Gambit]] language support.
 #+BEGIN_SRC emacs-lisp
-  (if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
-      (load-file "/usr/share/emacs/site-lisp/gambit.el")
+  (use-package gambit
+    :if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
+    :ensure nil
+    :defer t
+    :load-path "/usr/share/emacs/site-lisp"
+    :hook
+    (
+     (inferior-scheme-mode . gambit-inferior-mode)
+     (scheme-mode          . gambit-mode)
+     )
+    :init
+    (progn
+      (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+      (autoload 'gambit-mode          "gambit" "Hook Gambit mode into scheme.")
+      )
+    :config
+    (setq scheme-program-name "gsi -:d-")
     )
 #+END_SRC
 ** Go
