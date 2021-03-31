@@ -14,6 +14,7 @@
 
   [[https://gitlab.com/xgqt/mydot/pipelines][file:https://gitlab.com/xgqt/mydot/badges/master/pipeline.svg]]
   [[https://github.com/xgqt/mydot/actions/workflows/ci.yml][file:https://github.com/xgqt/mydot/actions/workflows/ci.yml/badge.svg]]
+  [[https://archive.softwareheritage.org/browse/origin/?origin_url=https://gitlab.com/xgqt/mydot][file:./img/archived-repository-yellowgreen.svg]]
   [[https://gitlab.com/xgqt/mydot/commits/master.atom][file:./img/feed-atom-orange.svg]]
   [[./LICENSE][file:./img/license-GPLv3-blue.svg]]
 
