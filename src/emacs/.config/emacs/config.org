@@ -656,6 +656,23 @@
 
 
 * Programming
+** Eldoc
+   Show function/variable docstring in the echo area.
+   Keep this on top.
+   + Eldoc:
+     - http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/emacs-lisp/eldoc.el
+     - https://elpa.gnu.org/packages/eldoc.html
+#+BEGIN_SRC emacs-lisp
+  (use-package eldoc
+    :ensure t
+    :defer t
+    :hook
+    (
+     (prog-mode . eldoc-mode)
+     )
+    :diminish
+    )
+#+END_SRC
 ** Company
    The company completion framework.
    Keep this here, above, before adding company hooks.
