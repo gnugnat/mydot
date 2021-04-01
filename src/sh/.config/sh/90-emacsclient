@@ -33,7 +33,7 @@ then
 
     # GUI
     a_k_a emcf 'emc -n -c'
-    a_k_a emcg 'emc -n -c --eval "(gui-load)"'
+    a_k_a emcg 'emc -n -c --eval "(config-load)"'
 
     emd() {
         case "${1}"

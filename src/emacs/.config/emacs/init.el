@@ -101,7 +101,13 @@
 
 ;; This is the actual config file.
 ;; It is omitted if it doesn't exist so emacs won't refuse to launch.
-(load-user-or-current "config.org")
+(defun config-load ()
+  "Load config.org."
+  (load-user-or-current "config.org")
+  )
+
+;; Now let's load it.
+(config-load)
 
 ;; Set path to store "custom-set"
 (setq custom-file (w-u-e-d "emacs-custom.el"))
