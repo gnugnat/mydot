@@ -1394,10 +1394,20 @@
        :hook
        ((prog-mode . yas-minor-mode))
        :config
-       (use-package yasnippet-snippets
-         :ensure t
+       (progn
+         (setq yas-snippet-dirs
+               (list
+                (w-u-e-d "assets/snippets")
+                yasnippet-snippets-dir
+                )
+               )
+         (yas-reload-all)
          )
-       (yas-reload-all)
+       )
+
+     (use-package yasnippet-snippets
+       :ensure t
+       :requires yasnippet
        )
    #+END_SRC
 
