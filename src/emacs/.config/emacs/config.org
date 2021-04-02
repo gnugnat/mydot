@@ -1674,8 +1674,13 @@
      (use-package vterm
        :if (and window-system (eq system-type 'gnu/linux))
        :ensure t
+       :defer t
        :bind
        ("<f2>" . 'vterm)
+       :hook
+       (
+        (vterm-mode . idle-highlight-mode)
+        )
        :config
        (setq vterm-shell '"${SHELL} -l")
        )
