@@ -42,31 +42,31 @@
 * Startup
 ** Defer
    Defer package loading to speed up the startup time.
-#+BEGIN_SRC emacs-lisp
-  (use-package autorevert :defer 2)
-  (use-package paren      :defer 2)
-  (use-package projectile :defer 2)
-  (use-package recentf    :defer 2)
-  (use-package saveplace  :defer 2)
-  (use-package server     :defer 2)
-  (use-package whitespace :defer 2)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package autorevert :defer 2)
+     (use-package paren      :defer 2)
+     (use-package projectile :defer 2)
+     (use-package recentf    :defer 2)
+     (use-package saveplace  :defer 2)
+     (use-package server     :defer 2)
+     (use-package whitespace :defer 2)
+   #+END_SRC
 ** Update
    Periodical package updates.
    + Auto-Package-Update:
      - https://github.com/rranelli/auto-package-update.el
      - https://melpa.org/#/auto-package-update
-#+BEGIN_SRC emacs-lisp
-  (use-package auto-package-update
-    :ensure t
-    :config
-    (setq
-     auto-package-update-delete-old-verions t
-     auto-package-update-interval 5
-     )
-    (auto-package-update-maybe)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package auto-package-update
+       :ensure t
+       :config
+       (setq
+        auto-package-update-delete-old-verions t
+        auto-package-update-interval 5
+        )
+       (auto-package-update-maybe)
+       )
+   #+END_SRC
 
 
 * Environment
@@ -97,260 +97,260 @@
    | C-c i           | [org] org-insert-structure-template |
    | C-m             | [yaml] newline-and-indent           |
    Update this periodically with output from =C-h b=.
-#+BEGIN_SRC emacs-lisp
-  (global-unset-key (kbd "C-l"))
-  (define-prefix-command 'my-keymap)
-  (global-set-key (kbd "C-l") my-keymap)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "C-l"))
+     (define-prefix-command 'my-keymap)
+     (global-set-key (kbd "C-l") my-keymap)
+   #+END_SRC
 ** Edit / Reload
    Edit the configuration.
-#+BEGIN_SRC emacs-lisp
-  (defun config-visit ()
-    "Edit config.org."
-    (interactive)
-    (find-file (w-u-e-d "config.org"))
-    )
-  (global-set-key (kbd "C-l v") 'config-visit)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (defun config-visit ()
+       "Edit config.org."
+       (interactive)
+       (find-file (w-u-e-d "config.org"))
+       )
+     (global-set-key (kbd "C-l v") 'config-visit)
+   #+END_SRC
    Reload the configuration.
-#+BEGIN_SRC emacs-lisp
-  (defun config-load ()
-    "Load config.org at runtime."
-    (interactive)
-    (load-user-or-current "config.org")
-    )
+   #+BEGIN_SRC emacs-lisp
+     (defun config-load ()
+       "Load config.org at runtime."
+       (interactive)
+       (load-user-or-current "config.org")
+       )
 
-  (defun config-reload ()
-    "Reload config.org at runtime."
-    (interactive)
-    (progn
-      (if (file-exists-p (w-u-e-d "config.el"))
-          (delete-file (w-u-e-d "config.el"))
-        )
-      (config-load)
-      )
-    )
+     (defun config-reload ()
+       "Reload config.org at runtime."
+       (interactive)
+       (progn
+         (if (file-exists-p (w-u-e-d "config.el"))
+             (delete-file (w-u-e-d "config.el"))
+           )
+         (config-load)
+         )
+       )
 
-  (global-set-key (kbd "C-l l") 'config-reload)
-#+END_SRC
+     (global-set-key (kbd "C-l l") 'config-reload)
+   #+END_SRC
 ** Key bindings
    Key binding hints.
    + Which-Key:
      - https://github.com/justbur/emacs-which-key
      - https://melpa.org/#/which-key
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t
-    :diminish
-    :init
-    (which-key-mode)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package which-key
+       :ensure t
+       :diminish
+       :init
+       (which-key-mode)
+       )
+   #+END_SRC
    Disable suspending Emacs with =C-z= and bind it to undo.
-#+BEGIN_SRC emacs-lisp
-  (global-unset-key (kbd "C-z"))
-  (global-unset-key (kbd "C-x C-z"))
-  (global-set-key (kbd "C-z") 'undo)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "C-z"))
+     (global-unset-key (kbd "C-x C-z"))
+     (global-set-key (kbd "C-z") 'undo)
+   #+END_SRC
    Zoom with Scroll.
-#+BEGIN_SRC emacs-lisp
-  ;; Control & Scroll Up - Increase
-  (global-set-key [C-mouse-4] 'text-scale-increase)
-  ;; Control & Scroll Down - Decrease
-  (global-set-key [C-mouse-5] 'text-scale-decrease)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; Control & Scroll Up - Increase
+     (global-set-key [C-mouse-4] 'text-scale-increase)
+     ;; Control & Scroll Down - Decrease
+     (global-set-key [C-mouse-5] 'text-scale-decrease)
+   #+END_SRC
    Some terminals (or connections, ie. mosh) set <end> as <select>.
    So, if <select> is not bound - bind it to move-end-of-line.
-#+BEGIN_SRC emacs-lisp
-  (if (not (global-key-binding (kbd "<select>")))
-      (global-set-key (kbd "<select>") 'move-end-of-line)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (if (not (global-key-binding (kbd "<select>")))
+         (global-set-key (kbd "<select>") 'move-end-of-line)
+       )
+   #+END_SRC
 ** Minor
    Some small tweaks that don't require packages
-#+BEGIN_SRC emacs-lisp
-  ;; no toolbar:
-  (tool-bar-mode -1)
-  ;; no menubar:
-  ;;;; can still be accessed with F10
-  (menu-bar-mode -1)
-  ;; no scrollbar (only if that function is available):
-  (if (fboundp 'scroll-bar-mode)
-      (scroll-bar-mode -1)
-    )
-  ;; specal symbols
-  (when window-system (global-prettify-symbols-mode t))
-  ;; scrolling:
-  (setq scroll-conservatively 100)
-  ;; no "bell" (audible notification):
-  (setq ring-bell-function 'ignore)
-  ;; highlight:
-  (global-hl-line-mode t)
-  ;; use mouse in xterm
-  (xterm-mouse-mode)
-  ;; auto reloading (reverting) buffers
-  (global-auto-revert-mode 1)
-  ;; disable lock files:
-  (setq create-lockfiles nil)
-  ;; disable autosave:
-  (setq auto-save-default nil)
-  ;; disable backups:
-  (setq make-backup-files nil)
-  ;; backups directory:
-  ;;(setq backup-directory-alist '(("" . (w-u-e-d "backup"))))
-  ;; Pass "y or n" instead of "yes or no"
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  ;; Disable clipboard
-  (setq x-select-enable-clipboard-manager nil)
-  ;; Highlight parens
-  (show-paren-mode t)
-  ;; size in GUI
-  (set-frame-size (selected-frame) 88 36)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; no toolbar:
+     (tool-bar-mode -1)
+     ;; no menubar:
+     ;;;; can still be accessed with F10
+     (menu-bar-mode -1)
+     ;; no scrollbar (only if that function is available):
+     (if (fboundp 'scroll-bar-mode)
+         (scroll-bar-mode -1)
+       )
+     ;; specal symbols
+     (when window-system (global-prettify-symbols-mode t))
+     ;; scrolling:
+     (setq scroll-conservatively 100)
+     ;; no "bell" (audible notification):
+     (setq ring-bell-function 'ignore)
+     ;; highlight:
+     (global-hl-line-mode t)
+     ;; use mouse in xterm
+     (xterm-mouse-mode)
+     ;; auto reloading (reverting) buffers
+     (global-auto-revert-mode 1)
+     ;; disable lock files:
+     (setq create-lockfiles nil)
+     ;; disable autosave:
+     (setq auto-save-default nil)
+     ;; disable backups:
+     (setq make-backup-files nil)
+     ;; backups directory:
+     ;;(setq backup-directory-alist '(("" . (w-u-e-d "backup"))))
+     ;; Pass "y or n" instead of "yes or no"
+     (defalias 'yes-or-no-p 'y-or-n-p)
+     ;; Disable clipboard
+     (setq x-select-enable-clipboard-manager nil)
+     ;; Highlight parens
+     (show-paren-mode t)
+     ;; size in GUI
+     (set-frame-size (selected-frame) 88 36)
+   #+END_SRC
 
 
 * Buffers & Windows
 ** Follow Splits
    Better window splitting
-#+BEGIN_SRC emacs-lisp
-  ;; horizontal
-  (defun split-and-follow-horizontally ()
-    "Split and follow horizontally."
-    (interactive)
-    (split-window-below)
-    (balance-windows)
-    (other-window 1)
-    )
-  (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
-  ;; vertical
-  (defun split-and-follow-vertically ()
-    "Split and follow vertically."
-    (interactive)
-    (split-window-right)
-    (balance-windows)
-    (other-window 1)
-    )
-  (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; horizontal
+     (defun split-and-follow-horizontally ()
+       "Split and follow horizontally."
+       (interactive)
+       (split-window-below)
+       (balance-windows)
+       (other-window 1)
+       )
+     (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+     ;; vertical
+     (defun split-and-follow-vertically ()
+       "Split and follow vertically."
+       (interactive)
+       (split-window-right)
+       (balance-windows)
+       (other-window 1)
+       )
+     (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+   #+END_SRC
 ** Ibuffer
    Better switching
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x C-b") 'ibuffer)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x C-b") 'ibuffer)
+   #+END_SRC
 ** Ibuffer Expert
    Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
-#+BEGIN_SRC emacs-lisp
-  (setq ibuffer-expert t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq ibuffer-expert t)
+   #+END_SRC
 ** IDO mode
    Buffer stuff
-#+BEGIN_SRC emacs-lisp
-  (setq
-   ido-create-new-buffer 'always
-   ido-enable-flex-matching nil
-   ido-everywhere t
-   )
-  (ido-mode 1)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq
+      ido-create-new-buffer 'always
+      ido-enable-flex-matching nil
+      ido-everywhere t
+      )
+     (ido-mode 1)
+   #+END_SRC
 ** IDO switch buffers
    Better buffer switching
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x b") 'ido-switch-buffer)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x b") 'ido-switch-buffer)
+   #+END_SRC
 ** IDO vertically
    Better positioning
    + Ido-Vertical-Mode:
      - https://github.com/creichert/ido-vertical-mode.el
      - https://melpa.org/#/ido-vertical-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-    (progn
-      (ido-vertical-mode 1)
-      (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-      )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package ido-vertical-mode
+       :ensure t
+       :init
+       (progn
+         (ido-vertical-mode 1)
+         (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+         )
+       )
+   #+END_SRC
 ** Kill and remove split
    Kill buffer and delete its window
-#+BEGIN_SRC emacs-lisp
-  (defun kill-and-remove-split ()
-    "Kill and remove split."
-    (interactive)
-    (kill-buffer)
-    (delete-window)
-    (balance-windows)
-    (other-window 1)
-    )
-  (global-set-key (kbd "C-x x") 'kill-and-remove-split)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (defun kill-and-remove-split ()
+       "Kill and remove split."
+       (interactive)
+       (kill-buffer)
+       (delete-window)
+       (balance-windows)
+       (other-window 1)
+       )
+     (global-set-key (kbd "C-x x") 'kill-and-remove-split)
+   #+END_SRC
 ** Smex
    Run known programs faster
    + Smex:
      - https://github.com/nonsequitur/smex
      - https://melpa.org/#/smex
-#+BEGIN_SRC emacs-lisp
-  (use-package smex
-    :ensure t
-    :bind
-    ("M-x" . smex)
-    :init
-    (smex-initialize)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package smex
+       :ensure t
+       :bind
+       ("M-x" . smex)
+       :init
+       (smex-initialize)
+       )
+   #+END_SRC
 ** Switch window
    Faster window switching, when you press =C-x o= you choose a window
    + Switch-Window:
      - https://github.com/dimitri/switch-window
      - https://melpa.org/#/switch-window
-#+BEGIN_SRC emacs-lisp
-  (use-package switch-window
-    :ensure t
-    :bind
-    ([remap other-window] . switch-window)
-    :config
-    (setq
-     switch-window-increase 4
-     switch-window-input-style 'minibuffer
-     switch-window-qwerty-shortcuts '( "a" "s" "d" "f" "g" "h" "j" "k" "l")
-     switch-window-shortcut-style 'qwerty
-     switch-window-threshold 2
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package switch-window
+       :ensure t
+       :bind
+       ([remap other-window] . switch-window)
+       :config
+       (setq
+        switch-window-increase 4
+        switch-window-input-style 'minibuffer
+        switch-window-qwerty-shortcuts '( "a" "s" "d" "f" "g" "h" "j" "k" "l")
+        switch-window-shortcut-style 'qwerty
+        switch-window-threshold 2
+        )
+       )
+   #+END_SRC
 
 
 * Appearance
 ** Font
    Credits: https://www.emacswiki.org/emacs/SetFonts
-#+BEGIN_SRC emacs-lisp
-  ;; Fallback to another font if first is unavalible
-  (require 'dash)
-  (defun font-candidate (&rest fonts)
-    "Return the first available font from FONTS."
-    (--first
-     (find-font (font-spec :name it)) fonts
-     )
-    )
-  (when window-system
-    (set-face-attribute
-     'default nil
-     :weight 'normal
-     :width 'normal
-     :height 100
-     :font
-     ;; List of fonts
-     (font-candidate
-      "JetBrains Mono"
-      "Hack"
-      "DejaVu Sans Mono"
-      "Monospace"
-      "Consolas"
-      )
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; Fallback to another font if first is unavalible
+     (require 'dash)
+     (defun font-candidate (&rest fonts)
+       "Return the first available font from FONTS."
+       (--first
+        (find-font (font-spec :name it)) fonts
+        )
+       )
+     (when window-system
+       (set-face-attribute
+        'default nil
+        :weight 'normal
+        :width 'normal
+        :height 100
+        :font
+        ;; List of fonts
+        (font-candidate
+         "JetBrains Mono"
+         "Hack"
+         "DejaVu Sans Mono"
+         "Monospace"
+         "Consolas"
+         )
+        )
+       )
+   #+END_SRC
 ** Icons
    Remember to tun =M-x all-the-icons-install-fonts= to install the required fonts.
    + All-The-Icons:
@@ -365,95 +365,95 @@
    + Emojify:
      - https://github.com/iqbalansari/emacs-emojify
      - https://melpa.org/#/emojify
-#+BEGIN_SRC emacs-lisp
-  (setq
-   inhibit-compacting-font-caches t
-   )
-  (use-package all-the-icons
-    :if window-system
-    :ensure t
-    )
-  (use-package all-the-icons-dired
-    :if window-system
-    :after all-the-icons
-    :ensure t
-    :hook
-    ((dired-mode . all-the-icons-dired-mode))
-    :diminish
-    )
-  (use-package all-the-icons-ibuffer
-    :if window-system
-    :after all-the-icons
-    :ensure t
-    :init
-    (all-the-icons-ibuffer-mode 1)
-    )
-  (use-package emojify
-    :if window-system
-    :ensure t
-    :hook
-    ((after-init . global-emojify-mode))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq
+      inhibit-compacting-font-caches t
+      )
+     (use-package all-the-icons
+       :if window-system
+       :ensure t
+       )
+     (use-package all-the-icons-dired
+       :if window-system
+       :after all-the-icons
+       :ensure t
+       :hook
+       ((dired-mode . all-the-icons-dired-mode))
+       :diminish
+       )
+     (use-package all-the-icons-ibuffer
+       :if window-system
+       :after all-the-icons
+       :ensure t
+       :init
+       (all-the-icons-ibuffer-mode 1)
+       )
+     (use-package emojify
+       :if window-system
+       :ensure t
+       :hook
+       ((after-init . global-emojify-mode))
+       )
+   #+END_SRC
 ** Spaceline
    Mode line ([[https://www.spacemacs.org/doc/DOCUMENTATION#text-powerline-separators][separators]])
    + Spaceline:
      - https://github.com/TheBB/spaceline
      - https://melpa.org/#/spaceline
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline
-    :ensure t
-    :config
-    (progn
-      (require 'spaceline-config)
-      (setq powerline-default-separator 'wave)
-      (spaceline-spacemacs-theme)
-      )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package spaceline
+       :ensure t
+       :config
+       (progn
+         (require 'spaceline-config)
+         (setq powerline-default-separator 'wave)
+         (spaceline-spacemacs-theme)
+         )
+       )
+   #+END_SRC
 ** Theme
    Install spacemacs-theme if not installed
    + Spacemacs-Theme:
      - https://github.com/nashamri/spacemacs-theme
      - https://melpa.org/#/spacemacs-theme
-#+BEGIN_SRC emacs-lisp
-  (unless (package-installed-p 'spacemacs-theme)
-    (package-refresh-contents)
-    (package-install 'spacemacs-theme)
-    )
-  (load-theme 'spacemacs-dark t)
-#+END_SRC
-** Transparency
-#+BEGIN_SRC emacs-lisp
-  ;; Set transparency
-  (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
-  (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
-
-  ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
-  (defun toggle-transparency ()
-    "Toggle transparency of the Emacs frame."
-    (interactive)
-    (let
-        (
-         (alpha (frame-parameter nil 'alpha))
-         )
-      (set-frame-parameter
-       nil 'alpha
-       (if (eql
-            (cond ((numberp alpha) alpha)
-                  ((numberp (cdr alpha)) (cdr alpha))
-                  ;; Also handle undocumented (<active> <inactive>) form.
-                  ((numberp (cadr alpha)) (cadr alpha))
-                  )
-            100)
-           '(95 . 80) '(100 . 100)
-           )
+   #+BEGIN_SRC emacs-lisp
+     (unless (package-installed-p 'spacemacs-theme)
+       (package-refresh-contents)
+       (package-install 'spacemacs-theme)
        )
-      )
-    )
+     (load-theme 'spacemacs-dark t)
+   #+END_SRC
+** Transparency
+   #+BEGIN_SRC emacs-lisp
+     ;; Set transparency
+     (set-frame-parameter (selected-frame) 'alpha '(95 . 80))
+     (add-to-list 'default-frame-alist '(alpha . (95 . 80)))
 
-  (global-set-key (kbd "C-l r") 'toggle-transparency)
-#+END_SRC
+     ;; You can use the following snippet after you've set the alpha as above to assign a toggle to "C-c t"
+     (defun toggle-transparency ()
+       "Toggle transparency of the Emacs frame."
+       (interactive)
+       (let
+           (
+            (alpha (frame-parameter nil 'alpha))
+            )
+         (set-frame-parameter
+          nil 'alpha
+          (if (eql
+               (cond ((numberp alpha) alpha)
+                     ((numberp (cdr alpha)) (cdr alpha))
+                     ;; Also handle undocumented (<active> <inactive>) form.
+                     ((numberp (cadr alpha)) (cadr alpha))
+                     )
+               100)
+              '(95 . 80) '(100 . 100)
+              )
+          )
+         )
+       )
+
+     (global-set-key (kbd "C-l r") 'toggle-transparency)
+   #+END_SRC
 
 
 * File Editing
@@ -462,53 +462,53 @@
    + Avy:
      - https://github.com/abo-abo/avy
      - https://melpa.org/#/avy
-#+BEGIN_SRC emacs-lisp
-  (use-package avy
-    :ensure t
-    :bind
-    ("M-s" . avy-goto-char)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package avy
+       :ensure t
+       :bind
+       ("M-s" . avy-goto-char)
+       )
+   #+END_SRC
 ** Beacon
    Line highlight when switching
    + Beacon:
      - https://github.com/Malabarba/beacon
      - https://melpa.org/#/beacon
-#+BEGIN_SRC emacs-lisp
-  (use-package beacon
-    :ensure t
-    :diminish
-    :config
-    (beacon-mode 1)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package beacon
+       :ensure t
+       :diminish
+       :config
+       (beacon-mode 1)
+       )
+   #+END_SRC
 ** Cleanup
    Just before saving remove whitespaces.
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'before-save-hook 'whitespace-cleanup)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'before-save-hook 'whitespace-cleanup)
+   #+END_SRC
 ** EditorConfig
    Support for =.editorconfig=
    + Editorconfig:
      - https://github.com/editorconfig/editorconfig-emacs
      - https://melpa.org/#/editorconfig
-#+BEGIN_SRC emacs-lisp
-  (use-package editorconfig
-    :ensure t
-    :diminish
-    :init
-    (editorconfig-mode 1)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package editorconfig
+       :ensure t
+       :diminish
+       :init
+       (editorconfig-mode 1)
+       )
+   #+END_SRC
 ** Encoding
    Set encoding to UTF-8
-#+BEGIN_SRC emacs-lisp
-  (setq locale-coding-system 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (set-selection-coding-system 'utf-8)
-  (prefer-coding-system 'utf-8)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq locale-coding-system 'utf-8)
+     (set-terminal-coding-system 'utf-8)
+     (set-keyboard-coding-system 'utf-8)
+     (set-selection-coding-system 'utf-8)
+     (prefer-coding-system 'utf-8)
+   #+END_SRC
 ** Git
    Git management
    + Magit:
@@ -518,150 +518,150 @@
    + Diff-Hl:
      - https://github.com/dgutov/diff-hl
      - https://melpa.org/#/diff-hl
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t
-    :bind
-    (:map
-     my-keymap
-     ("m b" . magit-blame)
-     ("m c" . magit-commit)
-     ("m d" . magit-diff)
-     ("m m" . magit)
-     ("m p" . magit-push)
-     ("m r" . magit-reset)
-     ("m s" . magit-status)
-     )
-    :config
-    (setq
-     git-commit-summary-max-length 80
-     magit-push-always-verify nil
-     )
-    )
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
-  (use-package diff-hl
-    :ensure t
-    :hook
-    ((dired-mode . diff-hl-dired-mode))
-    :init
-    (global-diff-hl-mode)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :ensure t
+       :bind
+       (:map
+        my-keymap
+        ("m b" . magit-blame)
+        ("m c" . magit-commit)
+        ("m d" . magit-diff)
+        ("m m" . magit)
+        ("m p" . magit-push)
+        ("m r" . magit-reset)
+        ("m s" . magit-status)
+        )
+       :config
+       (setq
+        git-commit-summary-max-length 80
+        magit-push-always-verify nil
+        )
+       )
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package diff-hl
+       :ensure t
+       :hook
+       ((dired-mode . diff-hl-dired-mode))
+       :init
+       (global-diff-hl-mode)
+       )
+   #+END_SRC
 ** Hex colors
    Colorize hexadecimal values
    + Rainbow-Mode:
      - https://elpa.gnu.org/packages/rainbow-mode-1.0.5.el
      - https://elpa.gnu.org/packages/rainbow-mode.html
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-mode
-    :ensure t
-    :hook
-    ((prog-mode . rainbow-mode))
-    :diminish
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package rainbow-mode
+       :ensure t
+       :hook
+       ((prog-mode . rainbow-mode))
+       :diminish
+       )
+   #+END_SRC
 ** Line numbers
    Redefine =display-line-numbers--turn-on= so we can exclude some modes from it.
    Thanks to: https://www.emacswiki.org/emacs/LineNumbers#h5o-1
-#+BEGIN_SRC emacs-lisp
-  (require 'display-line-numbers)
+   #+BEGIN_SRC emacs-lisp
+     (require 'display-line-numbers)
 
-  (defcustom display-line-numbers-exempt-modes
-    '(
-      ansi-term-mode
-      dashboard-mode
-      dired-mode
-      dired-sidebar-mode
-      eshell-mode
-      inferior-ess-r-mode
-      racket-repl-mode
-      ranger-mode
-      shell-mode
-      term-mode
-      treemacs-mode
-      vterm-mode
-      )
-    "Major modes on which to disable the linum mode, exempts them from global requirement."
-    :group 'display-line-numbers
-    :type 'list
-    :version "green"
-    )
-
-  (defun display-line-numbers--turn-on ()
-    "Turn on line numbers but excempting certain major modes defined in `display-line-numbers-exempt-modes'."
-    (if (and
-         (not (member major-mode display-line-numbers-exempt-modes))
-         (not (minibufferp))
+     (defcustom display-line-numbers-exempt-modes
+       '(
+         ansi-term-mode
+         dashboard-mode
+         dired-mode
+         dired-sidebar-mode
+         eshell-mode
+         inferior-ess-r-mode
+         racket-repl-mode
+         ranger-mode
+         shell-mode
+         term-mode
+         treemacs-mode
+         vterm-mode
          )
-        (display-line-numbers-mode)
-      )
-    )
+       "Major modes on which to disable the linum mode, exempts them from global requirement."
+       :group 'display-line-numbers
+       :type 'list
+       :version "green"
+       )
 
-  (global-display-line-numbers-mode)
-#+END_SRC
+     (defun display-line-numbers--turn-on ()
+       "Turn on line numbers but excempting certain major modes defined in `display-line-numbers-exempt-modes'."
+       (if (and
+            (not (member major-mode display-line-numbers-exempt-modes))
+            (not (minibufferp))
+            )
+           (display-line-numbers-mode)
+         )
+       )
+
+     (global-display-line-numbers-mode)
+   #+END_SRC
 ** Undo-tree
    [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
    + Undo-Tree:
      - http://www.dr-qubit.org/undo-tree/undo-tree.el
      - https://elpa.gnu.org/packages/undo-tree.html
-#+BEGIN_SRC emacs-lisp
-  (use-package undo-tree
-    :ensure t
-    :bind
-    ("C-x C-z" . 'undo-tree-visualize)
-    :diminish
-    :init
-    (global-undo-tree-mode)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package undo-tree
+       :ensure t
+       :bind
+       ("C-x C-z" . 'undo-tree-visualize)
+       :diminish
+       :init
+       (global-undo-tree-mode)
+       )
+   #+END_SRC
 ** Projectile
    Project management
    + Projectile:
      - https://github.com/bbatsov/projectile
      - https://melpa.org/#/projectile
-#+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :ensure t
-    :bind
-    ("<f5>" . projectile-compile-project)
-    :init
-    (projectile-mode 1)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package projectile
+       :ensure t
+       :bind
+       ("<f5>" . projectile-compile-project)
+       :init
+       (projectile-mode 1)
+       )
+   #+END_SRC
 ** Rainbow delimiters
    Colored delimiters
    + Rainbow-Delimiters:
      - https://github.com/Fanael/rainbow-delimiters
      - https://melpa.org/#/rainbow-delimiters
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters
-    :ensure t
-    :hook
-    (
-     (prog-mode . rainbow-delimiters-mode)
-     (gerbil-mode . rainbow-delimiters-mode)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package rainbow-delimiters
+       :ensure t
+       :hook
+       (
+        (prog-mode . rainbow-delimiters-mode)
+        (gerbil-mode . rainbow-delimiters-mode)
+        )
+       )
+   #+END_SRC
 ** Spaces
    Use spaces as tabs
-#+BEGIN_SRC emacs-lisp
-  (setq-default indent-tabs-mode nil)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq-default indent-tabs-mode nil)
+   #+END_SRC
 ** Spelling
    Spell checking.
-#+BEGIN_SRC emacs-lisp
-  (use-package flyspell-mode
-    :ensure nil
-    :hook
-    (
-     (org-mode  . turn-on-flyspell)
-     (prog-mode . flyspell-prog-mode)
-     (tex-mode  . flyspell-mode)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package flyspell-mode
+       :ensure nil
+       :hook
+       (
+        (org-mode  . turn-on-flyspell)
+        (prog-mode . flyspell-prog-mode)
+        (tex-mode  . flyspell-mode)
+        )
+       )
+   #+END_SRC
 
 
 * Programming
@@ -671,17 +671,17 @@
    + Eldoc:
      - http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/emacs-lisp/eldoc.el
      - https://elpa.gnu.org/packages/eldoc.html
-#+BEGIN_SRC emacs-lisp
-  (use-package eldoc
-    :ensure t
-    :defer t
-    :hook
-    (
-     (prog-mode . eldoc-mode)
-     )
-    :diminish
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package eldoc
+       :ensure t
+       :defer t
+       :hook
+       (
+        (prog-mode . eldoc-mode)
+        )
+       :diminish
+       )
+   #+END_SRC
 ** Company
    The company completion framework.
    Keep this here, above, before adding company hooks.
@@ -696,28 +696,28 @@
    + Company-Quickhelp:
      - https://github.com/company-mode/company-quickhelp
      - https://melpa.org/#/company-quickhelp
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :ensure t
-    :hook
-    (
-     (company-mode . eldoc-mode)
-     )
-    :diminish
-    :init
-    (global-company-mode t)
-    :config
-    (setq
-     company-idle-delay 0
-     company-minimum-prefix-length 2
-     )
-    )
-  (use-package company-quickhelp
-    :ensure t
-    :hook
-    (company-mode . company-quickhelp-mode)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package company
+       :ensure t
+       :hook
+       (
+        (company-mode . eldoc-mode)
+        )
+       :diminish
+       :init
+       (global-company-mode t)
+       :config
+       (setq
+        company-idle-delay 0
+        company-minimum-prefix-length 2
+        )
+       )
+     (use-package company-quickhelp
+       :ensure t
+       :hook
+       (company-mode . company-quickhelp-mode)
+       )
+   #+END_SRC
 ** LSP
    Language Server Protocol support for Emacs
    Keep this second, after company.
@@ -727,31 +727,31 @@
    + Elgot:
      - https://github.com/joaotavora/eglot
      - https://melpa.org/#/eglot
-#+BEGIN_SRC emacs-lisp
-  ;; LSP Server
-  (use-package lsp-mode
-    :ensure t
-    :hook
-    ((lsp-mode . company-mode))
-    )
-  ;; Eglot Client
-  ;; for packages that do not provide their own client
-  (use-package eglot
-    :ensure t
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; LSP Server
+     (use-package lsp-mode
+       :ensure t
+       :hook
+       ((lsp-mode . company-mode))
+       )
+     ;; Eglot Client
+     ;; for packages that do not provide their own client
+     (use-package eglot
+       :ensure t
+       )
+   #+END_SRC
 ** C & C++
    C & C++ language support.
    Use Eglot for the C/C+ LSP client.
-#+BEGIN_SRC emacs-lisp
-  ;; Utilize clangd from the LLVM project
-  ;; https://github.com/llvm/llvm-project/tree/master/clang-tools-extra/clangd
-  (when (executable-find "clangd")
-    (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
-    (add-hook 'c-mode-hook 'eglot-ensure)
-    (add-hook 'c++-mode-hook 'eglot-ensure)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; Utilize clangd from the LLVM project
+     ;; https://github.com/llvm/llvm-project/tree/master/clang-tools-extra/clangd
+     (when (executable-find "clangd")
+       (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+       (add-hook 'c-mode-hook 'eglot-ensure)
+       (add-hook 'c++-mode-hook 'eglot-ensure)
+       )
+   #+END_SRC
 ** C#
    + Omnisharp:
      - https://github.com/OmniSharp/omnisharp-emacs
@@ -759,286 +759,286 @@
    + Dotnet:
      - https://github.com/julienXX/dotnet.el
      - https://melpa.org/#/dotnet
-#+BEGIN_SRC emacs-lisp
-  (use-package omnisharp
-    :ensure t
-    :hook
-    ((csharp-mode . omnisharp-mode))
-    :config
-    (progn
-      (add-to-list 'company-backends 'company-omnisharp)
-      (setq
-       c-syntactic-indentation t
-       truncate-lines t
+   #+BEGIN_SRC emacs-lisp
+     (use-package omnisharp
+       :ensure t
+       :hook
+       ((csharp-mode . omnisharp-mode))
+       :config
+       (progn
+         (add-to-list 'company-backends 'company-omnisharp)
+         (setq
+          c-syntactic-indentation t
+          truncate-lines t
+          )
+         )
        )
-      )
-    )
-  (use-package dotnet
-    :ensure t
-    :hook
-    (
-     (csharp-mode . dotnet-mode)
-     (fsharp-mode . dotnet-mode)
-     )
-    )
-#+END_SRC
+     (use-package dotnet
+       :ensure t
+       :hook
+       (
+        (csharp-mode . dotnet-mode)
+        (fsharp-mode . dotnet-mode)
+        )
+       )
+   #+END_SRC
 ** Comments
    + Hl-Todo:
      - https://github.com/tarsius/hl-todo
      - https://melpa.org/#/hl-todo
-#+BEGIN_SRC emacs-lisp
-  (use-package hl-todo
-    :ensure t
-    :init
-    (global-hl-todo-mode)
-    :config
-    (setq
-     hl-todo-keyword-faces
-     '(
-       ("BROKEN"     . "#FF0000")
-       ("BUG"        . "#FF0000")
-       ("DEBUG"      . "#A020F0")
-       ("FIXME"      . "#FF4500")
-       ("GOTCHA"     . "#FF4500")
-       ("STUB"       . "#1E90FF")
-       ("TODO"       . "#1E90FF")
-       ("WORKAROUND" . "#A020F0")
+   #+BEGIN_SRC emacs-lisp
+     (use-package hl-todo
+       :ensure t
+       :init
+       (global-hl-todo-mode)
+       :config
+       (setq
+        hl-todo-keyword-faces
+        '(
+          ("BROKEN"     . "#FF0000")
+          ("BUG"        . "#FF0000")
+          ("DEBUG"      . "#A020F0")
+          ("FIXME"      . "#FF4500")
+          ("GOTCHA"     . "#FF4500")
+          ("STUB"       . "#1E90FF")
+          ("TODO"       . "#1E90FF")
+          ("WORKAROUND" . "#A020F0")
+          )
+        )
        )
-     )
-    )
-#+END_SRC
+   #+END_SRC
 ** Electric Pairs
    Auto close brackets
-#+BEGIN_SRC emacs-lisp
-  (setq
-   electric-pair-pairs
-   '(
-     (?\{ . ?\})
-     (?\( . ?\))
-     (?\[ . ?\])
-     (?\" . ?\")
-     )
-   )
-  (electric-pair-mode t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq
+      electric-pair-pairs
+      '(
+        (?\{ . ?\})
+        (?\( . ?\))
+        (?\[ . ?\])
+        (?\" . ?\")
+        )
+      )
+     (electric-pair-mode t)
+   #+END_SRC
 ** Elisp
    Emacs Lisp interaction configuration.
-#+BEGIN_SRC emacs-lisp
-  (use-package inferior-emacs-lisp-mode
-    :ensure nil
-    :hook
-    (
-     (ielm-mode . company-mode)
-     (ielm-mode . rainbow-delimiters-mode)
-     (ielm-mode . eldoc-mode)
-     )
-    :commands (ielm)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package inferior-emacs-lisp-mode
+       :ensure nil
+       :hook
+       (
+        (ielm-mode . company-mode)
+        (ielm-mode . rainbow-delimiters-mode)
+        (ielm-mode . eldoc-mode)
+        )
+       :commands (ielm)
+       )
+   #+END_SRC
 ** Elixir
    [[https://elixir-lang.org/][Elixir]] language support
    + Alchemist:
      - https://github.com/tonini/alchemist.el
      - https://melpa.org/#/alchemist
-#+BEGIN_SRC emacs-lisp
-  (use-package alchemist
-    :if (executable-find "elixir")
-    :ensure t
-    :hook
-    ((elixir-mode . alchemist-mode))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package alchemist
+       :if (executable-find "elixir")
+       :ensure t
+       :hook
+       ((elixir-mode . alchemist-mode))
+       )
+   #+END_SRC
 ** Erlang
    [[https://www.erlang.org/][Erlang]] language support
-#+BEGIN_SRC emacs-lisp
-  ;; Prevent annoying hang-on-compile
-  ;; From https://www.lambdacat.com/post-modern-emacs-setup-for-erlang/
-  (defvar inferior-erlang-prompt-timeout t)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; Prevent annoying hang-on-compile
+     ;; From https://www.lambdacat.com/post-modern-emacs-setup-for-erlang/
+     (defvar inferior-erlang-prompt-timeout t)
+   #+END_SRC
 ** Flycheck
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
    + Flycheck:
      - https://github.com/flycheck/flycheck
      - https://melpa.org/#/flycheck
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :ensure t
-    :init
-    (global-flycheck-mode t)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package flycheck
+       :ensure t
+       :init
+       (global-flycheck-mode t)
+       )
+   #+END_SRC
 ** Gambit
    [[https://github.com/gambit/gambit][Gambit]] language support.
-#+BEGIN_SRC emacs-lisp
-  (use-package gambit
-    :if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
-    :ensure nil
-    :defer t
-    :load-path "/usr/share/emacs/site-lisp"
-    :hook
-    (
-     (inferior-scheme-mode . gambit-inferior-mode)
-     (scheme-mode          . gambit-mode)
-     )
-    :init
-    (progn
-      (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
-      (autoload 'gambit-mode          "gambit" "Hook Gambit mode into scheme.")
-      )
-    :config
-    (setq scheme-program-name "gsi -:d-")
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package gambit
+       :if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
+       :ensure nil
+       :defer t
+       :load-path "/usr/share/emacs/site-lisp"
+       :hook
+       (
+        (inferior-scheme-mode . gambit-inferior-mode)
+        (scheme-mode          . gambit-mode)
+        )
+       :init
+       (progn
+         (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+         (autoload 'gambit-mode          "gambit" "Hook Gambit mode into scheme.")
+         )
+       :config
+       (setq scheme-program-name "gsi -:d-")
+       )
+   #+END_SRC
 ** Go
    [[https://golang.org/][Go]] language support
    + Go-Mode:
      - https://github.com/dominikh/go-mode.el
      - https://melpa.org/#/go-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package go-mode
-    :if (executable-find "go")
-    :ensure t
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package go-mode
+       :if (executable-find "go")
+       :ensure t
+       )
+   #+END_SRC
 ** Godot
    [[https://godotengine.org/][Godot]]'s scripting language support.
    + Gdscript-Mode
      - https://github.com/godotengine/emacs-gdscript-mode
      - https://melpa.org/#/gdscript-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package gdscript-mode
-    :if (executable-find "godot")
-    :ensure t
-    :config
-    ;; (setq gdscript-use-tab-indents t)
-    (setq
-     gdscript-indent-offset 4
-     gdscript-gdformat-save-and-format t
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package gdscript-mode
+       :if (executable-find "godot")
+       :ensure t
+       :config
+       ;; (setq gdscript-use-tab-indents t)
+       (setq
+        gdscript-indent-offset 4
+        gdscript-gdformat-save-and-format t
+        )
+       )
+   #+END_SRC
 ** Haskell
    [[https://www.haskell.org/][Haskell]] language support
    + Haskell-Mode:
      - https://github.com/haskell/haskell-mode
      - https://melpa.org/#/haskell-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode
-    :if (executable-find "ghc")
-    :ensure t
-    :mode
-    (("\\.ghci\\'" . haskell-mode))
-    :hook
-    (
-     (haskell-mode . interactive-haskell-mode)
-     (haskell-mode . flycheck-mode)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package haskell-mode
+       :if (executable-find "ghc")
+       :ensure t
+       :mode
+       (("\\.ghci\\'" . haskell-mode))
+       :hook
+       (
+        (haskell-mode . interactive-haskell-mode)
+        (haskell-mode . flycheck-mode)
+        )
+       )
+   #+END_SRC
 ** LFE
    [[https://github.com/rvirding/lfe/][LFE]] language support.
-#+BEGIN_SRC emacs-lisp
-  (when (executable-find "lfe")
-    (progn
-      (add-hook 'lfe-mode-hook 'company-mode)
-      (add-hook 'lfe-mode-hook 'rainbow-delimiters-mode)
-      )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (when (executable-find "lfe")
+       (progn
+         (add-hook 'lfe-mode-hook 'company-mode)
+         (add-hook 'lfe-mode-hook 'rainbow-delimiters-mode)
+         )
+       )
+   #+END_SRC
 ** Lisp
    [[https://common-lisp.net/][Lisp]] language support
    + Sly:
      - http://joaotavora.github.io/sly/
      - https://github.com/joaotavora/sly
      - https://melpa.org/#/sly
-#+BEGIN_SRC emacs-lisp
-  ;; TODO: autostart slime
-  (use-package sly
-    :if (executable-find "sbcl")
-    :ensure t
-    :hook
-    (
-     (sly-mrepl-mode . company-mode)
-     (sly-mrepl-mode . rainbow-delimiters-mode)
-     )
-    :config
-    (setq
-     inferior-lisp-program "sbcl"
-     sly-mrepl-history-file-name (w-u-e-d "sly-history")
-     sly-net-coding-system 'utf-8-unix
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; TODO: autostart slime
+     (use-package sly
+       :if (executable-find "sbcl")
+       :ensure t
+       :hook
+       (
+        (sly-mrepl-mode . company-mode)
+        (sly-mrepl-mode . rainbow-delimiters-mode)
+        )
+       :config
+       (setq
+        inferior-lisp-program "sbcl"
+        sly-mrepl-history-file-name (w-u-e-d "sly-history")
+        sly-net-coding-system 'utf-8-unix
+        )
+       )
+   #+END_SRC
 ** Lua
    [[http://www.lua.org/][Lua]] language support with [[http://luajit.org/][LuaJIT]]
    + Lua-Mode:
      - https://github.com/immerrr/lua-mode
      - https://melpa.org/#/lua-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package lua-mode
-    :if (executable-find "luajit")
-    :ensure t
-    :config
-    (setq lua-default-application "luajit")
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package lua-mode
+       :if (executable-find "luajit")
+       :ensure t
+       :config
+       (setq lua-default-application "luajit")
+       )
+   #+END_SRC
 ** Markdown
    [[https://daringfireball.net/projects/markdown][Markdown]] language support
    + Markdown-Mode:
      - https://github.com/jrblevin/markdown-mode
      - https://melpa.org/#/markdown-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode
-    :ensure t
-    :mode
-    (
-     ("README\\.md\\'" . gfm-mode)
-     ("\\.md\\'" . markdown-mode)
-     ("\\.markdown\\'" . markdown-mode)
-     )
-    :init
-    (setq markdown-command "multimarkdown")
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package markdown-mode
+       :ensure t
+       :mode
+       (
+        ("README\\.md\\'" . gfm-mode)
+        ("\\.md\\'" . markdown-mode)
+        ("\\.markdown\\'" . markdown-mode)
+        )
+       :init
+       (setq markdown-command "multimarkdown")
+       )
+   #+END_SRC
 ** Match words
    Highlight the same words
    + Idle-Highlight-Mode:
      - https://github.com/nonsequitur/idle-highlight-mode
      - https://melpa.org/#/idle-highlight-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package idle-highlight-mode
-    :ensure t
-    :config
-    (add-hook
-     'prog-mode-hook
-     (lambda ()
-       (idle-highlight-mode t)
+   #+BEGIN_SRC emacs-lisp
+     (use-package idle-highlight-mode
+       :ensure t
+       :config
+       (add-hook
+        'prog-mode-hook
+        (lambda ()
+          (idle-highlight-mode t)
+          )
+        )
        )
-     )
-    )
-#+END_SRC
+   #+END_SRC
 ** Maxima
    [[https://github.com/andrejv/maxima][Maxima]] language support.
    + Imath-Mode, Imaxima, Maxima-Mode:
      - /usr/share/emacs/site-lisp/maxima
-#+BEGIN_SRC emacs-lisp
-  (use-package maxima-mode
-    :if (executable-find "maxima")
-    :ensure nil
-    :hook
-    (
-     (imaxima . maxima-mode)
-     (maxima . maxima-mode)
-     (maxima-mode . company-mode)
-     (maxima-mode . imath-mode)
-     (maxima-mode . rainbow-delimiters-mode)
-     )
-    :mode
-    (("\\.ma[cx]\\'" . maxima-mode))
-    :config
-    (setq imaxima-use-maxima-mode-flag t)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package maxima-mode
+       :if (executable-find "maxima")
+       :ensure nil
+       :hook
+       (
+        (imaxima . maxima-mode)
+        (maxima . maxima-mode)
+        (maxima-mode . company-mode)
+        (maxima-mode . imath-mode)
+        (maxima-mode . rainbow-delimiters-mode)
+        )
+       :mode
+       (("\\.ma[cx]\\'" . maxima-mode))
+       :config
+       (setq imaxima-use-maxima-mode-flag t)
+       )
+   #+END_SRC
 ** OCaml
    [[https://ocaml.org/][OCaml]] language support.
    + Tuareg:
@@ -1047,74 +1047,74 @@
    + Merlin:
      - https://github.com/ocaml/merlin
      - https://melpa.org/#/merlin
-#+BEGIN_SRC emacs-lisp
-  (use-package tuareg
-    :if (executable-find "ocaml")
-    :ensure t
-    :mode
-    (
-     ("\\.ml\\'" . tuareg-mode)
-     ("\\.mli\\'" . tuareg-mode)
-     ("\\.mlp\\'" . tuareg-mode)
-     )
-    :hook
-    ((caml-mode . tuareg-mode))
-    :config
-    (setq tuareg-match-patterns-aligned t)
-    )
-  ;; FIXME: Not tested
-  (use-package merlin
-    :if (executable-find "ocamlmerlin")
-    :ensure t
-    :hook
-    ((tuareg-mode . merlin-mode))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package tuareg
+       :if (executable-find "ocaml")
+       :ensure t
+       :mode
+       (
+        ("\\.ml\\'" . tuareg-mode)
+        ("\\.mli\\'" . tuareg-mode)
+        ("\\.mlp\\'" . tuareg-mode)
+        )
+       :hook
+       ((caml-mode . tuareg-mode))
+       :config
+       (setq tuareg-match-patterns-aligned t)
+       )
+     ;; FIXME: Not tested
+     (use-package merlin
+       :if (executable-find "ocamlmerlin")
+       :ensure t
+       :hook
+       ((tuareg-mode . merlin-mode))
+       )
+   #+END_SRC
 ** Octave
    [[https://www.gnu.org/software/octave/index][Octave]] support.
    Start the Octave REPL (Inferior Octave) with =run-octave=.
    + Inferior Octave:
      - included with GNU Emacs
-#+BEGIN_SRC emacs-lisp
-  (use-package inferior-octave-mode
-    :if (executable-find "octave")
-    :ensure nil
-    :hook
-    (
-     (inferior-octave-mode . company-mode)
-     (inferior-octave-mode . rainbow-delimiters-mode)
-     )
-    :bind
-    (
-     :map inferior-octave-mode-map
-     ;; C-up    - previous history item
-     ("up" . comint-previous-input)
-     ;; C-down  - next history item
-     ("down" . comint-next-input)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package inferior-octave-mode
+       :if (executable-find "octave")
+       :ensure nil
+       :hook
+       (
+        (inferior-octave-mode . company-mode)
+        (inferior-octave-mode . rainbow-delimiters-mode)
+        )
+       :bind
+       (
+        :map inferior-octave-mode-map
+        ;; C-up    - previous history item
+        ("up" . comint-previous-input)
+        ;; C-down  - next history item
+        ("down" . comint-next-input)
+        )
+       )
+   #+END_SRC
 ** Perl
    [[https://www.perl.org/][Perl]] language support.
    + Cperl-Mode:
      - included with GNU Emacs
-#+BEGIN_SRC emacs-lisp
-  (use-package cperl-mode
-    :ensure nil
-    :init
-    (defalias 'perl-mode 'cperl-mode)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package cperl-mode
+       :ensure nil
+       :init
+       (defalias 'perl-mode 'cperl-mode)
+       )
+   #+END_SRC
 ** Powershell
    [[https://docs.microsoft.com/en-us/powershell/][Powershell]] language support.
    + Powershell:
      - https://github.com/jschaf/powershell.el
      - https://melpa.org/#/powershell
-#+BEGIN_SRC emacs-lisp
-  (use-package powershell
-    :ensure t
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package powershell
+       :ensure t
+       )
+   #+END_SRC
 ** Python
    [[https://www.python.org/][Python]] IDE.
    WARNING: Remember to run =elpy-config= to install some necessary packages.
@@ -1123,24 +1123,24 @@
      - https://elpy.readthedocs.io
      - https://github.com/jorgenschaefer/elpy
      - https://melpa.org/#/elpy
-#+BEGIN_SRC emacs-lisp
-  (use-package elpy
-    :if (executable-find "python")
-    :ensure t
-    :defer t
-    :hook
-    ((elpy-mode . flycheck-mode))
-    :init
-    (advice-add 'python-mode :before 'elpy-enable)
-    :config
-    (setq
-     elpy-modules (delq 'elpy-module-flymake elpy-modules)
-     elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
-     python-shell-interpreter "ipython3"
-     python-shell-interpreter-args "-i --simple-prompt"
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package elpy
+       :if (executable-find "python")
+       :ensure t
+       :defer t
+       :hook
+       ((elpy-mode . flycheck-mode))
+       :init
+       (advice-add 'python-mode :before 'elpy-enable)
+       :config
+       (setq
+        elpy-modules (delq 'elpy-module-flymake elpy-modules)
+        elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
+        python-shell-interpreter "ipython3"
+        python-shell-interpreter-args "-i --simple-prompt"
+        )
+       )
+   #+END_SRC
 ** R
    [[https://www.r-project.org/][R]] language support.
    Run ESS's R lang REPL with =run-ess-r=.
@@ -1148,14 +1148,14 @@
    + Ess:
      - https://github.com/emacs-ess/ESS
      - https://melpa.org/#/ess
-#+BEGIN_SRC emacs-lisp
-  (use-package ess
-    :if (executable-find "R")
-    :ensure t
-    :mode
-    (("\\.R\\'" . ess-r-mode))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package ess
+       :if (executable-find "R")
+       :ensure t
+       :mode
+       (("\\.R\\'" . ess-r-mode))
+       )
+   #+END_SRC
 ** Racket
    [[https://racket-lang.org/][Racket]] language support.
    + Important key bindings:
@@ -1169,99 +1169,99 @@
      - https://github.com/greghendershott/racket-mode
      - https://melpa.org/#/racket-mode
      - https://racket-mode.com
-#+BEGIN_SRC emacs-lisp
-  (use-package racket-mode
-    :if (executable-find "racket")
-    :ensure t
-    :mode
-    (
-     ("\\.rkt[dl]?\\'" . racket-mode)
-     ("\\.scrbl\\'" . racket-mode)
-     )
-    :hook
-    (
-     (racket-mode      . company-mode)
-     (racket-mode      . idle-highlight-mode)
-     (racket-mode      . racket-xp-mode)
-     (racket-repl-mode . company-mode)
-     (racket-repl-mode . idle-highlight-mode)
-     (racket-repl-mode . racket-unicode-input-method-enable)
-     (racket-repl-mode . rainbow-delimiters-mode)
-     )
-    :config
-    (setq racket-show-functions '(racket-show-echo-area))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package racket-mode
+       :if (executable-find "racket")
+       :ensure t
+       :mode
+       (
+        ("\\.rkt[dl]?\\'" . racket-mode)
+        ("\\.scrbl\\'" . racket-mode)
+        )
+       :hook
+       (
+        (racket-mode      . company-mode)
+        (racket-mode      . idle-highlight-mode)
+        (racket-mode      . racket-xp-mode)
+        (racket-repl-mode . company-mode)
+        (racket-repl-mode . idle-highlight-mode)
+        (racket-repl-mode . racket-unicode-input-method-enable)
+        (racket-repl-mode . rainbow-delimiters-mode)
+        )
+       :config
+       (setq racket-show-functions '(racket-show-echo-area))
+       )
+   #+END_SRC
 ** Rust
    [[https://www.rust-lang.org/][Rust]] language support
    + Rust-Mode:
      - https://github.com/rust-lang/rust-mode
      - https://melpa.org/#/rust-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package rust-mode
-    :if (executable-find "rustc")
-    :ensure t
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package rust-mode
+       :if (executable-find "rustc")
+       :ensure t
+       )
+   #+END_SRC
 ** Scheme
    [[http://www.scheme-reports.org/][Scheme]] language support.
    For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
    + Geiser:
      - https://gitlab.com/jaor/geiser
      - https://melpa.org/#/geiser
-#+BEGIN_SRC emacs-lisp
-  (use-package geiser
-    :if (executable-find "guile")
-    :ensure t
-    :init
-    (setq geiser-active-implementations '(guile))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package geiser
+       :if (executable-find "guile")
+       :ensure t
+       :init
+       (setq geiser-active-implementations '(guile))
+       )
+   #+END_SRC
    Don't use scheme-mode in Racket files.
-#+BEGIN_SRC emacs-lisp
-  (setq auto-mode-alist (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq auto-mode-alist (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist))
+   #+END_SRC
 ** Speedbar
    [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
    + Sr-Speedbar:
      - https://github.com/emacsorphanage/sr-speedbar
      - https://melpa.org/#/sr-speedbar
-#+BEGIN_SRC emacs-lisp
-  (use-package sr-speedbar
-    :ensure t
-    :bind
-    (:map
-     my-keymap
-     ("s" . sr-speedbar-toggle)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package sr-speedbar
+       :ensure t
+       :bind
+       (:map
+        my-keymap
+        ("s" . sr-speedbar-toggle)
+        )
+       )
+   #+END_SRC
 ** Tabs
    Tab width settings
-#+BEGIN_SRC emacs-lisp
-  (setq-default tab-width 4)
-  (setq
-   js-indent-level 4
-   c-basic-offset 4
-   css-indent-offset 4
-   sh-basic-offset 4
-   )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq-default tab-width 4)
+     (setq
+      js-indent-level 4
+      c-basic-offset 4
+      css-indent-offset 4
+      sh-basic-offset 4
+      )
+   #+END_SRC
 ** Vala
    [[https://wiki.gnome.org/Projects/Vala][Vala]] language support
    + Vala-Mode:
      - https://github.com/rrthomas/vala-mode
      - https://melpa.org/#/vala-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package vala-mode
-    :ensure t
-    :hook
-    (
-     (vala-mode . rainbow-delimiters-mode)
-     (vala-mode . idle-highlight-mode)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package vala-mode
+       :ensure t
+       :hook
+       (
+        (vala-mode . rainbow-delimiters-mode)
+        (vala-mode . idle-highlight-mode)
+        )
+       )
+   #+END_SRC
 ** Web Development
    Enable Web Mode for:
    - [[https://whatwg.org/][HTML]]
@@ -1270,70 +1270,70 @@
    + Web-Mode:
      - https://github.com/fxbois/web-mode
      - https://melpa.org/#/web-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package web-mode
-    :ensure t
-    :mode
-    (
-     ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-     ("\\.[agj]sp\\'" . web-mode)
-     ("\\.as[cp]x\\'" . web-mode)
-     ("\\.blade\\.php\\'" . web-mode)
-     ("\\.djhtml\\'" . web-mode)
-     ("\\.ejs\\'" . web-mode)
-     ("\\.erb\\'" . web-mode)
-     ("\\.html?\\'" . web-mode)
-     ("\\.jsp\\'" . web-mode)
-     ("\\.mustache\\'" . web-mode)
-     ("\\.php\\'" . web-mode)
-     ("\\.phtml\\'" . web-mode)
-     ("\\.tpl\\.php\\'" . web-mode)
-     ("\\.xml\\'" . web-mode)
-     )
-    :config
-    (setq
-     web-mode-enable-auto-closing t
-     web-mode-enable-auto-pairing t
-     web-mode-enable-comment-keywords t
-     web-mode-enable-current-element-highlight t
-     web-mode-code-indent-offset 4
-     web-mode-css-indent-offset 4
-     web-mode-markup-indent-offset 4
-     web-mode-block-padding 4
-     web-mode-script-padding 4
-     web-mode-style-padding 4
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package web-mode
+       :ensure t
+       :mode
+       (
+        ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
+        ("\\.[agj]sp\\'" . web-mode)
+        ("\\.as[cp]x\\'" . web-mode)
+        ("\\.blade\\.php\\'" . web-mode)
+        ("\\.djhtml\\'" . web-mode)
+        ("\\.ejs\\'" . web-mode)
+        ("\\.erb\\'" . web-mode)
+        ("\\.html?\\'" . web-mode)
+        ("\\.jsp\\'" . web-mode)
+        ("\\.mustache\\'" . web-mode)
+        ("\\.php\\'" . web-mode)
+        ("\\.phtml\\'" . web-mode)
+        ("\\.tpl\\.php\\'" . web-mode)
+        ("\\.xml\\'" . web-mode)
+        )
+       :config
+       (setq
+        web-mode-enable-auto-closing t
+        web-mode-enable-auto-pairing t
+        web-mode-enable-comment-keywords t
+        web-mode-enable-current-element-highlight t
+        web-mode-code-indent-offset 4
+        web-mode-css-indent-offset 4
+        web-mode-markup-indent-offset 4
+        web-mode-block-padding 4
+        web-mode-script-padding 4
+        web-mode-style-padding 4
+        )
+       )
+   #+END_SRC
    Tweak [[https://www.w3.org/TR/CSS2/][CSS]] support
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'css-mode-hook 'company-mode)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'css-mode-hook 'company-mode)
+   #+END_SRC
 ** Yaml
    [[https://yaml.org][Yaml]] language support
    + Yaml-Mode:
      - https://github.com/yoshiki/yaml-mode
      - https://melpa.org/#/yaml-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode
-    :ensure t
-    :mode
-    (
-     ;; Saltstack
-     ("\\.sls\\'" . yaml-mode)
-     )
-    :hook
-    (
-     (yaml-mode . idle-highlight-mode)
-     (yaml-mode . company-mode)
-     )
-    :bind
-    (
-     :map yaml-mode-map
-     ("C-m" . newline-and-indent)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package yaml-mode
+       :ensure t
+       :mode
+       (
+        ;; Saltstack
+        ("\\.sls\\'" . yaml-mode)
+        )
+       :hook
+       (
+        (yaml-mode . idle-highlight-mode)
+        (yaml-mode . company-mode)
+        )
+       :bind
+       (
+        :map yaml-mode-map
+        ("C-m" . newline-and-indent)
+        )
+       )
+   #+END_SRC
 ** Yasnippet
    [[https://github.com/AndreaCrotti/yasnippet-snippets][Code snippets]]
    + Yasnippet:
@@ -1342,99 +1342,99 @@
    + Yasnippet-Snippets:
      - https://github.com/AndreaCrotti/yasnippet-snippets
      - https://melpa.org/#/yasnippet-snippets
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :hook
-    ((prog-mode . yas-minor-mode))
-    :config
-    (use-package yasnippet-snippets
-      :ensure t
-      )
-    (yas-reload-all)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package yasnippet
+       :ensure t
+       :hook
+       ((prog-mode . yas-minor-mode))
+       :config
+       (use-package yasnippet-snippets
+         :ensure t
+         )
+       (yas-reload-all)
+       )
+   #+END_SRC
 
 
 * Org
 ** Main
-#+BEGIN_SRC emacs-lisp
-  (use-package org
-    :ensure nil
-    :bind
-    (:map
-     org-mode-map
-     ;; with =C-c i= insert structure template
-     ("C-c i" . org-insert-structure-template)
-     )
-    :diminish org-src-mode
-    :config
-    (setq
-     ;; wth =C-c '= replace the original .org file with editor.
-     org-src-window-setup 'current-window
-     ;; word wrap
-     org-startup-truncated nil
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package org
+       :ensure nil
+       :bind
+       (:map
+        org-mode-map
+        ;; with =C-c i= insert structure template
+        ("C-c i" . org-insert-structure-template)
+        )
+       :diminish org-src-mode
+       :config
+       (setq
+        ;; wth =C-c '= replace the original .org file with editor.
+        org-src-window-setup 'current-window
+        ;; word wrap
+        org-startup-truncated nil
+        )
+       )
+   #+END_SRC
 ** Agenda
    My Org agenda
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-l a") 'org-agenda)
-  (setq
-   org-agenda-files
-   (list
-    "~/Documents/todo.org"
-    )
-   )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-l a") 'org-agenda)
+     (setq
+      org-agenda-files
+      (list
+       "~/Documents/todo.org"
+       )
+      )
+   #+END_SRC
    Create todo.org if it does not exist
-#+BEGIN_SRC emacs-lisp
-  (if (not (file-exists-p "~/Documents/todo.org"))
-      (with-temp-buffer
-        (write-file "~/Documents/todo.org")
-        )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (if (not (file-exists-p "~/Documents/todo.org"))
+         (with-temp-buffer
+           (write-file "~/Documents/todo.org")
+           )
+       )
+   #+END_SRC
 ** Bullets
    Make Org look prettier.
    + Org-Bullets:
      - https://github.com/integral-dw/org-bullets
      - https://melpa.org/#/org-bullets
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :if window-system
-    :ensure t
-    :hook
-    ((org-mode . org-bullets-mode))
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-bullets
+       :if window-system
+       :ensure t
+       :hook
+       ((org-mode . org-bullets-mode))
+       )
+   #+END_SRC
 ** Deft
    My deft setup.
    + Deft:
      - https://github.com/jrblevin/deft
      - https://melpa.org/#/deft
-#+BEGIN_SRC emacs-lisp
-  (use-package deft
-    :ensure t
-    :bind
-    (("<f8>" . deft))
-    :commands (deft)
-    :config
-    (setq
-     deft-directory "~/Documents/Diary"
-     deft-extensions '("md" "org" "rst" "tex" "text" "txt")
-     )
-    )
-#+END_SRC
-   Create Diary if it does not exist.
-#+BEGIN_SRC emacs-lisp
-  (if (not (file-exists-p "~/Documents/Diary"))
-      (with-temp-buffer
-        (make-directory "~/Documents/Diary")
+   #+BEGIN_SRC emacs-lisp
+     (use-package deft
+       :ensure t
+       :bind
+       (("<f8>" . deft))
+       :commands (deft)
+       :config
+       (setq
+        deft-directory "~/Documents/Diary"
+        deft-extensions '("md" "org" "rst" "tex" "text" "txt")
         )
-    )
-#+END_SRC
+       )
+   #+END_SRC
+   Create Diary if it does not exist.
+   #+BEGIN_SRC emacs-lisp
+     (if (not (file-exists-p "~/Documents/Diary"))
+         (with-temp-buffer
+           (make-directory "~/Documents/Diary")
+           )
+       )
+   #+END_SRC
 
 
 * Misc Plugins
@@ -1442,148 +1442,148 @@
    + Dashboard:
      - https://github.com/emacs-dashboard/emacs-dashboard
      - https://melpa.org/#/dashboard
-#+BEGIN_SRC emacs-lisp
-  (use-package dashboard
-    :ensure t
-    :config
-    (progn
-      (dashboard-setup-startup-hook)
-      (setq
-       dashboard-banner-logo-title-face t
-       dashboard-center-content t
-       dashboard-startup-banner 'logo
-       inhibit-startup-message t
-       inhibit-startup-screen t
-       show-week-agenda-p t
-       )
-      (setq
-       dashboard-items
-       '(
-         (recents  . 5)
-         (projects . 5)
+   #+BEGIN_SRC emacs-lisp
+     (use-package dashboard
+       :ensure t
+       :config
+       (progn
+         (dashboard-setup-startup-hook)
+         (setq
+          dashboard-banner-logo-title-face t
+          dashboard-center-content t
+          dashboard-startup-banner 'logo
+          inhibit-startup-message t
+          inhibit-startup-screen t
+          show-week-agenda-p t
+          )
+         (setq
+          dashboard-items
+          '(
+            (recents  . 5)
+            (projects . 5)
+            )
+          )
+         (add-to-list 'dashboard-items '(agenda) t)
          )
        )
-      (add-to-list 'dashboard-items '(agenda) t)
-      )
-    )
-#+END_SRC
+   #+END_SRC
 ** Dired
    Dired configuration
-#+BEGIN_SRC emacs-lisp
-  (setq-default
-   dired-auto-revert-buffer t
-   dired-listing-switches "-ahl"
-   dired-recursive-copies 'always
-   )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq-default
+      dired-auto-revert-buffer t
+      dired-listing-switches "-ahl"
+      dired-recursive-copies 'always
+      )
+   #+END_SRC
    Sidebar for Emacs leveraging Dired
    + Dired-Sidebar:
      - https://github.com/jojojames/dired-sidebar
      - https://melpa.org/#/dired-sidebar
-#+BEGIN_SRC emacs-lisp
-  (use-package dired-sidebar
-    :ensure t
-    :commands
-    (dired-sidebar-toggle-sidebar)
-    :bind
-    (:map
-     my-keymap
-     ("d" . dired-sidebar-toggle-sidebar)
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package dired-sidebar
+       :ensure t
+       :commands
+       (dired-sidebar-toggle-sidebar)
+       :bind
+       (:map
+        my-keymap
+        ("d" . dired-sidebar-toggle-sidebar)
+        )
+       )
+   #+END_SRC
 ** Eshell
    Emacs Shell
-#+BEGIN_SRC emacs-lisp
-  (defun split-and-start-eshell ()
-    "Split and start the Emacs shell."
-    (interactive)
-    (split-window-below)
-    (balance-windows)
-    (other-window 1)
-    (eshell)
-    )
+   #+BEGIN_SRC emacs-lisp
+     (defun split-and-start-eshell ()
+       "Split and start the Emacs shell."
+       (interactive)
+       (split-window-below)
+       (balance-windows)
+       (other-window 1)
+       (eshell)
+       )
 
-  (use-package eshell
-    :ensure nil
-    :hook
-    (
-     (eshell-mode . company-mode)
-     (eshell-mode . idle-highlight-mode)
-     (eshell-mode . rainbow-delimiters-mode)
-     )
-    :bind
-    (
-     ("<f7>" . split-and-start-eshell)
-     )
-    :config
-    (progn
-      ;; Prompt
-      (setq eshell-highlight-prompt t)
-      ;; Aliases
-      (defalias 'open 'find-file-other-window)
-      (defalias 'clean 'eshell/clear-scrollback)
-      )
-    )
-#+END_SRC
+     (use-package eshell
+       :ensure nil
+       :hook
+       (
+        (eshell-mode . company-mode)
+        (eshell-mode . idle-highlight-mode)
+        (eshell-mode . rainbow-delimiters-mode)
+        )
+       :bind
+       (
+        ("<f7>" . split-and-start-eshell)
+        )
+       :config
+       (progn
+         ;; Prompt
+         (setq eshell-highlight-prompt t)
+         ;; Aliases
+         (defalias 'open 'find-file-other-window)
+         (defalias 'clean 'eshell/clear-scrollback)
+         )
+       )
+   #+END_SRC
 ** IRC
    [[https://freenode.net/][IRC]] with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
-#+BEGIN_SRC emacs-lisp
-  ;; Channels to autojoin
-  (setq
-   erc-autojoin-channels-alist
-   '(
-     ("freenode.net"
-      "#NetBSD"
-      "#gentoo"
-      "#gentoo-chat"
-      "#gentoo-dev"
-      "#gentoo-guru"
-      "#gentoo-laptop"
-      "#gentoo-ml"
-      "#gentoo-openbsd"
-      "#gentoo-prefix"
-      "#gentoo-proxy-maint"
-      "#gentoo-qt"
-      "#gentoo-server"
-      "#guix"
-      "#kde"
-      "#lisp"
-      "#termux"
+   #+BEGIN_SRC emacs-lisp
+     ;; Channels to autojoin
+     (setq
+      erc-autojoin-channels-alist
+      '(
+        ("freenode.net"
+         "#NetBSD"
+         "#gentoo"
+         "#gentoo-chat"
+         "#gentoo-dev"
+         "#gentoo-guru"
+         "#gentoo-laptop"
+         "#gentoo-ml"
+         "#gentoo-openbsd"
+         "#gentoo-prefix"
+         "#gentoo-proxy-maint"
+         "#gentoo-qt"
+         "#gentoo-server"
+         "#guix"
+         "#kde"
+         "#lisp"
+         "#termux"
+         )
+        ("irc.rizon.net"
+         "#cloveros"
+         )
+        )
       )
-     ("irc.rizon.net"
-      "#cloveros"
-      )
-     )
-   )
-#+END_SRC
+   #+END_SRC
 ** Uppercase
    =C-x C-u= to convert a region to uppercase
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   (put 'upcase-region 'disabled nil)
-#+END_SRC
+   #+END_SRC
 ** Ranger
    + Ranger:
      - https://github.com/ralesi/ranger.el
      - https://melpa.org/#/ranger
-#+BEGIN_SRC emacs-lisp
-  (use-package ranger
-    :ensure t
-    :defer t
-    :commands (ranger ranger-go)
-    :bind
-    (:map
-     my-keymap
-     ("n" . ranger)
-     )
-    :config
-    (setq
-     ranger-cleanup-eagerly t
-     ranger-cleanup-on-disable t
-     ranger-show-hidden t
-     )
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package ranger
+       :ensure t
+       :defer t
+       :commands (ranger ranger-go)
+       :bind
+       (:map
+        my-keymap
+        ("n" . ranger)
+        )
+       :config
+       (setq
+        ranger-cleanup-eagerly t
+        ranger-cleanup-on-disable t
+        ranger-show-hidden t
+        )
+       )
+   #+END_SRC
 ** Reveal.js
    Export ORG mode contents to Reveal.js HTML presentations.
    Use =C-c C-e R R= to export to HTML file.
@@ -1593,85 +1593,85 @@
    + Ox-Reveal:
      - https://github.com/yjwen/org-reveal
      - https://melpa.org/#/ox-reveal
-#+BEGIN_SRC emacs-lisp
-  ;; reveal dependency
-  (use-package htmlize
-    :ensure t
-    )
-  (use-package ox-reveal
-    :after htmlize
-    :ensure t
-    :config
-    ;; TODO: add auto-installer
-    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     ;; reveal dependency
+     (use-package htmlize
+       :ensure t
+       )
+     (use-package ox-reveal
+       :after htmlize
+       :ensure t
+       :config
+       ;; TODO: add auto-installer
+       (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+       )
+   #+END_SRC
 ** Treemacs
    File tree project explorer.
    + Treemacs:
      - https://github.com/Alexander-Miller/treemacs
      - https://melpa.org/#/treemacs
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs
-    :ensure t
-    :defer t
-    :bind
-    (:map
-     my-keymap
-     ("t 1" . treemacs-delete-other-windows)
-     ("t b" . treemacs-bookmark)
-     ("t f" . treemacs-find-file)
-     ("t g" . treemacs-find-tag)
-     ("t t" . treemacs)
-     )
-    :config
-    (progn
-      (setq
-       treemacs-follow-after-init t
-       treemacs-position 'left
+   #+BEGIN_SRC emacs-lisp
+     (use-package treemacs
+       :ensure t
+       :defer t
+       :bind
+       (:map
+        my-keymap
+        ("t 1" . treemacs-delete-other-windows)
+        ("t b" . treemacs-bookmark)
+        ("t f" . treemacs-find-file)
+        ("t g" . treemacs-find-tag)
+        ("t t" . treemacs)
+        )
+       :config
+       (progn
+         (setq
+          treemacs-follow-after-init t
+          treemacs-position 'left
+          )
+         (treemacs-follow-mode t)
+         (treemacs-resize-icons 18)
+         )
        )
-      (treemacs-follow-mode t)
-      (treemacs-resize-icons 18)
-      )
-    )
-  (use-package treemacs-all-the-icons
-    :if window-system
-    :after (all-the-icons treemacs)
-    :ensure t
-    :config
-    (treemacs-load-theme "all-the-icons")
-    )
-  (use-package treemacs-projectile
-    :after (treemacs projectile)
-    :ensure t
-    )
-  (use-package treemacs-magit
-    :after (treemacs magit)
-    :ensure t
-    )
-#+END_SRC
+     (use-package treemacs-all-the-icons
+       :if window-system
+       :after (all-the-icons treemacs)
+       :ensure t
+       :config
+       (treemacs-load-theme "all-the-icons")
+       )
+     (use-package treemacs-projectile
+       :after (treemacs projectile)
+       :ensure t
+       )
+     (use-package treemacs-magit
+       :after (treemacs magit)
+       :ensure t
+       )
+   #+END_SRC
 ** Vterm Terminal
    [[https://github.com/akermu/emacs-libvterm][emacs-libvterm]] uses [[https://github.com/neovim/libvterm][libvterm]].
    Installation of libvterm will be performed automatically if the prerequisites are met:
-     - Emacs with module support
-     - cmake
-     - make
-     - libtool
-     - git
+   - Emacs with module support
+   - cmake
+   - make
+   - libtool
+   - git
    Load vterm only in GUI.
    + Vterm:
      - https://github.com/akermu/emacs-libvterm
      - https://melpa.org/#/vterm
-#+BEGIN_SRC emacs-lisp
-  (use-package vterm
-    :if (and window-system (eq system-type 'gnu/linux))
-    :ensure t
-    :bind
-    ("<f2>" . 'vterm)
-    :config
-    (setq vterm-shell '"${SHELL} -l")
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package vterm
+       :if (and window-system (eq system-type 'gnu/linux))
+       :ensure t
+       :bind
+       ("<f2>" . 'vterm)
+       :config
+       (setq vterm-shell '"${SHELL} -l")
+       )
+   #+END_SRC
 
 
 * Games
@@ -1682,54 +1682,54 @@
      - https://github.com/emacsmirror/2048-game
      - https://hg.sr.ht/~zck/game-2048
      - https://melpa.org/#/2048-game
-#+BEGIN_SRC emacs-lisp
-  (use-package 2048-game
-    :ensure t
-    :defer t
-    :commands (2048-game)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package 2048-game
+       :ensure t
+       :defer t
+       :commands (2048-game)
+       )
+   #+END_SRC
 ** Jumblr
    + Jumblr:
      - https://github.com/mkmcc/jumblr
      - https://melpa.org/#/jumblr
-#+BEGIN_SRC emacs-lisp
-  (use-package jumblr
-    :ensure t
-    :defer t
-    :commands (jumblr)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package jumblr
+       :ensure t
+       :defer t
+       :commands (jumblr)
+       )
+   #+END_SRC
 ** Minesweeper
    + Minesweeper:
      - https://melpa.org/#/minesweeper
      - https://hg.sr.ht/~zck/minesweeper
-#+BEGIN_SRC emacs-lisp
-  (use-package minesweeper
-    :ensure t
-    :defer t
-    :commands (minesweeper)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package minesweeper
+       :ensure t
+       :defer t
+       :commands (minesweeper)
+       )
+   #+END_SRC
 ** Sudoku
    + Sudoku:
      - https://github.com/zevlg/sudoku.el
      - https://melpa.org/#/sudoku
-#+BEGIN_SRC emacs-lisp
-  (use-package sudoku
-    :ensure t
-    :defer t
-    :commands (sudoku)
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package sudoku
+       :ensure t
+       :defer t
+       :commands (sudoku)
+       )
+   #+END_SRC
 ** The Typing of Emacs
    + Typing:
      - https://github.com/kensanata/typing
      - https://melpa.org/#/typing
      - https://www.emacswiki.org/emacs/TypingOfEmacs
-#+BEGIN_SRC emacs-lisp
-  (use-package typing
-    :ensure t
-    :defer t
-    )
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package typing
+       :ensure t
+       :defer t
+       )
+   #+END_SRC
