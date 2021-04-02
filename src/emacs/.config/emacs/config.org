@@ -556,8 +556,13 @@
    #+BEGIN_SRC emacs-lisp
      (use-package rainbow-mode
        :ensure t
+       :defer t
        :hook
-       ((prog-mode . rainbow-mode))
+       (
+        (org-mode  . rainbow-mode)
+        (prog-mode . rainbow-mode)
+        (text-mode . rainbow-mode)
+        )
        :diminish
        )
    #+END_SRC
