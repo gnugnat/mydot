@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: header-gpl
+# key: /header-gpl
+# --
+`comment-start` This file is part of ${1:PROJECT}.`comment-end`
+
+`comment-start`$1 is free software: you can redistribute it and/or modify`comment-end`
+`comment-start`it under the terms of the GNU General Public License as published by`comment-end`
+`comment-start`the Free Software Foundation, version ${2:3}.`comment-end`
+
+`comment-start`$1 is distributed in the hope that it will be useful,`comment-end`
+`comment-start`but WITHOUT ANY WARRANTY; without even the implied warranty of`comment-end`
+`comment-start`MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the`comment-end`
+`comment-start`GNU General Public License for more details.`comment-end`
+
+`comment-start`You should have received a copy of the GNU General Public License`comment-end`
+`comment-start`along with $1.  If not, see <https://www.gnu.org/licenses/>.`comment-end`
+
+`comment-start`Copyright (c) ${3:2021}, ${4:Maciej Barć <xgqt@riseup.net>}`comment-end`
+`comment-start`Licensed under the GNU GPL v$2 License`comment-end`
