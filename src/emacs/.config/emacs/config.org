@@ -362,6 +362,9 @@
    + All-The-Icons-Ibuffer:
      - https://github.com/seagle0128/all-the-icons-ibuffer
      - https://melpa.org/#/all-the-icons-ibuffer
+   + Emojify:
+     - https://github.com/iqbalansari/emacs-emojify
+     - https://melpa.org/#/emojify
 #+BEGIN_SRC emacs-lisp
   (setq
    inhibit-compacting-font-caches t
@@ -384,6 +387,12 @@
     :ensure t
     :init
     (all-the-icons-ibuffer-mode 1)
+    )
+  (use-package emojify
+    :if window-system
+    :ensure t
+    :hook
+    ((after-init . global-emojify-mode))
     )
 #+END_SRC
 ** Spaceline
