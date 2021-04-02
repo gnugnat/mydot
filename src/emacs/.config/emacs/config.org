@@ -74,8 +74,9 @@
    Special prefix for my bindings.
    | Key Combination | Command                             |
    |-----------------+-------------------------------------|
-   | C-l t           | treemacs                            |
+   | C-l g           | grep                                |
    | C-l m           | magit                               |
+   | C-l t           | treemacs                            |
    |-----------------+-------------------------------------|
    | C-l a           | org-agenda                          |
    | C-l d           | dired-sidebar-toggle-sidebar        |
@@ -88,6 +89,7 @@
    | C-x C-u         | upcase-region                       |
    | C-z             | undo                                |
    | M-s             | avy-goto-char                       |
+   | M-x             | smex                                |
    |-----------------+-------------------------------------|
    | f2              | vterm                               |
    | f5              | projectile-compile-project          |
@@ -97,6 +99,7 @@
    | C-c i           | [org] org-insert-structure-template |
    | C-m             | [yaml] newline-and-indent           |
    Update this periodically with output from =C-h b=.
+   To view this you can also run =M-x describe-personal-keybindings=.
    #+BEGIN_SRC emacs-lisp
      (global-unset-key (kbd "C-l"))
      (define-prefix-command 'my-keymap)
@@ -551,6 +554,37 @@
        (global-diff-hl-mode)
        )
    #+END_SRC
+** Grep
+   Grepping from within Emacs.
+   Key bindings are available within =my-keymap=:
+   | key        | function  |
+   |------------+-----------|
+   | g / RETurn | grep      |
+   | l          | lgrep     |
+   | r          | rgrep     |
+   | z          | zgrep     |
+   | k          | kill-grep |
+   #+begin_src emacs-lisp
+     (use-package grep-mode
+       :if (executable-find "grep")
+       :ensure nil
+       :hook
+       (
+        (grep-mode . idle-highlight-mode)
+        (grep-mode . rainbow-mode)
+        )
+       :bind
+       (:map
+        my-keymap
+        ("g <RET>" . grep)
+        ("g g" . grep)
+        ("g l" . lgrep)
+        ("g r" . rgrep)
+        ("g z" . zgrep)
+        ("g k" . kill-grep)
+        )
+       )
+   #+end_src
 ** Hex colors
    Colorize hexadecimal values
    + Rainbow-Mode:
