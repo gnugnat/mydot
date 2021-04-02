@@ -612,6 +612,7 @@
      (defcustom display-line-numbers-exempt-modes
        '(
          ansi-term-mode
+         completion-list-mode
          dashboard-mode
          dired-mode
          dired-sidebar-mode
