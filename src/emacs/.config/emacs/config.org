@@ -243,22 +243,27 @@
      (setq ibuffer-expert t)
    #+END_SRC
 ** IDO mode
-   Buffer stuff
+   [[https://www.emacswiki.org/emacs/InteractivelyDoThings][IDO]] - interactive buffer stuff.
    #+BEGIN_SRC emacs-lisp
-     (setq
-      ido-create-new-buffer 'always
-      ido-enable-flex-matching nil
-      ido-everywhere t
-      )
-     (ido-mode 1)
-   #+END_SRC
-** IDO switch buffers
-   Better buffer switching
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-x b") 'ido-switch-buffer)
+     (use-package ido
+       :bind
+       (("C-x b" . 'ido-switch-buffer))
+       :diminish ido-mode
+       :init
+       (progn
+         (setq
+          ido-create-new-buffer 'always
+          ido-enable-flex-matching nil
+          ido-use-filename-at-point nil
+          ido-use-virtual-buffers nil
+          ido-everywhere t
+          )
+         (ido-mode t)
+         )
+       )
    #+END_SRC
 ** IDO vertically
-   Better positioning
+   Better positioning.
    + Ido-Vertical-Mode:
      - https://github.com/creichert/ido-vertical-mode.el
      - https://melpa.org/#/ido-vertical-mode
@@ -267,8 +272,8 @@
        :ensure t
        :init
        (progn
-         (ido-vertical-mode 1)
          (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+         (ido-vertical-mode 1)
          )
        )
    #+END_SRC
