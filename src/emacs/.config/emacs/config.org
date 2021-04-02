@@ -74,17 +74,18 @@
    Special prefix for my bindings.
    | Key Combination | Command                             |
    |-----------------+-------------------------------------|
+   | C-l c           | config (visit/reload)               |
    | C-l g           | grep                                |
    | C-l m           | magit                               |
    | C-l t           | treemacs                            |
    |-----------------+-------------------------------------|
+   | C-l C-l         | config-reload                       |
+   | C-l C-v         | config-visit                        |
    | C-l a           | org-agenda                          |
    | C-l d           | dired-sidebar-toggle-sidebar        |
-   | C-l l           | config-reload                       |
    | C-l n           | ranger                              |
    | C-l r           | toggle-transparency                 |
    | C-l s           | sr-speedbar-toggle                  |
-   | C-l v           | config-visit                        |
    |-----------------+-------------------------------------|
    | C-x C-u         | upcase-region                       |
    | C-z             | undo                                |
@@ -113,7 +114,8 @@
        (interactive)
        (find-file (w-u-e-d "config.org"))
        )
-     (global-set-key (kbd "C-l v") 'config-visit)
+     (global-set-key (kbd "C-l C-v") 'config-visit)
+     (global-set-key (kbd "C-l c v") 'config-visit)
    #+END_SRC
    Reload the configuration.
    #+BEGIN_SRC emacs-lisp
@@ -134,7 +136,8 @@
          )
        )
 
-     (global-set-key (kbd "C-l l") 'config-reload)
+     (global-set-key (kbd "C-l C-l") 'config-reload)
+     (global-set-key (kbd "C-l c l") 'config-reload)
    #+END_SRC
 ** Key bindings
    Key binding hints.
