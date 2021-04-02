@@ -237,12 +237,11 @@
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x C-b") 'ibuffer)
    #+END_SRC
-** Ibuffer Expert
    Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
    #+BEGIN_SRC emacs-lisp
      (setq ibuffer-expert t)
    #+END_SRC
-** IDO mode
+** IDO
    [[https://www.emacswiki.org/emacs/InteractivelyDoThings][IDO]] - interactive buffer stuff.
    #+BEGIN_SRC emacs-lisp
      (use-package ido
@@ -262,7 +261,6 @@
          )
        )
    #+END_SRC
-** IDO vertically
    Better positioning.
    + Ido-Vertical-Mode:
      - https://github.com/creichert/ido-vertical-mode.el
