@@ -1062,10 +1062,10 @@
        :config
        (setq tuareg-match-patterns-aligned t)
        )
-     ;; FIXME: Not tested
      (use-package merlin
        :if (executable-find "ocamlmerlin")
        :ensure t
+       :after tuareg
        :hook
        ((tuareg-mode . merlin-mode))
        )
