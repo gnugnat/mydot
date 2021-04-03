@@ -1392,7 +1392,10 @@
      (use-package yasnippet
        :ensure t
        :hook
-       ((prog-mode . yas-minor-mode))
+       (
+        (org-mode  . yas-minor-mode)
+        (prog-mode . yas-minor-mode)
+        )
        :config
        (progn
          (setq yas-snippet-dirs
