@@ -543,7 +543,10 @@ rbind codium-bin codium 'codium-bin' -s
 rbind codium code 'codium' -s
 
 # Files
-a_k_a ,, 'cd ../..'
+a_k_a '..' 'cd ..'
+a_k_a '....' 'cd ../..'
+a_k_a ',,' 'cd ../..'
+a_k_a ',,,,' 'cd ../../../..'
 a_k_a nuke 'rm -fr'
 a_k_a tf 'tail -fv --retry'
 rbind highlight hl 'highlight -O truecolor' -s
