@@ -1,16 +1,15 @@
+# -*- python -*-
+# vim: filetype=python
+# Local Variables:
+# mode: python
+# End:
+
+
 python
 
 
 # GDB dashboard - Modular visual interface for GDB in Python.
 # https://github.com/cyrus-and/gdb-dashboard
-
-
-# File variables ---------------------------------------------------------------
-
-# vim: filetype=python
-# Local Variables:
-# mode: python
-# End:
 
 
 # License ----------------------------------------------------------------------
