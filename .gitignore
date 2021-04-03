@@ -42,6 +42,7 @@ compiled/
 /docs/
 
 # Emacs
+.yas-compiled-snippet.el
 /src/emacs/.config/emacs/config.el
 /src/emacs/.config/emacs/gui-config.el
 
