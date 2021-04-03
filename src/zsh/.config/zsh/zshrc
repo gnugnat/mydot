@@ -242,13 +242,11 @@ unsetopt beep
 # Settings for appropriate terminal
 case "${TERM}"
 in
-    dumb )
+    "" | dumb )
         # For some SSH sessions (Emacs)
         unsetopt zle
         unsetopt prompt_cr
         unsetopt prompt_subst
-        unfunction precmd
-        unfunction preexec
-        PS1='$ '
+        PS1='(SH)> '
         ;;
 esac
