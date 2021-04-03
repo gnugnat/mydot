@@ -80,8 +80,15 @@ setopt extendedglob
 # Glob hidden files
 setopt globdots
 
-# Racket completion
-source_file "/usr/share/racket/pkgs/shell-completion/racket-completion.zsh"
+# Source ZDOTDIR completions
+if [ -d "${ZDOTDIR}/completions" ]
+then
+    for _completion in "${ZDOTDIR}/completions"/?*
+    do
+        source_file "${_completion}"
+    done
+    unset _completion
+fi
 
 
 # >>> Key bindings
@@ -164,18 +171,6 @@ source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Z - Quick directory navigation
 source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
 _Z_DATA="${ZCACHEDIR}/z"
-
-
-# >>> Completions
-
-if [ -d "${ZDOTDIR}/completions" ]
-then
-    for _completion in "${ZDOTDIR}/completions"/?*
-    do
-        source_file "${_completion}"
-    done
-    unset _completion
-fi
 
 
 # >>> ZSH tweaks
