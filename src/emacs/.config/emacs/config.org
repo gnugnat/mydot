@@ -984,11 +984,15 @@
 ** LFE
    [[https://github.com/rvirding/lfe/][LFE]] language support.
    #+BEGIN_SRC emacs-lisp
-     (when (executable-find "lfe")
-       (progn
-         (add-hook 'lfe-mode-hook 'company-mode)
-         (add-hook 'lfe-mode-hook 'rainbow-delimiters-mode)
-         )
+     (use-package lfe-mode
+       :if (executable-find "lfe")
+       :ensure nil
+       :hook
+       (
+        (lfe-mode . rainbow-delimiters-mode)
+        (lfe-mode . rainbow-mode)
+        (lfe-mode . yas-minor-mode)
+        )
        )
    #+END_SRC
 ** Lisp
