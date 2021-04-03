@@ -1,0 +1,47 @@
+# -*- mode: snippet -*-
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+
+
+# name: ebuild
+# key: /ebuild
+
+
+# --
+# Copyright 1999-${1:2021} Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=${2:7}
+
+DESCRIPTION="$3"
+HOMEPAGE="$4"
+
+if [[ "${PV}" == *9999* ]]; then
+    inherit git-r3
+    EGIT_REPO_URI="$5"
+else
+    SRC_URI="$6"
+    KEYWORDS="${7:~amd64}"
+fi
+
+LICENSE="$8"
+SLOT="0"
+
+DEPEND="$9"
+RDEPEND="$10"
