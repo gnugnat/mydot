@@ -853,6 +853,20 @@
         )
        )
    #+END_SRC
+** Desktop files
+   Support for editing [[https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html][XDG desktop files]].
+   #+BEGIN_SRC emacs-lisp
+     (use-package desktop-entry-mode
+       :ensure nil
+       :defer t
+       :hook
+       (
+        (desktop-entry-mode . rainbow-delimiters-mode)
+        (desktop-entry-mode . rainbow-mode)
+        (desktop-entry-mode . yas-minor-mode)
+        )
+       )
+   #+END_SRC
 ** Electric Pairs
    Auto close brackets
    #+BEGIN_SRC emacs-lisp
