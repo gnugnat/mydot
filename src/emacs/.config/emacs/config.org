@@ -1103,6 +1103,18 @@
        (setq imaxima-use-maxima-mode-flag t)
        )
    #+END_SRC
+** Nim
+   [[https://nim-lang.org/][Nim]] language support.
+   + Nim-Mode:
+     - https://github.com/nim-lang/nim-mode
+     - https://melpa.org/#/nim-mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package nim-mode
+       :if (executable-find "nim")
+       :ensure t
+       :defer t
+       )
+   #+END_SRC
 ** OCaml
    [[https://ocaml.org/][OCaml]] language support.
    + Tuareg:
