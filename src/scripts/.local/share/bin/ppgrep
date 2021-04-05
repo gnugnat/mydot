@@ -1,0 +1,85 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+
+
+trap 'exit 128' INT
+export PATH
+set -e
+
+
+prog_name="$(basename "${0}")"
+prog_desc="pretty process grep"
+prog_args="PROCESS"
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+main() {
+    if type tput >/dev/null 2>&1
+    then
+        bold="$(tput bold)"
+        blue="$(tput setaf 4)"
+        green="$(tput setaf 2)"
+        white="$(tput setaf 7)"
+        reset="$(tput sgr0)"
+    else
+        unset bold blue green white reset
+    fi
+
+    pgrep -afi "${@}" | sed -e "s/^/${bold}${white}[${blue}/"     \
+                            -e "s/ /${white}]${white}: ${green}/" \
+                            -e "s/ /${reset}${green} /2"
+
+    printf '%s' "${reset}"
+}
+
+
+case "${1}"
+in
+    -h | -help | --help )
+        usage
+        exit 0
+        ;;
+    -V | -version | --version )
+        version
+        exit 0
+        ;;
+esac
+
+
+main "${@}"
