@@ -1191,6 +1191,31 @@
        :ensure t
        )
    #+END_SRC
+** Proofs
+   [[https://coq.inria.fr/][Coq]] & other proof assistants support.
+   + Proof-General:
+     - https://github.com/ProofGeneral/PG
+     - https://melpa.org/#/proof-general
+     - https://proofgeneral.github.io/
+   + Company-Coq:
+     - https://github.com/cpitclaudel/company-coq
+     - https://melpa.org/#/company-coq
+   #+BEGIN_SRC emacs-lisp
+     (use-package proof-general
+       :ensure t
+       :defer t
+       )
+
+     (use-package company-coq
+       :if (executable-find "coqc")
+       :requires (company proof-general)
+       :ensure t
+       :defer t
+       :hook
+       (coq-mode . company-coq-mode)
+       :diminish
+       )
+   #+END_SRC
 ** Python
    [[https://www.python.org/][Python]] IDE.
    WARNING: Remember to run =elpy-config= to install some necessary packages.
