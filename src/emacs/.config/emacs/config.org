@@ -1378,6 +1378,20 @@
       sh-basic-offset 4
       )
    #+END_SRC
+   Highlight indentation.
+   + Highlight-Indentation:
+     - https://github.com/antonj/Highlight-Indentation-for-Emacs
+     - https://melpa.org/#/highlight-indentation
+     - https://www.emacswiki.org/emacs/HighlightIndentation
+   #+BEGIN_SRC emacs-lisp
+     (use-package highlight-indentation
+       :ensure t
+       :defer t
+       :diminish
+       :hook
+       (prog-mode . highlight-indentation-mode)
+       )
+   #+END_SRC
 ** Vala
    [[https://wiki.gnome.org/Projects/Vala][Vala]] language support
    + Vala-Mode:
