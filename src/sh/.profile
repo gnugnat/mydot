@@ -233,8 +233,18 @@ export PAGER
 _aspell_dir="${HOME}/.config/aspell"
 if nullwrap mkdir -p "${_aspell_dir}"
 then
-    # has to be one line like this
-    ASPELL_CONF="per-conf ${_aspell_dir}/aspell.conf; personal ${_aspell_dir}/en.pws; repl ${_aspell_dir}/en.prepl"
+    _aspell_per_conf="per-conf ${_aspell_dir}/aspell.conf"
+    _aspell_personal=""
+    _aspell_repl=""
+
+    for _lang in de en pl
+    do
+        _aspell_personal="${_aspell_personal} ${_aspell_dir}/${_lang}.pws"
+        _aspell_repl="${_aspell_repl} ${_aspell_dir}/${_lang}.prepl"
+    done
+
+    ASPELL_CONF="per-conf ${_aspell_per_conf} ; personal ${_aspell_personal} ; repl ${_aspell_repl}"
+    unset _aspell_per_conf _aspell_personal _aspell_repl
     export ASPELL_CONF
 fi
 unset _aspell_dir
