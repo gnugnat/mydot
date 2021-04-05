@@ -699,12 +699,22 @@
    Spell checking.
    #+BEGIN_SRC emacs-lisp
      (use-package flyspell-mode
+       :if (or (executable-find "hunspell") (executable-find "aspell"))
        :ensure nil
        :hook
        (
         (org-mode  . turn-on-flyspell)
         (prog-mode . flyspell-prog-mode)
         (tex-mode  . flyspell-mode)
+        )
+       :init
+       (cond
+        ((executable-find "hunspell")
+         (setq ispell-program-name "hunspell")
+         )
+        ((executable-find "aspell")
+         (setq ispell-program-name "aspell")
+         )
         )
        )
    #+END_SRC
