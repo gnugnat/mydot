@@ -1331,6 +1331,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package rust-mode
        :if (executable-find "rustc")
+       :requires eglot
        :ensure t
        :defer t
        :hook
