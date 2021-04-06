@@ -523,89 +523,93 @@ export NEED_UID0
 case "$(uname)"
 in
     *Linux* )
-        a_k_a t 'tree -I ".git" -L 2 -a'
-        a_k_a ta 'tree -I ".git" -a'
         alias l='ls -A'
         alias ll='ls --color=always -Fahl'
-        rbind ls ls 'ls --color=auto --group-directories-first'
+        alias ls='ls --color=auto --group-directories-first'
+        rbind tree t    'tree -I ".git" -L 2 -a'
+        rbind tree ta   'tree -I ".git" -a'
         rbind tree tree 'tree -CF'
         ;;
     * )
-        a_k_a t 'tree -L 2 -a'
-        a_k_a ta 'tree -a'
         alias l='ls -A'
         alias ll='ls -Fahl'
-        rbind tree 'tree -F'
+        rbind tree t    'tree -L 2 -a'
+        rbind tree ta   'tree -a'
+        rbind tree tree 'tree -F'
         ;;
 esac
 
 # Editor
-rbind emacs e 'emacs -nw' -s
-rbind emacs em 'emacs' -s
-a_k_a e '${EDITOR}'
-rbind nano n 'nano' -s
-a_k_a n '${EDITOR}'
-rbind vim v 'vim' -s
-a_k_a v '${EDITOR}'
-rbind nvim vim 'nvim'
-rbind vim vi 'vim'
+# Don't sort this
+rbind emacs e   'emacs -nw' -s
+rbind emacs em  'emacs'     -s
+a_k_a       e   '${EDITOR}'
+rbind nano  n   'nano'      -s
+a_k_a       n   '${EDITOR}'
+rbind vim   v   'vim'       -s
+a_k_a       v   '${EDITOR}'
+rbind nvim  vim 'nvim'
+rbind vim   vi  'vim'
 rbind codium-bin codium 'codium-bin' -s
-rbind codium code 'codium' -s
+rbind codium     code 'codium'       -s
 
 # Files
-a_k_a '..' 'cd ..'
-a_k_a '....' 'cd ../..'
-a_k_a ',,' 'cd ../..'
+a_k_a ',,'   'cd ../..'
 a_k_a ',,,,' 'cd ../../../..'
-a_k_a nuke 'rm -fr'
-a_k_a tf 'tail -fv --retry'
-rbind highlight hl 'highlight -O truecolor' -s
-rbind ncdu ncdu 'ncdu --color=dark'
-rbind rsync rcp 'rsync --stats --progress' -s
-rbind xdg-open open 'xdg-open' -s
+a_k_a '..'   'cd ..'
+a_k_a '....' 'cd ../..'
+a_k_a nuke   'rm -fr'
+a_k_a tf     'tail -fv --retry'
+rbind ncdu      ncdu 'ncdu --color=dark'
+rbind highlight hl   'highlight -O truecolor'   -s
+rbind rsync     rcp  'rsync --stats --progress' -s
+rbind xdg-open  open 'xdg-open'                 -s
 
 # Git
-a_k_a G 'git'
-a_k_a Ga 'git add .'
-a_k_a Gc 'git commit --signoff'
+a_k_a G   'git'
+a_k_a Ga  'git add .'
+a_k_a Gc  'git commit --signoff'
 a_k_a Gcc 'git log --cc --color-moved --show-signature'
-a_k_a Gd 'git diff --color-moved'
-a_k_a Gg 'git pull'
-a_k_a Gl 'git log --oneline --graph'
-a_k_a Go 'git clone --recursive --verbose'
-a_k_a Gp 'git push'
-a_k_a Gq 'git add . && git commit --signoff && git pull --rebase && git push'
-a_k_a Gr 'git reset --hard'
-a_k_a Gs 'git status'
-a_k_a Gu 'git reset HEAD --'
+a_k_a Gd  'git diff --color-moved'
+a_k_a Gg  'git pull'
+a_k_a Gl  'git log --oneline --graph'
+a_k_a Go  'git clone --recursive --verbose'
+a_k_a Gp  'git push'
+a_k_a Gq  'git add . && git commit --signoff && git pull --rebase && git push'
+a_k_a Gr  'git reset --hard'
+a_k_a Gs  'git status'
+a_k_a Gu  'git reset HEAD --'
 
 # Multimedia
 a_k_a ffsound 'ffplay -nodisp -hide_banner'
 
 # Network
 a_k_a no-net-sh 'unshare -r -n ${SH}'
-a_k_a seen '${NEED_UID0} watch arp-scan --localnet'
-a_k_a seeo '${NEED_UID0} netstat -acnptu'
-rbind mtr mtr 'mtr --show-ips --curses'
-rbind w3m w3m 'HOME="${HOME}/.cache" w3m'
+rbind mtr      mtr  'mtr --show-ips --curses'
+rbind w3m      w3m  'HOME="${HOME}/.cache" w3m'
+rbind arp-scan seen '${NEED_UID0} watch arp-scan --localnet' -s
+rbind netstat  seeo '${NEED_UID0} netstat -acnptu'           -s
 
 # Other PKG managers
-a_k_a fpk 'flatpak --user'
-a_k_a fpkup 'flatpak --user update && flatpak --user uninstall --unused'
-a_k_a raco-install 'raco pkg install --jobs $(nproc) --auto --user'
+rbind flatpak fpk          'flatpak --user'                                             -s
+rbind flatpak fpkup        'flatpak --user update && flatpak --user uninstall --unused' -s
+rbind raco    raco-install 'raco pkg install --jobs $(nproc) --auto --user'             -s
 
 # Portage
-a_k_a B 'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
-a_k_a E 'tail -fv ${EPREFIX}/var/log/emerge.log'
-a_k_a F 'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
-a_k_a P 'cd ${EPREFIX}/etc/portage && tree -a -L 2'
-a_k_a chu '${NEED_UID0} emerge -avNUD @world'
-a_k_a des '${NEED_UID0} emerge --deselect'
-a_k_a ewup '${NEED_UID0} emerge -avuDNU --with-bdeps=y --backtrack=100 --verbose-conflicts @world'
-a_k_a pep '${NEED_UID0} emerge --autounmask --ask --verbose'
-a_k_a preb '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
-a_k_a slr '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
-a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
+a_k_a B      'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
+a_k_a E      'tail -fv ${EPREFIX}/var/log/emerge.log'
+a_k_a F      'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
+a_k_a P      'cd ${EPREFIX}/etc/portage && tree -a -L 2'
+if command_exists emerge
+then
+    a_k_a chu    '${NEED_UID0} emerge -avNUD @world'
+    a_k_a des    '${NEED_UID0} emerge --deselect'
+    a_k_a ewup   '${NEED_UID0} emerge -avuDNU --with-bdeps=y --backtrack=100 --verbose-conflicts @world'
+    a_k_a pep    '${NEED_UID0} emerge --autounmask --ask --verbose'
+    a_k_a preb   '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
+    a_k_a slr    '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
+    a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
+fi
 
 # Programming
 # The following will attempt to alias 'python' as 'python3'
@@ -621,49 +625,57 @@ then
     a_k_a python 'python2'
 fi
 a_k_a builddir 'mkdir -p ./build && cd ./build'
-rbind chezscheme chez       'chezscheme'
-rbind chezscheme chezscheme 'chezscheme --eehistory "${CHEZ_HISTORY}"'
-rbind firefox    ff         'firefox'
-rbind ghci       hs         'ghci'
-rbind git        diff-git   'git diff --no-index'
-rbind ipython    ipy        'ipython'
-rbind irb        rb         'irb'
-rbind julia      jl         'julia'
 rbind petite     petite     'petite --eehistory "${CHEZ_HISTORY}"'
-rbind python     py         'python'
-rbind racket     rkt        'racket'
-rbind scheme     scm        'scheme'
-rbind tclsh      tcl        'tclsh'
+rbind chezscheme chezscheme 'chezscheme --eehistory "${CHEZ_HISTORY}"'
+rbind chezscheme chez       'chezscheme'          -s
+rbind firefox    ff         'firefox'             -s
+rbind ghci       hs         'ghci'                -s
+rbind git        diff-git   'git diff --no-index' -s
+rbind ipython    ipy        'ipython'             -s
+rbind irb        rb         'irb'                 -s
+rbind julia      jl         'julia'               -s
+rbind python     py         'python'              -s
+rbind racket     rkt        'racket'              -s
+rbind scheme     scm        'scheme'              -s
+rbind tclsh      tcl        'tclsh'               -s
 
 # Shell
 a_k_a cl-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
-a_k_a ed-bashrc '${EDITOR} ${HOME}/.bashrc'
-a_k_a ed-shrc '${EDITOR} ${HOME}/.profile'
-a_k_a ed-zshrc '${EDITOR} ${ZDOTDIR}/.zshrc'
-a_k_a shell '${SHELL}'
-a_k_a so-bashrc 'source ${HOME}/.bashrc'
-a_k_a so-shrc 'source ${HOME}/.profile'
-a_k_a so-zshrc 'source ${ZDOTDIR}/.zshrc'
+a_k_a ed-bashrc   '${EDITOR} ${HOME}/.bashrc'
+a_k_a ed-shrc     '${EDITOR} ${HOME}/.profile'
+a_k_a ed-zshrc    '${EDITOR} ${ZDOTDIR}/.zshrc'
+a_k_a shell       '${SHELL}'
+a_k_a so-bashrc   'source ${HOME}/.bashrc'
+a_k_a so-shrc     'source ${HOME}/.profile'
+a_k_a so-zshrc    'source ${ZDOTDIR}/.zshrc'
 
 # System
-a_k_a cpuinfo 'cat /proc/cpuinfo'
-a_k_a kerr '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
-a_k_a man-pl 'LANG="pl_PL.UTF-8" man'
-a_k_a root 'su -l root'
-a_k_a rp '${NEED_UID0} '
-a_k_a running '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
+a_k_a cpuinfo     'cat /proc/cpuinfo'
+a_k_a kerr        '${NEED_UID0} dmesg --level=alert,crit,emerg,err,warn --time-format=reltime --color'
+a_k_a man-pl      'LANG="pl_PL.UTF-8" man'
+a_k_a root        'su -l root'
+a_k_a rp          '${NEED_UID0} '
+a_k_a running     '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
 a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
 
 # Youtube-DL
-a_k_a ytd 'youtube-dl -i -o "%(title)s.%(ext)s"'
-a_k_a ytd-bestaudio 'youtube-dl -i -f bestaudio -x -o "%(playlist_index)s - %(title)s.%(ext)s"'
-a_k_a ytd-flac 'youtube-dl -i -f bestaudio -x --audio-format flac -o "%(playlist_index)s - %(title)s.%(ext)s"'
-a_k_a ytd-mp3 'youtube-dl -i -f bestaudio -x --audio-format mp3 -o "%(playlist_index)s - %(title)s.%(ext)s"'
-a_k_a ytd-mp4 'youtube-dl -i -f mp4 -o "%(title)s.%(ext)s"'
-a_k_a ytd-opus 'youtube-dl -i -f bestaudio -x --audio-format opus -o "%(playlist_index)s - %(title)s.%(ext)s"'
-a_k_a ytd-sub-en 'youtube-dl -i --write-srt --sub-lang en -o "%(title)s.%(ext)s"'
-a_k_a ytd-sub-pl 'youtube-dl -i --write-srt --sub-lang pl -o "%(title)s.%(ext)s"'
-a_k_a ytd-webm 'youtube-dl -i --format webm -o "%(title)s.%(ext)s"'
+if command_exists youtube-dl
+then
+    alias youtube-dl='youtube-dl -i -o "%(title)s.%(ext)s"'
+    a_k_a ytd           'youtube-dl'
+    # audio
+    alias ytd-bestaudio='youtube-dl -f bestaudio -x -o "%(playlist_index)s - %(title)s.%(ext)s"'
+    a_k_a ytd-flac      'ytd-bestaudio --audio-format flac'
+    a_k_a ytd-mp3       'ytd-bestaudio --audio-format mp3'
+    a_k_a ytd-opus      'ytd-bestaudio --audio-format opus'
+    # video
+    a_k_a ytd-mp4       'youtube-dl -f mp4'
+    a_k_a ytd-webm      'youtube-dl -f webm'
+    # subs
+    a_k_a ytd-sub-de    'youtube-dl --write-srt --sub-lang de'
+    a_k_a ytd-sub-en    'youtube-dl --write-srt --sub-lang en'
+    a_k_a ytd-sub-pl    'youtube-dl --write-srt --sub-lang pl'
+fi
 
 # Busybox
 # If BB is installed, then try to get unavailable programs from it
