@@ -1418,8 +1418,9 @@
        :ensure t
        :hook
        (
-        (vala-mode . rainbow-delimiters-mode)
         (vala-mode . idle-highlight-mode)
+        (vala-mode . rainbow-delimiters-mode)
+        (vala-mode . yas-minor-mode)
         )
        )
    #+END_SRC
