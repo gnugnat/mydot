@@ -1332,6 +1332,9 @@
      (use-package rust-mode
        :if (executable-find "rustc")
        :ensure t
+       :defer t
+       :hook
+       (rust-mode . eglot-ensure)
        )
    #+END_SRC
 ** Scheme
