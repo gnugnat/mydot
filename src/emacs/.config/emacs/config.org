@@ -861,6 +861,8 @@
    #+END_SRC
 ** Desktop files
    Support for editing [[https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html][XDG desktop files]].
+   + Desktop-Entry-Mode:
+     - [[/usr/share/emacs/site-lisp/desktop-entry-mode.el]]
    #+BEGIN_SRC emacs-lisp
      (use-package desktop-entry-mode
        :ensure nil
@@ -1134,7 +1136,9 @@
 ** Maxima
    [[https://github.com/andrejv/maxima][Maxima]] language support.
    + Imath-Mode, Imaxima, Maxima-Mode:
-     - /usr/share/emacs/site-lisp/maxima
+     - [[/usr/share/emacs/site-lisp/maxima/imath.el]]
+     - [[/usr/share/emacs/site-lisp/maxima/imaxima.el]]
+     - [[/usr/share/emacs/site-lisp/maxima/maxima.el]]
    #+BEGIN_SRC emacs-lisp
      (use-package maxima-mode
        :if (executable-find "maxima")
@@ -1199,8 +1203,6 @@
 ** Octave
    [[https://www.gnu.org/software/octave/index][Octave]] support.
    Start the Octave REPL (Inferior Octave) with =run-octave=.
-   + Inferior Octave:
-     - included with GNU Emacs
    #+BEGIN_SRC emacs-lisp
      (use-package inferior-octave-mode
        :if (executable-find "octave")
@@ -1222,8 +1224,6 @@
    #+END_SRC
 ** Perl
    [[https://www.perl.org/][Perl]] language support.
-   + Cperl-Mode:
-     - included with GNU Emacs
    #+BEGIN_SRC emacs-lisp
      (use-package cperl-mode
        :ensure nil
@@ -1243,8 +1243,6 @@
    #+END_SRC
 ** Prolog
    [[https://www.swi-prolog.org/][Prolog]] language support.
-   + Prolog:
-     - [[/usr/share/emacs/27.1/lisp/progmodes/prolog.el]]
    #+BEGIN_SRC emacs-lisp
      (use-package prolog
        :ensure nil
