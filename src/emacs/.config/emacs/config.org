@@ -1241,6 +1241,23 @@
        :ensure t
        )
    #+END_SRC
+** Prolog
+   [[https://www.swi-prolog.org/][Prolog]] language support.
+   + Prolog:
+     - [[/usr/share/emacs/27.1/lisp/progmodes/prolog.el]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package prolog
+       :ensure nil
+       :defer t
+       :hook
+       ((prolog-inferior-mode . rainbow-delimiters-mode))
+       :bind
+       (
+        :map prolog-mode-map
+        ("C-<return>" . prolog-consult-region)
+        )
+       )
+   #+END_SRC
 ** Proofs
    [[https://coq.inria.fr/][Coq]] & other proof assistants support.
    + Proof-General:
