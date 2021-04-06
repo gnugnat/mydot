@@ -1349,8 +1349,8 @@
      - https://melpa.org/#/ess
    #+BEGIN_SRC emacs-lisp
      (use-package ess
-       :if (executable-find "R")
        :ensure t
+       :defer t
        :mode
        (("\\.R\\'" . ess-r-mode))
        )
