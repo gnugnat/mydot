@@ -1084,6 +1084,14 @@
      (use-package lua-mode
        :if (executable-find "luajit")
        :ensure t
+       :defer t
+       :hook
+       ((lua-mode . lsp))
+       :bind
+       (
+        :map lua-mode-map
+        ("C-<return>" . lua-send-region)
+        )
        :config
        (setq lua-default-application "luajit")
        )
