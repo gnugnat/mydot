@@ -1023,6 +1023,39 @@
        (setq lsp-java-java-path OpenJDK11Java)
        )
    #+END_SRC
+** Julia
+   [[https://julialang.org/][Julia]] language support.
+   + Julia-Mode:
+     - https://github.com/JuliaEditorSupport/julia-emacs
+     - https://melpa.org/#/julia-mode
+   + Flycheck-Julia:
+     - https://github.com/gdkrmr/flycheck-julia
+     - https://melpa.org/#/flycheck-julia
+   #+BEGIN_SRC emacs-lisp
+     (use-package julia-mode
+       :if (executable-find "julia")
+       :ensure t
+       :defer t
+       :hook
+       (
+        (ess-julia-mode          . yas-minor-mode)
+        (inferior-ess-julia-mode . rainbow-delimiters-mode)
+        )
+       :mode
+       (("\\.jl\\'" . ess-julia-mode))
+       )
+     (use-package flycheck-julia
+       :if (executable-find "julia")
+       :requires julia-mode
+       :ensure t
+       :defer t
+       :hook
+       (
+        (ess-julia-mode . flycheck-mode)
+        (julia-mode     . flycheck-mode)
+        )
+       )
+   #+END_SRC
 ** JS
    [[https://www.javascript.com/][JavaScript]] language support.
    Requires =eglot= and npm packages that can be installed with:
