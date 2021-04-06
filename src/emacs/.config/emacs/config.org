@@ -1025,6 +1025,22 @@
        (setq lsp-java-java-path OpenJDK11Java)
        )
    #+END_SRC
+** JS
+   [[https://www.javascript.com/][JavaScript]] language support.
+   Requires =eglot= and npm packages that can be installed with:
+   =npm install -g typescript typescript-language-server=
+   #+BEGIN_SRC emacs-lisp
+     (use-package js-mode
+       :if (and (executable-find "tsserver")
+                (executable-find "typescript-language-server")
+                )
+       :requires eglot
+       :ensure nil
+       :defer t
+       :hook
+       (js-mode . eglot-ensure)
+       )
+   #+END_SRC
 ** LFE
    [[https://github.com/rvirding/lfe/][LFE]] language support.
    #+BEGIN_SRC emacs-lisp
