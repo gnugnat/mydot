@@ -755,10 +755,6 @@
    #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t
-       :hook
-       (
-        (company-mode . eldoc-mode)
-        )
        :diminish
        :init
        (global-company-mode t)
