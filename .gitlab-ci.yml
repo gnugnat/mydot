@@ -104,7 +104,7 @@ bootstrap:
 # is available).
 
 install:
-  image: gentoo/stage3-amd64:latest
+  image: gentoo/stage3
   stage: install
   needs: ["shellcheck"]
 
