@@ -606,6 +606,25 @@
        :diminish
        )
    #+END_SRC
+** Kill Ring
+   Kill Ring tweaks.
+   + Popup-Kill-Ring:
+     - https://github.com/waymondo/popup-kill-ring
+     - https://melpa.org/#/popup-kill-ring
+     - https://www.emacswiki.org/emacs/popup-kill-ring.el
+   #+BEGIN_SRC emacs-lisp
+     (use-package popup-kill-ring
+       :ensure t
+       :defer t
+       :commands (popup-kill-ring)
+       :bind
+       (
+        ("M-y" . popup-kill-ring)
+        ;; Oh, my lovely Polish keyboard
+        ("←" . popup-kill-ring)
+        )
+       )
+   #+END_SRC
 ** Line numbers
    Redefine =display-line-numbers--turn-on= so we can exclude some modes from it.
    Thanks to: https://www.emacswiki.org/emacs/LineNumbers#h5o-1
