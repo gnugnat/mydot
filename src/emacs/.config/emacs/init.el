@@ -28,27 +28,36 @@
 
 ;;; Fix garbage collection (makes Emacs start up faster)
 
+(defvar startup/gc-cons-threshold gc-cons-threshold)
+
 (setq
- gc-cons-threshold 402653184
+ gc-cons-threshold most-positive-fixnum
  gc-cons-percentage 0.6
  )
 
-(defvar startup/file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-
-(defun startup/revert-file-name-handler-alist ()
-  (setq file-name-handler-alist startup/file-name-handler-alist)
-  )
-
 (defun startup/reset-gc ()
+  "Revert to default garbage collector settings."
   (setq
-   gc-cons-threshold 16777216
+   gc-cons-threshold startup/gc-cons-threshold
    gc-cons-percentage 0.1
    )
   )
 
-(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
 (add-hook 'emacs-startup-hook 'startup/reset-gc)
+
+
+;;; Fix the file name handler
+
+(defvar startup/file-name-handler-alist file-name-handler-alist)
+
+(setq file-name-handler-alist nil)
+
+(defun startup/revert-file-name-handler-alist ()
+  "Revert to default `file-name-handler-alist'."
+  (setq file-name-handler-alist startup/file-name-handler-alist)
+  )
+
+(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
 
 
 ;;; Packages
