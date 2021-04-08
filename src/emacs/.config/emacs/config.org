@@ -26,17 +26,19 @@
 # Licensed under the GNU GPL v3 License
 
 
-[[./assets/img/steal_your_emacs_250x250.png]]
+[[../../../../images/icons/steal_your_emacs.png]]
 
 
 * History
+** Origins
+   The original version of this configuration was based on a Emacs series
+   by "Uncle Dave" (no relation ;P).
 
-  The original version of this configuration was based on a Emacs series
-  by "Uncle Dave" (no relation ;P).
+   The playlist on =YouTube= can be found [[https://www.youtube.com/playlist?list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][--> here <--]].
 
-  The playlist on =YouTube= can be found [[https://www.youtube.com/playlist?list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][--> here <--]].
-
-  The =repository= for Dave's configuration can be found [[https://github.com/daedreth/UncleDavesEmacs][--> here <--]].
+   The =repository= for Dave's configuration can be found [[https://github.com/daedreth/UncleDavesEmacs][--> here <--]].
+** Screenshots
+   [[../../../../images/screenshots/emacs_2021-04-08.jpg]]
 
 
 * Startup

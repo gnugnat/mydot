@@ -1,16 +1,25 @@
+#+TITLE: My ZSH Configuration
+
+#+AUTHOR: Maciej Barć
+#+LANGUAGE: en
+
 #+STARTUP: showall inlineimages
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_THEME: black
 
 
-* My ZSH Configuration
+* Plugins
 
-** thanks for
-- =zsh-syntax-highlighting=
-	https://github.com/zsh-users/zsh-syntax-highlighting
-- =zsh-autosuggestions=
-	https://github.com/zsh-users/zsh-autosuggestions
+** Third party
+
+  - [[https://github.com/zsh-users/zsh-autosuggestions][autosuggestions]]
+  - [[https://github.com/zsh-users/zsh-syntax-highlighting][syntax highlighting]]
+  - [[https://github.com/supercrabtree/k][k]]
+  - [[https://github.com/agkozak/zsh-z][z]]
 
 
 * Themes
 
+** Showcase
 
-[[./showcase.jpg]]
+   [[../../../../images/screenshots/zsh_2021-04-08.jpg]]
