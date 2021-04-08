@@ -636,11 +636,13 @@
      (defcustom display-line-numbers-exempt-modes
        '(
          ansi-term-mode
+         comint-mode
          completion-list-mode
          dashboard-mode
          dired-mode
          dired-sidebar-mode
          eshell-mode
+         inferior-emacs-lisp-mode
          inferior-ess-r-mode
          racket-repl-mode
          ranger-mode
