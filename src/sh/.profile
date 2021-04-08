@@ -318,6 +318,10 @@ export JUPYTER_CONFIG_DIR
 GRADLE_USER_HOME="${HOME}/.cache/gradle"
 export GRADLE_USER_HOME
 
+# Julia directory
+JULIA_DEPOT_PATH="${HOME}/.local/share/julia"
+export JULIA_DEPOT_PATH
+
 # ls colors
 if command_exists dircolors && [ -z "${LS_COLORS}" ]
 then
