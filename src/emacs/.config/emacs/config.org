@@ -254,7 +254,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package ido
        :bind
-       (("C-x b" . 'ido-switch-buffer))
+       (("C-x b" . ido-switch-buffer))
        :diminish ido-mode
        :init
        (progn
@@ -667,8 +667,8 @@
 
      (global-display-line-numbers-mode)
    #+END_SRC
-** Undo-tree
-   [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]]
+** Undo tree
+   [[https://github.com/apchamberlain/undo-tree.el][Changes to file as a tree]].
    + Undo-Tree:
      - http://www.dr-qubit.org/undo-tree/undo-tree.el
      - https://elpa.gnu.org/packages/undo-tree.html
@@ -676,7 +676,7 @@
      (use-package undo-tree
        :ensure t
        :bind
-       ("C-x C-z" . 'undo-tree-visualize)
+       (("C-x C-z" . undo-tree-visualize))
        :diminish
        :init
        (global-undo-tree-mode)
@@ -1979,7 +1979,7 @@
        :ensure t
        :defer t
        :bind
-       ("<f2>" . 'vterm)
+       (("<f2>" . vterm))
        :hook
        (
         (vterm-mode . idle-highlight-mode)
