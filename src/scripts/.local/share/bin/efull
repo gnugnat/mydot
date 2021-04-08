@@ -99,7 +99,7 @@ step_04() {
 }
 
 step_05() {
-    emerge -uNUD --with-bdeps=y --backtrack=100 @world
+    emerge -uUD --with-bdeps=y --backtrack=100 @world
 }
 
 step_06() {
