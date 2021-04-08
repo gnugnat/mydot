@@ -223,7 +223,7 @@
 
 * Buffers & Windows
 ** Follow Splits
-   Better window splitting
+   Better window splitting.
    #+BEGIN_SRC emacs-lisp
      ;; horizontal
      (defun split-and-follow-horizontally ()
@@ -243,6 +243,20 @@
        (other-window 1)
        )
      (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+   #+END_SRC
+   After splitting a frame automatically, switch to the new window
+   (unless we were in the minibuffer).
+   #+BEGIN_SRC emacs-lisp
+     (setq split-window-preferred-function 'my-split-window-function)
+
+     (defun my-split-window-function (&optional window)
+       (let
+           ((new-window (split-window-sensibly window)))
+         (if (not (active-minibuffer-window))
+             (select-window new-window)
+           )
+         )
+       )
    #+END_SRC
 ** Ibuffer
    Better switching
