@@ -533,8 +533,8 @@
      (use-package magit
        :ensure t
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("m b" . magit-blame)
         ("m c" . magit-commit)
         ("m d" . magit-diff)
@@ -579,8 +579,8 @@
         (grep-mode . rainbow-mode)
         )
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("g <RET>" . grep)
         ("g g" . grep)
         ("g l" . lgrep)
@@ -1454,8 +1454,8 @@
      (use-package sr-speedbar
        :ensure t
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("s" . sr-speedbar-toggle)
         )
        )
@@ -1631,8 +1631,8 @@
      (use-package org
        :ensure nil
        :bind
-       (:map
-        org-mode-map
+       (
+        :map org-mode-map
         ;; with =C-c i= insert structure template
         ("C-c i" . org-insert-structure-template)
         )
@@ -1797,8 +1797,8 @@
        :commands
        (dired-sidebar-toggle-sidebar)
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("d" . dired-sidebar-toggle-sidebar)
         )
        )
@@ -1883,8 +1883,8 @@
        :defer t
        :commands (ranger ranger-go)
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("n" . ranger)
         )
        :config
@@ -1927,8 +1927,8 @@
        :ensure t
        :defer t
        :bind
-       (:map
-        my-keymap
+       (
+        :map my-keymap
         ("t 1" . treemacs-delete-other-windows)
         ("t b" . treemacs-bookmark)
         ("t f" . treemacs-find-file)
