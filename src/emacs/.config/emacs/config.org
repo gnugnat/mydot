@@ -1746,6 +1746,47 @@
       dired-recursive-copies 'always
       )
    #+END_SRC
+   Expand directories.
+   + Dired-Subtree:
+     - https://github.com/Fuco1/dired-hacks
+     - https://melpa.org/#/dired-subtree
+   #+BEGIN_SRC emacs-lisp
+     (use-package dired-subtree
+       :ensure t
+       :after dired
+       :bind
+       (
+        :map dired-mode-map
+        ("<tab>" . dired-subtree&revert-toggle)
+        ("i"     . dired-subtree&revert-insert)
+        (";"     . dired-subtree&revert-remove)
+        )
+       :config
+       (progn
+         ;; Make the spacing a little bigger (default is 2 spaces).
+         (setq dired-subtree-line-prefix "   ")
+         ;; Create new functions that also revert the dired buffer.
+         (defun dired-subtree&revert-toggle ()
+           "Run `dired-subtree-toggle' and revert the dired buffer."
+           (interactive)
+           (dired-subtree-toggle)
+           (revert-buffer)
+           )
+         (defun dired-subtree&revert-insert ()
+           "Run `dired-subtree-toggle' and revert the dired buffer."
+           (interactive)
+           (dired-subtree-insert)
+           (revert-buffer)
+           )
+         (defun dired-subtree&revert-remove ()
+           "Run `dired-subtree-toggle' and revert the dired buffer."
+           (interactive)
+           (dired-subtree-remove)
+           (revert-buffer)
+           )
+         )
+       )
+   #+END_SRC
    Sidebar for Emacs leveraging Dired
    + Dired-Sidebar:
      - https://github.com/jojojames/dired-sidebar
