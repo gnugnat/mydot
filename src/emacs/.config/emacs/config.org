@@ -819,6 +819,7 @@
          eshell-mode
          inferior-emacs-lisp-mode
          inferior-ess-r-mode
+         inferior-haskell-mode
          inferior-lfe-mode
          racket-repl-mode
          ranger-mode
