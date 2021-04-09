@@ -936,6 +936,23 @@
        )
    #+END_SRC
 
+** Swiper
+
+   Search with regex & overview.
+
+   + Swiper:
+     - https://github.com/abo-abo/swiper
+     - https://melpa.org/#/swiper
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package swiper
+       :ensure t
+       :defer t
+       :bind
+       (("C-s" . swiper))
+       )
+   #+END_SRC
+
 
 * Programming
 
