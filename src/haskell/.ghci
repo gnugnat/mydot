@@ -15,12 +15,12 @@
 -- Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 -- Licensed under the GNU GPL v3 License
 
---   ____ _   _  ____ 
+--   ____ _   _  ____
 --  / ___| | | |/ ___|
--- | |  _| |_| | |    
--- | |_| |  _  | |___ 
+-- | |  _| |_| | |
+-- | |_| |  _  | |___
 --  \____|_| |_|\____|
 -- Haskell Interactive REPL
 
 
-:set prompt "\ESC[35m\STX(\ESC[34m\STX%s\ESC[35m\STX)>\ESC[m\STX "
+:set prompt "\ESC[35m(\ESC[34m%s\ESC[35m)>\ESC[m "
