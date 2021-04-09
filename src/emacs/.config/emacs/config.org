@@ -2268,7 +2268,7 @@
    =C-x C-l= to convert a region to lowercase (downcase).
 
    #+BEGIN_SRC emacs-lisp
-     (pur 'downcase-region 'disabled nil)
+     (put 'downcase-region 'disabled nil)
      (put 'upcase-region   'disabled nil)
    #+END_SRC
 
