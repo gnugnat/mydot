@@ -516,6 +516,19 @@
    #+BEGIN_SRC emacs-lisp
      (add-hook 'before-save-hook 'whitespace-cleanup)
    #+END_SRC
+** Column indicator
+   Tun on the =display-fill-column-indicator-mode=.
+   #+BEGIN_SRC emacs-lisp
+     (use-package display-fill-column-indicator
+       :if (>= (string-to-number emacs-version) 27.1)
+       :ensure nil
+       :defer t
+       :hook
+       ((prog-mode . display-fill-column-indicator-mode))
+       :init
+       (setq-default display-fill-column-indicator-column 80)
+       )
+   #+END_SRC
 ** EditorConfig
    Support for =.editorconfig=
    + Editorconfig:
