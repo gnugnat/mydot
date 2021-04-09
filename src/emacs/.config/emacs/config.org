@@ -1847,10 +1847,10 @@
 
 ** Web Development
 
-   Enable Web Mode for:
-   - [[https://whatwg.org/][HTML]]
-   - [[https://www.php.net/][PHP]]
-   - [[https://www.w3.org/TR/xml11/][XML]]
+   + Enable Web Mode for:
+     - [[https://whatwg.org/][HTML]]
+     - [[https://www.php.net/][PHP]]
+     - [[https://www.w3.org/TR/xml11/][XML]]
 
    + Web-Mode:
      - https://github.com/fxbois/web-mode
@@ -1859,22 +1859,23 @@
    #+BEGIN_SRC emacs-lisp
      (use-package web-mode
        :ensure t
+       :defer t
        :mode
        (
         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode)
-        ("\\.[agj]sp\\'" . web-mode)
-        ("\\.as[cp]x\\'" . web-mode)
+        ("\\.[agj]sp\\'"     . web-mode)
+        ("\\.as[cp]x\\'"     . web-mode)
         ("\\.blade\\.php\\'" . web-mode)
-        ("\\.djhtml\\'" . web-mode)
-        ("\\.ejs\\'" . web-mode)
-        ("\\.erb\\'" . web-mode)
-        ("\\.html?\\'" . web-mode)
-        ("\\.jsp\\'" . web-mode)
-        ("\\.mustache\\'" . web-mode)
-        ("\\.php\\'" . web-mode)
-        ("\\.phtml\\'" . web-mode)
-        ("\\.tpl\\.php\\'" . web-mode)
-        ("\\.xml\\'" . web-mode)
+        ("\\.djhtml\\'"      . web-mode)
+        ("\\.ejs\\'"         . web-mode)
+        ("\\.erb\\'"         . web-mode)
+        ("\\.html?\\'"       . web-mode)
+        ("\\.jsp\\'"         . web-mode)
+        ("\\.mustache\\'"    . web-mode)
+        ("\\.php\\'"         . web-mode)
+        ("\\.phtml\\'"       . web-mode)
+        ("\\.tpl\\.php\\'"   . web-mode)
+        ("\\.xml\\'"         . web-mode)
         )
        :config
        (setq
