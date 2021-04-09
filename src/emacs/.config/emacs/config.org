@@ -497,6 +497,10 @@
        :hook
        ((dired-mode . all-the-icons-dired-mode))
        :diminish
+       :custom-face
+       (all-the-icons-dired-dir-face ((t (:foreground "#988262"))))
+       :config
+       (setq all-the-icons-dired-monochrome nil)
        )
      (use-package all-the-icons-ibuffer
        :if window-system
