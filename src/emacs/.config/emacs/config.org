@@ -244,7 +244,7 @@
      ;; Highlight parens
      (show-paren-mode t)
      ;; size in GUI
-     (set-frame-size (selected-frame) 88 36)
+     (when window-system (set-frame-size (selected-frame) 88 36))
    #+END_SRC
 
 
