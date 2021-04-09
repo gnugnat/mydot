@@ -146,7 +146,7 @@ done
 # Use ~/.emacs.d if version of Emacs < 27.1
 if exists emacs
 then
-    if emacs -Q --batch --eval='(if (version< emacs-version "27.1") (error ""))'
+    if emacs -Q --batch --eval='(if (< (string-to-number emacs-version) 27.1) (error ""))'
     then
         [ -e "${HOME}/.emacs.d" ] && mv "${HOME}/.emacs.d" "${HOME}/.emacs.d.bak"
     else
