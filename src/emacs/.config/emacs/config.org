@@ -181,15 +181,6 @@
 ** Minor
    Some small tweaks that don't require packages
    #+BEGIN_SRC emacs-lisp
-     ;; no toolbar:
-     (tool-bar-mode -1)
-     ;; no menubar:
-     ;;;; can still be accessed with F10
-     (menu-bar-mode -1)
-     ;; no scrollbar (only if that function is available):
-     (if (fboundp 'scroll-bar-mode)
-         (scroll-bar-mode -1)
-       )
      ;; specal symbols
      (when window-system (global-prettify-symbols-mode t))
      ;; scrolling:
@@ -351,6 +342,29 @@
 
 
 * Appearance
+** Bars
+   Disable tool, menu and scroll bars.
+   The menu bar can still be accessed with =F10=.
+   #+BEGIN_SRC emacs-lisp
+     (use-package tool-bar
+       :if (fboundp 'tool-bar-mode)
+       :ensure nil
+       :config
+       (tool-bar-mode -1)
+       )
+     (use-package menu-bar
+       :if (fboundp 'menu-bar-mode)
+       :ensure nil
+       :config
+       (menu-bar-mode -1)
+       )
+     (use-package scroll-bar
+       :if (fboundp 'scroll-bar-mode)
+       :ensure nil
+       :config
+       (scroll-bar-mode -1)
+       )
+   #+END_SRC
 ** Font
    Credits: https://www.emacswiki.org/emacs/SetFonts
    #+BEGIN_SRC emacs-lisp
