@@ -805,13 +805,16 @@
        '(
          ansi-term-mode
          comint-mode
+         compilation-mode
          completion-list-mode
          dashboard-mode
          dired-mode
          dired-sidebar-mode
+         erlang-shell-mode
          eshell-mode
          inferior-emacs-lisp-mode
          inferior-ess-r-mode
+         inferior-lfe-mode
          racket-repl-mode
          ranger-mode
          shell-mode
