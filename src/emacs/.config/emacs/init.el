@@ -108,6 +108,12 @@
 
 ;;; Load other custom components
 
+;; Custom site-lisp
+(add-to-list 'load-path (w-u-e-d "assets/site-lisp"))
+
+;; Set path to store "custom-set"
+(setq custom-file (w-u-e-d "emacs-custom.el"))
+
 ;; This is the actual config file.
 ;; It is omitted if it doesn't exist so emacs won't refuse to launch.
 (defun config-load ()
@@ -117,9 +123,6 @@
 
 ;; Now let's load it.
 (config-load)
-
-;; Set path to store "custom-set"
-(setq custom-file (w-u-e-d "emacs-custom.el"))
 
 
 ;;; init.el ends here

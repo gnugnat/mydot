@@ -2432,6 +2432,14 @@
        )
    #+END_SRC
 
+** Eight-puzzle
+   #+BEGIN_SRC emacs-lisp
+     (use-package eight-puzzle
+       :ensure nil
+       :defer t
+       :commands (eight-puzzle)
+       )
+   #+END_SRC
 ** Jumblr
 
    + Jumblr:
