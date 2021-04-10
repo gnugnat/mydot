@@ -633,6 +633,7 @@
 ** Column indicator
 
    Tun on the =display-fill-column-indicator-mode=.
+   Doesn't work with Emacs < 27.1.
 
    #+BEGIN_SRC emacs-lisp
      (use-package display-fill-column-indicator
