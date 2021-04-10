@@ -102,10 +102,11 @@
     | program (system pkg) | feature                   | Emacs pkg         |
     |----------------------+---------------------------+-------------------|
     | any [[https://en.wikipedia.org/wiki/Compositing_window_manager][compositor]]       | transparency (in GUI)     |                   |
-    | [[http://aspell.net/][aspell]]               | spell checking            | [[https://www.emacswiki.org/emacs/FlySpell][flyspell]]          |
+    | [[http://aspell.net/][aspell]] / [[https://github.com/hunspell/hunspell][hunspell]]    | spell checking            | [[https://www.emacswiki.org/emacs/FlySpell][flyspell]]          |
     | [[https://clang.llvm.org/][clang]]                | better C/C++ support      | [[https://github.com/joaotavora/eglot/][eglot]]             |
     | [[https://github.com/akermu/emacs-libvterm/#requirements][cmake, git, libtool]]  | (to build) Emacs terminal | [[https://github.com/akermu/emacs-libvterm/][vterm]]             |
     | [[https://git-scm.com/][git]]                  | git interaction           | [[https://github.com/magit/magit/][magit]], [[https://github.com/bbatsov/projectile/][projectile]] |
+    | [[https://github.com/JetBrains/JetBrainsMono][JetBrains Mono]]       | primary font that I use   |                   |
 
 
 ** ZSH
