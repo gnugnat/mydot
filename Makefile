@@ -92,7 +92,7 @@ docs:				docs-man	docs-org
 # Tests
 
 test-emacs:			have-emacs
-	sh ./src/emacs/.config/emacs/load.sh --batch
+	sh ./scripts/emacs_reload_config.sh
 
 test-guile:			have-guile
 	mkdir -p ~/.cache/guile/ccache
