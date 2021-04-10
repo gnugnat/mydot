@@ -771,9 +771,8 @@
        :defer t
        :hook
        (
-        (org-mode  . rainbow-mode)
+        (find-file . rainbow-mode)
         (prog-mode . rainbow-mode)
-        (text-mode . rainbow-mode)
         )
        :diminish
        )
@@ -860,8 +859,8 @@
        :ensure t
        :hook
        (
+        (find-file . rainbow-delimiters-mode)
         (prog-mode . rainbow-delimiters-mode)
-        (gerbil-mode . rainbow-delimiters-mode)
         )
        )
    #+END_SRC
@@ -935,9 +934,7 @@
        :ensure t
        :defer t
        :hook
-       (
-        (prog-mode . eldoc-mode)
-        )
+       ((prog-mode . eldoc-mode))
        :diminish
        )
    #+END_SRC
@@ -1078,26 +1075,6 @@
           ("TODO"       . "#1E90FF")
           ("WORKAROUND" . "#A020F0")
           )
-        )
-       )
-   #+END_SRC
-
-** Desktop files
-
-   Support for editing [[https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html][XDG desktop files]].
-
-   + Desktop-Entry-Mode:
-     - [[/usr/share/emacs/site-lisp/desktop-entry-mode.el]]
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package desktop-entry-mode
-       :ensure nil
-       :defer t
-       :hook
-       (
-        (desktop-entry-mode . rainbow-delimiters-mode)
-        (desktop-entry-mode . rainbow-mode)
-        (desktop-entry-mode . yas-minor-mode)
         )
        )
    #+END_SRC
@@ -1255,10 +1232,7 @@
        :mode
        (("\\.ghci\\'" . haskell-mode))
        :hook
-       (
-        (haskell-mode . interactive-haskell-mode)
-        (haskell-mode . flycheck-mode)
-        )
+       ((haskell-mode . interactive-haskell-mode))
        )
    #+END_SRC
 
@@ -1303,10 +1277,7 @@
        :ensure t
        :defer t
        :hook
-       (
-        (ess-julia-mode          . yas-minor-mode)
-        (inferior-ess-julia-mode . rainbow-delimiters-mode)
-        )
+       ((inferior-ess-julia-mode . rainbow-delimiters-mode))
        :mode
        (("\\.jl\\'" . ess-julia-mode))
        )
@@ -1339,23 +1310,6 @@
        :defer t
        :hook
        (js-mode . eglot-ensure)
-       )
-   #+END_SRC
-
-** LFE
-
-   [[https://github.com/rvirding/lfe/][LFE]] language support.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package lfe-mode
-       :if (executable-find "lfe")
-       :ensure nil
-       :hook
-       (
-        (lfe-mode . rainbow-delimiters-mode)
-        (lfe-mode . rainbow-mode)
-        (lfe-mode . yas-minor-mode)
-        )
        )
    #+END_SRC
 
@@ -1445,13 +1399,9 @@
    #+BEGIN_SRC emacs-lisp
      (use-package idle-highlight-mode
        :ensure t
-       :config
-       (add-hook
-        'prog-mode-hook
-        (lambda ()
-          (idle-highlight-mode t)
-          )
-        )
+       :defer t
+       :hook
+       ((find-file . idle-highlight-mode))
        )
    #+END_SRC
 
@@ -1648,8 +1598,6 @@
        :if (executable-find "python")
        :ensure t
        :defer t
-       :hook
-       ((elpy-mode . flycheck-mode))
        :init
        (advice-add 'python-mode :before 'elpy-enable)
        :config
@@ -1708,7 +1656,6 @@
         )
        :hook
        (
-        (racket-mode      . company-mode)
         (racket-mode      . idle-highlight-mode)
         (racket-mode      . racket-xp-mode)
         (racket-repl-mode . company-mode)
@@ -1810,7 +1757,7 @@
        :defer t
        :diminish
        :hook
-       (prog-mode . highlight-indentation-mode)
+       ((find-file . highlight-indentation-mode))
        )
    #+END_SRC
 
@@ -1826,11 +1773,8 @@
      (use-package vala-mode
        :ensure t
        :hook
-       (
-        (vala-mode . idle-highlight-mode)
-        (vala-mode . rainbow-delimiters-mode)
-        (vala-mode . yas-minor-mode)
-        )
+       ;; somehow yas is not enabled in vala-mode
+       ((vala-mode . yas-minor-mode))
        )
    #+END_SRC
 
@@ -1904,11 +1848,6 @@
         ;; Saltstack
         ("\\.sls\\'" . yaml-mode)
         )
-       :hook
-       (
-        (yaml-mode . idle-highlight-mode)
-        (yaml-mode . company-mode)
-        )
        :bind
        (
         :map yaml-mode-map
@@ -1931,12 +1870,8 @@
    #+BEGIN_SRC emacs-lisp
      (use-package yasnippet
        :ensure t
-       :hook
-       (
-        (org-mode       . yas-minor-mode)
-        (prog-mode      . yas-minor-mode)
-        (yas-minor-mode . company-mode)
-        )
+       :init
+       (yas-global-mode t)
        :config
        (progn
          (setq yas-snippet-dirs
