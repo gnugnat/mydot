@@ -24,7 +24,16 @@ export PATH
 set -e
 
 
-cd "${USER_EMACS_DIRECTORY:-${HOME}/.config/emacs}"
+mydot_emacs_dir="$(pwd)/src/emacs/.config/emacs"
+
+if [ -d "${mydot_emacs_dir}" ]
+then
+    cd "${mydot_emacs_dir}"
+else
+    echo "[DEBUG]: No such directory ${mydot_emacs_dir}"
+    cd "${USER_EMACS_DIRECTORY:-${HOME}/.config/emacs}"
+fi
+
 
 [ -f ./config.el ] && rm ./config.el
 
