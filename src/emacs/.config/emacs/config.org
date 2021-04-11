@@ -1220,7 +1220,11 @@
 
 ** Haskell
 
-   [[https://www.haskell.org/][Haskell]] language support
+   [[https://www.haskell.org/][Haskell]] language support.
+
+   + Important key bindings:
+     - =C-c C-l= - haskell-process-load-file (load current file into the REPL)
+     - =C-c C-x= - haskell-process-cabal     (run a =cabal= command)
 
    + Haskell-Mode:
      - https://github.com/haskell/haskell-mode
