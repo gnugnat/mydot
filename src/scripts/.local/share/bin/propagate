@@ -26,8 +26,8 @@ export PATH
 
 
 prog_name="$(basename "${0}")"
-prog_desc="find commands"
-prog_args="COMMAND..."
+prog_desc="copy SOURCE file to any OUTPUT files"
+prog_args="SOURCE OUTPUT..."
 
 
 usage() {
@@ -36,8 +36,12 @@ Usage: ${prog_name} [OPTION]... ${prog_args}
 ${prog_name} - ${prog_desc}
 
 Options:
-    -V, --version  show program version
-    -h, --help     show avalible options
+    -V, -version, --version  show program version
+    -a, -add, --add,         add to OUTPUT
+    -e, -exclude, --exclude  exclude from OUTPUT
+    -h, -help, --help        show avalible options
+    -s, -source, --source    choose SOURCE
+    -v, -verbsoe, --verbose  be verbose
 EOF
 }
 
