@@ -1,0 +1,131 @@
+#!/bin/sh
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+
+# Copy a file to multiple files
+
+
+trap 'exit 128' INT
+export PATH
+
+
+prog_name="$(basename "${0}")"
+prog_desc="find commands"
+prog_args="COMMAND..."
+
+
+usage() {
+    cat <<EOF
+Usage: ${prog_name} [OPTION]... ${prog_args}
+${prog_name} - ${prog_desc}
+
+Options:
+    -V, --version  show program version
+    -h, --help     show avalible options
+EOF
+}
+
+version() {
+    cat <<EOF
+${prog_name} 9999
+
+Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+Licensed under the GNU GPL v3 License
+EOF
+}
+
+
+verbose=0
+source=""
+output=""
+exclude=""
+
+
+while [ -n "${1}" ]
+do
+    case "${1}"
+    in
+        -h | -help | --help )
+            usage
+            exit 0
+            ;;
+        -V | -version | --version )
+            version
+            exit 0
+            ;;
+        -v | -verbose | --verbose )
+            verbose=1
+            ;;
+        -s | -source | --source )
+            source="${2}"
+            shift
+            ;;
+        -a | -add | --add )
+            output="${2} ${output}"
+            shift
+            ;;
+        -e | -exclude | --exclude )
+            exclude="${2} ${exclude}"
+            shift
+            ;;
+        * )
+            if [ -z "${source}" ]
+            then
+                source="${1}"
+            else
+                output="${1} ${output}"
+            fi
+            ;;
+    esac
+    shift
+done
+
+if [ -z "${output}" ]
+then
+    echo "No files to propagate"
+    echo
+    usage
+    exit 1
+fi
+
+if [ ! -e "${source}" ]
+then
+    echo "No such directory/file: ${source}"
+    echo
+    usage
+    exit 1
+fi
+
+
+for i in ${exclude}
+do
+    output="$( echo "${output}" | sed "s/${i}//g" )"
+done
+
+if [ "${verbose}" -eq 1 ]
+then
+    echo "Propagating"
+    echo "  from: ${source}"
+    echo "  to:   ${output}"
+fi
+
+for i in ${output}
+do
+    cp -R "${source}" "${i}"
+done
