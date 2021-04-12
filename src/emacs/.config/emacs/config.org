@@ -2028,6 +2028,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package deft
        :ensure t
+       :defer t
        :bind
        (("<f8>" . deft))
        :commands (deft)
@@ -2150,6 +2151,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package dired-sidebar
        :ensure t
+       :defer t
        :commands
        (dired-sidebar-toggle-sidebar)
        :bind
