@@ -67,7 +67,7 @@
 *** Bootstrap from network
 
     #+BEGIN_SRC bash
-      curl "https://gitlab.com/xgqt/mydot/-/blob/master/scripts/bootstrap.sh" | sh
+      curl "https://gitlab.com/xgqt/mydot/-/raw/master/scripts/bootstrap.sh" | sh
     #+END_SRC
 
 
