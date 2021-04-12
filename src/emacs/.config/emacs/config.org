@@ -1705,8 +1705,17 @@
      (use-package geiser
        :if (executable-find "guile")
        :ensure t
+       :diminish geiser-autodoc-mode
        :init
        (setq geiser-active-implementations '(guile))
+       )
+     (use-package geiser-guile
+       :if (executable-find "guile")
+       :ensure t
+       )
+     (use-package flycheck-guile
+       :if (executable-find "guile")
+       :ensure t
        )
    #+END_SRC
 
