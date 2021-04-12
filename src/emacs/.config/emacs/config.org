@@ -52,13 +52,13 @@
    Defer package loading to speed up the startup time.
 
    #+BEGIN_SRC emacs-lisp
-     (use-package autorevert :defer 2)
-     (use-package paren      :defer 2)
-     (use-package projectile :defer 2)
-     (use-package recentf    :defer 2)
-     (use-package saveplace  :defer 2)
-     (use-package server     :defer 2)
-     (use-package whitespace :defer 2)
+     (use-package autorevert :defer 3)
+     (use-package paren      :defer 3)
+     (use-package projectile :defer 3)
+     (use-package recentf    :defer 3)
+     (use-package saveplace  :defer 3)
+     (use-package server     :defer 3)
+     (use-package whitespace :defer 3)
    #+END_SRC
 
 ** Update
