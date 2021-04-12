@@ -356,8 +356,9 @@
    #+BEGIN_SRC emacs-lisp
      (use-package ivy
        :ensure t
+       :defer 3
        :diminish
-       :init
+       :config
        (progn
          (ivy-mode)
          (setq
@@ -934,7 +935,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package swiper
        :ensure t
-       :defer t
+       :defer 3
        :bind
        (("C-s" . swiper))
        )
