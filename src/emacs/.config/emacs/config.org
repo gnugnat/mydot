@@ -1053,6 +1053,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (use-package omnisharp
+       :if (executable-find "dotnet")
        :ensure t
        :hook
        ((csharp-mode . omnisharp-mode))
@@ -1066,6 +1067,7 @@
          )
        )
      (use-package dotnet
+       :if (executable-find "dotnet")
        :ensure t
        :hook
        (
@@ -1560,6 +1562,9 @@
    #+BEGIN_SRC emacs-lisp
      (use-package powershell
        :ensure t
+       :defer t
+       :mode
+       (("\\.ps1\\'" . powershell-mode))
        )
    #+END_SRC
 
