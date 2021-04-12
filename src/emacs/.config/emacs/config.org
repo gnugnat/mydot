@@ -345,6 +345,29 @@
        )
    #+END_SRC
 
+** Ivy
+
+   This configuration uses ivy in a minimal way.
+
+   + Ivy:
+     - https://github.com/abo-abo/swiper
+     - https://melpa.org/#/ivy
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package ivy
+       :ensure t
+       :diminish
+       :init
+       (progn
+         (ivy-mode)
+         (setq
+          enable-recursive-minibuffers t
+          ivy-use-virtual-buffers t
+          )
+         )
+       )
+   #+END_SRC
+
 ** Kill and remove split
 
    Kill buffer and delete its window
@@ -1705,6 +1728,9 @@
      (use-package geiser
        :if (executable-find "guile")
        :ensure t
+       :defer t
+       :hook
+       ((scheme-mode . geiser-mode))
        :diminish geiser-autodoc-mode
        :init
        (setq geiser-active-implementations '(guile))
