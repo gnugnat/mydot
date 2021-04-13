@@ -886,10 +886,14 @@
    #+BEGIN_SRC emacs-lisp
      (use-package projectile
        :ensure t
+       :defer 3
        :bind
        ("<f5>" . projectile-compile-project)
        :init
-       (projectile-mode 1)
+       (progn
+         (setq projectile-mode-line-prefix "Pro")
+         (projectile-mode 1)
+         )
        )
    #+END_SRC
 
