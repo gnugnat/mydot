@@ -456,6 +456,28 @@
        )
    #+END_SRC
 
+** Diminish
+
+   Remove modes from the modeline.
+
+   + Diminish:
+     - https://github.com/emacsmirror/diminish
+     - https://melpa.org/#/diminish
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package diminish
+       :ensure t
+       )
+   #+END_SRC
+
+   For packages that here is their sole configuration:
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package abbrev :diminish)
+     (use-package hi-lock :diminish)
+     (use-package page-break-lines :diminish)
+   #+END_SRC
+
 ** Font
 
    Credits: https://www.emacswiki.org/emacs/SetFonts
@@ -1153,6 +1175,7 @@
      (use-package alchemist
        :if (executable-find "elixir")
        :ensure t
+       :diminish "ExA"
        :hook
        ((elixir-mode . alchemist-mode))
        )
