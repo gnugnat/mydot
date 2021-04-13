@@ -886,6 +886,7 @@
        (
         (find-file . rainbow-delimiters-mode)
         (prog-mode . rainbow-delimiters-mode)
+        (shell-mode . rainbow-delimiters-mode)
         )
        )
    #+END_SRC
