@@ -1725,6 +1725,11 @@
         (racket-repl-mode . racket-unicode-input-method-enable)
         (racket-repl-mode . rainbow-delimiters-mode)
         )
+       :bind
+       (
+        :map racket-mode-map
+        ("C-<return>" . racket-send-region)
+        )
        :config
        (setq racket-show-functions '(racket-show-echo-area))
        )
