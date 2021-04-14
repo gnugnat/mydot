@@ -1079,28 +1079,29 @@
      - https://melpa.org/#/dotnet
 
    #+BEGIN_SRC emacs-lisp
-     (use-package omnisharp
-       :if (executable-find "dotnet")
-       :ensure t
-       :hook
-       ((csharp-mode . omnisharp-mode))
-       :config
-       (progn
-         (add-to-list 'company-backends 'company-omnisharp)
-         (setq
-          c-syntactic-indentation t
-          truncate-lines t
+     (when (executable-find "dotnet")
+       (use-package omnisharp
+         :ensure t
+         :hook
+         ((csharp-mode . omnisharp-mode))
+         :config
+         (progn
+           (add-to-list 'company-backends 'company-omnisharp)
+           (setq
+            c-syntactic-indentation t
+            truncate-lines t
+            )
+           )
+         )
+       (use-package dotnet
+         :ensure t
+         :requires omnisharp
+         :hook
+         (
+          (csharp-mode . dotnet-mode)
+          (fsharp-mode . dotnet-mode)
           )
          )
-       )
-     (use-package dotnet
-       :if (executable-find "dotnet")
-       :ensure t
-       :hook
-       (
-        (csharp-mode . dotnet-mode)
-        (fsharp-mode . dotnet-mode)
-        )
        )
    #+END_SRC
 
@@ -1786,23 +1787,22 @@
      - https://melpa.org/#/geiser
 
    #+BEGIN_SRC emacs-lisp
-     (use-package geiser
-       :if (executable-find "guile")
-       :ensure t
-       :defer t
-       :hook
-       ((scheme-mode . geiser-mode))
-       :diminish geiser-autodoc-mode
-       :init
-       (setq geiser-active-implementations '(guile))
-       )
-     (use-package geiser-guile
-       :if (executable-find "guile")
-       :ensure t
-       )
-     (use-package flycheck-guile
-       :if (executable-find "guile")
-       :ensure t
+     (when (executable-find "guile")
+       (use-package geiser
+         :ensure t
+         :defer t
+         :hook
+         ((scheme-mode . geiser-mode))
+         :diminish geiser-autodoc-mode
+         :init
+         (setq geiser-active-implementations '(guile))
+         )
+       (use-package geiser-guile
+         :ensure t
+         )
+       (use-package flycheck-guile
+         :ensure t
+         )
        )
    #+END_SRC
 
