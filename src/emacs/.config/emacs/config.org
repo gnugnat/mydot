@@ -1518,28 +1518,51 @@
    + Merlin:
      - https://github.com/ocaml/merlin
      - https://melpa.org/#/merlin
+   + Dune:
+     - https://github.com/ocaml/dune
+     - https://melpa.org/#/dune
+   + Dune-Format:
+     - https://github.com/purcell/dune-format-el
+     - https://melpa.org/#/dune-format
 
    #+BEGIN_SRC emacs-lisp
-     (use-package tuareg
-       :if (executable-find "ocaml")
-       :ensure t
-       :mode
-       (
-        ("\\.ml\\'" . tuareg-mode)
-        ("\\.mli\\'" . tuareg-mode)
-        ("\\.mlp\\'" . tuareg-mode)
-        )
-       :hook
-       ((caml-mode . tuareg-mode))
-       :config
-       (setq tuareg-match-patterns-aligned t)
-       )
-     (use-package merlin
-       :if (executable-find "ocamlmerlin")
-       :ensure t
-       :after tuareg
-       :hook
-       ((tuareg-mode . merlin-mode))
+     (when (executable-find "ocaml")
+       (use-package tuareg
+         :ensure t
+         :mode
+         (
+          ("\\.ml\\'" . tuareg-mode)
+          ("\\.mli\\'" . tuareg-mode)
+          ("\\.mlp\\'" . tuareg-mode)
+          )
+         :hook
+         ((caml-mode . tuareg-mode))
+         :config
+         (setq tuareg-match-patterns-aligned t)
+         )
+       (use-package merlin
+         :if (executable-find "ocamlmerlin")
+         :ensure t
+         :after tuareg
+         :hook
+         ((tuareg-mode . merlin-mode))
+         )
+       (use-package dune
+         :if (executable-find "dune")
+         :ensure t
+         :mode
+         (
+          ("dune"         . dune-mode)
+          ("dune-project" . dune-mode)
+          )
+         )
+       (use-package dune-format
+         :if (executable-find "dune")
+         :ensure t
+         :after dune
+         :hook
+         ((dune-mode . dune-format-on-save-mode))
+         )
        )
    #+END_SRC
 
