@@ -371,6 +371,11 @@ export NPM_CONFIG_USERCONFIG
 OCTAVE_HISTFILE="${HOME}/.cache/octave_repl_history"
 export OCTAVE_HISTFILE
 
+# OCaml
+# opam directory
+OPAMROOT="${HOME}/.local/share/opam"
+export OPAMROOT
+
 # Pylint directory
 PYLINTHOME="${HOME}/.cache/pylint"
 export PYLINTHOME
@@ -480,7 +485,7 @@ add_to_path "${HOME}/.npm/bin"
 add_to_path "${HOME}/.local/share/npm/bin"
 
 # Opam (OCaml)
-add_to_path "${HOME}/.opam/default/bin"
+add_to_path "${OPAMROOT}/default/bin"
 
 # Python
 add_to_path "${HOME}/.local/bin"
