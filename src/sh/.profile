@@ -229,7 +229,8 @@ then
 fi
 export PAGER
 
-# Aspell settings
+# Aspell
+# preferences settings
 _aspell_dir="${HOME}/.config/aspell"
 if nullwrap mkdir -p "${_aspell_dir}"
 then
@@ -249,7 +250,7 @@ then
 fi
 unset _aspell_dir
 
-# CCache directory
+# CCache
 # Exclude root user - breaks ccache in portage
 if am_i_root
 then
@@ -260,7 +261,8 @@ else
     export CCACHE_DIR
 fi
 
-# Chez directory (used by aliases)
+# Chez
+# directory (used by aliases)
 _chez_history="${HOME}/.config/chez/history"
 if nullwrap mkdir -p "${_chez_history}"
 then
@@ -269,9 +271,11 @@ then
 fi
 unset _chez_history
 
-# Conan settings
+# Conan
+# color
 CONAN_COLOR_DARK=1
 export CONAN_COLOR_DARK
+# directory
 CONAN_USER_HOME="${HOME}/.local/share/conan"
 export CONAN_USER_HOME
 
@@ -280,9 +284,11 @@ export CONAN_USER_HOME
 DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_CLI_TELEMETRY_OPTOUT
 
-# Elixir - hex & mix directory
+# Elixir
+# hex directory
 HEX_HOME="${HOME}/.local/share/elixir/hex"
 export HEX_HOME
+# mix directory
 MIX_HOME="${HOME}/.local/share/elixir/mix"
 export MIX_HOME
 
@@ -290,59 +296,71 @@ export MIX_HOME
 USER_EMACS_DIRECTORY="${HOME}/.config/emacs"
 export USER_EMACS_DIRECTORY
 
-# Erlang (OTP) history file (in ~/.cache/erlang-history)
+# Erlang (OTP)
+# history file (in ~/.cache/erlang-history)
 ERL_AFLAGS="-kernel shell_history enabled"
 export ERL_AFLAGS
 
-# Go directory
+# Go
+# directory
 GOPATH="${HOME}/.local/share/go"
 export GOPATH
 
-# GTK settings
+# GTK
+# settings
 if [ -f "${EPREFIX}/usr/libexec/xdg-desktop-portal" ]
 then
     GTK_USE_PORTAL=1
     export GTK_USE_PORTAL
 fi
 
-# Guile history file
+# Guile
+# history file
 GUILE_HISTORY="${HOME}/.cache/guile/history"
 export GUILE_HISTORY
 
-# ICE (X11)
+# Xorg
+# ICE
 ICEAUTHORITY="${HOME}/.cache/ICEauthority"
 export ICEAUTHORITY
 
-# Ipython & Jupyter directory
+# Jupyter
+# Ipython directory
 IPYTHONDIR="${HOME}/.config/jupyter"
 export IPYTHONDIR
+# Jupyter directory
 JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
-# Java (miscellaneous tools settings)
+# Java
 # Gradle TODO: maybe switch to ~/.local/share
 GRADLE_USER_HOME="${HOME}/.cache/gradle"
 export GRADLE_USER_HOME
 
-# Julia directory
+# Julia
+# directory
 JULIA_DEPOT_PATH="${HOME}/.local/share/julia"
 export JULIA_DEPOT_PATH
 
+# Ls
 # ls colors
 if command_exists dircolors && [ -z "${LS_COLORS}" ]
 then
     eval "$(dircolors -b)"
 fi
 
+# Less
 # Disable less history file
 LESSHISTFILE=-
 export LESSHISTFILE
 
-# LibDVDcss cache directory
+# LibDVDcss
+# cache directory
 DVDCSS_CACHE="${HOME}/.cache/dvdcss"
 export DVDCSS_CACHE
 
-# Maxima directory
+# Maxima
+# directory
 _maxima_userdir="${HOME}/.config/maxima"
 if nullwrap mkdir -p "${_maxima_userdir}/.maxima"
 then
@@ -351,23 +369,28 @@ then
 fi
 unset _maxima_userdir
 
-# Mednafen configuration directory
+# Mednafen
+# configuration directory
 MEDNAFEN_HOME="${HOME}/.config/mednafen"
 export MEDNAFEN_HOME
 
-# NCurses directories
+# NCurses
+# terminfo directories
 TERMINFO="${HOME}/.local/share/terminfo"
 export TERMINFO
 TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
 export TERMINFO_DIRS
 
-# Node files
+# Node
+# REPL history
 NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 export NODE_REPL_HISTORY
+# NPM config
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
 
-# Octave history file
+# Octave
+# history file
 OCTAVE_HISTFILE="${HOME}/.cache/octave_repl_history"
 export OCTAVE_HISTFILE
 
@@ -376,7 +399,8 @@ export OCTAVE_HISTFILE
 OPAMROOT="${HOME}/.local/share/opam"
 export OPAMROOT
 
-# Pylint directory
+# Python
+# pylint directory
 PYLINTHOME="${HOME}/.cache/pylint"
 export PYLINTHOME
 
@@ -384,23 +408,27 @@ export PYLINTHOME
 PLTUSERHOME="${HOME}/.local/share/racket"
 export PLTUSERHOME
 
-# Ruby (Gem) directories
+# Ruby
+# gem directories
 GEM_HOME="${HOME}/.local/share/gem"
 export GEM_HOME
 GEM_SPEC_CACHE="${HOME}/.cache/gem"
 export GEM_SPEC_CACHE
 
-# Rust (Cargo) directory
+# Rust
+# cargo directory
 CARGO_HOME="${HOME}/.local/share/cargo"
 export CARGO_HOME
 
-# Shell history
+# Shell
+# REPL history
 mkdir -p "${HOME}/.cache/sh"
 HISTFILE="${HOME}/.cache/sh/history"
 export HISTFILE
 HISTSIZE=50000
 export HISTSIZE
 
+# Latex
 # TeX directories
 TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
 export TEXMFCONFIG
