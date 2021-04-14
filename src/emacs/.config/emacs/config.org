@@ -1071,6 +1071,8 @@
 
 ** C#
 
+   [[https://docs.microsoft.com/en-us/dotnet/csharp/][C#]] language support.
+
    + Omnisharp:
      - https://github.com/OmniSharp/omnisharp-emacs
      - https://melpa.org/#/omnisharp
@@ -1783,8 +1785,14 @@
    For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
 
    + Geiser:
-     - https://gitlab.com/jaor/geiser
+     - https://gitlab.com/emacs-geiser/geiser
      - https://melpa.org/#/geiser
+   + Geiser-Guile:
+     - https://gitlab.com/emacs-geiser/guile
+     - https://melpa.org/#/geiser-guile
+   + Flycheck-Guile:
+     - https://github.com/flatwhatson/flycheck-guile
+     - https://melpa.org/#/flycheck-guile
 
    #+BEGIN_SRC emacs-lisp
      (when (executable-find "guile")
