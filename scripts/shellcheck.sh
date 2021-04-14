@@ -18,16 +18,18 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
-# shellcheck disable=2086
+# shellcheck disable=2086,2089
 
 
 exit_result=0
 
+excludes="--exclude-dir=.git --exclude-dir=nvim"
+
 # Standard shell / bash files
-s_files="$(grep -R --exclude-dir='.git' --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
+s_files="$(grep -R ${excludes} --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
 
 # ZSH files
-z_files="$(grep -R --exclude-dir='.git' --exclude-dir='plugins' --exclude="*.zsh-theme" '^#!/.*zsh$' 2>/dev/null | cut -d ':' -f 1)"
+z_files="$(grep -R ${excludes} --exclude-dir='plugins' --exclude="*.zsh-theme" '^#!/.*zsh$' 2>/dev/null | cut -d ':' -f 1)"
 
 
 check_files() {
