@@ -529,37 +529,36 @@
      - https://melpa.org/#/emojify
 
    #+BEGIN_SRC emacs-lisp
-     (setq
-      inhibit-compacting-font-caches t
-      )
-     (use-package all-the-icons
-       :if window-system
-       :ensure t
-       )
-     (use-package all-the-icons-dired
-       :if window-system
-       :after all-the-icons
-       :ensure t
-       :hook
-       ((dired-mode . all-the-icons-dired-mode))
-       :diminish
-       :custom-face
-       (all-the-icons-dired-dir-face ((t (:foreground "#988262"))))
-       :config
-       (setq all-the-icons-dired-monochrome nil)
-       )
-     (use-package all-the-icons-ibuffer
-       :if window-system
-       :after all-the-icons
-       :ensure t
-       :init
-       (all-the-icons-ibuffer-mode 1)
-       )
-     (use-package emojify
-       :if window-system
-       :ensure t
-       :hook
-       ((after-init . global-emojify-mode))
+     (when window-system
+       (setq
+        inhibit-compacting-font-caches t
+        )
+       (use-package all-the-icons
+         :if window-system
+         :ensure t
+         )
+       (use-package all-the-icons-dired
+         :after all-the-icons
+         :ensure t
+         :hook
+         ((dired-mode . all-the-icons-dired-mode))
+         :diminish
+         :custom-face
+         (all-the-icons-dired-dir-face ((t (:foreground "#988262"))))
+         :config
+         (setq all-the-icons-dired-monochrome nil)
+         )
+       (use-package all-the-icons-ibuffer
+         :after all-the-icons
+         :ensure t
+         :init
+         (all-the-icons-ibuffer-mode 1)
+         )
+       (use-package emojify
+         :ensure t
+         :hook
+         ((after-init . global-emojify-mode))
+         )
        )
    #+END_SRC
 
