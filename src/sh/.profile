@@ -280,6 +280,10 @@ export CONAN_USER_HOME
 DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_CLI_TELEMETRY_OPTOUT
 
+# Elixir mix directory
+MIX_HOME="${HOME}/.local/share/mix"
+export MIX_HOME
+
 # Emacs (for now used only by the shell)
 USER_EMACS_DIRECTORY="${HOME}/.config/emacs"
 export USER_EMACS_DIRECTORY
