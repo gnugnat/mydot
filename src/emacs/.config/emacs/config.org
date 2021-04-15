@@ -824,6 +824,24 @@
        )
    #+END_SRC
 
+** Hyperlinks
+
+   Make hyperlinks in current buffer interactive.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package goto-addr
+       :ensure nil
+       :defer t
+       :hook
+       (
+        (fundamental-mode . goto-address-mode)
+        (text-mode . goto-address-mode)
+        (org-mode  . goto-address-mode)
+        (prog-mode . goto-address-prog-mode)
+        )
+       )
+   #+END_SRC
+
 ** Kill Ring
 
    Kill Ring tweaks.
