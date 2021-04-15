@@ -61,9 +61,11 @@ main() {
         unset bold blue green white reset
     fi
 
-    pgrep -afi "${@}" | sed -e "s/^/${bold}${white}[${blue}/"     \
-                            -e "s/ /${white}]${white}: ${green}/" \
-                            -e "s/ /${reset}${green} /2"
+    pgrep -afi "${@}"    \
+        | grep -v "${0}" \
+        | sed -e "s/^/${bold}${white}[${blue}/"     \
+              -e "s/ /${white}]${white}: ${green}/" \
+              -e "s/ /${reset}${green} /2"
 
     printf '%s' "${reset}"
 }
