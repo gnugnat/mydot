@@ -1216,6 +1216,25 @@
      (defvar inferior-erlang-prompt-timeout t)
    #+END_SRC
 
+** Fennel
+
+   [[https://fennel-lang.org/][Fennel]] language support.
+
+   + Fennel-Mode:
+     - https://gitlab.com/technomancy/fennel-mode
+     - https://melpa.org/#/fennel-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package fennel-mode
+       :ensure t
+       :if (and (or (executable-find "lua") (executable-find "luajit"))
+                (executable-find "fennel"))
+       :defer t
+       :mode
+       (("\\.fnl\\'" . fennel-mode))
+       )
+   #+END_SRC
+
 ** Flycheck
 
    [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
