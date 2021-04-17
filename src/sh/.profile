@@ -333,8 +333,7 @@ JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JUPYTER_CONFIG_DIR
 
 # Java
-# Gradle TODO: maybe switch to ~/.local/share
-GRADLE_USER_HOME="${HOME}/.cache/gradle"
+GRADLE_USER_HOME="${HOME}/.cache/java/gradle"
 export GRADLE_USER_HOME
 
 # Julia
@@ -422,7 +421,7 @@ export SOLARGRAPH_CACHE
 
 # Rust
 # cargo directory
-CARGO_HOME="${HOME}/.local/share/cargo"
+CARGO_HOME="${HOME}/.local/share/rust/cargo"
 export CARGO_HOME
 
 # Shell
