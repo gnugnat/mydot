@@ -95,11 +95,11 @@ step_03() {
 }
 
 step_04() {
-    emerge --changed-deps --changed-slot @world
+    emerge -U --changed-deps --changed-slot --with-bdeps=y --backtrack=100 @world
 }
 
 step_05() {
-    emerge -uUD --with-bdeps=y --backtrack=100 @world
+    emerge -uDU --with-bdeps=y --backtrack=100 @world
 }
 
 step_06() {

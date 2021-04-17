@@ -647,7 +647,7 @@ a_k_a F      'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
 a_k_a P      'cd ${EPREFIX}/etc/portage && tree -a -L 2'
 if command_exists emerge
 then
-    a_k_a chu    '${NEED_UID0} emerge -avDU @world'
+    a_k_a chu    '${NEED_UID0} emerge -avU --changed-deps --changed-slot --with-bdeps=y --backtrack=100 @world'
     a_k_a des    '${NEED_UID0} emerge --deselect'
     a_k_a ewup   '${NEED_UID0} emerge -avuDU --with-bdeps=y --backtrack=100 --verbose-conflicts @world'
     a_k_a pep    '${NEED_UID0} emerge --autounmask --ask --verbose'
