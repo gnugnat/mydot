@@ -263,13 +263,13 @@ fi
 
 # Chez
 # directory (used by aliases)
-_chez_dir="${HOME}/.cache/chez"
-if nullwrap mkdir -p "${_chez_dir}"
+_chez_cache="${HOME}/.cache/chez"
+if nullwrap mkdir -p "${_chez_cache}"
 then
-    CHEZ_HISTORY="${_chez_dir}/history"
+    CHEZ_HISTORY="${_chez_cache}/history"
     export CHEZ_HISTORY
 fi
-unset _chez_history
+unset _chez_cache
 
 # Conan
 # color
@@ -319,19 +319,6 @@ fi
 GUILE_HISTORY="${HOME}/.cache/guile/history"
 export GUILE_HISTORY
 
-# Xorg
-# ICE
-ICEAUTHORITY="${HOME}/.cache/ICEauthority"
-export ICEAUTHORITY
-
-# Jupyter
-# Ipython directory
-IPYTHONDIR="${HOME}/.config/jupyter"
-export IPYTHONDIR
-# Jupyter directory
-JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
-export JUPYTER_CONFIG_DIR
-
 # Java
 GRADLE_USER_HOME="${HOME}/.cache/java/gradle"
 export GRADLE_USER_HOME
@@ -360,13 +347,13 @@ export DVDCSS_CACHE
 
 # Maxima
 # directory
-_maxima_userdir="${HOME}/.config/maxima"
-if nullwrap mkdir -p "${_maxima_userdir}/.maxima"
+_maxima_config="${HOME}/.config/maxima"
+if nullwrap mkdir -p "${_maxima_config}/.maxima"
 then
-    MAXIMA_USERDIR="${_maxima_userdir}"
+    MAXIMA_USERDIR="${_maxima_config}"
     export MAXIMA_USERDIR
 fi
-unset _maxima_userdir
+unset _maxima_config
 
 # Mednafen
 # configuration directory
@@ -380,28 +367,61 @@ export TERMINFO
 TERMINFO_DIRS="${HOME}/.local/share/terminfo:/usr/share/terminfo:${TERMINFO_DIRS}"
 export TERMINFO_DIRS
 
-# Node
-# REPL history
-NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
-export NODE_REPL_HISTORY
+# NodeJS
+# REPL history ; NodeJS can't recursively create it's directory
+_nodejs_cache="${HOME}/.cache/nodejs"
+if nullwrap mkdir -p "${_nodejs_cache}"
+then
+    NODE_REPL_HISTORY="${_nodejs_cache}/history"
+    export NODE_REPL_HISTORY
+fi
 # NPM config
 NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export NPM_CONFIG_USERCONFIG
 
 # Octave
 # history file
-OCTAVE_HISTFILE="${HOME}/.cache/octave_repl_history"
-export OCTAVE_HISTFILE
+_octave_cache="${HOME}/.cache/octave"
+if nullwrap mkdir -p "${_octave_cache}"
+then
+    OCTAVE_HISTFILE="${_octave_cache}/history"
+    export OCTAVE_HISTFILE
+fi
+unset _octave_cache
+
+# Python
+# Ipython can't recursively create it's directory
+_python_cache="${HOME}/.cache/python"
+_python_config="${HOME}/.config/python"
+_python_data="${HOME}/.local/share/python"
+if nullwrap mkdir -p "${_python_cache}"
+then
+    # pylint directory
+    PYLINTHOME="${HOME}/.cache/python/pylint"
+    export PYLINTHOME
+fi
+if nullwrap mkdir -p "${_python_config}"
+then
+    # Jupyter directory
+    JUPYTER_CONFIG_DIR="${_python_config}/jupyter"
+    export JUPYTER_CONFIG_DIR
+    nullwrap mkdir -p "${JUPYTER_CONFIG_DIR}"
+fi
+if nullwrap mkdir -p "${_python_data}"
+then
+    # Ipython directory
+    IPYTHONDIR="${_python_data}/ipython"
+    export IPYTHONDIR
+    nullwrap mkdir -p "${IPYTHONDIR}"
+fi
+unset _python_cache
+unset _python_config
+unset _python_data
 
 # OCaml
 # opam directory
-OPAMROOT="${HOME}/.local/share/opam"
+OPAMROOT="${HOME}/.local/share/ocaml/opam"
 export OPAMROOT
-
-# Python
-# pylint directory
-PYLINTHOME="${HOME}/.cache/pylint"
-export PYLINTHOME
 
 # Racket directory
 PLTUSERHOME="${HOME}/.local/share/racket"
@@ -480,6 +500,14 @@ XINITRC="${HOME}/.config/X11/xinitrc"
 export XINITRC
 XSERVERRC="${HOME}/.config/X11/xserverrc"
 export XSERVERRC
+# ICE
+_x11_cache="${HOME}/.cache/X11"
+if nullwrap mkdir -p "${_x11_cache}"
+then
+    ICEAUTHORITY="${_x11_cache}/ICEauthority"
+    export ICEAUTHORITY
+fi
+unset _x11_cache
 
 
 # >>> PATH setup
