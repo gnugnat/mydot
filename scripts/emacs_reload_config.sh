@@ -35,6 +35,12 @@ else
 fi
 
 
-[ -f ./config.el ] && rm ./config.el
+if [ -f ./config.el ]
+then
+    rm ./config.el
+elif [ -f "${USER_EMACS_DIRECTORY}"/config.el ]
+then
+    rm "${USER_EMACS_DIRECTORY}"/config.el
+fi
 
 sh ./load.sh --batch
