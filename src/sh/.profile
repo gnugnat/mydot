@@ -416,6 +416,9 @@ GEM_HOME="${HOME}/.local/share/ruby/gem"
 export GEM_HOME
 GEM_SPEC_CACHE="${HOME}/.cache/ruby/gem"
 export GEM_SPEC_CACHE
+# solargraph cache directory
+SOLARGRAPH_CACHE="${HOME}/.cache/ruby/solargraph"
+export SOLARGRAPH_CACHE
 
 # Rust
 # cargo directory
