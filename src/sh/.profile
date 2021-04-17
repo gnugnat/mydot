@@ -263,10 +263,10 @@ fi
 
 # Chez
 # directory (used by aliases)
-_chez_history="${HOME}/.config/chez/history"
-if nullwrap mkdir -p "${_chez_history}"
+_chez_dir="${HOME}/.cache/chez"
+if nullwrap mkdir -p "${_chez_dir}"
 then
-    CHEZ_HISTORY="${_chez_history}"
+    CHEZ_HISTORY="${_chez_dir}/history"
     export CHEZ_HISTORY
 fi
 unset _chez_history
@@ -677,8 +677,9 @@ then
     a_k_a python 'python2'
 fi
 a_k_a builddir 'mkdir -p ./build && cd ./build'
-rbind petite     petite     'petite --eehistory "${CHEZ_HISTORY}"'
+rbind chez       chez       'chez --eehistory "${CHEZ_HISTORY}"'
 rbind chezscheme chezscheme 'chezscheme --eehistory "${CHEZ_HISTORY}"'
+rbind petite     petite     'petite --eehistory "${CHEZ_HISTORY}"'
 rbind chezscheme chez       'chezscheme'          -s
 rbind firefox    ff         'firefox'             -s
 rbind ghci       hs         'ghci'                -s
