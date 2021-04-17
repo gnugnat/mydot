@@ -410,9 +410,11 @@ export PLTUSERHOME
 
 # Ruby
 # gem directories
-GEM_HOME="${HOME}/.local/share/gem"
+GEMRC="${HOME}/.config/ruby/gemrc"
+export GEMRC
+GEM_HOME="${HOME}/.local/share/ruby/gem"
 export GEM_HOME
-GEM_SPEC_CACHE="${HOME}/.cache/gem"
+GEM_SPEC_CACHE="${HOME}/.cache/ruby/gem"
 export GEM_SPEC_CACHE
 
 # Rust
@@ -530,7 +532,7 @@ then
     unset racket_bin_dir
 fi
 
-# Ruby
+# Ruby (Gem)
 add_to_path "${GEM_HOME}/bin"
 
 # User's programs
