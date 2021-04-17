@@ -504,7 +504,7 @@ add_to_path "${CARGO_HOME}/bin"
 # GO
 add_to_path "${GOPATH}/bin"
 
-# Ros(well) (Lisp)
+# Lisp (Ros(well))
 add_to_path "${HOME}/.roswell/bin"
 
 # Nimble (Nim)
