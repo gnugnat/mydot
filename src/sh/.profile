@@ -439,6 +439,11 @@ export TEXMFHOME
 TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFVAR
 
+# VSCode
+# "portable" directory for storing settings and extensions
+VSCODE_PORTABLE="${HOME}/.local/share/vscode"
+export VSCODE_PORTABLE
+
 # XDG Base Directory (failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 nullwrap mkdir -p "${XDG_CACHE_HOME}" && export XDG_CACHE_HOME
