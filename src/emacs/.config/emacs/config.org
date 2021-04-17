@@ -1798,6 +1798,18 @@
        )
    #+END_SRC
 
+** Ruby
+
+   [[https://www.ruby-lang.org][Ruby]] language support.
+   Requires =solargraph=.
+
+   #+BEGIN_SRC emacs-lisp
+     (when (executable-find "solargraph")
+       (add-hook 'ruby-mode-hook 'lsp)
+       (add-hook 'ruby-mode-hook 'eglot-ensure)
+       )
+   #+END_SRC
+
 ** Rust
 
    [[https://www.rust-lang.org/][Rust]] language support
