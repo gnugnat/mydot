@@ -396,6 +396,9 @@ _python_config="${HOME}/.config/python"
 _python_data="${HOME}/.local/share/python"
 if nullwrap mkdir -p "${_python_cache}"
 then
+    # pip cache directory
+    PIP_CACHE_DIR="${HOME}/.cache/python/pip"
+    export PIP_CACHE_DIR
     # pylint directory
     PYLINTHOME="${HOME}/.cache/python/pylint"
     export PYLINTHOME
