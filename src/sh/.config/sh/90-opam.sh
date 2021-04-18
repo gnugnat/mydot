@@ -19,7 +19,10 @@
 # Licensed under the GNU GPL v3 License
 
 
-if command_exists opam
+if ! am_i_root
 then
-    eval "$(opam env)"
+    if command_exists opam
+    then
+        eval "$(opam env)"
+    fi
 fi
