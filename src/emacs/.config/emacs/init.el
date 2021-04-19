@@ -108,14 +108,14 @@
 
 ;;; Load other custom components
 
-;; Load site-lisp form GUIX_PROFILE
+;; Load site-lisp from GUIX_PROFILE
 (let*
     (
      (guix-profile   (getenv "GUIX_PROFILE"))
      (guix-site-lisp (concat guix-profile "/share/emacs/site-lisp"))
      )
   ;; If we check only if "file exists" we would load stuff from / (system root)
-  ;; if it is found there.
+  ;; if it is found there (believe me those bug happen).
   ;; So, check if "guix-profile" is null and then check
   ;; if "${GUIX_PROFILE}/share/emacs/site-lisp" exists.
   (when guix-profile
