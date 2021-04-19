@@ -118,10 +118,8 @@
   ;; if it is found there (believe me those bug happen).
   ;; So, check if "guix-profile" is null and then check
   ;; if "${GUIX_PROFILE}/share/emacs/site-lisp" exists.
-  (when guix-profile
-    (when (file-exists-p guix-site-lisp)
-      (add-to-list 'load-path guix-site-lisp)
-      )
+  (when (and guix-profile (file-exists-p guix-site-lisp))
+    (add-to-list 'load-path guix-site-lisp)
     )
   )
 
