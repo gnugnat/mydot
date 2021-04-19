@@ -2312,6 +2312,25 @@
        )
    #+END_SRC
 
+** Guix
+
+   [[https://guix.gnu.org/][Guix]] package manager support.
+
+   + Guix:
+     - https://emacs-guix.gitlab.io/website/
+     - https://github.com/alezost/guix.el
+     - https://gitlab.com/emacs-guix/emacs-guix
+     - https://melpa.org/#/guix
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package guix
+       :if (executable-find "guix")
+       :ensure t
+       :defer t
+       :commands (guix)
+       )
+   #+END_SRC
+
 ** IRC
 
    [[https://freenode.net/][IRC]] with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
