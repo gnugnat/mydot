@@ -22,12 +22,15 @@
 [submodule "src/zsh/.config/zsh/plugins/autosuggestions"]
 	path = src/zsh/.config/zsh/plugins/autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+
 [submodule "src/zsh/.config/zsh/plugins/syntax-highlighting"]
 	path = src/zsh/.config/zsh/plugins/syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+
 [submodule "src/zsh/.config/zsh/plugins/k"]
 	path = src/zsh/.config/zsh/plugins/k
 	url = https://github.com/supercrabtree/k
+
 [submodule "src/zsh/.config/zsh/plugins/z"]
 	path = src/zsh/.config/zsh/plugins/z
 	url = https://github.com/agkozak/zsh-z
