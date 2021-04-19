@@ -25,10 +25,11 @@ _guix_profile="${HOME}/.guix-profile"
 
 if [ -e "${_guix_profile}" ]
 then
-   GUIX_PROFILE="${_guix_profile}"
-   source_file "${GUIX_PROFILE}/etc/profile"
-   GUIX_LOCPATH="${_guix_profile}/lib/locale"
-   export GUIX_LOCPATH
+    GUIX_PROFILE="${_guix_profile}"
+    export GUIX_PROFILE
+    source_file "${GUIX_PROFILE}/etc/profile"
+    GUIX_LOCPATH="${_guix_profile}/lib/locale"
+    export GUIX_LOCPATH
 fi
 
 unset _guix_profile
