@@ -46,18 +46,13 @@
 ;; Dispaly any atoms
 (define show
   (lambda atoms
-    (map (lambda (atom) (display atom)) atoms)
-    (display "")
-   )
+    (display (string-join atoms))
+    )
   )
 
 ;; Load the RC file
-(define reload
-  (lambda ()
-    (load
-     (string-append (getenv "HOME") "/.guile")
-     )
-    )
+(define (reload)
+  (load (string-append (getenv "HOME") "/.guile"))
   )
 
 ;; Get a random element of a list
