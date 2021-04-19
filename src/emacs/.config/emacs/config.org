@@ -2512,6 +2512,29 @@
 
    [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Amusements.html][47 Games and Other Amusements]]
 
+** Scores
+
+   Set a directory for games saves/scores.
+
+   #+BEGIN_SRC emacs-lisp
+     (defvar games-saves-directory (w-u-e-d "games/")
+       "Directory for games saves/scores.")
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (if (not (file-exists-p games-saves-directory))
+         (with-temp-buffer
+           (make-directory games-saves-directory)
+           )
+       )
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (defun with-games-saves-directory (file)
+       "Return a path to FILE prepended with 'games-saves-directory'."
+       (concat games-saves-directory file)
+       )
+     (defalias 'in-games-saves 'with-games-saves-directory)
+   #+END_SRC
+
 ** 2048
 
    + 2048-Game:
@@ -2588,5 +2611,7 @@
      (use-package typing
        :ensure t
        :defer t
+       :config
+       (setq toe-highscore-file (in-games-saves "toe-scores"))
        )
    #+END_SRC
