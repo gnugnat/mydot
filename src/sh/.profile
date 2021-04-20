@@ -742,25 +742,6 @@ a_k_a rp          '${NEED_UID0} '
 a_k_a running     '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
 rbind grub-mkconfig update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg' -s
 
-# Youtube-DL
-if command_exists youtube-dl
-then
-    alias youtube-dl='youtube-dl -i -o "%(title)s.%(ext)s"'
-    a_k_a ytd           'youtube-dl'
-    # audio
-    alias ytd-bestaudio='youtube-dl -f bestaudio -x -o "%(playlist_index)s - %(title)s.%(ext)s"'
-    a_k_a ytd-flac      'ytd-bestaudio --audio-format flac'
-    a_k_a ytd-mp3       'ytd-bestaudio --audio-format mp3'
-    a_k_a ytd-opus      'ytd-bestaudio --audio-format opus'
-    # video
-    a_k_a ytd-mp4       'youtube-dl -f mp4'
-    a_k_a ytd-webm      'youtube-dl -f webm'
-    # subs
-    a_k_a ytd-sub-de    'youtube-dl --write-srt --sub-lang de'
-    a_k_a ytd-sub-en    'youtube-dl --write-srt --sub-lang en'
-    a_k_a ytd-sub-pl    'youtube-dl --write-srt --sub-lang pl'
-fi
-
 # Busybox
 # If BB is installed, then try to get unavailable programs from it
 # !!! Keep this last !!!
