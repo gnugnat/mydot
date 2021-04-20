@@ -740,7 +740,7 @@ a_k_a man-pl      'LANG="pl_PL.UTF-8" man'
 a_k_a root        'su -l root'
 a_k_a rp          '${NEED_UID0} '
 a_k_a running     '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
-a_k_a update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg'
+rbind grub-mkconfig update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg' -s
 
 # Youtube-DL
 if command_exists youtube-dl
