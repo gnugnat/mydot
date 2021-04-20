@@ -1046,6 +1046,20 @@
        )
    #+END_SRC
 
+   Company backends:
+
+   + Company-Math:
+     - https://github.com/vspinu/company-math
+     - https://melpa.org/#/company-math
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package company-math
+       :ensure t
+       :config
+       (add-to-list 'company-backends 'company-math-symbols-unicode)
+       )
+   #+END_SRC
+
 ** LSP
 
    Language Server Protocol support for Emacs
