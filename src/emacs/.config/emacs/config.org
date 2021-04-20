@@ -1266,31 +1266,6 @@
        )
    #+END_SRC
 
-** Gambit
-
-   [[https://github.com/gambit/gambit][Gambit]] language support.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package gambit
-       :if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
-       :ensure nil
-       :defer t
-       :load-path "/usr/share/emacs/site-lisp"
-       :hook
-       (
-        (inferior-scheme-mode . gambit-inferior-mode)
-        (scheme-mode          . gambit-mode)
-        )
-       :init
-       (progn
-         (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
-         (autoload 'gambit-mode          "gambit" "Hook Gambit mode into scheme.")
-         )
-       :config
-       (setq scheme-program-name "gsi -:d-")
-       )
-   #+END_SRC
-
 ** Go
 
    [[https://golang.org/][Go]] language support
@@ -1873,20 +1848,6 @@
        )
    #+END_SRC
 
-   [[https://github.com/cisco/chezscheme][Chez]] scheme support.
-
-   + Geiser-Chez:
-     - https://gitlab.com/emacs-geiser/chez
-     - https://melpa.org/#/geiser-chez
-
-   #+BEGIN_SRC emacs-lisp
-     (when (executable-find "chez")
-       (use-package geiser-chez
-         :ensure t
-         )
-       )
-   #+END_SRC
-
    [[https://github.com/gambit/gambit][Gambit]] scheme support.
 
    + Geiser-Gambit:
@@ -1894,10 +1855,32 @@
      - https://melpa.org/#/geiser-gambit
 
    #+BEGIN_SRC emacs-lisp
-     (when (executable-find "gambit")
-       (use-package geiser-gambit
-         :ensure t
+     (use-package geiser-gambit
+       :if (executable-find "gambit")
+       :ensure t
+       )
+   #+END_SRC
+
+   Gambit-Mode provided by Gambit:
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package gambit
+       :if (file-exists-p "/usr/share/emacs/site-lisp/gambit.el")
+       :ensure nil
+       :defer t
+       :load-path "/usr/share/emacs/site-lisp"
+       :hook
+       (
+        (inferior-scheme-mode . gambit-inferior-mode)
+        (scheme-mode          . gambit-mode)
+        )
+       :init
+       (progn
+         (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+         (autoload 'gambit-mode          "gambit" "Hook Gambit mode into scheme.")
          )
+       :config
+       (setq scheme-program-name "gsi -:d-")
        )
    #+END_SRC
 
@@ -1912,13 +1895,14 @@
      - https://melpa.org/#/flycheck-guile
 
    #+BEGIN_SRC emacs-lisp
-     (when (executable-find "guile")
-       (use-package geiser-guile
-         :ensure t
-         )
-       (use-package flycheck-guile
-         :ensure t
-         )
+     (use-package geiser-guile
+       :if (executable-find "guile")
+       :ensure t
+       )
+     (use-package flycheck-guile
+       :if (executable-find "guile")
+       :requires geiser-guile
+       :ensure t
        )
    #+END_SRC
 
