@@ -1847,11 +1847,63 @@
 ** Scheme
 
    [[http://www.scheme-reports.org/][Scheme]] language support.
-   For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
 
    + Geiser:
      - https://gitlab.com/emacs-geiser/geiser
      - https://melpa.org/#/geiser
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package geiser
+       :ensure t
+       :defer t
+       :hook
+       ((scheme-mode . geiser-mode))
+       :diminish geiser-autodoc-mode
+       :config
+       (let* (
+              (geiser-dir (w-u-e-d "geiser/"))
+              )
+         (if (not (file-exists-p geiser-dir))
+             (with-temp-buffer (make-directory geiser-dir))
+           )
+         (setq geiser-repl-history-filename
+               (concat geiser-dir "history")
+               )
+         )
+       )
+   #+END_SRC
+
+   [[https://github.com/cisco/chezscheme][Chez]] scheme support.
+
+   + Geiser-Chez:
+     - https://gitlab.com/emacs-geiser/chez
+     - https://melpa.org/#/geiser-chez
+
+   #+BEGIN_SRC emacs-lisp
+     (when (executable-find "chez")
+       (use-package geiser-chez
+         :ensure t
+         )
+       )
+   #+END_SRC
+
+   [[https://github.com/gambit/gambit][Gambit]] scheme support.
+
+   + Geiser-Gambit:
+     - https://gitlab.com/emacs-geiser/gambit
+     - https://melpa.org/#/geiser-gambit
+
+   #+BEGIN_SRC emacs-lisp
+     (when (executable-find "gambit")
+       (use-package geiser-gambit
+         :ensure t
+         )
+       )
+   #+END_SRC
+
+   [[https://www.gnu.org/software/guile/][Guile]] scheme support.
+   For me Geiser works reliably only with [[https://www.gnu.org/software/guile/][guile]].
+
    + Geiser-Guile:
      - https://gitlab.com/emacs-geiser/guile
      - https://melpa.org/#/geiser-guile
@@ -1861,15 +1913,6 @@
 
    #+BEGIN_SRC emacs-lisp
      (when (executable-find "guile")
-       (use-package geiser
-         :ensure t
-         :defer t
-         :hook
-         ((scheme-mode . geiser-mode))
-         :diminish geiser-autodoc-mode
-         :init
-         (setq geiser-active-implementations '(guile))
-         )
        (use-package geiser-guile
          :ensure t
          )
