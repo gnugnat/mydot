@@ -1325,6 +1325,26 @@
        )
    #+END_SRC
 
+** Haxe
+
+   [[https://haxe.org/][Haxe]] language support.
+
+   + Haxe-Mode:
+     - https://github.com/emacsorphanage/haxe-mode
+     - https://melpa.org/#/haxe-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package haxe-mode
+       :if (executable-find "haxe")
+       :ensure t
+       :defer t
+       :hook
+       ((haxe-mode . rainbow-delimiters-mode))
+       :mode
+       (("\\.hx\\'" . haxe-mode))
+       )
+   #+END_SRC
+
 ** Java
 
    [[https://www.java.com][JAVA]] language support.
