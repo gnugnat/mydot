@@ -718,6 +718,7 @@ rbind git        diff-git   'git diff --no-index' -s
 rbind ipython    ipy        'ipython'             -s
 rbind irb        rb         'irb'                 -s
 rbind julia      jl         'julia'               -s
+rbind perl       iperl      'perl -de0'           -s
 rbind python     py         'python'              -s
 rbind racket     rkt        'racket'              -s
 rbind scheme     scm        'scheme'              -s
