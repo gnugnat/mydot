@@ -1062,7 +1062,7 @@
 
 ** LSP
 
-   Language Server Protocol support for Emacs
+   [[https://emacs-lsp.github.io/lsp-mode/][Language Server Protocol]] support for Emacs.
 
    Keep this second, after company.
 
@@ -1089,7 +1089,7 @@
 
 ** C & C++
 
-   C & C++ language support.
+   [[https://en.wikipedia.org/wiki/C_(programming_language)][C]] & [[https://isocpp.org][C++]] language support.
    Use Eglot for the C/C+ LSP client.
 
    #+BEGIN_SRC emacs-lisp
@@ -1142,6 +1142,8 @@
 
 ** Comments
 
+   Highlight special keywords in comments.
+
    + Hl-Todo:
      - https://github.com/tarsius/hl-todo
      - https://melpa.org/#/hl-todo
@@ -1170,7 +1172,7 @@
 
 ** Electric Pairs
 
-   Auto close brackets
+   Automatically close brackets.
 
    #+BEGIN_SRC emacs-lisp
      (setq
@@ -1187,7 +1189,7 @@
 
 ** Elisp
 
-   Emacs Lisp interaction configuration.
+   [[https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html][Emacs Lisp]] interaction configuration.
 
    #+BEGIN_SRC emacs-lisp
      (use-package inferior-emacs-lisp-mode
@@ -1204,7 +1206,7 @@
 
 ** Elixir
 
-   [[https://elixir-lang.org/][Elixir]] language support
+   [[https://elixir-lang.org/][Elixir]] language support.
 
    + Alchemist:
      - https://github.com/tonini/alchemist.el
@@ -1222,7 +1224,7 @@
 
 ** Erlang
 
-   [[https://www.erlang.org/][Erlang]] language support
+   [[https://www.erlang.org/][Erlang]] language support.
 
    #+BEGIN_SRC emacs-lisp
      ;; Prevent annoying hang-on-compile
@@ -1267,7 +1269,7 @@
 
 ** Go
 
-   [[https://golang.org/][Go]] language support
+   [[https://golang.org/][Go]] language support.
 
    + Go-Mode:
      - https://github.com/dominikh/go-mode.el
@@ -1423,7 +1425,7 @@
 
 ** Lisp
 
-   [[https://common-lisp.net/][Lisp]] language support
+   [[https://common-lisp.net/][Lisp]] language support.
 
    + Sly:
      - http://joaotavora.github.io/sly/
@@ -1451,7 +1453,7 @@
 
 ** Lua
 
-   [[http://www.lua.org/][Lua]] language support with [[http://luajit.org/][LuaJIT]]
+   [[http://www.lua.org/][Lua]] language support with [[http://luajit.org/][LuaJIT]].
 
    + Lua-Mode:
      - https://github.com/immerrr/lua-mode
@@ -1476,7 +1478,7 @@
 
 ** Markdown
 
-   [[https://daringfireball.net/projects/markdown][Markdown]] language support
+   [[https://daringfireball.net/projects/markdown][Markdown]] language support.
 
    + Markdown-Mode:
      - https://github.com/jrblevin/markdown-mode
@@ -1498,7 +1500,7 @@
 
 ** Match words
 
-   Highlight the same words
+   Highlight the same words.
 
    + Idle-Highlight-Mode:
      - https://github.com/nonsequitur/idle-highlight-mode
@@ -1821,7 +1823,7 @@
 
 ** Rust
 
-   [[https://www.rust-lang.org/][Rust]] language support
+   [[https://www.rust-lang.org/][Rust]] language support.
 
    + Rust-Mode:
      - https://github.com/rust-lang/rust-mode
@@ -1933,7 +1935,7 @@
 
 ** Speedbar
 
-   [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]]
+   [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]].
 
    + Sr-Speedbar:
      - https://github.com/emacsorphanage/sr-speedbar
@@ -1952,7 +1954,7 @@
 
 ** Tabs
 
-   Tab width settings
+   Tab settings.
 
    #+BEGIN_SRC emacs-lisp
      (setq-default tab-width 4)
@@ -1983,7 +1985,7 @@
 
 ** Vala
 
-   [[https://wiki.gnome.org/Projects/Vala][Vala]] language support
+   [[https://wiki.gnome.org/Projects/Vala][Vala]] language support.
 
    + Vala-Mode:
      - https://github.com/rrthomas/vala-mode
@@ -2002,6 +2004,7 @@
 
    + Enable Web Mode for:
      - [[https://whatwg.org/][HTML]]
+     - [[https://www.javascript.com/][JS]]
      - [[https://www.php.net/][PHP]]
      - [[https://www.w3.org/TR/xml11/][XML]]
 
@@ -2054,7 +2057,7 @@
 
 ** Yaml
 
-   [[https://yaml.org][Yaml]] language support
+   [[https://yaml.org][Yaml]] language support.
 
    + Yaml-Mode:
      - https://github.com/yoshiki/yaml-mode
@@ -2078,7 +2081,7 @@
 
 ** Yasnippet
 
-   [[https://github.com/AndreaCrotti/yasnippet-snippets][Code snippets]]
+   [[https://github.com/AndreaCrotti/yasnippet-snippets][Code snippets]].
 
    + Yasnippet:
      - https://github.com/joaotavora/yasnippet
