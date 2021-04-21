@@ -1537,6 +1537,22 @@
        )
    #+END_SRC
 
+** Neko
+
+   [[https://nekovm.org/][Neko]] language support.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package neko-mode
+       :if (executable-find "neko")
+       :ensure nil
+       :defer t
+       :hook
+       ((neko-mode . rainbow-delimiters-mode))
+       :mode
+       (("\\.neko\\'" . neko-mode))
+       )
+   #+END_SRC
+
 ** Nim
 
    [[https://nim-lang.org/][Nim]] language support.
