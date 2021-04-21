@@ -1349,24 +1349,19 @@
 ** Java
 
    [[https://www.java.com][JAVA]] language support.
-   WARNING!: Requires [[https://jdk.java.net/][OpenJDK 11]].
+   WARNING!: Requires [[https://jdk.java.net/][OpenJDK 11]] or higher version.
 
    + lsp-java:
      - https://github.com/emacs-lsp/lsp-java
      - https://melpa.org/#/lsp-java
 
    #+BEGIN_SRC emacs-lisp
-     (defvar OpenJDK11Java "/usr/lib64/openjdk-11/bin/java"
-       "Path to OpenJDK 11 Java executable.")
-
      (use-package lsp-java
-       :if (file-exists-p OpenJDK11Java)
+       :if (executable-find "java")
        :ensure t
        :defer t
        :hook
-       (java-mode . lsp)
-       :init
-       (setq lsp-java-java-path OpenJDK11Java)
+       ((java-mode . lsp))
        )
    #+END_SRC
 
