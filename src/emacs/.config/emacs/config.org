@@ -929,7 +929,6 @@
        :hook
        (
         (comint-mode . rainbow-delimiters-mode)
-        (compilation-mode . rainbow-delimiters-mode)
         (prog-mode . rainbow-delimiters-mode)
         (shell-mode . rainbow-delimiters-mode)
         )
