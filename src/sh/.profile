@@ -64,78 +64,110 @@
 
 # >>> Helper functions
 
+_functon_usage_end() {
+    echo
+    echo "keep in mind this is a shell function and"
+    echo "(in)correct output from it may not be visible"
+    return 1
+}
+
 # Send stdout and stderr of 'command' to /dev/null
 # Basically this will return the exit status
 nullwrap() {
     "${@}" >/dev/null 2>&1
 }
 
-# Check if a command exists (without redirecting each time)
 command_exists() {
-    if nullwrap type "${1}"
+    if [ -z "${1}" ]
     then
-        return 0
+        echo "Usage: command_exists COMMAND"
+        echo "command_exists - check if COMMAND exists"
+        _functon_usage_end
     else
-        return 1
-    fi
-}
-
-# A.K.A - safe alias
-# create a alias only if a command and/or alias
-# with the desired name does not exist
-a_k_a() {
-    if ! command_exists "${1}"
-    then
-        alias "${1}"="${2}"
-    fi
-}
-
-# Re-bind
-# If a given command exists ($1):
-# alias 2nd command ($2) to a given string ($2).
-# For bigger cases just use if statement,
-# see python below.
-rbind() {
-    if command_exists "${1}" && [ -n "${3}" ]
-    then
-        case "${4}"
-        in
-            "" | -u | -unsafe | --unsafe )
-                alias "${2}"="${3}"
-                ;;
-            -s | -safe | --safe )
-                a_k_a "${2}" "${3}"
-                ;;
-        esac
-    fi
-}
-
-# Check if 1st string contains the 2nd
-contains_string() {
-    _string="${1}"
-    _substring="${2}"
-    if [ "${_string#*${_substring}}" != "${_string}" ]
-    then
-        # $_substring is in $_string
-        return 0
-    else
-        # $_substring is not in $_string
-        return 1
-    fi
-    unset _string
-    unset _substring
-}
-
-# Add a directory to PATH
-# This function first checks if specified directory
-# already is in path, if it is not and it exists
-# it is added to the path
-add_to_path() {
-    if ! contains_string "${PATH}" "${1}"
-    then
-        if [ -d "${1}" ]
+        if nullwrap type "${1}"
         then
-            export PATH="${PATH}:${1}"
+            return 0
+        else
+            return 1
+        fi
+    fi
+}
+
+a_k_a() {
+    if [ -z "${2}" ]
+    then
+        echo "Usage: a_k_a ALIAS COMMAND"
+        echo "a_k_a - safe alias"
+        echo "will not create ALIAS if COMMAND is already occupied"
+        _functon_usage_end
+    else
+        if ! command_exists "${1}"
+        then
+            alias "${1}"="${2}"
+        fi
+    fi
+}
+
+# For bigger cases just use if statement, see python below.
+rbind() {
+    if [ -z "${3}" ]
+    then
+        echo "Usage: rbind COMMAND1 ALIAS COMMAND2 [OPTION]"
+        echo "rbind - alias COMMAND2 to ALIAS if COMMAND1 exists"
+        echo
+        echo "Options:"
+        echo "    -s, --safe    don't alias if COMMAND2 already exists"
+        echo "    -u, --unsafe  alias regardless of if COMMAND2 (default)"
+        _functon_usage_end
+    else
+        if command_exists "${1}"
+        then
+            case "${4}"
+            in
+                "" | -u | -unsafe | --unsafe )
+                    alias "${2}"="${3}"
+                    ;;
+                -s | -safe | --safe )
+                    a_k_a "${2}" "${3}"
+                    ;;
+            esac
+        fi
+    fi
+
+}
+
+contains_string() {
+    if [ -z "${2}" ]
+    then
+        echo "Usage: contains_string STRING1 STRING2"
+        echo "contains_string - check if STRING1 contains STRING2"
+        _functon_usage_end
+    else
+        if [ "${1#*${2}}" != "${1}" ]
+        then
+            return 0
+        else
+            return 1
+        fi
+    fi
+}
+
+add_to_path() {
+    if [ -z "${1}" ]
+    then
+        echo "Usage: add_to_path PATH"
+        echo "add_to_path - prepend given PATH to your PATH"
+        echo "this function first checks if specified directory"
+        echo "already is in path, if it is not and it exists"
+        echo "it is added to the path"
+        _functon_usage_end
+    else
+        if ! contains_string "${PATH}" "${1}"
+        then
+            if [ -d "${1}" ]
+            then
+                export PATH="${PATH}:${1}"
+            fi
         fi
     fi
 }
@@ -150,15 +182,28 @@ am_i_root() {
     fi
 }
 
-# Make a directory and cd into it
 mkcd() {
-    mkdir -p "${*}"
-    cd "${*}" || return 1
+    if [ -z "${1}" ]
+    then
+        echo "Usage: mkcd PATH"
+        echo "mkcd - make a directory and move into it"
+        _functon_usage_end
+    else
+        mkdir -p "${*}"
+        cd "${*}" || return 1
+    fi
 }
 
 # Source a file if it exists
 source_file() {
-    [ -f "${1}" ] && . "${1}"
+    if [ -z "${1}" ]
+    then
+        echo "Usage: source_file FILE"
+        echo "source_file - source FILE if it exists"
+        _functon_usage_end
+    else
+        [ -f "${1}" ] && . "${1}"
+    fi
 }
 
 
