@@ -101,7 +101,6 @@
    | C-l d           | dired-sidebar-toggle-sidebar        |
    | C-l n           | ranger                              |
    | C-l r           | toggle-transparency                 |
-   | C-l s           | sr-speedbar-toggle                  |
    |-----------------+-------------------------------------|
    | C-x C-u         | upcase-region                       |
    | C-z             | undo                                |
@@ -1926,25 +1925,6 @@
 
    #+BEGIN_SRC emacs-lisp
      (setq auto-mode-alist (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist))
-   #+END_SRC
-
-** Speedbar
-
-   [[https://www.emacswiki.org/emacs/SpeedBar][Speedbar]] [[https://github.com/emacsorphanage/sr-speedbar][in the same frame]].
-
-   + Sr-Speedbar:
-     - https://github.com/emacsorphanage/sr-speedbar
-     - https://melpa.org/#/sr-speedbar
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package sr-speedbar
-       :ensure t
-       :bind
-       (
-        :map my-keymap
-        ("s" . sr-speedbar-toggle)
-        )
-       )
    #+END_SRC
 
 ** Tabs
