@@ -44,10 +44,8 @@
 ;;; Helpers
 
 ;; Dispaly any atoms
-(define show
-  (lambda atoms
-    (display (string-join atoms))
-    )
+(define (show . args)
+  (display (apply string-append args))
   )
 
 ;; Load the RC file
@@ -61,10 +59,8 @@
   )
 
 ;; From among given atoms select one at random
-(define atoms->random
-  (lambda atoms
-    (list->random atoms)
-    )
+(define (atoms->random . args)
+  (list->random args)
   )
 
 ;; Read a file into a list of characters
