@@ -1261,6 +1261,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
        :ensure t
+       :diminish "FC"
        :init
        (global-flycheck-mode t)
        )
