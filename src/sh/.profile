@@ -377,7 +377,8 @@ export JULIA_DEPOT_PATH
 # ls colors
 if command_exists dircolors && [ -z "${LS_COLORS}" ]
 then
-    eval "$(dircolors -b)"
+    eval "$(dircolors -b | sed 's/01;05;37;41/0;36/g')"
+    #                      ^ also replace blinking red with blue green
 fi
 
 # Less
