@@ -56,6 +56,7 @@ else
     echo "WARNING: This may get overwritten by files sourced later"
     for s in \
         bspwm \
+        cinnamon-session \
         dwm \
         enlightenment_start \
         gnome-session \
@@ -92,6 +93,9 @@ case "${session}"
 in
     [Bb][Ss][Pp] | [Bb][Ss][Pp][Ww][Mm] )
         exec bspwm
+        ;;
+    [Cc][Ii][Nn][Nn][Aa][Mm][Oo][Nn] )
+        exec cinnamon-session
         ;;
     E | e | [Ee][Nn][Ll][Ii][Gg][Hh][Tt][Ee][Nn][Mm][Ee][Nn][Tt] )
         exec enlightenment_start
