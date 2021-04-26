@@ -2449,7 +2449,7 @@
      (setq
       erc-autojoin-channels-alist
       '(
-        ("freenode.net"
+        (".*\\.freenode.net"
          "#NetBSD"
          "#gentoo"
          "#gentoo-chat"
@@ -2467,7 +2467,7 @@
          "#lisp"
          "#termux"
          )
-        ("irc.rizon.net"
+        (".*\\.rizon.net"
          "#cloveros"
          )
         )
