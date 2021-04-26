@@ -1169,6 +1169,36 @@
        )
    #+END_SRC
 
+** Docker
+
+   [[https://www.docker.com/][Docker]] support.
+
+   + Docker:
+     - https://github.com/Silex/docker.el
+     - https://melpa.org/#/docker
+   + Dockerfile-Mode:
+     - https://github.com/spotify/dockerfile-mode
+     - https://melpa.org/#/dockerfile-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package docker
+       :if (executable-find "docker")
+       :ensure t
+       :defer t
+       :commands (docker)
+       )
+     (use-package dockerfile-mode
+       :ensure t
+       :defer t
+       :mode
+       (
+        ("Dockerfile\\'"    . dockerfile-mode)
+        ("\\.Dockerfile\\'" . dockerfile-mode)
+        )
+       )
+   #+END_SRC
+
+
 ** Electric Pairs
 
    Automatically close brackets.
