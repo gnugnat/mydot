@@ -584,18 +584,19 @@
 
 ** Theme
 
-   Install spacemacs-theme if not installed
+   As a main theme use the [[https://www.spacemacs.org/][Spacemacs]] theme.
 
    + Spacemacs-Theme:
      - https://github.com/nashamri/spacemacs-theme
      - https://melpa.org/#/spacemacs-theme
 
    #+BEGIN_SRC emacs-lisp
-     (unless (package-installed-p 'spacemacs-theme)
-       (package-refresh-contents)
-       (package-install 'spacemacs-theme)
+     (use-package spacemacs-theme
+       :ensure t
+       :defer nil
+       :init
+       (load-theme 'spacemacs-dark t)
        )
-     (load-theme 'spacemacs-dark t)
    #+END_SRC
 
 ** Transparency
