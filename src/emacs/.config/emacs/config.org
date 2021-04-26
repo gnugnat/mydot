@@ -2433,8 +2433,18 @@
 
    [[https://freenode.net/][IRC]] with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
 
+   Customization:
+
    #+BEGIN_SRC emacs-lisp
-     ;; Channels to autojoin
+     (setq
+      erc-join-buffer 'bury
+      erc-prompt (lambda () (concat "(ERC: " (buffer-name) ")>"))
+      )
+   #+END_SRC
+
+   Channels to autojoin:
+
+   #+BEGIN_SRC emacs-lisp
      (setq
       erc-autojoin-channels-alist
       '(
