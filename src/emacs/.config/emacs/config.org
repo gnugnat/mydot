@@ -1781,11 +1781,22 @@
        (setq
         elpy-modules (delq 'elpy-module-flymake elpy-modules)
         elpy-rpc-virtualenv-path (w-u-e-d "elpy/rpc_venv")
-        python-shell-interpreter "ipython3"
-        python-shell-interpreter-args "-i --simple-prompt"
         )
        )
    #+END_SRC
+
+   Start the Python shell with =run-python=.
+
+   Settings for [[https://ipython.org/][IPython]]:
+
+    #+BEGIN_SRC emacs-lisp
+      (when (executable-find "ipython3")
+        (setq
+         python-shell-interpreter "ipython3"
+         python-shell-interpreter-args "-i --simple-prompt"
+         )
+        )
+    #+END_SRC
 
 ** R
 
