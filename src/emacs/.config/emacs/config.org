@@ -2449,6 +2449,7 @@
      (setq
       erc-autojoin-channels-alist
       '(
+        ;; Freenode - https://freenode.net/
         (".*\\.freenode.net"
          "#NetBSD"
          "#gentoo"
@@ -2467,6 +2468,11 @@
          "#lisp"
          "#termux"
          )
+        ;; OFTC - https://www.oftc.net/
+        (".*\\.oftc.net"
+         "#gentoo"
+         )
+        ;; Rizon - https://rizon.net/
         (".*\\.rizon.net"
          "#cloveros"
          )
