@@ -953,6 +953,7 @@
        :ensure nil
        :hook
        (
+        (erc-mode  . flyspell-mode)
         (org-mode  . turn-on-flyspell)
         (prog-mode . flyspell-prog-mode)
         (tex-mode  . flyspell-mode)
