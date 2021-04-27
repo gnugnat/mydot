@@ -2541,6 +2541,21 @@
        )
    #+END_SRC
 
+** SBBS client
+
+   [[https://textboard.org/][SchemeBBS]] client.
+
+   + Sbbs:
+     - https://fossil.textboard.org/sbbs/
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package sbbs
+       :ensure nil
+       :defer t
+       :commands (sbbs sbbs-browse)
+       )
+   #+END_SRC
+
 ** Treemacs
 
    File tree project explorer.
