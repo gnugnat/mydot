@@ -402,32 +402,6 @@
 
 * Appearance
 
-** Bars
-
-   Disable tool, menu and scroll bars.
-   The menu bar can still be accessed with =F10=.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package tool-bar
-       :if (fboundp 'tool-bar-mode)
-       :ensure nil
-       :config
-       (tool-bar-mode -1)
-       )
-     (use-package menu-bar
-       :if (fboundp 'menu-bar-mode)
-       :ensure nil
-       :config
-       (menu-bar-mode -1)
-       )
-     (use-package scroll-bar
-       :if (fboundp 'scroll-bar-mode)
-       :ensure nil
-       :config
-       (scroll-bar-mode -1)
-       )
-   #+END_SRC
-
 ** Diminish
 
    Remove modes from the modeline.

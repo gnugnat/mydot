@@ -78,6 +78,18 @@
   (set-frame-size (selected-frame) 88 36)
   )
 
+;; Disable tool, menu and scroll bars.
+;; The menu bar can still be accessed with =F10=.
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1)
+  )
+(when (fboundp 'menu-bar-mode)
+  (menu-bar-mode -1)
+  )
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1)
+  )
+
 ;; Auto reloading of buffers
 (global-auto-revert-mode t)
 
