@@ -19,6 +19,9 @@
 # Licensed under the GNU GPL v3 License
 
 
+extra_opts=""
+window=0
+
 prog_name="$(basename "${0}")"
 prog_desc="micro Emacs from emacs"
 prog_args="[FILE]..."
@@ -34,6 +37,7 @@ Options:
     -Ve, --version-emacs  show program  version (Emacs)
     -h,  --help           show avalible options
     -he, --help-emacs     show avalible options (Emacs)
+    -w,  --window         run in GUI window mode
 
 ${prog_name} also takes some of GNU Emacs's options.
 EOF
@@ -67,10 +71,20 @@ in
         emacs --help
         exit 0
         ;;
+    -w | -window | --window )
+        window=1
+        shift
+        ;;
 esac
+
+if [ ${window} -eq 0 ]
+then
+    extra_opts="--no-window-system"
+fi
 
 
 minor_el="${USER_EMACS_DIRECTORY}/assets/site-lisp/minor.el"
 
-emacs --no-splash --no-window-system --quick  \
+emacs --no-init-file --no-splash  \
+      ${extra_opts}               \
       --eval "(load-file \"${minor_el}\")" "${@}"
