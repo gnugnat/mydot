@@ -59,25 +59,31 @@ fi
 HISTSIZE=50000
 HISTFILESIZE=50000
 
+# No double entries in the shell history
+HISTCONTROL="${HISTCONTROL} erasedups:ignoreboth"
+
 
 # >>> Safety
 
 # Set root's editor to nano
-if [ ${EUID} -eq 0 ]
+if am_i_root
 then
-    if command -v qmacs >/dev/null 2>&1
-    then
-        export EDITOR=qmacs
-    elif command -v nano >/dev/null 2>&1
-    then
-        export EDITOR=nano
-    fi
+    for i in mefe nano qmacs
+    do
+        if command_exists "${i}"
+        then
+            EDITOR="${i}"
+            export EDITOR
+            break
+        fi
+    done
+    unset i
 fi
 
 
 # >>> Prompt theme
 
-if [ ${EUID} -eq 0 ]
+if am_i_root
 then
     PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
 else
@@ -92,6 +98,3 @@ shopt -s autocd
 
 # Append histroy
 shopt -s histappend
-
-# No double entries in the shell history
-export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
