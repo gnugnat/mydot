@@ -216,34 +216,7 @@
    Some small tweaks that don't require packages
 
    #+BEGIN_SRC emacs-lisp
-     ;; specal symbols
-     (when window-system (global-prettify-symbols-mode t))
-     ;; scrolling:
-     (setq scroll-conservatively 100)
-     ;; no "bell" (audible notification):
-     (setq ring-bell-function 'ignore)
-     ;; highlight:
-     (global-hl-line-mode t)
-     ;; use mouse in xterm
-     (xterm-mouse-mode)
-     ;; auto reloading (reverting) buffers
-     (global-auto-revert-mode 1)
-     ;; disable lock files:
-     (setq create-lockfiles nil)
-     ;; disable autosave:
-     (setq auto-save-default nil)
-     ;; disable backups:
-     (setq make-backup-files nil)
-     ;; backups directory:
-     ;;(setq backup-directory-alist '(("" . (w-u-e-d "backup"))))
-     ;; Pass "y or n" instead of "yes or no"
-     (defalias 'yes-or-no-p 'y-or-n-p)
-     ;; Disable clipboard
-     (setq x-select-enable-clipboard-manager nil)
-     ;; Highlight parens
-     (show-paren-mode t)
-     ;; size in GUI
-     (when window-system (set-frame-size (selected-frame) 88 36))
+     (require 'minor)
    #+END_SRC
 
 
@@ -933,14 +906,6 @@
         (shell-mode . rainbow-delimiters-mode)
         )
        )
-   #+END_SRC
-
-** Spaces
-
-   Use spaces as tabs
-
-   #+BEGIN_SRC emacs-lisp
-     (setq-default indent-tabs-mode nil)
    #+END_SRC
 
 ** Spelling
