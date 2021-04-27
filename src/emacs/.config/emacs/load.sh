@@ -32,5 +32,8 @@ mkdir -p ~/.config/emacs
 mkdir -p ~/Documents
 touch ~/Documents/todo.org
 
+
 [ -n "${1}" ] && echo "Additional options: ${*}"
-emacs "${@}" --no-init --load ./init.el
+
+emacs --eval "(add-to-list 'load-path  \"$(pwd)/assets/site-lisp\")" \
+      "${@}" --no-init --load ./init.el
