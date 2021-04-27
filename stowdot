@@ -129,6 +129,7 @@ cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
 req_dirs="
     ${HOME}/.config/emacs
     ${HOME}/.config/mpd/playlists
+    ${HOME}/.local/share/applications
     ${HOME}/.local/share/racket/.racket
     ${HOME}/.vnc
 "
