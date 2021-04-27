@@ -2640,7 +2640,20 @@
 
 ** Built-in
 
-   [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Amusements.html][47 Games and Other Amusements]]
+   There are about [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Amusements.html][47 Games and Other Amusements]].
+
+   Among them:
+   - [[elisp:(bubbles)][bubbles]]
+   - [[elisp:(doctor)][doctor]]
+   - [[elisp:(dunnet)][dunnet]]
+   - [[elisp:(gomoku)][gomoku]]
+   - [[elisp:(describe-function 'morse-region)][morse]]
+   - [[elisp:(pong)][pong]]
+   - [[elisp:(snake)][snake]]
+   - [[elisp:(describe-function 'spook)][spook]]
+   - [[elisp:(describe-function 'studlify-region)][studlify]]
+   - [[elisp:(tetris)][tetris]]
+   - [[elisp:(zone)][zone]]
 
 ** Scores
 
