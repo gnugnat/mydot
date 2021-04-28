@@ -591,6 +591,9 @@ add_to_path "${GOPATH}/bin"
 # Lisp (Ros(well))
 add_to_path "${HOME}/.roswell/bin"
 
+# Mix (Elixir) (mainly for rebar(3))
+add_to_path "${MIX_HOME}"
+
 # Nimble (Nim)
 add_to_path "${HOME}/.local/share/nimble/bin"
 
