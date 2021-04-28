@@ -99,7 +99,7 @@ test-guile:			have-guile
 	find ./src/guile -type f -exec guile {} \;
 
 test-hyperlinks:	docs-org
-	linkchecker --ignore-url='^mailto:' --ignore-url='^file:' --check-extern ./*/*/*.html
+	bash ./scripts/test_hyperlinks.sh
 
 test-racket:		have-racket
 	racket --load ./src/racket/.local/share/racket/.racketrc --no-init-file
