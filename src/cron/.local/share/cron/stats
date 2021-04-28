@@ -25,7 +25,7 @@ export PATH
 
 prog_name="$(basename "${0}")"
 
-log_dir="${HOME}/.cache/cron"
+log_dir="${HOME}/.local/var/log/cron"
 log_file="${prog_name}.log"
 
 prog_desc="simple script to be used with cron"
