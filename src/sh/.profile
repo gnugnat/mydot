@@ -515,7 +515,7 @@ export TEXMFVAR
 VSCODE_PORTABLE="${HOME}/.local/share/vscode"
 export VSCODE_PORTABLE
 
-# XDG Base Directory (failsafe)
+# XDG Base Directory (general failsafe)
 XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
 nullwrap mkdir -p "${XDG_CACHE_HOME}" && export XDG_CACHE_HOME
 XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
@@ -526,9 +526,15 @@ XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 export XDG_DATA_DIRS
 XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 nullwrap mkdir -p "${XDG_DATA_HOME}" && export XDG_DATA_HOME
+XDG_LOG_HOME="${XDG_LOG_HOME:-${HOME}/.local/var/log}"
+nullwrap mkdir -p "${XDG_LOG_HOME}" && export XDG_LOG_HOME
+XDG_STATE_HOME="${XDG_STATE_HOME:-${HOME}/.local/var/lib}"
+nullwrap mkdir -p "${XDG_STATE_HOME}" && export XDG_STATE_HOME
+
+# XDG Runtime Directory (failsafe)
 if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
 then
-    for _XDG_CAND_BASE in "/run" "/tmp" "/tmp/xdg" "/tmp/${USER}" "${XDG_CACHE_HOME}"
+    for _XDG_CAND_BASE in /run /tmp /tmp/xdg "/tmp/${USER}" "${XDG_CACHE_HOME}"
     do
         if nullwrap mkdir -p "${_XDG_CAND_BASE}/user/${UID}"
         then
@@ -549,6 +555,7 @@ XINITRC="${HOME}/.config/X11/xinitrc"
 export XINITRC
 XSERVERRC="${HOME}/.config/X11/xserverrc"
 export XSERVERRC
+
 # ICE
 _x11_cache="${HOME}/.cache/X11"
 if nullwrap mkdir -p "${_x11_cache}"
