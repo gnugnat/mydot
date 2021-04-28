@@ -588,9 +588,6 @@ add_to_path "${CARGO_HOME}/bin"
 # GO
 add_to_path "${GOPATH}/bin"
 
-# Lisp (Ros(well))
-add_to_path "${HOME}/.roswell/bin"
-
 # Mix (Elixir) (mainly for rebar(3))
 add_to_path "${MIX_HOME}"
 
@@ -618,6 +615,9 @@ then
     done
     unset racket_bin_dir
 fi
+
+# Ros(well) (Lisp)
+add_to_path "${HOME}/.roswell/bin"
 
 # Ruby (Gem)
 add_to_path "${GEM_HOME}/bin"
