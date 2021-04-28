@@ -21,6 +21,10 @@
 # shellcheck disable=2086,2089
 
 
+trap 'exit 128' INT
+export PATH
+
+
 exit_result=0
 
 excludes="--exclude-dir=.git --exclude-dir=nvim"
