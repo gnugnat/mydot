@@ -375,11 +375,11 @@ export JULIA_DEPOT_PATH
 
 # Ls
 # ls colors
-if command_exists dircolors
-then
+_set_dircolors() {
     eval "$(dircolors -b | sed 's/01;05;37;41/0;36/g')"
     #                      ^ also replace blinking red with blue green
-fi
+}
+command_exists dircolors && _set_dircolors
 
 # Less
 # Disable less history file
@@ -698,19 +698,22 @@ rbind rsync     rcp  'rsync --stats --progress' -s
 rbind xdg-open  open 'xdg-open'                 -s
 
 # Git
-a_k_a G   'git'
-a_k_a Ga  'git add .'
-a_k_a Gc  'git commit --signoff'
-a_k_a Gcc 'git log --cc --color-moved --show-signature'
-a_k_a Gd  'git diff --color-moved'
-a_k_a Gg  'git pull'
-a_k_a Gl  'git log --oneline --graph'
-a_k_a Go  'git clone --recursive --verbose'
-a_k_a Gp  'git push'
-a_k_a Gq  'git add . && git commit --signoff && git pull --rebase && git push'
-a_k_a Gr  'git reset --hard'
-a_k_a Gs  'git status'
-a_k_a Gu  'git reset HEAD --'
+_alias_git() {
+    a_k_a G   'git'
+    a_k_a Ga  'git add .'
+    a_k_a Gc  'git commit --signoff'
+    a_k_a Gcc 'git log --cc --color-moved --show-signature'
+    a_k_a Gd  'git diff --color-moved'
+    a_k_a Gg  'git pull'
+    a_k_a Gl  'git log --oneline --graph'
+    a_k_a Go  'git clone --recursive --verbose'
+    a_k_a Gp  'git push'
+    a_k_a Gq  'git add . && git commit --signoff && git pull --rebase && git push'
+    a_k_a Gr  'git reset --hard'
+    a_k_a Gs  'git status'
+    a_k_a Gu  'git reset HEAD --'
+}
+command_exists git && _alias_git
 
 # Multimedia
 a_k_a ffsound 'ffplay -nodisp -hide_banner'
@@ -728,12 +731,11 @@ rbind flatpak fpkup        'flatpak --user update && flatpak --user uninstall --
 rbind raco    raco-install 'raco pkg install --jobs $(nproc) --auto --user'             -s
 
 # Portage
-a_k_a B      'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
-a_k_a E      'tail -fv ${EPREFIX}/var/log/emerge.log'
-a_k_a F      'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
-a_k_a P      'cd ${EPREFIX}/etc/portage && tree -a -L 2'
-if command_exists emerge
-then
+_alias_portage() {
+    a_k_a B      'tail -fv "$(portageq envvar PORTAGE_TMPDIR)"/portage/*/*/temp/build.log'
+    a_k_a E      'tail -fv ${EPREFIX}/var/log/emerge.log'
+    a_k_a F      'tail -fv ${EPREFIX}/var/log/emerge-fetch.log'
+    a_k_a P      'cd ${EPREFIX}/etc/portage && tree -a -L 2'
     a_k_a chu    '${NEED_UID0} emerge -avU --changed-deps --changed-slot --with-bdeps=y --backtrack=100 @world'
     a_k_a des    '${NEED_UID0} emerge --deselect'
     a_k_a ewup   '${NEED_UID0} emerge -avuDU --with-bdeps=y --backtrack=100 --verbose-conflicts @world'
@@ -741,20 +743,26 @@ then
     a_k_a preb   '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
     a_k_a slr    '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
     a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
-fi
+}
+command_exists emerge && _alias_portage
 
 # Programming
 # The following will attempt to alias 'python' as 'python3'
 # if 'python' doesnt exist, also it creates 'py2'/'py3' aliases
-if command_exists python3
-then
+_alias_python3() {
     a_k_a py3 'python3'
     a_k_a python 'python3'
-fi
-if command_exists python2
-then
+}
+_alias_python2() {
     a_k_a py2 'python2'
     a_k_a python 'python2'
+}
+if command_exists python3
+then
+    _alias_python3
+elif command_exists python2
+then
+    _alias_python2
 fi
 a_k_a builddir 'mkdir -p ./build && cd ./build'
 rbind chez       chez       'chez --eehistory "${CHEZ_HISTORY}"'
@@ -774,14 +782,24 @@ rbind scheme     scm        'scheme'              -s
 rbind tclsh      tcl        'tclsh'               -s
 
 # Shell
-a_k_a cl-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
-a_k_a ed-bashrc   '${EDITOR} ${HOME}/.bashrc'
-a_k_a ed-shrc     '${EDITOR} ${HOME}/.profile'
-a_k_a ed-zshrc    '${EDITOR} ${ZDOTDIR}/.zshrc'
 a_k_a shell       '${SHELL}'
-a_k_a so-bashrc   'source ${HOME}/.bashrc'
-a_k_a so-shrc     'source ${HOME}/.profile'
-a_k_a so-zshrc    'source ${ZDOTDIR}/.zshrc'
+_alias_sh() {
+    a_k_a ed-shrc     '${EDITOR} ${HOME}/.profile'
+    a_k_a so-shrc     'source ${HOME}/.profile'
+}
+command_exists sh && _alias_sh
+_alias_bash() {
+    a_k_a cl-history  'cat /dev/null > ${HISTFILE}'
+    a_k_a ed-bashrc   '${EDITOR} ${HOME}/.bashrc'
+    a_k_a so-bashrc   'source ${HOME}/.bashrc'
+}
+command_exists bash && _alias_bash
+_alias_zsh() {
+    a_k_a cl-zhistory 'cat /dev/null > ${ZCACHEDIR}/history'
+    a_k_a ed-zshrc    '${EDITOR} ${ZDOTDIR}/.zshrc'
+    a_k_a so-zshrc    'source ${ZDOTDIR}/.zshrc'
+}
+command_exists zsh && _alias_zsh
 
 # System
 a_k_a cpuinfo     'cat /proc/cpuinfo'
@@ -793,16 +811,16 @@ a_k_a running     '(env | sort ; alias ; functions) 2>/dev/null | ${PAGER}'
 rbind grub-mkconfig update-grub '${NEED_UID0} grub-mkconfig -o /boot/grub/grub.cfg' -s
 
 # Busybox
-# If BB is installed, then try to get unavailable programs from it
 # !!! Keep this last !!!
-if command_exists busybox
-then
+# If BB is installed, then try to get unavailable programs from it
+_alias_busybox() {
     for _bb_impl in $(busybox --list)
     do
         a_k_a "${_bb_impl}" "busybox ${_bb_impl}"
     done
     unset _bb_impl
-fi
+}
+command_exists busybox && _alias_busybox
 
 
 # >>> Prompt theme
@@ -822,22 +840,33 @@ export GPG_TTY
 PINENTRY_USER_DATA="USE_CURSES=1"
 export PINENTRY_USER_DATA
 
+# Start GPG agent if it is not running
+_start_agent_gpg() {
+    nullwrap pgrep -i -u "${USER}" gpg-agent || gpg-agent --daemon 2>/dev/null
+}
+
 # Check if GPG agent exists
 if ! am_i_root && command_exists gpg-agent
 then
-    # Start GPG agent if it is not running
-    nullwrap pgrep -i -u "${USER}" gpg-agent || gpg-agent --daemon 2>/dev/null
+    _start_agent_gpg
 fi
 
 
 # >>> Autostart the SSH Agent
 
+# Start SSH agent if it is not running
+_start_agent_ssh() {
+    nullwrap pgrep -i -u "${USER}" ssh-agent  \
+        || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
+
+    [ -e "${SSH_AUTH_SOCK}" ]  \
+        || nullwrap eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")"
+}
+
 # Check if SSH agent and XDG runtime directory exist
 if ! am_i_root && command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
 then
-    # Start SSH agent if it is not running
-    nullwrap pgrep -i -u "${USER}" ssh-agent || ssh-agent > "${XDG_RUNTIME_DIR}/ssh-agent.env"
-    [ -e "${SSH_AUTH_SOCK}" ] || nullwrap eval "$(cat "${XDG_RUNTIME_DIR}/ssh-agent.env")"
+    _start_agent_ssh
 fi
 
 
@@ -848,11 +877,12 @@ fi
 
 # Source additional files
 # that are not critical to running the shell
-if [ -d "${HOME}/.config/sh" ]
-then
+_source_config() {
     for _shext in "${HOME}/.config/sh"/?*
     do
         source_file "${_shext}"
     done
     unset _shext
-fi
+}
+
+[ -d "${HOME}/.config/sh" ] && _source_config
