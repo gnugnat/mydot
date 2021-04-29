@@ -2127,6 +2127,39 @@
        )
    #+END_SRC
 
+** Appear
+
+   Show invisible parts of Org elements.
+   In this package configuration we hide some org elements,
+   they will be revealed by =org-appear=.
+
+   + Org-Appear:
+     - https://github.com/awth13/org-appear
+     - https://melpa.org/#/org-appear
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-appear
+       :requires org
+       :ensure t
+       :defer t
+       :hook
+       ((org-mode . org-appear-mode))
+       :config
+       (setq
+        ;; Emphasis markers
+        org-hide-emphasis-markers t
+        org-appear-autoemphasis   t
+        ;; Links
+        org-link-descriptive      t
+        org-appear-autolinks      t
+        ;; UTF8 codes
+        org-pretty-entities       t
+        org-appear-autoentities   t
+        org-appear-autosubmarkers t
+        )
+       )
+   #+END_SRC
+
 ** Agenda
 
    My Org agenda
