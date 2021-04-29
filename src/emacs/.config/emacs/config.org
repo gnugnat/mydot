@@ -2155,16 +2155,18 @@
 
    Make Org look prettier.
 
-   + Org-Bullets:
-     - https://github.com/integral-dw/org-bullets
-     - https://melpa.org/#/org-bullets
+   + Org-Superstar-Mode:
+     - https://github.com/integral-dw/org-superstar-mode
+     - https://melpa.org/#/org-superstar
 
    #+BEGIN_SRC emacs-lisp
-     (use-package org-bullets
+     (use-package org-superstar
        :if window-system
        :ensure t
        :hook
-       ((org-mode . org-bullets-mode))
+       ((org-mode . org-superstar-mode))
+       :config
+       (setq org-hide-leading-stars t)
        )
    #+END_SRC
 
