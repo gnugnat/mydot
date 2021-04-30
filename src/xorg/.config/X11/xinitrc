@@ -109,7 +109,9 @@ in
     [Ll][Xx][Qq][Tt] )
         exec startlxqt
         ;;
-    [Kk][Dd][Ee] )
+    [Kk][Dd][Ee] | *[Pp][Ll][Aa][Ss][Mm][Aa]* )
+        QT_QPA_PLATFORMTHEME=""
+        export QT_QPA_PLATFORMTHEME
         exec startplasma-x11
         ;;
     [Mm][Aa][Tt][Ee] )
