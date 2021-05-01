@@ -49,9 +49,6 @@ EOF
 
 case "${1}"
 in
-    "" )
-        :
-        ;;
     -h | -help | --help )
         usage
         exit 0
@@ -60,7 +57,7 @@ in
         version
         exit 0
         ;;
-    * )
+    -* )
         version
         echo
         usage

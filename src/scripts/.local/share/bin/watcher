@@ -72,7 +72,7 @@ in
         interval="${2}"
         shift 2
         ;;
-    -* )
+    "" | -* )
         version
         echo
         usage

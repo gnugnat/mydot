@@ -61,7 +61,7 @@ in
         version
         exit 0
         ;;
-    -* )
+    "" | -* )
         version
         echo
         usage
