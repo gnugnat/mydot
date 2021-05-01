@@ -91,6 +91,10 @@ docs:				docs-man	docs-org
 
 # Tests
 
+test-elixir:		have-iex
+#   does not exit with failure
+	iex --dot-iex ./src/elixir/.iex.exs --eval ':c.q'
+
 test-emacs:			have-emacs
 	sh ./scripts/emacs_reload_config.sh
 
