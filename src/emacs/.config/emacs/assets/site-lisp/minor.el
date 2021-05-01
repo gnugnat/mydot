@@ -102,6 +102,12 @@
 ;; Use mouse in xterm
 (xterm-mouse-mode t)
 
+;; Lowercase and uppercase
+;; C-x C-l to convert a region to lowercase (downcase).
+(put 'downcase-region 'disabled nil)
+;; C-x C-u to convert a region to uppercase.
+(put 'upcase-region   'disabled nil)
+
 
 (provide 'minor)
 

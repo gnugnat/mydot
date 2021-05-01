@@ -2454,16 +2454,6 @@
       )
    #+END_SRC
 
-** Down/Uppercase
-
-   =C-x C-u= to convert a region to uppercase.
-   =C-x C-l= to convert a region to lowercase (downcase).
-
-   #+BEGIN_SRC emacs-lisp
-     (put 'downcase-region 'disabled nil)
-     (put 'upcase-region   'disabled nil)
-   #+END_SRC
-
 ** Ranger
 
    + Ranger:
