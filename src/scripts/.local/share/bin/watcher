@@ -29,6 +29,8 @@ trap 'exit 0' INT
 export PATH
 
 
+interval="3"
+
 prog_name="$(basename "${0}")"
 prog_desc="simple watch(1) implementation"
 prog_args="COMMAND"
@@ -42,6 +44,7 @@ ${prog_name} - ${prog_desc}
 Options:
     -V, --version  show program version
     -h, --help     show avalible options
+    -n, --interval seconds to wait between updates
 EOF
 }
 
@@ -65,6 +68,10 @@ in
         version
         exit 0
         ;;
+    -n | -interval | --interval )
+        interval="${2}"
+        shift 2
+        ;;
     -* )
         version
         echo
@@ -77,11 +84,11 @@ esac
 while true
 do
     clear
-    echo "Every 3.0s: ${*}        $(hostname): $(date)"
+    echo "Every ${interval}s: ${*}        $(hostname): $(date)"
     echo "------------------------------"
     echo
 
     eval "${@}"
 
-    sleep 3
+    sleep "${interval}"
 done
