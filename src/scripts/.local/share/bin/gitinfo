@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env -S busybox sh  # -*- shell-script -*-
 
 
 # This file is part of mydot.
@@ -19,6 +19,9 @@
 # Licensed under the GNU GPL v3 License
 
 # Get info about current git repo
+
+# shellcheck shell=sh
+# shellcheck disable=2096
 
 
 trap 'exit 128' INT
@@ -110,4 +113,4 @@ esac
 
 
 repo_info
-git submodule foreach "${0}" | busybox ts "${yellow}>${reset}"
+git submodule foreach "${0}" | ts "${yellow}>${reset}"
