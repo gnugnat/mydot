@@ -73,12 +73,20 @@ esac
 # so ping the main mydot hosting
 if ! ping -c 1 gitlab.com >/dev/null 2>&1
 then
-    echo "ERROR: Seems like we can not connect to the Internet"
+    echo "[ ERROR ] Seems like we can not connect to the Internet"
     exit 1
 fi
 
 # Go to mydot root
 cd "$(dirname "$(realpath "${0}")")"
+
+# Check if there are updates
+if git remote show origin | grep 'master' | grep 'up to date'
+then
+    echo "[WARNING] Seems like you are already up-to-date"
+    exit 0
+fi
+
 
 make update-mydot
 
