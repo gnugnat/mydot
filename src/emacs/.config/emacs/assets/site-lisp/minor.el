@@ -35,7 +35,6 @@
 (require 'hl-line)
 (require 'paren)
 (require 'prog-mode)
-(require 'xt-mouse)
 
 
 ;; Pass "y or n" instead of "yes or no"
@@ -68,6 +67,9 @@
 ;; Disable clipboard
 (setq x-select-enable-clipboard-manager nil)
 
+;; Don't use mouse selection in a GUI terminal
+(setq xterm-mouse-mode nil)
+
 ;; Specal symbols
 (when window-system
   (global-prettify-symbols-mode t)
@@ -98,9 +100,6 @@
 
 ;; Highlight parens
 (show-paren-mode t)
-
-;; Use mouse in xterm
-(xterm-mouse-mode t)
 
 ;; Lowercase and uppercase
 ;; C-x C-l to convert a region to lowercase (downcase).
