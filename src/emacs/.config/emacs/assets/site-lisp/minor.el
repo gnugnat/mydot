@@ -32,6 +32,7 @@
 
 
 (require 'autorevert)
+(require 'elec-pair)
 (require 'hl-line)
 (require 'paren)
 (require 'prog-mode)
@@ -91,6 +92,18 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1)
   )
+
+;; Automatically close brackets.
+(setq
+ electric-pair-pairs
+ '(
+   (?\{ . ?\})
+   (?\( . ?\))
+   (?\[ . ?\])
+   (?\" . ?\")
+   )
+ )
+(electric-pair-mode t)
 
 ;; Auto reloading of buffers
 (global-auto-revert-mode t)

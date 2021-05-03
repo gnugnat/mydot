@@ -1139,24 +1139,6 @@
        )
    #+END_SRC
 
-
-** Electric Pairs
-
-   Automatically close brackets.
-
-   #+BEGIN_SRC emacs-lisp
-     (setq
-      electric-pair-pairs
-      '(
-        (?\{ . ?\})
-        (?\( . ?\))
-        (?\[ . ?\])
-        (?\" . ?\")
-        )
-      )
-     (electric-pair-mode t)
-   #+END_SRC
-
 ** Elisp
 
    [[https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html][Emacs Lisp]] interaction configuration.
