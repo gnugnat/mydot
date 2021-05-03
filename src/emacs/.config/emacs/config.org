@@ -2367,6 +2367,23 @@
        )
    #+END_SRC
 
+** Gemini & Gopher
+
+   [[https://gemini.circumlunar.space/][Gemini]] and [[https://en.wikipedia.org/wiki/Gopher_(protocol)][Gopher]] support.
+
+   + Elpher:
+     - https://github.com/emacsmirror/elpher
+     - https://melpa.org/#/elpher
+     - https://thelambdalab.xyz/elpher/
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package elpher
+       :ensure t
+       :defer t
+       :commands (elpher elpher-go)
+       )
+   #+END_SRC
+
 ** Guix
 
    [[https://guix.gnu.org/][Guix]] package manager support.
