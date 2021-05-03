@@ -62,6 +62,11 @@
 
 ;;; Packages
 
+;; Message if GnuTLS is not enabled
+(when (not (gnutls-available-p))
+  (message "!!!WARNING!!! GnuTLS is not available!")
+  )
+
 ;; package archives
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -137,6 +142,7 @@
   )
 
 ;; Now let's load it.
+;; TODO: Hook?
 (config-load)
 
 
