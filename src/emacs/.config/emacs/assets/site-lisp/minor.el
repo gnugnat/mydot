@@ -120,6 +120,10 @@
 ;; C-x C-u to convert a region to uppercase.
 (put 'upcase-region   'disabled nil)
 
+(when (executable-find "lftp")
+  (setq ftp-program "lftp")
+  )
+
 
 (provide 'minor)
 
