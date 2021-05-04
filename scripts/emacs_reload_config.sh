@@ -43,4 +43,12 @@ then
     rm "${USER_EMACS_DIRECTORY}"/config.el
 fi
 
-sh ./load.sh --batch
+if [ -d ./assets ]
+then
+    find ./assets -type f -name "*.elc" -delete
+fi
+
+
+sh ./load.sh \
+   --batch \
+   --eval '(byte-recompile-directory "./assets/site-lisp/" 0)'
