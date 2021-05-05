@@ -27,7 +27,7 @@ export PATH
 
 exit_result=0
 
-excludes="--exclude-dir=.git --exclude-dir=nvim"
+excludes="--exclude-dir=.git --exclude-dir=3rd_party --exclude-dir=nvim"
 
 # Standard shell / bash files
 s_files="$(grep -R ${excludes} --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
