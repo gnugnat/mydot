@@ -27,6 +27,14 @@
 	path = 3rd_party/zsh/autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 
+[submodule "3rd_party/zsh/completions"]
+	path = 3rd_party/zsh/completions
+	url = https://github.com/zsh-users/zsh-completions
+
+[submodule "3rd_party/zsh/gentoo-completions"]
+	path = 3rd_party/zsh/gentoo-completions
+	url = https://github.com/gentoo/gentoo-zsh-completions
+
 [submodule "3rd_party/zsh/k"]
 	path = 3rd_party/zsh/k
 	url = https://github.com/supercrabtree/k

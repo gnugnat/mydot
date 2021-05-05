@@ -58,39 +58,6 @@ setopt hist_ignore_space
 setopt share_history
 
 
-# >>> Completion
-
-# Load compinit
-# keep this first
-autoload -U compinit
-compinit -d "${ZCACHEDIR}/compdump"
-
-# Advanced tab-completion
-[ -n "${LS_COLORS}" ] && zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu select
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-
-# Correction
-setopt correctall
-
-# Extended globbing
-setopt extendedglob
-
-# Glob hidden files
-setopt globdots
-
-# Source ZDOTDIR completions
-if [ -d "${ZDOTDIR}/completions" ]
-then
-    for _completion in "${ZDOTDIR}/completions"/?*
-    do
-        source_file "${_completion}"
-    done
-    unset _completion
-fi
-
-
 # >>> Key bindings
 
 # Kill & Yank
@@ -157,6 +124,14 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 # Calculator
 source_file "${ZPLUGDIR}/calc/calc.zsh"
 
+# General Completions
+# https://github.com/zsh-users/zsh-completions
+fpath+="${ZPLUGDIR}/completions/src"
+
+# Gentoo Completions
+# https://github.com/gentoo/gentoo-zsh-completions
+fpath+="${ZPLUGDIR}/gentoo-completions/src"
+
 # K - Directory listings for zsh with git features
 # https://github.com/supercrabtree/k
 if ! command_exists k && ! alias k >/dev/null
@@ -169,11 +144,48 @@ fi
 source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Z - Quick directory navigation
+# https://github.com/agkozak/zsh-z
 source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
 _Z_DATA="${ZCACHEDIR}/z"
 
+# Source additinal files
+if [ -d "${ZDOTDIR}/site" ]
+then
+    for _s in "${ZDOTDIR}/site"/?*
+    do
+        source_file "${_s}"
+    done
+    unset _s
+fi
 
-# >>> ZSH tweaks
+
+# >>> Completion
+
+# Keep completion system near last
+
+# Load compinit
+# keep this first
+autoload -U compinit
+compinit -d "${ZCACHEDIR}/compdump"
+
+# Advanced tab-completion
+[ -n "${LS_COLORS}" ] &&
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+
+# Correction
+setopt correctall
+
+# Extended globbing
+setopt extendedglob
+
+# Glob hidden files
+setopt globdots
+
+
+# >>> Miscellaneous tweaks
 
 # After changing directory: execute 'ls'
 chpwd() {
