@@ -71,7 +71,7 @@ list of all the available styles can be obtained with (from GDB itself):
 
 This makes scrolling less confusing by discarding the previously printed
 dashboards but only works with certain terminals.''',
-                'default': True,
+                'default': False,
                 'type': bool
             },
             # values formatting
@@ -2277,7 +2277,7 @@ end
 
 # Better GDB defaults ----------------------------------------------------------
 
-#set history save
+set history save
 set verbose off
 set print pretty on
 set print array off
