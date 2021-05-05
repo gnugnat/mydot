@@ -34,3 +34,6 @@
 [submodule "src/zsh/.config/zsh/plugins/z"]
 	path = src/zsh/.config/zsh/plugins/z
 	url = https://github.com/agkozak/zsh-z
+[submodule "3rd_party/gdb-dashboard"]
+	path = 3rd_party/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard

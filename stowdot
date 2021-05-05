@@ -116,6 +116,7 @@ cd "${mydot_source}" || err_msg "Can't cd into ${mydot_source}"
 
 # check needed directories
 req_dirs="
+    ${HOME}/.cache/gdb
     ${HOME}/.config/emacs
     ${HOME}/.config/mpd/playlists
     ${HOME}/.local/share/applications/MyDot
