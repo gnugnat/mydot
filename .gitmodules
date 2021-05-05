@@ -19,21 +19,22 @@
 # Licensed under the GNU GPL v3 License
 
 
-[submodule "src/zsh/.config/zsh/plugins/autosuggestions"]
-	path = src/zsh/.config/zsh/plugins/autosuggestions
+[submodule "3rd_party/gdb/dashboard"]
+	path = 3rd_party/gdb/dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard
+
+[submodule "3rd_party/zsh/autosuggestions"]
+	path = 3rd_party/zsh/autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 
-[submodule "src/zsh/.config/zsh/plugins/syntax-highlighting"]
-	path = src/zsh/.config/zsh/plugins/syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-
-[submodule "src/zsh/.config/zsh/plugins/k"]
-	path = src/zsh/.config/zsh/plugins/k
+[submodule "3rd_party/zsh/k"]
+	path = 3rd_party/zsh/k
 	url = https://github.com/supercrabtree/k
 
-[submodule "src/zsh/.config/zsh/plugins/z"]
-	path = src/zsh/.config/zsh/plugins/z
+[submodule "3rd_party/zsh/syntax-highlighting"]
+	path = 3rd_party/zsh/syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+
+[submodule "3rd_party/zsh/z"]
+	path = 3rd_party/zsh/z
 	url = https://github.com/agkozak/zsh-z
-[submodule "3rd_party/gdb-dashboard"]
-	path = 3rd_party/gdb-dashboard
-	url = https://github.com/cyrus-and/gdb-dashboard

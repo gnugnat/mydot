@@ -1,1 +1,1 @@
-../../3rd_party/gdb-dashboard/.gdbinit
+../../3rd_party/gdb/dashboard/.gdbinit
