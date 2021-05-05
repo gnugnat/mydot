@@ -22,7 +22,6 @@
 (
  (nil
   . (
-     (locale-coding-system . 'utf-8)
      (projectile-project-compilation-cmd . "make clean dependencies docs")
      (projectile-project-test-cmd . "make test")
      )
