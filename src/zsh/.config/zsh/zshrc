@@ -148,16 +148,6 @@ source_file "${ZPLUGDIR}/syntax-highlighting/zsh-syntax-highlighting.zsh"
 source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
 _Z_DATA="${ZCACHEDIR}/z"
 
-# Source additinal files
-if [ -d "${ZDOTDIR}/site" ]
-then
-    for _s in "${ZDOTDIR}/site"/?*
-    do
-        source_file "${_s}"
-    done
-    unset _s
-fi
-
 
 # >>> Completion
 
@@ -246,3 +236,19 @@ in
         PS1='(SH)> '
         ;;
 esac
+
+
+# >>> Site
+
+# Source additinal files
+
+_source_zsh_site() {
+    local _s
+
+    for _s in "${ZDOTDIR}/site"/?*
+    do
+        source_file "${_s}"
+    done
+}
+
+[ -d "${ZDOTDIR}/site" ] && _source_zsh_site
