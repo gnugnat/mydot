@@ -124,6 +124,11 @@
   (setq ftp-program "lftp")
   )
 
+;; Use "tsdh-dark" theme
+(when (not window-system)
+  (load-theme 'tsdh-dark)
+  )
+
 
 (provide 'minor)
 
