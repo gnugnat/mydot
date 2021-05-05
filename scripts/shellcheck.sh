@@ -29,11 +29,15 @@ exit_result=0
 
 excludes="--exclude-dir=.git --exclude-dir=3rd_party --exclude-dir=nvim"
 
+grep_fun() {
+    grep -R ${excludes} "${@}" 2>/dev/null | cut -d ':' -f 1
+}
+
 # Standard shell / bash files
-s_files="$(grep -R ${excludes} --exclude-dir='zsh' '^#!/.*sh$' 2>/dev/null | cut -d ':' -f 1)"
+s_files="$(grep_fun --exclude-dir='zsh' '^#!/.*sh$' )"
 
 # ZSH files
-z_files="$(grep -R ${excludes} --exclude-dir='plugins' --exclude="*.zsh-theme" '^#!/.*zsh$' 2>/dev/null | cut -d ':' -f 1)"
+z_files="$(grep_fun --exclude-dir='plugins' --exclude="*.zsh-theme" '^#!/.*zsh$')"
 
 
 check_files() {
