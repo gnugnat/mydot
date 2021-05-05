@@ -86,37 +86,7 @@
 
 ** Prefix Key
 
-   Special prefix for my bindings.
-
-   | Key Combination | Command                             |
-   |-----------------+-------------------------------------|
-   | C-l c           | config (visit/reload)               |
-   | C-l g           | grep                                |
-   | C-l m           | magit                               |
-   | C-l t           | treemacs                            |
-   |-----------------+-------------------------------------|
-   | C-l C-l         | config-reload                       |
-   | C-l C-v         | config-visit                        |
-   | C-l a           | org-agenda                          |
-   | C-l d           | dired-sidebar-toggle-sidebar        |
-   | C-l n           | ranger                              |
-   | C-l r           | toggle-transparency                 |
-   |-----------------+-------------------------------------|
-   | C-x C-u         | upcase-region                       |
-   | C-z             | undo                                |
-   | M-s             | avy-goto-char                       |
-   | M-x             | smex                                |
-   |-----------------+-------------------------------------|
-   | f2              | vterm                               |
-   | f5              | projectile-compile-project          |
-   | f7              | split-and-start-eshell              |
-   | f8              | deft                                |
-   |-----------------+-------------------------------------|
-   | C-c i           | [org] org-insert-structure-template |
-   | C-m             | [yaml] newline-and-indent           |
-
-   Update this periodically with output from =C-h b=.
-   To view this you can also run =M-x describe-personal-keybindings=.
+   Special prefix for my custom bindings.
 
    #+BEGIN_SRC emacs-lisp
      (global-unset-key (kbd "C-l"))
@@ -163,6 +133,47 @@
    #+END_SRC
 
 ** Key bindings
+
+   | Key Combination | Command                             |
+   |-----------------+-------------------------------------|
+   | C-l c           | config (visit/reload)               |
+   | C-l g           | grep                                |
+   | C-l m           | magit                               |
+   | C-l t           | treemacs                            |
+   |-----------------+-------------------------------------|
+   | C-l C-l         | config-reload                       |
+   | C-l C-v         | config-visit                        |
+   | C-l a           | org-agenda                          |
+   | C-l d           | dired-sidebar-toggle-sidebar        |
+   | C-l n           | ranger                              |
+   | C-l r           | toggle-transparency                 |
+   |-----------------+-------------------------------------|
+   | <f1> f          | counsel-describe-function           |
+   | <f1> l          | counsel-find-library                |
+   | <f1> o          | counsel-describe-symbol             |
+   | <f1> v          | counsel-describe-variable           |
+   | C-c C-r         | ivy-resume                          |
+   | C-c g           | counsel-git                         |
+   | C-c j           | counsel-git-grep                    |
+   | C-x C-f         | counsel-find-file                   |
+   | C-x C-u         | upcase-region                       |
+   | C-x l           | counsel-locate                      |
+   | C-z             | undo                                |
+   | M-s             | avy-goto-char                       |
+   | M-x             | counsel-M-x                         |
+   |-----------------+-------------------------------------|
+   | f2              | vterm                               |
+   | f5              | projectile-compile-project          |
+   | f6              | ivy-resume                          |
+   | f7              | split-and-start-eshell              |
+   | f8              | deft                                |
+   | <menu>          | counsel-M-x                         |
+   |-----------------+-------------------------------------|
+   | C-c i           | [org] org-insert-structure-template |
+   | C-m             | [yaml] newline-and-indent           |
+
+   Update this periodically with output from =C-h b=.
+   To view this you can also run =M-x describe-personal-keybindings=.
 
    Key binding hints.
 
@@ -263,63 +274,54 @@
        )
    #+END_SRC
 
+** Counsel
+
+   Provides [[https://github.com/abo-abo/swiper#ivy][Ivy]] alternatives to some Emacs commands.
+
+   + Counsel:
+     - https://github.com/abo-abo/swiper
+     - https://melpa.org/#/counsel
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package counsel
+       :ensure t
+       :defer nil
+       :diminish
+       :bind
+       (
+        ("<f1> f"  . counsel-describe-function)
+        ("<f1> l"  . counsel-find-library)
+        ("<f1> o"  . counsel-describe-symbol)
+        ("<f1> v"  . counsel-describe-variable)
+        ("<menu>"  . counsel-M-x)
+        ("C-c g"   . counsel-git)
+        ("C-c j"   . counsel-git-grep)
+        ("C-x C-f" . counsel-find-file)
+        ("C-x l"   . counsel-locate)
+        ("M-x"     . counsel-M-x)
+        )
+       :config
+       (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+       )
+   #+END_SRC
+
 ** Ibuffer
 
-   Better switching
+   Better switching.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x C-b") 'ibuffer)
    #+END_SRC
 
-   Kill buffers (while in menu for switching buffers; pass d on a buffer, x confirmes) without confirmation (y or n)
+   Kill buffers (=d= & =x=) without confirmation.
 
    #+BEGIN_SRC emacs-lisp
      (setq ibuffer-expert t)
    #+END_SRC
 
-** IDO
-
-   [[https://www.emacswiki.org/emacs/InteractivelyDoThings][IDO]] - interactive buffer stuff.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package ido
-       :bind
-       (("C-x b" . ido-switch-buffer))
-       :diminish ido-mode
-       :init
-       (progn
-         (setq
-          ido-create-new-buffer 'always
-          ido-enable-flex-matching nil
-          ido-use-filename-at-point nil
-          ido-use-virtual-buffers nil
-          ido-everywhere t
-          )
-         (ido-mode t)
-         )
-       )
-   #+END_SRC
-
-   Better positioning.
-
-   + Ido-Vertical-Mode:
-     - https://github.com/creichert/ido-vertical-mode.el
-     - https://melpa.org/#/ido-vertical-mode
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package ido-vertical-mode
-       :ensure t
-       :init
-       (progn
-         (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-         (ido-vertical-mode 1)
-         )
-       )
-   #+END_SRC
-
 ** Ivy
 
-   This configuration uses ivy in a minimal way.
+   Generic completion mechanism.
 
    + Ivy:
      - https://github.com/abo-abo/swiper
@@ -328,8 +330,13 @@
    #+BEGIN_SRC emacs-lisp
      (use-package ivy
        :ensure t
-       :defer 3
+       :defer nil
        :diminish
+       :bind
+       (
+        ("<f6>"    . ivy-resume)
+        ("C-c C-r" . ivy-resume)
+        )
        :config
        (progn
          (ivy-mode)
@@ -355,24 +362,6 @@
        (other-window 1)
        )
      (global-set-key (kbd "C-x x") 'kill-and-remove-split)
-   #+END_SRC
-
-** Smex
-
-   Run known programs faster
-
-   + Smex:
-     - https://github.com/nonsequitur/smex
-     - https://melpa.org/#/smex
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package smex
-       :ensure t
-       :bind
-       ("M-x" . smex)
-       :init
-       (smex-initialize)
-       )
    #+END_SRC
 
 ** Switch window
