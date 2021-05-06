@@ -22,8 +22,10 @@
 (
  (nil
   . (
+     (projectile-project-type            . make)
      (projectile-project-compilation-cmd . "make clean dependencies docs")
-     (projectile-project-test-cmd . "make test")
+     (projectile-project-install-cmd     . "make install")
+     (projectile-project-test-cmd        . "make test")
      )
   )
  (find-file
