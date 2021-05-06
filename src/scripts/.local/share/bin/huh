@@ -51,7 +51,7 @@ EOF
 
 header_msg() {
     echo
-    echo "$(tput bold)$1 $(tput sgr0)"
+    echo "$(tput bold)${1}$(tput sgr0)"
 }
 
 
@@ -76,14 +76,18 @@ esac
 
 for arg in "${@}"
 do
+    found="$(command -v "${arg}")"
 
-    if type "${arg}" >/dev/null 2>&1
+    if [ "${found}" ]
     then
         header_msg "Found ${arg} in:"
         whereis "${arg}"
 
         header_msg "Executing ${arg} from:"
-        type "${arg}"
+        echo "${found}"
+
+        header_msg "Executable ${arg} is:"
+        file "${found}"
 
         header_msg "About ${arg}:"
         command "${arg}" --help 2>/dev/null | head
