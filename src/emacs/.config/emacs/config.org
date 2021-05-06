@@ -623,7 +623,12 @@
        :ensure nil
        :defer t
        :hook
-       ((prog-mode . display-fill-column-indicator-mode))
+       (
+        (conf-mode . display-fill-column-indicator-mode)
+        (fundamental-mode . display-fill-column-indicator-mode)
+        (prog-mode . display-fill-column-indicator-mode)
+        (tex-mode . display-fill-column-indicator-mode)
+        )
        :init
        (setq-default display-fill-column-indicator-column 80)
        )
