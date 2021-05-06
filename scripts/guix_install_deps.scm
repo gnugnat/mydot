@@ -61,6 +61,7 @@
      '(
        ("bash")
        ("busybox")
+       ("file")
        ("git")
        ("make")
        ("pip" "python-pip")
