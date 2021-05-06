@@ -24,11 +24,11 @@
 # shellcheck disable=2034
 
 
-_dotnet_zsh_complete() {
-    local completions=( "$(dotnet complete "${words}")" )
-
-    reply=( "${(ps:\n:)completions}" )
-}
-
-
-compctl -K _dotnet_zsh_complete dotnet
+if command_exists dotnet
+then
+    function _dotnet_zsh_complete() {
+        local completions=( "$(dotnet complete "${words}")" )
+        reply=( "${(ps:\n:)completions}" )
+    }
+    compctl -K _dotnet_zsh_complete dotnet
+fi
