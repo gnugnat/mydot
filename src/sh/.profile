@@ -35,7 +35,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 
 
-# >>> Shellcheck
+# Shellcheck
 
 # Ignore "Can't follow non-constant source."
 # We just don't carea bout that
@@ -62,7 +62,7 @@
 # https://github.com/koalaman/shellcheck/wiki/SC2153
 
 
-# >>> Helper functions
+# Helper functions
 
 _functon_usage_end() {
     echo
@@ -207,7 +207,7 @@ source_file() {
 }
 
 
-# >>> System
+# System
 
 # Failsafe PATH (because '[' and ']' are programs)
 PATH="${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}"
@@ -216,13 +216,13 @@ PATH="${PATH:-/bin:/sbin:/usr/bin:/usr/local/bin}"
 source_file "/etc/profile"
 
 
-# >>> Terminal features
+# Terminal features
 
 # Disable terminal scroll lock
 command_exists stty && stty -ixon
 
 
-# >>> Environment
+# Environment
 
 # User's name
 # Keep this first
@@ -566,7 +566,7 @@ fi
 unset _x11_cache
 
 
-# >>> PATH setup
+# PATH setup
 
 # We also add old path for compatibility (ie. Cargo & NPM)
 # the other one is the one exported by this profile file
@@ -635,7 +635,7 @@ add_to_path "${HOME}/.bin"
 add_to_path "${HOME}/.local/share/bin"
 
 
-# >>> Aliases
+# Aliases
 
 # NEED_UID0 is used in the following aliases
 # Keep this after adding itens to PATH
@@ -830,7 +830,7 @@ _alias_busybox() {
 command_exists busybox && _alias_busybox
 
 
-# >>> Prompt theme
+# Prompt theme
 
 PS1="(SH)> "
 export PS1
@@ -839,7 +839,7 @@ PS2="... "
 export PS2
 
 
-# >>> Autostart the GPG Agent
+# Autostart the GPG Agent
 
 # Export some vars
 GPG_TTY="$(tty)"
@@ -859,7 +859,7 @@ then
 fi
 
 
-# >>> Autostart the SSH Agent
+# Autostart the SSH Agent
 
 # Start SSH agent if it is not running
 _start_agent_ssh() {
@@ -877,7 +877,7 @@ then
 fi
 
 
-# >>> Additional source
+# Additional source
 
 # I guess that GPG and SSH agents
 # don't need to be in separate files

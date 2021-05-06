@@ -28,7 +28,7 @@
 # shellcheck disable=1090,2016,2034
 
 
-# >>> Common settings
+# Common settings
 
 # Source necessary functions
 profile="${HOME}/.profile"
@@ -48,7 +48,7 @@ then
 fi
 
 
-# >>> Completion
+# Completion
 
 # General Completions
 # https://github.com/zsh-users/zsh-completions
@@ -80,7 +80,7 @@ setopt extendedglob
 setopt globdots
 
 
-# >>> History
+# History
 
 # Necessary to save history
 HISTFILE="${ZCACHEDIR}/history"
@@ -97,7 +97,7 @@ setopt hist_ignore_space
 setopt share_history
 
 
-# >>> Key bindings
+# Key bindings
 
 # Kill & Yank
 # for this set Emacs key bindings
@@ -120,7 +120,7 @@ bindkey -r "^D"
 bindkey "^R" history-incremental-search-backward
 
 
-# >>> Prompt theme
+# Prompt theme
 
 # VCS (git) support in prompt
 setopt prompt_subst
@@ -146,7 +146,7 @@ else
 fi
 
 
-# >>> Plugins
+# Plugins
 
 # Autosuggestions
 # https://github.com/zsh-users/zsh-autosuggestions
@@ -173,7 +173,7 @@ source_file "${ZPLUGDIR}/z/zsh-z.plugin.zsh"
 _Z_DATA="${ZCACHEDIR}/z"
 
 
-# >>> Miscellaneous tweaks
+# Miscellaneous tweaks
 
 # After changing directory: execute 'ls'
 chpwd() {
@@ -236,7 +236,7 @@ in
 esac
 
 
-# >>> Site
+# Site
 
 # Source additional files
 
