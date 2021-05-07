@@ -2422,6 +2422,8 @@
          "#guix"
          "#kde"
          "#lisp"
+         "#techbytes"
+         "#techrights"
          "#termux"
          )
         ;; OFTC - https://www.oftc.net/
