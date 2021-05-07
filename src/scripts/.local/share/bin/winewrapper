@@ -25,6 +25,7 @@
 WINEARCH="win32"
 WINEPREFIX="${HOME}/.wine"
 winelog="/tmp/winelog"
+do_wineconsole="NO"
 do_winecfg="NO"
 do_kill="NO"
 do_tricks="NO"
@@ -39,14 +40,17 @@ usage() {
 Usage: ${prog_name} [OPTION]... ${prog_args}
 ${prog_name} - ${prog_desc}
 
-Options:
+Wrapper Options:
     -V, --version    show program version
     -a, --arch       select the architecture
-    -c, --config     configure WINE
-    -h , --help      show avalible options
-    -k, --kill       kill all running WINE processes
+    -h, --help       show avalible options
     -l, --log        select the log directory
     -p, --prefix     select the WINE prefix
+
+Program Options:
+    -C, --console    open WINE console
+    -c, --config     configure WINE
+    -k, --kill       kill all running WINE processes
     -t, --tricks     open Winetricks
 
 Examples:
@@ -63,6 +67,14 @@ Licensed under the GNU GPL v3 License
 EOF
 }
 
+# 1 - executable ; 2 - wine log file infix
+start() {
+    logfile="${winelog}/wine-${2}-$(date +"%Y-%m-%d-%H-%M").log"
+    echo "WINE log file:      ${logfile}"
+
+    exec "${1}" >"${logfile}" 2>&1
+}
+
 
 while [ -n "${1}" ]
 do
@@ -75,6 +87,9 @@ do
         -V | -version | --version )
             version
             exit 0
+            ;;
+        -C | --console)
+            do_wineconsole="YES"
             ;;
         -a | --arch )
             WINEARCH="win${2}"
@@ -116,6 +131,7 @@ fi
 export WINEARCH
 export WINEPREFIX
 
+
 if [ "${do_kill}" = "YES" ]
 then
     echo "Killing WINE processes:"
@@ -129,21 +145,25 @@ else
     echo "WINE from:          $(command -v wine)"
     echo "WINE architecture:  ${WINEARCH}"
     echo "WINE prefix:        ${WINEPREFIX}"
-    echo "WINE log directory  ${winelog}"
+    echo "WINE log directory: ${winelog}"
 
-    if [ "${do_winecfg}" = "YES" ]
+    if [ "${do_wineconsole}" = "YES" ]
     then
-        exec winecfg >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+        start wineconsole console
+    elif [ "${do_winecfg}" = "YES" ]
+    then
+        start winecfg cfg
     elif [ "${do_tricks}" = "YES" ]
     then
-        exec winetricks >"${winelog}/wine-cfg-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+        start winetricks tricks
     else
         if [ ! -f "${program}" ]
         then
             echo "No such file: ${program}"
             exit 1
         fi
+
         echo "Executing Program:  $(basename "${program}")"
-        exec wine "${program}" >"${winelog}/wine-exe-$(date +"%Y-%m-%d-%H-%M").log" 2>&1
+        start wine exe
     fi
 fi
