@@ -114,11 +114,26 @@
 ;; Highlight parens
 (show-paren-mode t)
 
+;; For my lovely Polish keyboard:
+(define-key key-translation-map (kbd "←") (kbd "M-y"))
+
 ;; Lowercase and uppercase
 ;; C-x C-l to convert a region to lowercase (downcase).
 (put 'downcase-region 'disabled nil)
 ;; C-x C-u to convert a region to uppercase.
 (put 'upcase-region   'disabled nil)
+
+;; Some terminals (or connections, ie. mosh) set <end> as <select>.
+;; So, if <select> is not bound - bind it to move-end-of-line.
+(if (not (global-key-binding (kbd "<select>")))
+    (global-set-key (kbd "<select>") 'move-end-of-line)
+  )
+
+;; Zoom with Scroll.
+;; Control & Scroll Up - Increase
+(global-set-key [C-mouse-4] 'text-scale-increase)
+;; Control & Scroll Down - Decrease
+(global-set-key [C-mouse-5] 'text-scale-decrease)
 
 (when (executable-find "lftp")
   (setq ftp-program "lftp")

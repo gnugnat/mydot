@@ -198,30 +198,6 @@
      (global-set-key (kbd "C-z") 'undo)
    #+END_SRC
 
-   Zoom with Scroll.
-
-   #+BEGIN_SRC emacs-lisp
-     ;; Control & Scroll Up - Increase
-     (global-set-key [C-mouse-4] 'text-scale-increase)
-     ;; Control & Scroll Down - Decrease
-     (global-set-key [C-mouse-5] 'text-scale-decrease)
-   #+END_SRC
-
-   Some terminals (or connections, ie. mosh) set <end> as <select>.
-   So, if <select> is not bound - bind it to move-end-of-line.
-
-   #+BEGIN_SRC emacs-lisp
-     (if (not (global-key-binding (kbd "<select>")))
-         (global-set-key (kbd "<select>") 'move-end-of-line)
-       )
-   #+END_SRC
-
-   For my lovely Polish keyboard:
-
-   #+BEGIN_SRC emacs-lisp
-     (define-key key-translation-map (kbd "←") (kbd "M-y"))
-   #+END_SRC
-
 ** Minor
 
    Some small tweaks that don't require packages
