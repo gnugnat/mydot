@@ -21,15 +21,29 @@
 # For GNU Guix
 
 
-_guix_profile="${HOME}/.guix-profile"
+# Yes, it is supposed to source those files in this order
+#   ~/.guix-profile  and then  ~/.config/guix/current
 
-if [ -e "${_guix_profile}" ]
-then
-    GUIX_PROFILE="${_guix_profile}"
-    export GUIX_PROFILE
-    source_file "${GUIX_PROFILE}/etc/profile"
-    GUIX_LOCPATH="${_guix_profile}/lib/locale"
-    export GUIX_LOCPATH
-fi
+for _d in "${HOME}/.guix-profile" "${HOME}/.config/guix/current"
+do
+    _guix_profile="${_d}"
 
+    if [ -e "${_guix_profile}/etc/profile" ]
+    then
+        GUIX_PROFILE="${_guix_profile}"
+        export GUIX_PROFILE
+
+        source_file "${GUIX_PROFILE}/etc/profile"
+
+        if [ -e "${_guix_profile}/lib/locale" ]
+        then
+            GUIX_LOCPATH="${_guix_profile}/lib/locale"
+            export GUIX_LOCPATH
+        fi
+
+        hash guix
+    fi
+done
+
+unset _d
 unset _guix_profile
