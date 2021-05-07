@@ -1199,7 +1199,8 @@
 
 ** Flycheck
 
-   [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]]
+   [[https://www.flycheck.org/en/latest/user/flycheck-versus-flymake.html#flycheck-versus-flymake][Syntax checking]].
+   Alternative to Flymake.
 
    + Flycheck:
      - https://github.com/flycheck/flycheck
@@ -1211,6 +1212,18 @@
        :diminish "FC"
        :init
        (global-flycheck-mode t)
+       )
+   #+END_SRC
+
+** Flymake
+
+   Built-in syntax checker.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package flymake
+       :ensure nil
+       :config
+       (setq flymake-mode-line-title "FM")
        )
    #+END_SRC
 
