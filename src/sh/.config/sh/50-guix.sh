@@ -20,9 +20,12 @@
 
 # For GNU Guix
 
+# shellcheck disable=1090
+
 
 # Yes, it is supposed to source those files in this order
 #   ~/.guix-profile  and then  ~/.config/guix/current
+#   see: https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/system.scm#n915
 
 for _d in "${HOME}/.guix-profile" "${HOME}/.config/guix/current"
 do
@@ -33,17 +36,48 @@ do
         GUIX_PROFILE="${_guix_profile}"
         export GUIX_PROFILE
 
-        source_file "${GUIX_PROFILE}/etc/profile"
+        . "${_guix_profile}/etc/profile"
 
         if [ -e "${_guix_profile}/lib/locale" ]
         then
             GUIX_LOCPATH="${_guix_profile}/lib/locale"
             export GUIX_LOCPATH
         fi
+    elif [ -d "${_guix_profile}/bin" ]
+    then
+        PATH="${_guix_profile}/bin:${PATH}"
+        export PATH
+    fi
 
-        hash guix
+    # DICPATH - dictionaries PATH
+    if [ -d "/run/current-system/profile/share/hunspell" ]
+    then
+        DICPATH="/run/current-system/profile/share/hunspell:${DICPATH}"
+        export DICPATH
+    fi
+    if [ -d "${_guix_profile}/share/hunspell" ]
+    then
+        DICPATH="${_guix_profile}/share/hunspell:${DICPATH}"
+        export DICPATH
+    fi
+
+    # INFOPATH - info files PATH
+    if [ -d "${_guix_profile}/share/info" ]
+    then
+        INFOPATH="${_guix_profile}/share/info:${INFOPATH}"
+        export INFOPATH
+    fi
+
+    # MANPATH - manual pages PATH
+    if [ -d "${_guix_profile}/share/man" ]
+    then
+        MANPATH="${_guix_profile}/share/man:${MANPATH}"
+        export MANPATH
     fi
 done
 
+command_exists guix && hash guix
+
+# Cleanup
 unset _d
 unset _guix_profile
