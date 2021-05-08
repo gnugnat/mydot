@@ -324,6 +324,15 @@
        )
    #+END_SRC
 
+   #+BEGIN_SRC emacs-lisp
+     (use-package all-the-icons-ivy
+       :if window-system
+       :ensure t
+       :hook
+       ((after-init . all-the-icons-ivy-setup))
+       )
+   #+END_SRC
+
 ** Kill and remove split
 
    Kill buffer and delete its window
