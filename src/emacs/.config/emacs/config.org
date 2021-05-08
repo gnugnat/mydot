@@ -1503,6 +1503,22 @@
        )
    #+END_SRC
 
+** Nix
+
+   [[https://nixos.org/][NixOS]]'s [[https://nixos.org/manual/nix/stable/][Nix]] language support.
+
+   + Nix-Mode:
+     - https://github.com/NixOS/nix-mode
+     - https://melpa.org/#/nix-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package nix-mode
+       :ensure t
+       :defer t
+       :mode "\\.nix\\'"
+       )
+   #+END_SRC
+
 ** OCaml
 
    [[https://ocaml.org/][OCaml]] language support.
