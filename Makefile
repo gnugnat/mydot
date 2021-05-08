@@ -76,6 +76,9 @@ update-mydot:		have-git	uninstall	git-update	install
 
 # Documentation
 
+man-eclass:
+	sh ./scripts/eclass_manpages.sh
+
 clean-docs:
 	if [ -d ./docs ] ; then rm -r ./docs ; fi
 
