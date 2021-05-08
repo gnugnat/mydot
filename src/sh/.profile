@@ -156,10 +156,10 @@ add_to_path() {
     if [ -z "${1}" ]
     then
         echo "Usage: add_to_path PATH"
-        echo "add_to_path - prepend given PATH to your PATH"
+        echo "add_to_path - append given PATH to your PATH"
         echo "this function first checks if specified directory"
-        echo "already is in path, if it is not and it exists"
-        echo "it is added to the path"
+        echo "already is in PATH, if it is not and it exists"
+        echo "it is added to the PATH"
         _functon_usage_end
     else
         if ! contains_string "${PATH}" "${1}"
@@ -167,6 +167,26 @@ add_to_path() {
             if [ -d "${1}" ]
             then
                 export PATH="${PATH}:${1}"
+            fi
+        fi
+    fi
+}
+
+add_to_manpath() {
+    if [ -z "${1}" ]
+    then
+        echo "Usage: add_to_manpath PATH"
+        echo "add_to_manpath - append given PATH to your MANPATH"
+        echo "this function first checks if specified directory"
+        echo "already is in MANPATH, if it is not and it exists"
+        echo "it is added to the MANPATH"
+        _functon_usage_end
+    else
+        if ! contains_string "${MANPATH}" "${1}"
+        then
+            if [ -d "${1}" ]
+            then
+                export MANPATH="${MANPATH}:${1}"
             fi
         fi
     fi
@@ -567,6 +587,12 @@ unset _x11_cache
 
 
 # PATH setup
+
+# MyDot manuals
+add_to_manpath "${HOME}/.local/share/man/mydot"
+
+# User's manuals
+add_to_manpath "${HOME}/.local/share/man"
 
 # We also add old path for compatibility (ie. Cargo & NPM)
 # the other one is the one exported by this profile file

@@ -33,7 +33,7 @@ top_dir="$(pwd)"
 doc_dir="${top_dir}/docs"
 
 doc_html="${doc_dir}/html"
-doc_man="${doc_dir}/man"
+doc_man="${doc_dir}/man/man1"
 doc_pdf="${doc_dir}/pdf"
 
 
