@@ -69,10 +69,13 @@ EOF
 
 # 1 - executable ; 2 - wine log file infix
 start() {
-    logfile="${winelog}/wine-${2}-$(date +"%Y-%m-%d-%H-%M").log"
+    logfile="${winelog}/wine-${1}-$(date +"%Y-%m-%d-%H-%M").log"
     echo "WINE log file:      ${logfile}"
 
-    exec "${1}" >"${logfile}" 2>&1
+    shift
+    echo "Command:            ${*}"
+
+    exec "${@}" >"${logfile}" 2>&1
 }
 
 
@@ -149,13 +152,13 @@ else
 
     if [ "${do_wineconsole}" = "YES" ]
     then
-        start wineconsole console
+        start console wineconsole
     elif [ "${do_winecfg}" = "YES" ]
     then
-        start winecfg cfg
+        start cfg winecfg
     elif [ "${do_tricks}" = "YES" ]
     then
-        start winetricks tricks
+        start tricks winetricks
     else
         if [ ! -f "${program}" ]
         then
@@ -164,6 +167,6 @@ else
         fi
 
         echo "Executing Program:  $(basename "${program}")"
-        start wine exe
+        start exe wine "${program}"
     fi
 fi
