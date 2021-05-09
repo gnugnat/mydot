@@ -1916,6 +1916,22 @@
      (setq auto-mode-alist (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist))
    #+END_SRC
 
+** Shaders
+
+   Shader files support.
+
+   + Shader-Mode:
+     - https://github.com/midnightSuyama/shader-mode
+     - https://melpa.org/#/shader-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package shader-mode
+       :ensure t
+       :defer t
+       :mode "\\.shader$"
+       )
+   #+END_SRC
+
 ** Tabs
 
    Tab settings.
