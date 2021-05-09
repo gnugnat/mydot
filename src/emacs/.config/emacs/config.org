@@ -2288,6 +2288,7 @@
       dired-auto-revert-buffer t
       dired-listing-switches "-ahl"
       dired-recursive-copies 'always
+      dired-use-ls-dired nil
       )
    #+END_SRC
 
