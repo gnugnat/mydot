@@ -88,6 +88,12 @@ then
 fi
 
 
-make update-mydot
+if type gmake >/dev/null 2>&1
+then
+    gmake update-mydot
+else
+    # fallback to 'make'... and hope it supports needed features...
+    make update-mydot
+fi
 
 echo ">>> mydot updated"
