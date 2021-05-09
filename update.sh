@@ -78,7 +78,7 @@ then
 fi
 
 # Go to mydot root
-cd "$(dirname "$(realpath "${0}")")"
+cd "$(dirname "$(readlink -f "${0}")")"
 
 # Check if there are updates
 if git remote show origin | grep 'master' | grep 'up to date'
