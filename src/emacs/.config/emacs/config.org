@@ -1217,7 +1217,7 @@
 
 ** Godot
 
-   [[https://godotengine.org/][Godot]]'s scripting language support.
+   [[https://godotengine.org/][Godot]]'s scripting language support (=.gd= files).
 
    + Gdscript-Mode
      - https://github.com/godotengine/emacs-gdscript-mode
@@ -1228,12 +1228,24 @@
        :if (executable-find "godot")
        :ensure t
        :config
-       ;; (setq gdscript-use-tab-indents t)
        (setq
-        gdscript-indent-offset 4
         gdscript-gdformat-save-and-format t
+        gdscript-indent-offset 4
+        gdscript-use-tab-indents t
         )
        )
+   #+END_SRC
+
+   =.godot= project files:
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'auto-mode-alist '("\\.godot$" . conf-mode))
+   #+END_SRC
+
+   =.import= files:
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'auto-mode-alist '("\\.import$" . conf-mode))
    #+END_SRC
 
 ** Haskell
