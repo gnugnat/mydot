@@ -42,12 +42,14 @@
 # shellcheck disable=1090
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 
-# Ignore "Expressions don't expand in single quotes, use double quotes for that."
+# Ignore "Expressions don't expand in single quotes,
+#         use double quotes for that."
 # We want that for aliases
 # shellcheck disable=2016
 # https://github.com/koalaman/shellcheck/wiki/SC2016
 
-# Ignore "For loops over find output are fragile. Use find -exec or a while read loop."
+# Ignore "For loops over find output are fragile.
+#         Use find -exec or a while read loop."
 # We nned to pass a function defined here and 'find -exec' does not support that
 # shellcheck disable=2044
 # https://github.com/koalaman/shellcheck/wiki/SC2044
@@ -57,7 +59,8 @@
 # shellcheck disable=2139
 # https://github.com/koalaman/shellcheck/wiki/SC2139
 
-# Ignore "Possible misspelling: ZCACHEDIR may not be assigned, but CCACHE_DIR is."
+# Ignore "Possible misspelling: ZCACHEDIR may not be assigned,
+#         but CCACHE_DIR is."
 # shellcheck disable=2153
 # https://github.com/koalaman/shellcheck/wiki/SC2153
 
