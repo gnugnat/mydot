@@ -785,6 +785,9 @@ _alias_portage() {
 }
 command_exists emerge && _alias_portage
 
+# System tools
+rbind tmux   T   'tmux attach || tmux'
+
 # Programming
 # The following will attempt to alias 'python' as 'python3'
 # if 'python' doesnt exist, also it creates 'py2'/'py3' aliases
