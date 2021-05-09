@@ -749,10 +749,11 @@
        :defer t
        :hook
        (
+        (conf-mode . goto-address-prog-mode)
         (fundamental-mode . goto-address-mode)
-        (text-mode . goto-address-mode)
         (org-mode  . goto-address-mode)
         (prog-mode . goto-address-prog-mode)
+        (text-mode . goto-address-mode)
         )
        )
    #+END_SRC
