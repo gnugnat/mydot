@@ -22,17 +22,21 @@
 # Some general stuff
 *.dump
 *.egg-info/
+*.exe
 *.ez
+*.gz*
 *.log
 *.swp
-*.tar
+*.tar*
+*.zip*
 *_archive
-*~
 ,*
+.DS_Store
 .~lock.*
 /.fetch/
 /.idea/
 /.vscode/
+Thumbs.db
 __pycache__/
 _build/
 build/
@@ -44,10 +48,15 @@ compiled/
 # Emacs
 *.elc
 *.~undo-tree
+*~
 .cask
 .yas-compiled-snippet.el
 /src/emacs/.config/emacs/config.el
 /src/emacs/.config/emacs/gui-config.el
+flycheck_*
+
+# GDB
+.gdb_history
 
 # Octave
 octave-workspace
