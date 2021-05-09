@@ -41,6 +41,8 @@
      make
    #+END_SRC
 
+   For make we need GNU make (=gmake=), the default one on OpenBSD does not support needed features.
+
    Optionally you will need a stow implementation, any of:
    - [[https://www.gnu.org/software/stow/][stow]]
    - [[http://xstow.sourceforge.net/][xstow]]
