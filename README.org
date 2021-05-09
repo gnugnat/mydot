@@ -39,6 +39,7 @@
      busybox
      git
      make
+     ncurses
    #+END_SRC
 
    For make we need GNU make (=gmake=), the default one on OpenBSD does not support needed features.
