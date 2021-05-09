@@ -141,7 +141,7 @@ then
     then
         [ -e "${HOME}/.emacs.d" ] && mv "${HOME}/.emacs.d" "${HOME}/.emacs.d.bak"
     else
-        ln -s "${HOME}/.config/emacs" "${HOME}/.emacs.d"
+        [ -e "${HOME}/.emacs.d" ] || ln -s "${HOME}/.config/emacs" "${HOME}/.emacs.d"
     fi
 fi
 
