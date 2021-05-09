@@ -853,27 +853,29 @@
 ** Spelling
 
    Spell checking.
+   Uses [[http://aspell.net/][aspell]] or [[https://github.com/hunspell/hunspell/][hunspell]] (checked first).
 
    #+BEGIN_SRC emacs-lisp
      (use-package flyspell-mode
        :if (or (executable-find "hunspell") (executable-find "aspell"))
        :ensure nil
+       :defer t
        :hook
        (
+        (conf-mode . flyspell-prog-mode)
         (erc-mode  . flyspell-mode)
         (org-mode  . turn-on-flyspell)
         (prog-mode . flyspell-prog-mode)
         (tex-mode  . flyspell-mode)
         )
        :init
-       (cond
-        ((executable-find "hunspell")
-         (setq ispell-program-name "hunspell")
+       (progn
+         (cond
+          ((executable-find "hunspell") (setq ispell-program-name "hunspell"))
+          ((executable-find "aspell")   (setq ispell-program-name "aspell"))
+          )
+         (setq flyspell-mode-line-string nil)
          )
-        ((executable-find "aspell")
-         (setq ispell-program-name "aspell")
-         )
-        )
        )
    #+END_SRC
 
