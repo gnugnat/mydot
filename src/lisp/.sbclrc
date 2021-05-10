@@ -25,7 +25,6 @@
 ;; WARNING! I set it up in ~/.local/share/quicklisp/setup.lisp
 
 #-quicklisp
-
 (let
     ((quicklisp-init
        (merge-pathnames
@@ -37,7 +36,7 @@
   )
 
 
-#-banner
+;; Banner
 
 (format t (concatenate 'string
                        ";  ____  ____   ____ _     "    "~%"
