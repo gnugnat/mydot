@@ -732,7 +732,8 @@ rbind xdg-open  open 'xdg-open'                 -s
 # Git
 _alias_git() {
     a_k_a G   'git'
-    a_k_a Ga  'git add .'
+    a_k_a GA  'git add .'
+    a_k_a Ga  'git add'
     a_k_a Gc  'git commit --signoff'
     a_k_a Gcc 'git log --cc --color-moved --show-signature'
     a_k_a Gd  'git diff --color-moved'
