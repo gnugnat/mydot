@@ -18,11 +18,6 @@
 ;; Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 ;; Licensed under the GNU GPL v3 License
 
-;;  ____  ____   ____ _
-;; / ___|| __ ) / ___| |
-;; \___ \|  _ \| |   | |
-;;  ___) | |_) | |___| |___
-;; |____/|____/ \____|_____|
 ;; rc file for Steel Bank Common Lisp
 
 
@@ -30,8 +25,24 @@
 ;; WARNING! I set it up in ~/.local/share/quicklisp/setup.lisp
 
 #-quicklisp
-(let ((quicklisp-init (merge-pathnames ".local/share/quicklisp/setup.lisp" (user-homedir-pathname))))
+
+(let
+    ((quicklisp-init
+       (merge-pathnames
+        ".local/share/quicklisp/setup.lisp" (user-homedir-pathname))
+       ))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)
     )
   )
+
+
+#-banner
+
+(format t (concatenate 'string
+                       ";  ____  ____   ____ _     "    "~%"
+                       "; / ___|| __ ) / ___| |    "    "~%"
+                       "; \\___ \\|  _ \\| |   | |    " "~%"
+                       ";  ___) | |_) | |___| |___ "    "~%"
+                       "; |____/|____/ \\____|_____|"   "~%"
+                       ))
