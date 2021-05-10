@@ -1376,21 +1376,31 @@
      - https://melpa.org/#/sly
 
    #+BEGIN_SRC emacs-lisp
-     ;; TODO: autostart slime
      (use-package sly
        :if (executable-find "sbcl")
+       :requires company
        :ensure t
+       :defer t
        :hook
        (
         (sly-mrepl-mode . company-mode)
         (sly-mrepl-mode . rainbow-delimiters-mode)
         )
+       :init
+       (progn
+         (setq
+          inferior-lisp-program "sbcl"
+          sly-mrepl-history-file-name (w-u-e-d "sly-history")
+          sly-net-coding-system 'utf-8-unix
+          )
+         )
        :config
-       (setq
-        inferior-lisp-program "sbcl"
-        sly-mrepl-history-file-name (w-u-e-d "sly-history")
-        sly-net-coding-system 'utf-8-unix
-        )
+       (progn
+         (with-eval-after-load 'sly-mrepl
+           (define-key sly-mrepl-mode-map (kbd "C-<down>") 'comint-next-input)
+           (define-key sly-mrepl-mode-map (kbd "C-<up>")   'comint-previous-input)
+           )
+         )
        )
    #+END_SRC
 
