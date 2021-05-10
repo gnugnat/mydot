@@ -31,6 +31,7 @@
  (find-file
   . (
      (indent-tabs-mode . nil)
+     (require-final-newline . t)
      (show-trailing-whitespace . t)
      (tab-width . 4)
      )
