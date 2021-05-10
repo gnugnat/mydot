@@ -15,13 +15,6 @@
 " Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 " Licensed under the GNU GPL v3 License
 
-"        _
-" __   _(_)_ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__
-"   \_/ |_|_| |_| |_|_|  \___|
-"
-
 
 " encoding
 set encoding=utf-8

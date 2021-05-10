@@ -18,13 +18,6 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
-#      _
-#  ___| |__
-# / __| '_ \
-# \__ \ | | |
-# |___/_| |_|
-# ~/.profile
-
 # ~/.profile: executed by the command interpreter for LOGIN shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
