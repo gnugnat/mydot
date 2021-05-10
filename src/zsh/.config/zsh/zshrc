@@ -237,11 +237,11 @@ esac
 
 _source_zsh_site() {
     local _s
-
     for _s in "${ZDOTDIR}/site"/?*
     do
         source_file "${_s}"
     done
+    return 0
 }
 
 [ -d "${ZDOTDIR}/site" ] && _source_zsh_site

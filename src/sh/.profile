@@ -925,6 +925,7 @@ _source_config() {
         source_file "${_shext}"
     done
     unset _shext
+    return 0
 }
 
 [ -d "${HOME}/.config/sh" ] && _source_config
