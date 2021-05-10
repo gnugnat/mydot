@@ -1,3 +1,6 @@
+# -*- conf -*-
+
+
 # This file is part of mydot.
 
 # mydot is free software: you can redistribute it and/or modify
@@ -15,27 +18,28 @@
 # Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
-#  _ __   ___ _ __ ___  _ __   ___ _ __  _ __
-# | '_ \ / __| '_ ` _ \| '_ \ / __| '_ \| '_ \
-# | | | | (__| | | | | | |_) | (__| |_) | |_) |
-# |_| |_|\___|_| |_| |_| .__/ \___| .__/| .__/
-#                      |_|        |_|   |_|
 
+# Visualizer
 
-# visualizer
 visualizer_sync_interval = "10"
 visualizer_in_stereo = "yes"
 visualizer_type = "ellipse"
 
-# playlist
+
+# Playlist
+
 browser_playlist_prefix = "$2 ♥ $0 "
 
-# progress Bar
+
+# Progress Bar
+
 progressbar_look = "━━─"
 progressbar_color = "black"
 progressbar_elapsed_color = "green"
 
-# apperance
+
+# Apperance
+
 display_bitrate = "yes"
 autocenter_mode = "yes"
 centered_cursor = "yes"
