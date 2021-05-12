@@ -547,21 +547,23 @@ nullwrap mkdir -p "${XDG_LOG_HOME}" && export XDG_LOG_HOME
 XDG_STATE_HOME="${XDG_STATE_HOME:-${HOME}/.local/var/lib}"
 nullwrap mkdir -p "${XDG_STATE_HOME}" && export XDG_STATE_HOME
 
-# XDG Runtime Directory (failsafe)
-if [ -z "${XDG_RUNTIME_DIR}" ] || [ ! -d "${XDG_RUNTIME_DIR}" ]
-then
-    for _XDG_CAND_BASE in /run /tmp /tmp/xdg "/tmp/${USER}" "${XDG_CACHE_HOME}"
-    do
-        if nullwrap mkdir -p "${_XDG_CAND_BASE}/user/${UID}"
-        then
-            XDG_RUNTIME_DIR="${_XDG_CAND_BASE}/user/${UID}"
-            break
-        fi
-    done
-    unset _XDG_CAND_BASE
-fi
-export XDG_RUNTIME_DIR
-nullwrap chmod 0700 "${XDG_RUNTIME_DIR}"
+# XDG Runtime Directory
+# we want to get that /run/user/1000
+for _xdg_runtime_dir_base in /run /tmp /tmp/xdg "/tmp/${USER}" "${XDG_CACHE_HOME}"
+do
+    _xdg_runtime_dir="${_xdg_runtime_dir_base}/user/${UID}"
+
+    if nullwrap mkdir -p "${_xdg_runtime_dir}"  &&
+            nullwrap chmod 0700 "${_xdg_runtime_dir}"
+    then
+        XDG_RUNTIME_DIR="${_xdg_runtime_dir}"
+        export XDG_RUNTIME_DIR
+
+        break
+    fi
+done
+unset _xdg_runtime_dir_base
+unset _xdg_runtime_dir
 
 # Xorg X11 Server
 # Why here? We use XDG_RUNTIME_DIR for Xauthority
