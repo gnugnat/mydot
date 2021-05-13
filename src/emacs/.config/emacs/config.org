@@ -2293,15 +2293,25 @@
 
 ** Dired
 
-   Dired configuration
+   Main [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][dired]] configuration:
 
    #+BEGIN_SRC emacs-lisp
-     (setq-default
-      dired-auto-revert-buffer t
-      dired-listing-switches "-ahl"
-      dired-recursive-copies 'always
-      dired-use-ls-dired nil
-      )
+     (use-package dired
+       :ensure nil
+       :bind
+       (
+        :map dired-mode-map
+        ("<delete>"     . dired-do-delete)
+        ("<deletechar>" . dired-do-delete)
+        )
+       :config
+       (setq-default
+        dired-auto-revert-buffer t
+        dired-listing-switches "-ahl"
+        dired-recursive-copies 'always
+        dired-use-ls-dired nil
+        )
+       )
    #+END_SRC
 
    Expand directories.
@@ -2348,7 +2358,7 @@
        )
    #+END_SRC
 
-   Sidebar for Emacs leveraging Dired
+   Sidebar.
 
    + Dired-Sidebar:
      - https://github.com/jojojames/dired-sidebar
