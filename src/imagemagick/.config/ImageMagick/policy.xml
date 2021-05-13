@@ -1,0 +1,37 @@
+<!--
+     This file is part of mydot.
+
+     mydot is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, version 3.
+
+     mydot is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+     Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+     Licensed under the GNU GPL v3 License
+-->
+
+
+<policymap>
+
+
+    <!--
+         Allow unsafe conversion
+         https://bugs.gentoo.org/664236#c10
+    -->
+
+    <policy domain="coder" rights="read|write" pattern="EPS" />
+    <policy domain="coder" rights="read|write" pattern="PDF" />
+    <policy domain="coder" rights="read|write" pattern="PS"  />
+    <policy domain="coder" rights="read|write" pattern="PS2" />
+    <policy domain="coder" rights="read|write" pattern="PS3" />
+    <policy domain="coder" rights="read|write" pattern="XPS" />
+
+
+</policymap>
