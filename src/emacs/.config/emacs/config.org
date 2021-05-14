@@ -801,7 +801,12 @@
      (use-package undo-tree
        :ensure t
        :bind
-       (("C-x C-z" . undo-tree-visualize))
+       (
+        ("C-x C-z" . undo-tree-visualize)
+        ;; forward and backward mouse buttons:
+        ("<mouse-8>" . undo-tree-undo)
+        ("<mouse-9>" . undo-tree-redo)
+        )
        :diminish
        :init
        (global-undo-tree-mode)
