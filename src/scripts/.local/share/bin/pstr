@@ -15,14 +15,51 @@
 # You should have received a copy of the GNU General Public License
 # along with mydot.  If not, see <https://www.gnu.org/licenses/>.
 
-# Copyright (c) 2020-2021, Maciej Barć <xgqt@riseup.net>
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
 # Licensed under the GNU GPL v3 License
 
-# Create a portable string
+
+use strict;
+
+use File::Basename;
 
 
-foreach $argument (0 .. $#ARGV) {
-  $string = "$ARGV[$argument]";
+my $prog_name = basename($0);
+my $prog_args = '[STRINGS]';
+my $prog_desc = 'Create a "portable" string';
+
+my $usage = <<EOF;
+Usage: $prog_name [OPTION]... $prog_args
+$prog_name - $prog_desc
+
+Options:
+    -V, -version, --version  show program version
+    -h, -help, --help        show avalible options
+EOF
+my $version = <<EOF;
+$prog_name 9999
+
+Copyright (c) 2021, Maciej Barć <xgqt\@riseup.net>
+Licensed under the GNU GPL v3 License
+EOF
+
+
+foreach my $argument (0 .. $#ARGV) {
+  my $option = "$ARGV[$argument]";
+
+  if ($option eq '-h' || $option eq '-help' || $option eq '--help') {
+    print $usage;
+    exit 0;
+  }
+  elsif ($option eq '-V' || $option eq '-version' || $option eq '--version') {
+    print $version;
+    exit 0;
+  }
+}
+
+
+foreach my $argument (0 .. $#ARGV) {
+  my $string = "$ARGV[$argument]";
 
   # Leave: alphanumerical, space, underscore, dash, newline
   $string =~ s/[^[:alnum:] \_\-\.\n]//g;
