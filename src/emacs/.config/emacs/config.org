@@ -394,6 +394,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (use-package abbrev :diminish)
+     (use-package autorevert :diminish auto-revert-mode)
      (use-package hi-lock :diminish)
      (use-package hideshow :diminish hs-minor-mode)
      (use-package page-break-lines :diminish)
