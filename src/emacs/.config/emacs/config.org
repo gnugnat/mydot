@@ -2508,6 +2508,23 @@
       )
    #+END_SRC
 
+** Logs
+
+   Browsing log files.
+
+   + Log4j-Mode:
+     - http://log4j-mode.sourceforge.net/
+     - https://melpa.org/#/log4j-mode
+     - https://sourceforge.net/projects/log4j-mode/
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package log4j-mode
+       :ensure t
+       :defer t
+       :mode "\\.log$"
+       )
+   #+END_SRC
+
 ** Ranger
 
    + Ranger:
