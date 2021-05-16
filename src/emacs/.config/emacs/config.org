@@ -1749,6 +1749,31 @@
         )
     #+END_SRC
 
+    [[https://jupyter.org/][Jupyter]] inside Emacs:
+
+    run with =jupyter-run-repl=
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package jupyter
+        :when (executable-find "jupyter")
+        :ensure t
+        :defer 3
+        :hook
+        (
+         (jupyter-repl-mode . rainbow-delimiters-mode)
+         )
+        :config
+        (progn
+          (with-eval-after-load 'jupyter-repl
+            (define-key jupyter-repl-mode-map (kbd "C-<down>")
+              'jupyter-repl-history-next)
+            (define-key jupyter-repl-mode-map (kbd "C-<up>")
+              'jupyter-repl-history-previous)
+            )
+          )
+        )
+    #+END_SRC
+
 ** R
 
    [[https://www.r-project.org/][R]] language support.
