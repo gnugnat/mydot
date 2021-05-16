@@ -1753,6 +1753,10 @@
 
     run with =jupyter-run-repl=
 
+    + Jupyter:
+      - https://github.com/nnicandro/emacs-jupyter
+      - https://melpa.org/#/jupyter
+
     #+BEGIN_SRC emacs-lisp
       (use-package jupyter
         :when (executable-find "jupyter")
