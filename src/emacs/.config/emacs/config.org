@@ -663,6 +663,7 @@
        :config
        (setq
         git-commit-summary-max-length 80
+        magit-log-section-commit-count 15
         magit-push-always-verify nil
         )
        )
