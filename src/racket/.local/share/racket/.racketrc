@@ -37,6 +37,9 @@
 
 ;; Helpers
 
+;; Unequal
+(define != (compose not equal?))
+
 ;; Dispaly any atoms
 (define show
   (lambda atoms
