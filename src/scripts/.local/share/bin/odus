@@ -86,14 +86,14 @@ do
         -v | --verbose )
             verbose=1
             ;;
-        "" )
-            echo "ERROR: Provide at lest one argument/option"
-            usage
-            exit 1
-            ;;
         -* )
             version
             echo
+            usage
+            exit 1
+            ;;
+        "" )
+            echo "ERROR: Provide at lest one argument/option"
             usage
             exit 1
             ;;
@@ -108,16 +108,18 @@ done
 
 if [ ${verbose} -gt 0 ]
 then
-    echo "Runing with:"
-    echo " - As user:   ${user}"
-    echo " - Run shell: ${shell}"
-    echo " - Command:   ${command}"
+    echo "Running with:"
+    echo "  - As user:   ${user}"
+    echo "  - Run shell: ${shell}"
+    echo "  - Command:   ${command}"
 fi
 
 if [ ${shell} -gt 0 ]
 then
+    # run user's shell
     su -l "${user}"
 else
+    # execute a command
     if [ -z "${command}" ]
     then
         echo "ERROR: Provide a command to execute"
