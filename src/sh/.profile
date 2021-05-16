@@ -517,6 +517,11 @@ export HISTFILE
 HISTSIZE=50000
 export HISTSIZE
 
+# STklos
+# configuration and packages directory
+STKLOS_CONFDIR="${HOME}/.local/share/stklos"
+export STKLOS_CONFDIR
+
 # Latex
 # TeX directories
 TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
