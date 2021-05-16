@@ -19,6 +19,11 @@
 # Licensed under the GNU GPL v3 License
 
 
+trap 'exit 128' INT
+set -e
+export PATH
+
+
 extra_opts=""
 window=0
 

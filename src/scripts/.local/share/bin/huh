@@ -24,6 +24,10 @@
 # Also recommended: 'which'
 
 
+trap 'exit 128' INT
+export PATH
+
+
 prog_name="$(basename "${0}")"
 prog_desc="find commands"
 prog_args="COMMAND..."

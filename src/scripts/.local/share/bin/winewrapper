@@ -21,6 +21,10 @@
 # wrapper for WINE
 
 
+trap 'exit 128' INT
+export PATH
+
+
 # Defaults
 WINEARCH="win32"
 WINEPREFIX="${HOME}/.wine"
