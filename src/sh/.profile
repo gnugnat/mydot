@@ -877,6 +877,11 @@ export PS2
 
 # Autostart the GPG Agent
 
+# Proper permissions on ~/.gpg
+_chmod_dot_gpg() {
+    [ -d "${HOME}/.gpg" ] && nullwrap chmod 700 "${HOME}/.gpg"
+}
+
 # Export some vars
 GPG_TTY="$(tty)"
 export GPG_TTY
@@ -891,11 +896,17 @@ _start_agent_gpg() {
 # Check if GPG agent exists
 if ! am_i_root && command_exists gpg-agent
 then
+    _chmod_dot_gpg
     _start_agent_gpg
 fi
 
 
 # Autostart the SSH Agent
+
+# Proper permissions on ~/.ssh
+_chmod_dot_ssh() {
+    [ -d "${HOME}/.ssh" ] && nullwrap chmod 700 "${HOME}/.ssh"
+}
 
 # Start SSH agent if it is not running
 _start_agent_ssh() {
@@ -909,6 +920,7 @@ _start_agent_ssh() {
 # Check if SSH agent and XDG runtime directory exist
 if ! am_i_root && command_exists ssh-agent && [ -d "${XDG_RUNTIME_DIR}" ]
 then
+    _chmod_dot_ssh
     _start_agent_ssh
 fi
 
