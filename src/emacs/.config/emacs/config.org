@@ -2506,6 +2506,21 @@
      (setq
       erc-autojoin-channels-alist
       '(
+        ;; Libera - https://libera.chat/
+        (".*\\.libera.chat"
+         "#blastwave"
+         "#gentoo"
+         "#gentoo-chat"
+         "#gentoo-dev"
+         "#gentoo-guru"
+         "#gentoo-proxy-maint"
+         "#gentoo-qt"
+         "#guix"
+         "#kde"
+         "#lisp"
+         "#scheme"
+         "#termux"
+         )
         ;; Freenode - https://freenode.net/
         (".*\\.freenode.net"
          "#NetBSD"
