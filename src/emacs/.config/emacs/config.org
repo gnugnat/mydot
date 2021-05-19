@@ -2529,6 +2529,8 @@
          )
         ;; OFTC - https://www.oftc.net/
         (".*\\.oftc.net"
+         "#alpine-devel"
+         "#alpine-linux"
          "#gentoo"
          )
         ;; Rizon - https://rizon.net/
