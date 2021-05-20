@@ -386,7 +386,7 @@ export GRADLE_USER_HOME
 
 # Julia
 # directory
-# exclude root user - breaks ccache in portage
+# exclude root user - breaks Julia build in portage
 if am_i_root
 then
     unset JULIA_DEPOT_PATH
