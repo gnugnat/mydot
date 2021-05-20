@@ -2537,6 +2537,7 @@
          "#guix"
          "#kde"
          "#lisp"
+         "#racket"
          "#scheme"
          "#termux"
          )
