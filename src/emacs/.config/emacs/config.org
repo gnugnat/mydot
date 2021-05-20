@@ -752,6 +752,7 @@
        :hook
        (
         (conf-mode . goto-address-prog-mode)
+        (erc-mode  . goto-address-mode)
         (fundamental-mode . goto-address-mode)
         (org-mode  . goto-address-mode)
         (prog-mode . goto-address-prog-mode)
