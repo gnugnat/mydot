@@ -2494,10 +2494,19 @@
    Customization:
 
    #+BEGIN_SRC emacs-lisp
-     (setq
-      erc-join-buffer 'bury
-      erc-prompt (lambda () (concat "(ERC: " (buffer-name) ")>"))
-      )
+     (use-package erc
+       :defer t
+       :commands erc-start-or-switch
+       :config
+       (progn
+         (setq erc-join-buffer 'bury)
+         ;; prompt
+         (setq erc-prompt (lambda () (concat "(ERC: " (buffer-name) ")>")))
+         ;; modules
+         (add-to-list 'erc-modules 'log)
+         (add-to-list 'erc-modules 'notifications)
+         )
+       )
    #+END_SRC
 
    Channels to autojoin:
