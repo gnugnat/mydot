@@ -2499,12 +2499,21 @@
        :commands erc-start-or-switch
        :config
        (progn
-         (setq erc-join-buffer 'bury)
+         (if (not (file-exists-p (w-u-e-d "erc")))
+             (with-temp-buffer (make-directory (w-u-e-d "erc")))
+           )
+         (setq
+          erc-enable-logging t
+          erc-join-buffer 'bury
+          erc-log-channels-directory (w-u-e-d "erc/log")
+          )
          ;; prompt
          (setq erc-prompt (lambda () (concat "(ERC: " (buffer-name) ")>")))
          ;; modules
          (add-to-list 'erc-modules 'log)
-         (add-to-list 'erc-modules 'notifications)
+         (erc-log-mode t)
+         ;; Notifications require Emacs to support dbus
+         ;; (add-to-list 'erc-modules 'notifications)
          )
        )
    #+END_SRC
