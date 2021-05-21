@@ -762,7 +762,8 @@ _alias_git() {
 command_exists git && _alias_git
 
 # Multimedia
-a_k_a ffsound 'ffplay -nodisp -hide_banner'
+rbind ffplay      ffsound  'ffplay -nodisp -hide_banner'     -s
+rbind gallery-dl  gyd      'gallery-dl'                      -s
 
 # Network
 a_k_a no-net-sh 'unshare -r -n ${SH}'
