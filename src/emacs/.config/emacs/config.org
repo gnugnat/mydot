@@ -2507,6 +2507,9 @@
           erc-enable-logging t
           erc-join-buffer 'bury
           erc-log-channels-directory (w-u-e-d "erc/log")
+          erc-nick "guest141592653589793"
+          erc-nick-uniquifier "_"
+          erc-rename-buffers t
           )
          ;; prompt
          (setq erc-prompt (lambda () (concat "(ERC: " (buffer-name) ")>")))
