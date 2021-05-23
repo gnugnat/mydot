@@ -153,13 +153,12 @@
    | <f1> o          | counsel-describe-symbol             |
    | <f1> v          | counsel-describe-variable           |
    | C-c C-r         | ivy-resume                          |
-   | C-c g           | counsel-git                         |
+   | C-c g           | counsel-git (find file)             |
    | C-c j           | counsel-git-grep                    |
    | C-x C-f         | counsel-find-file                   |
    | C-x C-u         | upcase-region                       |
    | C-x l           | counsel-locate                      |
    | C-z             | undo                                |
-   | M-s             | avy-goto-char                       |
    | M-x             | counsel-M-x                         |
    |-----------------+-------------------------------------|
    | f2              | vterm                               |
