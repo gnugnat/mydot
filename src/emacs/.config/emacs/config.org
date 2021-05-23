@@ -2509,8 +2509,8 @@
 
    #+BEGIN_SRC emacs-lisp
      (use-package erc
+       :ensure nil
        :defer t
-       :commands erc-start-or-switch
        :config
        (progn
          (if (not (file-exists-p (w-u-e-d "erc")))
@@ -2535,61 +2535,13 @@
        )
    #+END_SRC
 
-   Channels to autojoin:
+   [[./assets/site-lisp/erc-channels.el][Channels]] to automatically join.
 
    #+BEGIN_SRC emacs-lisp
-     (setq
-      erc-autojoin-channels-alist
-      '(
-        ;; Libera - https://libera.chat/
-        (".*\\.libera.chat"
-         "#blastwave"
-         "#gentoo"
-         "#gentoo-chat"
-         "#gentoo-dev"
-         "#gentoo-guru"
-         "#gentoo-proxy-maint"
-         "#gentoo-qt"
-         "#guix"
-         "#kde"
-         "#lisp"
-         "#racket"
-         "#scheme"
-         "#termux"
-         )
-        ;; Freenode - https://freenode.net/
-        (".*\\.freenode.net"
-         "#NetBSD"
-         "#gentoo"
-         "#gentoo-chat"
-         "#gentoo-dev"
-         "#gentoo-guru"
-         "#gentoo-laptop"
-         "#gentoo-ml"
-         "#gentoo-openbsd"
-         "#gentoo-prefix"
-         "#gentoo-proxy-maint"
-         "#gentoo-qt"
-         "#gentoo-server"
-         "#guix"
-         "#kde"
-         "#lisp"
-         "#techbytes"
-         "#techrights"
-         "#termux"
-         )
-        ;; OFTC - https://www.oftc.net/
-        (".*\\.oftc.net"
-         "#alpine-devel"
-         "#alpine-linux"
-         "#gentoo"
-         )
-        ;; Rizon - https://rizon.net/
-        (".*\\.rizon.net"
-         "#cloveros"
-         )
-        )
-      )
+     (use-package erc-channels
+       :ensure nil
+       :after erc
+       )
    #+END_SRC
 
 ** Logs
