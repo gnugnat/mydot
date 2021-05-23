@@ -557,22 +557,6 @@
 
 * File Editing
 
-** Avy
-
-   Easier search inside files - after pressung binded keys, pass a letter, then pass symbols for the highlighted letter to which you want to go to
-
-   + Avy:
-     - https://github.com/abo-abo/avy
-     - https://melpa.org/#/avy
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package avy
-       :ensure t
-       :bind
-       ("M-s" . avy-goto-char)
-       )
-   #+END_SRC
-
 ** Beacon
 
    Line highlight when switching
