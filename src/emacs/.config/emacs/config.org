@@ -557,23 +557,6 @@
 
 * File Editing
 
-** Beacon
-
-   Line highlight when switching
-
-   + Beacon:
-     - https://github.com/Malabarba/beacon
-     - https://melpa.org/#/beacon
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package beacon
-       :ensure t
-       :diminish
-       :config
-       (beacon-mode 1)
-       )
-   #+END_SRC
-
 ** Cleanup
 
    Just before saving remove whitespaces.
