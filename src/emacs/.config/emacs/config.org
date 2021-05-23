@@ -1134,6 +1134,17 @@
        )
    #+END_SRC
 
+   Create a =scratch buffer= (with =Elisp interaction mode=).
+
+   #+BEGIN_SRC emacs-lisp
+     (defun make-scratch-buffer ()
+       "Create a scratch buffer and switch to it."
+       (interactive)
+       (switch-to-buffer (get-buffer-create "*scratch*"))
+       (lisp-interaction-mode)
+       )
+   #+END_SRC
+
 ** Elixir
 
    [[https://elixir-lang.org/][Elixir]] language support.
@@ -2312,11 +2323,29 @@
           dashboard-center-content         t
           dashboard-set-file-icons         t
           dashboard-set-heading-icons      t
+          dashboard-set-navigator          t
           dashboard-startup-banner         'logo
           inhibit-startup-message          t
           inhibit-startup-screen           t
           show-week-agenda-p               t
           )
+         ;; links below logo
+         (setq dashboard-navigator-buttons
+               `((
+                  (,nil
+                   "Dired" "Open directory editor in user's home directory."
+                   (lambda (&rest _) (dired "~"))
+                   'default)
+                  (,nil
+                   "Scratch" "Create a scratch buffer and switch to it."
+                   (lambda (&rest _) (make-scratch-buffer))
+                   'default)
+                  (,nil
+                   "Config" "Open GNU Emacs MyDot configuration file."
+                   (lambda (&rest _) (config-visit))
+                   'default)
+                  ))
+               )
          (setq dashboard-items
                '(
                  (recents  . 5)
