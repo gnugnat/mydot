@@ -302,6 +302,18 @@
      - https://github.com/abo-abo/swiper
      - https://melpa.org/#/ivy
 
+   + Ivy-Prescient:
+     - https://github.com/raxod502/prescient.el
+     - https://melpa.org/#/ivy-prescient
+
+   + Ivy-Rich:
+     - https://github.com/Yevgnen/ivy-rich
+     - https://melpa.org/#/ivy-rich
+
+   + All-The-Icons-Ivy:
+     - https://github.com/asok/all-the-icons-ivy
+     - https://melpa.org/#/all-the-icons-ivy
+
    #+BEGIN_SRC emacs-lisp
      (use-package ivy
        :ensure t
@@ -323,6 +335,19 @@
        )
    #+END_SRC
 
+   Sort by usage.
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package ivy-prescient
+       :ensure t
+       :after ivy
+       :config
+       (ivy-prescient-mode t)
+       )
+   #+END_SRC
+
+   Additional info in =ivy= (mini)buffers.
+
    #+BEGIN_SRC emacs-lisp
      (use-package ivy-rich
        :ensure t
@@ -333,6 +358,8 @@
        (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
        )
    #+END_SRC
+
+   Icons in =ivy= (mini)buffers.
 
    #+BEGIN_SRC emacs-lisp
      (use-package all-the-icons-ivy
