@@ -72,6 +72,6 @@ cd /sys/devices/system/cpu/vulnerabilities || exit 1
 
 for v in *
 do
-    printf "%s: " "${v^^}"
+    printf "%s: " "${v}"
     cat "${v}"
 done
