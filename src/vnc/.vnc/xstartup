@@ -22,7 +22,7 @@
 
 # Ignore "Can't follow non-constant source."
 # We just don't care about that
-# shellcheck disable=1090
+# shellcheck disable=1090,1091
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 
 

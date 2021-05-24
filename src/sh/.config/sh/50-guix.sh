@@ -20,7 +20,7 @@
 
 # For GNU Guix
 
-# shellcheck disable=1090
+# shellcheck disable=1090,1091
 
 
 # Yes, it is supposed to source those files in this order
