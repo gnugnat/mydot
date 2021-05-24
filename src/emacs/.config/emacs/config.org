@@ -342,7 +342,10 @@
        :ensure t
        :after ivy
        :config
-       (ivy-prescient-mode t)
+       (progn
+         (prescient-persist-mode t)
+         (ivy-prescient-mode t)
+         )
        )
    #+END_SRC
 
