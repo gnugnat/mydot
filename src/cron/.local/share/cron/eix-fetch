@@ -60,7 +60,7 @@ EOF
 }
 
 run_command() {
-    echo "[C] Command: ${1^}"
+    echo "[C] Command: ${1}"
     echo "[R] Running: ${*}"
     if eval "${@}" 2>&1
     then
