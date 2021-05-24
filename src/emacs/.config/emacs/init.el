@@ -120,8 +120,8 @@
      (guix-site-lisp (concat guix-profile "/share/emacs/site-lisp"))
      )
   ;; If we check only if "file exists" we would load stuff from / (system root)
-  ;; if it is found there (believe me those bug happen).
-  ;; So, check if "guix-profile" is null and then check
+  ;; if it is found there (believe me those bugs happen).
+  ;; So, check if "guix-profile" is non-nil and then check
   ;; if "${GUIX_PROFILE}/share/emacs/site-lisp" exists.
   (when (and guix-profile (file-exists-p guix-site-lisp))
     (add-to-list 'load-path guix-site-lisp)
