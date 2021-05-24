@@ -84,6 +84,28 @@
 
 * Environment
 
+** Amx
+
+   Fork of Smex that works well with =ivy=.
+
+   + Amx:
+     - https://github.com/DarwinAwardWinner/amx
+     - https://melpa.org/#/amx
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package amx
+       :ensure t
+       :after ivy
+       :custom
+       (
+        (amx-backend 'ivy)
+        (amx-show-key-bindings t)
+       )
+       :config
+       (amx-mode t)
+       )
+   #+END_SRC
+
 ** Prefix Key
 
    Special prefix for my custom bindings.
@@ -302,10 +324,6 @@
      - https://github.com/abo-abo/swiper
      - https://melpa.org/#/ivy
 
-   + Ivy-Prescient:
-     - https://github.com/raxod502/prescient.el
-     - https://melpa.org/#/ivy-prescient
-
    + Ivy-Rich:
      - https://github.com/Yevgnen/ivy-rich
      - https://melpa.org/#/ivy-rich
@@ -331,20 +349,6 @@
           enable-recursive-minibuffers t
           ivy-use-virtual-buffers t
           )
-         )
-       )
-   #+END_SRC
-
-   Sort by usage.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package ivy-prescient
-       :ensure t
-       :after ivy
-       :config
-       (progn
-         (prescient-persist-mode t)
-         (ivy-prescient-mode t)
          )
        )
    #+END_SRC
