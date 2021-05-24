@@ -324,9 +324,22 @@
    #+END_SRC
 
    #+BEGIN_SRC emacs-lisp
+     (use-package ivy-rich
+       :ensure t
+       :defer nil
+       :after ivy
+       :config
+       (ivy-rich-mode)
+       (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+       )
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
      (use-package all-the-icons-ivy
        :if window-system
        :ensure t
+       ;; so `all-the-icons-ivy' can overwrite some `ivy-rich' settings:
+       :after ivy-rich
        :hook
        ((after-init . all-the-icons-ivy-setup))
        )
