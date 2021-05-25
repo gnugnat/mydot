@@ -323,11 +323,9 @@
    + Ivy:
      - https://github.com/abo-abo/swiper
      - https://melpa.org/#/ivy
-
    + Ivy-Rich:
      - https://github.com/Yevgnen/ivy-rich
      - https://melpa.org/#/ivy-rich
-
    + All-The-Icons-Ivy-Rich:
      - https://github.com/seagle0128/all-the-icons-ivy-rich
      - https://melpa.org/#/all-the-icons-ivy-rich
