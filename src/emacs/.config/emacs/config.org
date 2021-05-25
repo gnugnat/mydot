@@ -328,9 +328,9 @@
      - https://github.com/Yevgnen/ivy-rich
      - https://melpa.org/#/ivy-rich
 
-   + All-The-Icons-Ivy:
-     - https://github.com/asok/all-the-icons-ivy
-     - https://melpa.org/#/all-the-icons-ivy
+   + All-The-Icons-Ivy-Rich:
+     - https://github.com/seagle0128/all-the-icons-ivy-rich
+     - https://melpa.org/#/all-the-icons-ivy-rich
 
    #+BEGIN_SRC emacs-lisp
      (use-package ivy
@@ -353,6 +353,20 @@
        )
    #+END_SRC
 
+   Icons in =ivy= (mini)buffers.
+
+   "For better performance, enable all-the-icons-ivy-rich-mode before ivy-rich-mode"
+   ~ https://github.com/seagle0128/all-the-icons-ivy-rich#use-package
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package all-the-icons-ivy-rich
+       :if window-system
+       :ensure t
+       :config
+       (all-the-icons-ivy-rich-mode t)
+       )
+   #+END_SRC
+
    Additional info in =ivy= (mini)buffers.
 
    #+BEGIN_SRC emacs-lisp
@@ -361,21 +375,10 @@
        :defer nil
        :after ivy
        :config
-       (ivy-rich-mode)
-       (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-       )
-   #+END_SRC
-
-   Icons in =ivy= (mini)buffers.
-
-   #+BEGIN_SRC emacs-lisp
-     (use-package all-the-icons-ivy
-       :if window-system
-       :ensure t
-       ;; so `all-the-icons-ivy' can overwrite some `ivy-rich' settings:
-       :after ivy-rich
-       :hook
-       ((after-init . all-the-icons-ivy-setup))
+       (progn
+         (ivy-rich-mode t)
+         (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+         )
        )
    #+END_SRC
 
