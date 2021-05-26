@@ -21,8 +21,10 @@
 set history save
 set history size 10000
 set history filename ~/.cache/gdb/history
+set listsize 25
 
 
 # GDB Dashboard
 
 dashboard -style discard_scrollback False
+dashboard -style divider_fill_char_primary '#'
