@@ -865,7 +865,7 @@
        :ensure t
        :hook
        (
-        (comint-mode . rainbow-delimiters-mode)
+        ;;(comint-mode . rainbow-delimiters-mode)  ; does not work well with GDB
         (prog-mode . rainbow-delimiters-mode)
         (shell-mode . rainbow-delimiters-mode)
         )
