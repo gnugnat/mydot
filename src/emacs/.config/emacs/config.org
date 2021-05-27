@@ -1094,6 +1094,7 @@
           ("DEBUG"      . "#A020F0")
           ("FIXME"      . "#FF4500")
           ("GOTCHA"     . "#FF4500")
+          ("NOTICE"     . "#9B7306")
           ("STUB"       . "#1E90FF")
           ("TODO"       . "#1E90FF")
           ("WORKAROUND" . "#A020F0")
