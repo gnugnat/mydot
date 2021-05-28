@@ -794,7 +794,9 @@ _alias_portage() {
 command_exists emerge && _alias_portage
 
 # System tools
-rbind tmux   T   'tmux attach || tmux'
+rbind tmux   T           'tmux attach || tmux'
+# awesome joke..., here only because I forget about last(1)
+rbind last   last-head   'last | head'
 
 # Programming
 # The following will attempt to alias 'python' as 'python3'
