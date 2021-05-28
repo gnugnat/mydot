@@ -1903,6 +1903,10 @@
 
    [[http://www.scheme-reports.org/][Scheme]] language support.
 
+   Important:
+   - =C-c C-s= - switch scheme =implementation=
+   - =C-c C-z= - switch to =REPL=
+
    + Geiser:
      - https://gitlab.com/emacs-geiser/geiser
      - https://melpa.org/#/geiser
