@@ -1091,6 +1091,7 @@
         '(
           ("BROKEN"     . "#FF0000")
           ("BUG"        . "#FF0000")
+          ("CONSIDER"   . "#9B7306")
           ("DEBUG"      . "#A020F0")
           ("FIXME"      . "#FF4500")
           ("GOTCHA"     . "#FF4500")
