@@ -1,0 +1,45 @@
+# -*- conf -*-
+
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+
+
+* text=auto
+
+
+# Scripts
+
+# Force a mode for scripts (and special configuration files) native to their
+# operating system type to ensure they work correctly.
+
+# UNIX scripts
+*.sh text eol=lf
+
+# Windows scripts
+*.bat eol=crlf
+*.cmd eol=crlf
+*.sln eol=crlf
+*.vcproj eol=crlf
+
+
+# Binary
+
+# Images
+*.jpeg binary
+*.jpg binary
+*.png binary
