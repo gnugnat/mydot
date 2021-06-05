@@ -223,6 +223,9 @@
 
    Some small tweaks that don't require packages
 
+   + Minor:
+     - [[./assets/site-lisp/minor.el][mydot/minor]]
+
    #+BEGIN_SRC emacs-lisp
      (require 'minor)
    #+END_SRC
@@ -1556,6 +1559,9 @@
 
    [[https://nekovm.org/][Neko]] language support.
 
+   + Neko-Mode:
+     - [[./assets/site-lisp/neko-mode.el][mydot/neko-mode]]
+
    #+BEGIN_SRC emacs-lisp
      (use-package neko-mode
        :if (executable-find "neko")
@@ -2594,6 +2600,9 @@
 
    [[./assets/site-lisp/erc-channels.el][Channels]] to automatically join.
 
+   + Erc-Channels:
+     - [[./assets/site-lisp/erc-channels.el][mydot/erc-channels]]
+
    #+BEGIN_SRC emacs-lisp
      (use-package erc-channels
        :ensure nil
@@ -2675,6 +2684,7 @@
 
    + Sbbs:
      - https://fossil.textboard.org/sbbs/
+     - [[./assets/site-lisp/sbbs.el][mydot/sbbs]]
 
    #+BEGIN_SRC emacs-lisp
      (use-package sbbs
@@ -2822,6 +2832,10 @@
    #+END_SRC
 
 ** Eight-puzzle
+
+   + Eight-Puzzle:
+     - [[./assets/site-lisp/eight-puzzle.el][mydot/eight-puzzle]]
+
    #+BEGIN_SRC emacs-lisp
      (use-package eight-puzzle
        :ensure nil
@@ -2829,6 +2843,7 @@
        :commands (eight-puzzle)
        )
    #+END_SRC
+
 ** Jumblr
 
    + Jumblr:
