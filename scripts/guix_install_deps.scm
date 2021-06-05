@@ -26,15 +26,16 @@
 
 
 (define (executable-find exe)
-  (if (= 0
-         (system (string-append "which " exe " >/dev/null 2>&1"))
-         )
-      #t
-      #f
-      )
+  "Check if a given EXEcutable exists. Return #t or #f."
+  (= 0 (system (string-append "which " exe " >/dev/null 2>&1")))
   )
 
 (define (my-install pkglist)
+  "Check if packages from the PKGLIST list exist on the system.
+   If a given package does not exist install it using Guix.
+   PKGLIST is a list of lists where the 1st element indicates the executable
+   and 2nd optional argument indicates the name of the package to be installed
+   if the executable (1st element) is not found."
   (let*
       (
        (pkgexe  (car pkglist))
