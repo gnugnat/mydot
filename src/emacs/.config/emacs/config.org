@@ -1531,6 +1531,27 @@
        )
    #+END_SRC
 
+** Meson
+
+   [[https://mesonbuild.com/][Meson]] buildsystem configuration language support.
+
+   + Meson-Mode:
+     - https://github.com/wentasah/meson-mode
+     - https://melpa.org/#/meson-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package meson-mode
+       :if (executable-find "meson")
+       :ensure t
+       :defer t
+       :mode
+       (
+        ("meson.build"       . meson-mode)
+        ("meson_options.txt" . meson-mode)
+        )
+       )
+   #+END_SRC
+
 ** Neko
 
    [[https://nekovm.org/][Neko]] language support.
