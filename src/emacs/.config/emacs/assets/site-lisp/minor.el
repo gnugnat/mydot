@@ -123,11 +123,15 @@
 
 ;; Buffer switching
 ;; in addition to C left, C right & C-x b
-(global-set-key (kbd "C-<next>")  'next-buffer)
-(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>")  'previous-buffer)
+(global-set-key (kbd "C-<prior>") 'next-buffer)
 
 ;; For my lovely Polish keyboard:
 (define-key key-translation-map (kbd "←") (kbd "M-y"))
+
+;; Frame - make/delete
+(global-set-key (kbd "C-x <next>")  'delete-frame)
+(global-set-key (kbd "C-x <prior>") 'make-frame)
 
 ;; Lowercase and uppercase
 ;; C-x C-l to convert a region to lowercase (downcase).
