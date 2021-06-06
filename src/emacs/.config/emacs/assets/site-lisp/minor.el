@@ -121,6 +121,11 @@
 ;; Highlight parens
 (show-paren-mode t)
 
+;; Buffer switching
+;; in addition to C left, C right & C-x b
+(global-set-key (kbd "C-<next>")  'next-buffer)
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+
 ;; For my lovely Polish keyboard:
 (define-key key-translation-map (kbd "←") (kbd "M-y"))
 
