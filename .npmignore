@@ -1,0 +1,86 @@
+# -*- conf -*-
+
+# This file is part of mydot.
+
+# mydot is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+
+# mydot is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with mydot.  If not, see <https://www.gnu.org/licenses/>.
+
+# Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>
+# Licensed under the GNU GPL v3 License
+
+
+# For NPM
+.env
+/3rd_party/
+/src/node/
+
+# Some general stuff
+*.dump
+*.egg-info/
+*.exe
+*.ez
+*.gz*
+*.log
+*.swp
+*.tar*
+*.zip*
+*_archive
+,*
+.DS_Store
+.~lock.*
+/.fetch/
+/.idea/
+/.vscode/
+Thumbs.db
+__pycache__/
+_build/
+build/
+compiled/
+
+# Docs
+/docs/
+
+# Emacs
+*.elc
+*.~undo-tree
+*~
+.cask
+.yas-compiled-snippet.el
+/src/emacs/.config/emacs/config.el
+/src/emacs/.config/emacs/gui-config.el
+flycheck_*
+
+# GDB
+.gdb_history
+
+# Octave
+octave-workspace
+
+# ZSH
+.zcalc_history
+.zcompdump
+.zhistory
+
+# ZSH modal configuration
+/src/zsh/.config/zsh/emu.zsh-theme
+/src/zsh/.config/zsh/tty.zsh-theme
+/src/zsh/.config/zsh/zsh-greeter
+
+# NeoVim plugins
+/src/neovim/.config/nvim/autoload/
+/src/neovim/.config/nvim/plugged/
+
+# Legacy
+/.docs/
+/src/zsh/.config/zsh/plugins/zsh-autosuggestions
+/src/zsh/.config/zsh/plugins/zsh-syntax-highlighting
+/zsh/
