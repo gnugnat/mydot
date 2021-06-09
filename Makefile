@@ -109,6 +109,9 @@ test-guile:			have-guile
 test-hyperlinks:	docs-org
 	bash ./scripts/test_hyperlinks.sh
 
+test-pylint:		have-pylint
+	python ./scripts/test_pylint.py
+
 test-racket:		have-racket
 	racket --load ./src/racket/.local/share/racket/.racketrc --no-init-file
 
