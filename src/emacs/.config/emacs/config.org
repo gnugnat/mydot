@@ -633,7 +633,7 @@
         (tex-mode . display-fill-column-indicator-mode)
         )
        :init
-       (setq-default display-fill-column-indicator-column 80)
+       (setq-default display-fill-column-indicator-column 79)
        )
    #+END_SRC
 
