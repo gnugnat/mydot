@@ -1,0 +1,43 @@
+{
+    "//": [
+        "This file is part of mydot.",
+        "",
+        "mydot is free software: youn redistribute it and/or modify",
+        "it under the terms of the GNU General Public License as published by",
+        "the Free Software Foundation, version 3.",
+        "",
+        "mydot is distributed in the hope that it will be useful,",
+        "but WITHOUT ANY WARRANTY; without even the implied warranty of",
+        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the",
+        "GNU General Public License for more details.",
+        "",
+        "You should have received a copy of the GNU General Public License",
+        "along with mydot.  If not, see <https://www.gnu.org/licenses/>.",
+        "",
+        "Copyright (c) 2021, Maciej Barć <xgqt@riseup.net>",
+        "Licensed under the GNU GPL v3 License",
+        "",
+        "I saw people packaging VERY weird stuff with NPM,",
+        "so I thought: Why not package this?"
+    ],
+    "name": "mydot",
+    "version": "0.0.0",
+    "description": "mydot as a package via Node.js",
+    "license": "GPL-3.0-only",
+    "keywords": [
+        "mydot"
+    ],
+    "homepage": "https://gitlab.com/xgqt/mydot",
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.com/xgqt/mydot.git"
+    },
+    "bugs": {
+        "url": "https://gitlab.com/xgqt/mydot/-/issues"
+    },
+    "bin": {
+        "mydot-stowdot": "./stowdot",
+        "mydot-install": "./install.sh",
+        "mydot-update": "./update.sh"
+    }
+}
