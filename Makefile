@@ -34,7 +34,7 @@ all:
 dependencies:
 	type stow || type xstow || type pystow || sh ./scripts/install_pystow.sh
 
-pip:
+pip:				have-pip
 	pip install --user -r ./requirements.txt
 
 remove-blockers:
