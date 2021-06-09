@@ -26,7 +26,7 @@ pylint: https://pypi.org/project/pylint/
 
 
 from os import walk
-from os.path import join
+from os.path import exists, join
 from subprocess import run
 
 
@@ -38,7 +38,9 @@ def get_files(path: str) -> list:
     files = []
     for (dirpath, _, filenames) in walk(path):
         for filename in filenames:
-            files.append(join(dirpath, filename))
+            filepath = join(dirpath, filename)
+            if exists(filepath):                    # for broken symbolic links
+                files.append(filepath)
     return files
 
 
