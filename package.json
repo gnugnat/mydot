@@ -20,7 +20,7 @@
         "I saw people packaging VERY weird stuff with NPM,",
         "so I thought: Why not package this?"
     ],
-    "name": "mydot",
+    "name": "xgqt-mydot",
     "version": "0.0.0",
     "description": "mydot as a package via Node.js",
     "license": "GPL-3.0-only",
@@ -37,7 +37,6 @@
     },
     "bin": {
         "mydot-stowdot": "./stowdot",
-        "mydot-install": "./install.sh",
         "mydot-update": "./update.sh"
     }
 }
