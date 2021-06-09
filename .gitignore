@@ -58,6 +58,9 @@ flycheck_*
 # GDB
 .gdb_history
 
+# NPM
+package.json
+
 # Octave
 octave-workspace
 
