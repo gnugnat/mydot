@@ -35,6 +35,7 @@ mypath = "./src"
 
 def get_files(path: str) -> list:
     """List of all files in PATH."""
+
     files = []
     for (dirpath, _, filenames) in walk(path):
         for filename in filenames:
@@ -46,6 +47,7 @@ def get_files(path: str) -> list:
 
 def get_python_files(path: str) -> list:
     """List of all Python files in PATH."""
+
     files = []
     for f in get_files(path):
         topline = open(f, "r").readline()
@@ -56,6 +58,7 @@ def get_python_files(path: str) -> list:
 
 def pylint_files(path: str) -> list:
     """Execute 'pylint' on files in PATH."""
+
     # TODO: Run asynchronously
     for f in get_python_files(path):
         print(">>> Checking file: {} ... ".format(f))
@@ -64,6 +67,7 @@ def pylint_files(path: str) -> list:
 
 def main():
     """The main function."""
+
     pylint_files(mypath)
 
 
