@@ -44,7 +44,7 @@ install:			dependencies
 	sh ./stowdot
 	@echo ">>> Install finished succesfully"
 
-npm-install:		dependencies
+npm-install:		dependencies	have-npm
 	npm install -g
 
 reinstall:			uninstall	install
