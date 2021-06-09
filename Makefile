@@ -98,6 +98,7 @@ test-elixir:		have-iex
 #   does not exit with failure
 	iex --dot-iex ./src/elixir/.iex.exs --eval ':c.q'
 
+# not only used to do tests
 test-emacs:			have-emacs
 	sh ./scripts/emacs_reload_config.sh
 
@@ -112,7 +113,7 @@ test-racket:		have-racket
 	racket --load ./src/racket/.local/share/racket/.racketrc --no-init-file
 
 test-shellcheck:	have-shellcheck
-	sh ./scripts/shellcheck.sh
+	sh ./scripts/test_shellcheck.sh
 
 test:	test-emacs	test-guile	test-racket	test-shellcheck
 	@echo ">>> Tests finished succesfully"
