@@ -44,6 +44,7 @@ install:			dependencies
 	sh ./stowdot
 	@echo ">>> Install finished succesfully"
 
+# This is a joke, do NOT use 'npm' to install MyDot, use 'gmake' instead!
 npm-install:		dependencies	have-npm
 	npm install -g
 
