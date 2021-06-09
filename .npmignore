@@ -19,9 +19,7 @@
 
 
 # For NPM
-.env
 /3rd_party/
-/src/node/
 
 # Some general stuff
 *.dump
