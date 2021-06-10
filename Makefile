@@ -54,10 +54,13 @@ reinstall:			uninstall	install
 
 # Uninstall commands
 
+remove-nodejs-garbage:
+	find . -depth -type f -name 'package*.json' -exec rm {} \;
+
 remove-nvim-plugins:
 	sh ./scripts/nvim_remove_plugins.sh
 
-clean:				clean-docs	remove-nvim-plugins
+clean:				clean-docs	remove-nodejs-garbage	remove-nvim-plugins
 
 uninstall:			dependencies
 	sh ./stowdot remove
