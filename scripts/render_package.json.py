@@ -23,7 +23,10 @@ Licensed under the GNU GPL v3 License
 
 import argparse
 
+from sys import exit as EXIT
+
 from jinja2 import Template
+from semantic_version import validate
 
 
 def render_package_json(version: str):
@@ -50,8 +53,14 @@ def main():
         help="version string to use, following 'semver', ie.: 9.9.9"
     )
     args = parser.parse_args()
+    v = args.version
 
-    render_package_json(args.version)
+    if validate(v):
+        render_package_json(v)
+    else:
+        print("[ERROR]: Given version sting {} is incorrect.".format(v))
+        print("         Please follow the semver specification.")
+        EXIT(1)
 
 
 if __name__ == '__main__':
