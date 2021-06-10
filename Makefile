@@ -61,6 +61,7 @@ remove-nvim-plugins:
 	sh ./scripts/nvim_remove_plugins.sh
 
 clean:				clean-docs	remove-nodejs-garbage	remove-nvim-plugins
+	find . -depth -type f -name '*.t*gz' -exec rm {} \;
 
 uninstall:			dependencies
 	sh ./stowdot remove
