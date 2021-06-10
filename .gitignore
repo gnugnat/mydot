@@ -28,6 +28,7 @@
 *.log
 *.swp
 *.tar*
+*.tgz
 *.zip*
 *_archive
 ,*
