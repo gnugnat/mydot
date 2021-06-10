@@ -1,3 +1,4 @@
 jinja2
 linkchecker
 pylint
+semantic_version
