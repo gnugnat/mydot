@@ -829,7 +829,6 @@ rbind irb        rb         'irb'                 -s
 rbind julia      jl         'julia'               -s
 rbind perl       iperl      'perl -de0'           -s
 rbind python     py         'python'              -s
-rbind racket     rkt        'racket'              -s
 rbind scheme     scm        'scheme'              -s
 rbind tclsh      tcl        'tclsh'               -s
 
