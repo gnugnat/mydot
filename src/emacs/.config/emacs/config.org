@@ -2566,7 +2566,7 @@
 
 ** IRC
 
-   [[https://freenode.net/][IRC]] with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
+   IRC with [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][ERC]].
 
    Customization:
 

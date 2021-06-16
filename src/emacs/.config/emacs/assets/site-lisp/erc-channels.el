@@ -53,27 +53,6 @@
     "#scheme"
     "#termux"
     )
-   ;; Freenode - https://freenode.net/
-   (".*\\.freenode.net"
-    "#NetBSD"
-    "#gentoo"
-    "#gentoo-chat"
-    "#gentoo-dev"
-    "#gentoo-guru"
-    "#gentoo-laptop"
-    "#gentoo-ml"
-    "#gentoo-openbsd"
-    "#gentoo-prefix"
-    "#gentoo-proxy-maint"
-    "#gentoo-qt"
-    "#gentoo-server"
-    "#guix"
-    "#kde"
-    "#lisp"
-    "#techbytes"
-    "#techrights"
-    "#termux"
-    )
    ;; OFTC - https://www.oftc.net/
    (".*\\.oftc.net"
     "#alpine-devel"
