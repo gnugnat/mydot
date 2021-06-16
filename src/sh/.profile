@@ -531,7 +531,7 @@ then
     SQLITE_HISTORY="${_sqlite_dir}/history"
     export SQLITE_HISTORY
 fi
-unset _sqlite_history
+unset _sqlite_dir
 
 # STklos
 # configuration and packages directory
