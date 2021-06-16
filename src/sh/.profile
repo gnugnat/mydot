@@ -523,6 +523,16 @@ export HISTFILE
 HISTSIZE=50000
 export HISTSIZE
 
+# SQLite
+# REPL history
+_sqlite_dir="${HOME}/.cache/sqlite"
+if mkdir -p "${_sqlite_dir}"
+then
+    SQLITE_HISTORY="${_sqlite_dir}/history"
+    export SQLITE_HISTORY
+fi
+unset _sqlite_history
+
 # STklos
 # configuration and packages directory
 STKLOS_CONFDIR="${HOME}/.local/share/stklos"
