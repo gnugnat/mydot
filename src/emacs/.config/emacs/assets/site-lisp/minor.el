@@ -72,9 +72,23 @@
 (setq xterm-mouse-mode nil)
 
 ;; Specal symbols
-(when window-system
-  (global-prettify-symbols-mode t)
+(defun laod-global-prettify-symbols ()
+  "Enable 'global-prettify-symbols-mode'."
+  (interactive)
+  (when window-system
+    (setq
+     prettify-symbols-alist
+     '(
+       ("and"    . "∧")
+       ("lambda" . "λ")
+       ("or"     . "∨")
+       ("sum"    . "∑")
+       )
+     )
+    (global-prettify-symbols-mode t)
+    )
   )
+(add-hook 'prog-mode-hook 'laod-global-prettify-symbols)
 
 ;; Size in GUI
 (when window-system
