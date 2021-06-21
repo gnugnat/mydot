@@ -72,7 +72,7 @@
 (setq xterm-mouse-mode nil)
 
 ;; Specal symbols
-(defun laod-global-prettify-symbols ()
+(defun laod-prettify-symbols ()
   "Enable 'global-prettify-symbols-mode'."
   (interactive)
   (when window-system
@@ -85,10 +85,10 @@
        ("sum"    . "∑")
        )
      )
-    (global-prettify-symbols-mode t)
+    (prettify-symbols-mode t)
     )
   )
-(add-hook 'prog-mode-hook 'laod-global-prettify-symbols)
+(add-hook 'prog-mode-hook 'laod-prettify-symbols)
 
 ;; Size in GUI
 (when window-system
