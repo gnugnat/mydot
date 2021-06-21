@@ -75,22 +75,22 @@
 (defun laod-prettify-symbols ()
   "Enable 'global-prettify-symbols-mode'."
   (interactive)
-  (when window-system
-    (setq
-     prettify-symbols-alist
-     '(
-       ("and"    . "∧")
-       ("lambda" . "λ")
-       ("nil"    . "∅")
-       ("or"     . "∨")
-       ("sum"    . "∑")
-       )
+  (setq
+   prettify-symbols-alist
+   '(
+     ("and"    . "∧")
+     ("lambda" . "λ")
+     ("nil"    . "∅")
+     ("or"     . "∨")
+     ("sum"    . "∑")
      )
-    (prettify-symbols-mode t)
-    )
+   )
+  (prettify-symbols-mode t)
   )
-(add-hook 'prog-mode-hook 'laod-prettify-symbols)
-(add-hook 'comint-mode-hook 'laod-prettify-symbols)
+(when window-system
+  (add-hook 'prog-mode-hook 'laod-prettify-symbols)
+  (add-hook 'comint-mode-hook 'laod-prettify-symbols)
+  )
 
 ;; Size in GUI
 (when window-system
