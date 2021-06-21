@@ -81,6 +81,7 @@
      '(
        ("and"    . "∧")
        ("lambda" . "λ")
+       ("nil"    . "∅")
        ("or"     . "∨")
        ("sum"    . "∑")
        )
@@ -89,6 +90,7 @@
     )
   )
 (add-hook 'prog-mode-hook 'laod-prettify-symbols)
+(add-hook 'comint-mode-hook 'laod-prettify-symbols)
 
 ;; Size in GUI
 (when window-system
