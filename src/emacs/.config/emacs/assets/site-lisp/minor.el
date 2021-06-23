@@ -167,6 +167,12 @@
 ;; Control & Scroll Down - Decrease
 (global-set-key [C-mouse-5] 'text-scale-decrease)
 
+;; C-z
+;; Disable suspending Emacs with C-z and bind it to undo.
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
+(global-set-key (kbd "C-z") 'undo)
+
 (when (executable-find "lftp")
   (setq ftp-program "lftp")
   )
