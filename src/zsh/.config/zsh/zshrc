@@ -111,6 +111,9 @@ bindkey "^[[H" beginning-of-line
 # Remove C-d binding (list-choices/delete-char-or-list)
 bindkey -r "^D"
 
+# Remove M-x binding
+bindkey -r "^[x"
+
 # Reverse search
 bindkey "^R" history-incremental-search-backward
 
