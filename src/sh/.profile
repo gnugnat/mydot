@@ -798,6 +798,7 @@ _alias_portage() {
     a_k_a ewup   '${NEED_UID0} emerge -avuDU --with-bdeps=y --backtrack=100 --verbose-conflicts @world'
     a_k_a pep    '${NEED_UID0} emerge --autounmask --ask --verbose'
     a_k_a preb   '${NEED_UID0} emerge --usepkg-exclude "*" -1 @preserved-rebuild'
+    a_k_a rreb   '${NEED_UID0} revdep-rebuild -v -- --usepkg-exclude "*" -1'
     a_k_a slr    '${NEED_UID0} smart-live-rebuild -- --usepkg-exclude "*"'
     a_k_a vmerge '${NEED_UID0} emerge --verbose --jobs=1 --quiet-build=n'
 }
