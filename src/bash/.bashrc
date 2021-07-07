@@ -78,12 +78,26 @@ fi
 
 # >>> Prompt theme
 
-if am_i_root
-then
-    PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
-else
-    PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 3)\]\w\[$(tput setaf 4)\] \u00BB \[$(tput sgr0)\]'
-fi
+_dumb_PS1=$'\h -> '
+_root_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \n-> \[$(tput sgr0)\]'
+_user_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 3)\]\w\[$(tput setaf 4)\] \n-> \[$(tput sgr0)\]'
+
+case "${TERM}"
+in
+    "" | dumb )
+        PS1="${_dumb_PS1}"
+        ;;
+    * )
+        if am_i_root
+        then
+            PS1="${_root_PS1}"
+        else
+            PS1="${_user_PS1}"
+        fi
+        ;;
+esac
+
+unset _dumb_PS1 _root_PS1 _user_PS1
 
 
 # >>> Bash tweaks
