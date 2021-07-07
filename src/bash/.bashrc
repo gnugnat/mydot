@@ -23,7 +23,7 @@
 # shellcheck disable=1090
 
 
-# >>> Kill Switch
+# Kill Switch
 
 if [[ $- != *i* ]]
 then
@@ -32,13 +32,13 @@ then
 fi
 
 
-# >>> Common settings
+# Common settings
 
 profile="${HOME}/.profile"
 [ -e "${profile}" ] && . "${profile}"
 
 
-# >>> History
+# History
 
 # File location
 if [ -n "${XDG_CACHE_HOME}" ]
@@ -58,7 +58,7 @@ HISTFILESIZE=50000
 HISTCONTROL="${HISTCONTROL} erasedups:ignoreboth"
 
 
-# >>> Safety
+# Safety
 
 # Set root's editor to nano
 if am_i_root
@@ -76,7 +76,7 @@ then
 fi
 
 
-# >>> Prompt theme
+# Prompt theme
 
 _dumb_PS1=$'\h -> '
 _root_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \n-> \[$(tput sgr0)\]'
@@ -100,7 +100,7 @@ esac
 unset _dumb_PS1 _root_PS1 _user_PS1
 
 
-# >>> Bash tweaks
+# Bash tweaks
 
 # Auto-change directory
 shopt -s autocd
