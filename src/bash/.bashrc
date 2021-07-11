@@ -79,8 +79,10 @@ fi
 # Prompt theme
 
 _dumb_PS1=$'\h -> '
-_root_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 4)\] \n-> \[$(tput sgr0)\]'
-_user_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 3)\]\w\[$(tput setaf 4)\] \n-> \[$(tput sgr0)\]'
+_root_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 1)\]\w \[$(tput sgr0)\]
+\[$(tput bold)\]\[$(tput setaf 4)\]-> \[$(tput sgr0)\]'
+_user_PS1=$'\[$(tput bold)\]\[$(tput setaf 4)\]\h \[$(tput setaf 3)\]\w \[$(tput sgr0)\]
+\[$(tput bold)\]\[$(tput setaf 4)\]-> \[$(tput sgr0)\]'
 
 case "${TERM}"
 in
