@@ -103,6 +103,11 @@ step_05() {
 }
 
 step_06() {
+    FEATURES="-buildpkg -buildsyspkg -getbinpkg -test" PORTAGE_BINHOST=""  \
+            emerge -1 --usepkg=n sys-devel/libtool
+}
+
+step_07() {
     if command_exists perl-cleaner
     then
         perl-cleaner --all
@@ -111,7 +116,7 @@ step_06() {
     fi
 }
 
-step_07() {
+step_08() {
     if command_exists haskell-updater
     then
         haskell-updater -- --usepkg-exclude "*"
@@ -120,11 +125,11 @@ step_07() {
     fi
 }
 
-step_08() {
+step_09() {
     emerge -1v @preserved-rebuild
 }
 
-step_09() {
+step_10() {
     if command_exists smart-live-rebuild
     then
         FEATURES="-getbinpkg" PORTAGE_BINHOST="" smart-live-rebuild --jobs=2
@@ -133,7 +138,7 @@ step_09() {
     fi
 }
 
-step_10() {
+step_11() {
     emerge -c
     eclean-dist --deep
 }
@@ -144,11 +149,12 @@ main() {
     step_03 | busybox ts '[%Y-%m-%d %H:%M:%S] (03 prtge)'
     step_04 | busybox ts '[%Y-%m-%d %H:%M:%S] (04 chngs)'
     step_05 | busybox ts '[%Y-%m-%d %H:%M:%S] (05 updte)'
-    step_06 | busybox ts '[%Y-%m-%d %H:%M:%S] (06 perlc)'
-    step_07 | busybox ts '[%Y-%m-%d %H:%M:%S] (07 hskll)'
-    step_08 | busybox ts '[%Y-%m-%d %H:%M:%S] (08 presr)'
-    step_09 | busybox ts '[%Y-%m-%d %H:%M:%S] (09 smart)'
-    step_10 | busybox ts '[%Y-%m-%d %H:%M:%S] (10 clean)'
+    step_06 | busybox ts '[%Y-%m-%d %H:%M:%S] (06 libtl)'
+    step_07 | busybox ts '[%Y-%m-%d %H:%M:%S] (07 perlc)'
+    step_08 | busybox ts '[%Y-%m-%d %H:%M:%S] (08 hskll)'
+    step_09 | busybox ts '[%Y-%m-%d %H:%M:%S] (09 presr)'
+    step_10 | busybox ts '[%Y-%m-%d %H:%M:%S] (10 smart)'
+    step_11 | busybox ts '[%Y-%m-%d %H:%M:%S] (11 clean)'
 }
 
 
