@@ -1014,6 +1014,22 @@
        )
    #+END_SRC
 
+** BNF
+
+   [[https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form][BNF grammars]] editing support.
+
+   + Bnf-Mode:
+     - https://github.com/sergeyklay/bnf-mode
+     - https://melpa.org/#/bnf-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (use-package bnf-mode
+       :ensure t
+       :defer t
+       :mode ("\\.bnf\\'" . bnf-mode)
+       )
+   #+END_SRC
+
 ** C & C++
 
    [[https://en.wikipedia.org/wiki/C_(programming_language)][C]] & [[https://isocpp.org][C++]] language support.
