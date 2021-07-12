@@ -1863,6 +1863,10 @@
 ** Racket
 
    [[https://racket-lang.org/][Racket]] language support.
+
+   Remember to run [[elisp:(racket-mode-start-faster)][racket-mode-start-faster]]
+   ([[https://racket-mode.com/#racket_002dmode_002dstart_002dfaster][docs]]).
+
    + Important key bindings:
      - =f5=      - racket-run-and-switch-to-repl
      - =C-c C-.= - racket-xp-describe            (documentation in Emacs)
